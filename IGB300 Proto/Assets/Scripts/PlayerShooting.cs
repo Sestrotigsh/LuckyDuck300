@@ -18,8 +18,8 @@ public class PlayerShooting : NetworkBehaviour {
 			return;
 		if (Input.GetButtonDown ("Fire1")) {
 			//CmdSpawnProjectile ();
-			SpawnProjectile();
-
+			if (!Input.GetKey (KeyCode.LeftShift) && !Input.GetKey (KeyCode.RightShift))
+				SpawnProjectile();
 		}
 	}
 

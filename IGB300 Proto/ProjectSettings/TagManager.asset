@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - waypoint graph
   - Dying Enemy
+  - TowerSpawn
   layers:
   - Default
   - TransparentFX
