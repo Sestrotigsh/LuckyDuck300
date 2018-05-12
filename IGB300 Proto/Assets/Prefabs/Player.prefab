@@ -2675,10 +2675,11 @@ MonoBehaviour:
   m_MoveSpeedMultiplier: 1
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 0.3
+  rotateSpeed: 5
   cameraDistance: 5
-  cameraHeight: 2.5
-  speedH: 5
-  speedV: 5
+  cameraHeight: 2
+  speedH: 2
+  speedV: 2
 --- !u!114 &114840093309367654
 MonoBehaviour:
   m_ObjectHideFlags: 1

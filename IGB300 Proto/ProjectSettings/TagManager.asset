@@ -5,9 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - waypoint graph
   - Dying Enemy
   - TowerSpawn
+  - waypoint graph0
+  - waypoint graph1
+  - Enemy0
+  - Enemy1
   layers:
   - Default
   - TransparentFX

@@ -31,10 +31,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		bool m_Crouching;
 
 		// third person camera ability
+
+		public float rotateSpeed = 5;
+		Vector3 cameraOffset;
+
+
 		public float cameraDistance = 1.0f;
 		public float cameraHeight = 1.0f;
 		Transform mainCamera;
-		Vector3 cameraOffSet;
+		//Vector3 cameraOffSet;
 		public float speedH = 2.0f;
 		public float speedV = 2.0f;
 		private float yaw = 0.0f;
@@ -56,7 +61,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			// set up the third person camera
 			setupCamera();
 			if (!isLocalPlayer) {
-				
+				return;
 			}
 
 		}
@@ -65,20 +70,45 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			if (!isLocalPlayer) {
 				return;
 			}
-			cameraOffSet = new Vector3(0.0f, cameraHeight, -cameraDistance);
 			mainCamera = Camera.main.transform;
-			MoveCamera ();
+			//cameraOffset = transform.position - mainCamera.transform.position;
+
+			cameraOffset = new Vector3(0.0f, cameraHeight, -cameraDistance);
+
 			mainCamera.rotation = transform.rotation;
 			mainCamera.LookAt (transform);
+			MoveCamera ();
+
 		}
 
 		void MoveCamera() {
 			if (!isLocalPlayer) {
 				return;
 			}
+//			float horizontal = Input.GetAxis ("Mouse X") * rotateSpeed;
+//			transform.Rotate (0, horizontal, 0);
+//			float desiredAngle = transform.eulerAngles.y;
+//			Quaternion rotation = Quaternion.Euler (0, desiredAngle, 0);
+//			mainCamera.position = transform.position - (rotation * cameraOffset);
+//			mainCamera.transform.LookAt (transform);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			mainCamera.position = transform.position;
 			// mainCamera.rotation = transform.rotation;
-			mainCamera.Translate (cameraOffSet);
+			mainCamera.Translate (cameraOffset);
 			// mainCamera.LookAt (transform);
 			yaw += speedH * Input.GetAxis ("Mouse X");
 			pitch -= speedV * Input.GetAxis ("Mouse Y");
