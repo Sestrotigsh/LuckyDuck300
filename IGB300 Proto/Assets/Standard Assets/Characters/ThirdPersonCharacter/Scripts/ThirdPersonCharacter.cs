@@ -30,21 +30,14 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		CapsuleCollider m_Capsule;
 		bool m_Crouching;
 
-		// third person camera ability
-
-		public float rotateSpeed = 5;
-		Vector3 cameraOffset;
-
-
-		public float cameraDistance = 1.0f;
-		public float cameraHeight = 1.0f;
+		Transform cameraLookTarget;
+		[SerializeField] Vector3 cameraOffset;
+		[SerializeField] float damping;
+		[SerializeField] Vector2 mouseDamping;
+		[SerializeField] Vector2 mouseSensitivity;
 		Transform mainCamera;
-		//Vector3 cameraOffSet;
-		public float speedH = 2.0f;
-		public float speedV = 2.0f;
-		private float yaw = 0.0f;
-		private float pitch = 0.0f;
-
+		Vector3 targetPosition;
+		Vector2 mouseInput;
 
 
 		void Start()
@@ -57,62 +50,32 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
-
-			// set up the third person camera
-			setupCamera();
 			if (!isLocalPlayer) {
 				return;
 			}
+			// set up the third person camera
+			setupCamera();
 
 		}
 
 		void setupCamera() {
-			if (!isLocalPlayer) {
-				return;
-			}
 			mainCamera = Camera.main.transform;
-			//cameraOffset = transform.position - mainCamera.transform.position;
-
-			cameraOffset = new Vector3(0.0f, cameraHeight, -cameraDistance);
-
-			mainCamera.rotation = transform.rotation;
-			mainCamera.LookAt (transform);
-			MoveCamera ();
-
+			cameraLookTarget = transform.Find ("CameraTarget");
+			targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
+			mainCamera.position = targetPosition;
 		}
 
 		void MoveCamera() {
 			if (!isLocalPlayer) {
 				return;
 			}
-//			float horizontal = Input.GetAxis ("Mouse X") * rotateSpeed;
-//			transform.Rotate (0, horizontal, 0);
-//			float desiredAngle = transform.eulerAngles.y;
-//			Quaternion rotation = Quaternion.Euler (0, desiredAngle, 0);
-//			mainCamera.position = transform.position - (rotation * cameraOffset);
-//			mainCamera.transform.LookAt (transform);
+			targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
+			Quaternion targetRotation = Quaternion.LookRotation (cameraLookTarget.position - targetPosition, Vector3.up);
+			mainCamera.position = Vector3.Lerp (mainCamera.transform.position, targetPosition, damping * Time.deltaTime);
+			mainCamera.rotation = Quaternion.Lerp (mainCamera.rotation, targetRotation, damping * Time.deltaTime);
+			mouseInput.x = Mathf.Lerp (mouseInput.x, Input.GetAxis ("Mouse X"), 1f / mouseDamping.x);
+			transform.Rotate (Vector3.up * mouseInput.x * mouseSensitivity.x);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			mainCamera.position = transform.position;
-			// mainCamera.rotation = transform.rotation;
-			mainCamera.Translate (cameraOffset);
-			// mainCamera.LookAt (transform);
-			yaw += speedH * Input.GetAxis ("Mouse X");
-			pitch -= speedV * Input.GetAxis ("Mouse Y");
-			mainCamera.transform.eulerAngles = new Vector3 (pitch, yaw, 0.0f);
 		}
 
 		public void Move(Vector3 move, bool crouch, bool jump)

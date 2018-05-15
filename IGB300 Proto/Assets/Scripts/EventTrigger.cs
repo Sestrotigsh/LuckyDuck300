@@ -24,7 +24,14 @@ public class EventTrigger : MonoBehaviour
 		if (other.tag == "Enemy1" || other.tag == "Enemy0")
 		{
 			other.tag = "Dying Enemy";
-			health = health -1;
+            if (health > 0)
+            {
+                health = health - 1;
+            } else
+            {
+                health = 0;
+            }
+			
 			textAbove.text = ""+health;
 		}
 	}   
