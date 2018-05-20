@@ -8,6 +8,8 @@ public class Enemy : NavigationAgent
     //Movement Variables
     public float moveSpeed = 10.0f;
     public float minDistance = 0.1f;
+	public int health = 1;
+	private ProjectileController bullet;
 
     public int team;
     public int newState = 0;
@@ -62,7 +64,7 @@ public class Enemy : NavigationAgent
                 break;
             //Hide
             case 1:
-                Die();
+			Die(health);
                 break;
         }
 
@@ -103,13 +105,19 @@ public class Enemy : NavigationAgent
 
     }
 
-    private void Die()
+	private void Die(int damage)
     {
-        Destroy(this.gameObject);
+		health -= damage;
+		if (health <= 0) {
+			Destroy(this.gameObject);
+		}
+        
     }
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag("Projectile"))
-			Die();
+		if (other.gameObject.CompareTag ("Projectile")) {
+			bullet = other.gameObject.GetComponent<ProjectileController> ();
+			Die(bullet.damage);
+		}
 	}
 }

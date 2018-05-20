@@ -70,11 +70,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				return;
 			}
 			targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
-			Quaternion targetRotation = Quaternion.LookRotation (cameraLookTarget.position - targetPosition, Vector3.up);
+			Quaternion targetRotation = Quaternion.LookRotation (cameraLookTarget.position - targetPosition);
 			mainCamera.position = Vector3.Lerp (mainCamera.transform.position, targetPosition, damping * Time.deltaTime);
 			mainCamera.rotation = Quaternion.Lerp (mainCamera.rotation, targetRotation, damping * Time.deltaTime);
 			mouseInput.x = Mathf.Lerp (mouseInput.x, Input.GetAxis ("Mouse X"), 1f / mouseDamping.x);
 			transform.Rotate (Vector3.up * mouseInput.x * mouseSensitivity.x);
+			mouseInput.y = Mathf.Lerp (mouseInput.y, Input.GetAxis ("Mouse Y"), 1f / mouseDamping.y);
+			mainCamera.transform.Rotate (Vector3.left * mouseInput.y * mouseSensitivity.y);
 
 		}
 

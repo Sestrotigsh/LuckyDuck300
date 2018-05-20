@@ -7,12 +7,10 @@ public class CameraYMovement : MonoBehaviour {
 	[SerializeField] float damping;
 	[SerializeField] Vector2 mouseDamping;
 	[SerializeField] Vector2 mouseSensitivity;
-	Transform mainCamera;
 	Vector2 mouseInput;
 
 	// Use this for initialization
 	void Start () {
-		mainCamera = Camera.main.transform;
 	}
 	
 	// Update is called once per frame

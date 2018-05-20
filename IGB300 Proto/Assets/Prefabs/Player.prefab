@@ -710,7 +710,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4154823052442174}
-  - component: {fileID: 114422024081609540}
+  - component: {fileID: 114460111536099192}
   m_Layer: 0
   m_Name: ShootingPoint
   m_TagString: Untagged
@@ -2758,7 +2758,7 @@ MonoBehaviour:
   m_GroundCheckDistance: 0.3
   cameraOffset: {x: 0, y: 1, z: -3}
   damping: 5
-  mouseDamping: {x: 5, y: 5}
+  mouseDamping: {x: 5, y: 25}
   mouseSensitivity: {x: 2, y: 2}
 --- !u!114 &114199867897959658
 MonoBehaviour:
@@ -2814,20 +2814,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &114422024081609540
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466550133273464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ffb229d40d6ca44879c7bb39484fb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damping: 5
-  mouseDamping: {x: 5, y: 5}
-  mouseSensitivity: {x: 2, y: 2}
 --- !u!114 &114450890983166874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2844,6 +2830,25 @@ MonoBehaviour:
   tower2: {fileID: 1051622316023276, guid: f066301322f96264cbdde1a0450e3b0b, type: 2}
   tower3: {fileID: 1871181136148934, guid: 4e02868b8ea2acb488825d0c82bfff1f, type: 2}
   currentlyTouching: {fileID: 0}
+  baseCost: 10
+  level2Cost: 20
+  level3Cost: 30
+  level4Cost: 40
+  team: 0
+--- !u!114 &114460111536099192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466550133273464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec6321c072840e43ae793666adfa33c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damping: 5
+  mouseDamping: {x: 0, y: 2}
+  mouseSensitivity: {x: 0, y: 5}
 --- !u!114 &114532233156120760
 MonoBehaviour:
   m_ObjectHideFlags: 1
