@@ -11,6 +11,18 @@ TagManager:
   - waypoint graph1
   - Enemy0
   - Enemy1
+  - Spawn1
+  - Spawn0
+  - Player1
+  - Player0
+  - Base0
+  - Base1
+  - TowerBase
+  - Tower1
+  - Tower2
+  - Tower3
+  - Terrain
+  - Projectile
   layers:
   - Default
   - TransparentFX
