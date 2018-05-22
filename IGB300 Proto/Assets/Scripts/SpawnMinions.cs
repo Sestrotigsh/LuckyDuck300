@@ -21,17 +21,14 @@ public class SpawnMinions : MonoBehaviour {
 	private int remainingMinions; // The current time the wave start + the waveLength
 
 	public int team;
-	private Vector3 spawnSpot;
 
 
 	// Use this for initialization
 	void Start () {
 
-        remainingMinions = waveLength;
-		spawnSpot = transform.position;
-		spawnSpot.y = 0;
+        remainingMinions = waveLength;	
 		nextSpawn = initialSpawn;
-
+       
 	}
 	
 	// Update is called once per frame
@@ -60,7 +57,7 @@ public class SpawnMinions : MonoBehaviour {
 
 	private void SpawnEnemy()
 	{
-		GameObject enemies = Instantiate(enemy, spawnSpot, Quaternion.Euler(0, 0, 0));
+		GameObject enemies = Instantiate(enemy, transform.position, Quaternion.Euler(0, 0, 0));
 		enemies.tag = "Enemy" + team;
 	}
 
@@ -68,7 +65,7 @@ public class SpawnMinions : MonoBehaviour {
     {
         if (playerMan.currentGold >= monster1Cost && Time.time >= initialSpawn)
         {
-            GameObject enemies = Instantiate(monster1, spawnSpot, Quaternion.Euler(0, 0, 0));
+            GameObject enemies = Instantiate(monster1, transform.position, Quaternion.Euler(0, 0, 0));
             enemies.tag = "Enemy" + team;
             playerMan.currentIncome = playerMan.currentIncome + 2;
             playerMan.currentGold = playerMan.currentGold - monster1Cost;
@@ -80,7 +77,7 @@ public class SpawnMinions : MonoBehaviour {
 
         if (playerMan.currentGold >= monster2Cost && Time.time >= initialSpawn)
         {
-            GameObject enemies = Instantiate(monster2, spawnSpot, Quaternion.Euler(0, 0, 0));
+            GameObject enemies = Instantiate(monster2, transform.position, Quaternion.Euler(0, 0, 0));
             enemies.tag = "Enemy" + team;
             playerMan.currentIncome = playerMan.currentIncome + 5;
             playerMan.currentGold = playerMan.currentGold - monster2Cost;
@@ -89,6 +86,9 @@ public class SpawnMinions : MonoBehaviour {
 
     public void GetPlayer()
     {
-        playerMan = GameObject.FindGameObjectWithTag("Player" + team).GetComponent<PlayerManagement>();
+        if (GameObject.FindGameObjectWithTag("Player"+team))
+        {
+            playerMan = GameObject.FindGameObjectWithTag("Player" + team).GetComponent<PlayerManagement>();
+        }
     }
 }

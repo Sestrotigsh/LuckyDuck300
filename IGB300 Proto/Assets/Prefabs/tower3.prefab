@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 95979554325570316}
   - component: {fileID: 65565003694663740}
   - component: {fileID: 114036400235682120}
+  - component: {fileID: 114919117244099564}
   m_Layer: 0
   m_Name: tower3
   m_TagString: Tower3
@@ -160,3 +161,35 @@ MonoBehaviour:
   Firepower: 2400
   projectile: {fileID: 1558306423518512, guid: c0e5365c1d4483f4a8b90a1b4e8d3bba, type: 2}
   barrel: {fileID: 4618217961854728}
+--- !u!114 &114919117244099564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1871181136148934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 78
+    i1: 2
+    i2: 134
+    i3: 139
+    i4: 142
+    i5: 162
+    i6: 172
+    i7: 180
+    i8: 136
+    i9: 130
+    i10: 93
+    i11: 12
+    i12: 130
+    i13: 191
+    i14: 255
+    i15: 31
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

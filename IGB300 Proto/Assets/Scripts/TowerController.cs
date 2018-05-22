@@ -20,9 +20,14 @@ public class TowerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+//		if (this.transform.parent.CompareTag ("Player" + 0)) {
+//			team = 0;
+//		} else if (
+
 		GetComponent<Renderer> ().enabled = false;
 		currentlyTouching = null;
-		playerMan = GameObject.FindGameObjectWithTag("Player" + team).GetComponent<PlayerManagement>();
+		playerMan = this.transform.parent.GetComponent<PlayerManagement>();
 	}
 	
 	// Update is called once per frame
@@ -38,27 +43,40 @@ public class TowerController : MonoBehaviour {
 			if (Input.GetButtonDown ("Fire1")) {
 				if (currentlyTouching == null) {
 					if (playerMan.currentGold >= baseCost) {
-						Instantiate (towerBasic, transform.position-yAdjust, transform.rotation);
+						playerMan.placeTower = towerBasic;
+						playerMan.position = (transform.position - yAdjust);
+						playerMan.BroadcastMessage ("SpawnTower");
 						playerMan.currentGold = playerMan.currentGold - baseCost;
+						//Instantiate (towerBasic, transform.position-yAdjust, transform.rotation);
+
 					}
 				} else {
 					if (currentlyTouching.CompareTag ("TowerBase")) {
 						if (playerMan.currentGold >= level2Cost) {
 							DestroyObject(currentlyTouching);
-							Instantiate (tower1, transform.position-yAdjust, transform.rotation);
+							playerMan.placeTower = tower1;
+							playerMan.position = (transform.position - yAdjust);
+							playerMan.BroadcastMessage ("SpawnTower");
+							//Instantiate (tower1, transform.position-yAdjust, transform.rotation);
 							playerMan.currentGold = playerMan.currentGold - level2Cost;
 						}
 
 					} else if (currentlyTouching.CompareTag ("Tower1")) {
 						if (playerMan.currentGold >= level3Cost) {
 							DestroyObject (currentlyTouching);
-							Instantiate (tower2, transform.position-yAdjust, transform.rotation);
+							playerMan.placeTower = tower2;
+							playerMan.position = (transform.position - yAdjust);
+							playerMan.BroadcastMessage ("SpawnTower");
+							//Instantiate (tower2, transform.position-yAdjust, transform.rotation);
 							playerMan.currentGold = playerMan.currentGold - level3Cost;
 						}
 					} else if (currentlyTouching.CompareTag ("Tower2")) {
 						if (playerMan.currentGold >= level4Cost) {
 							DestroyObject (currentlyTouching);
-							Instantiate (tower3, transform.position-yAdjust, transform.rotation);
+							playerMan.placeTower = tower3;
+							playerMan.position = (transform.position - yAdjust);
+							playerMan.BroadcastMessage ("SpawnTower");
+							//Instantiate (tower3, transform.position-yAdjust, transform.rotation);
 							playerMan.currentGold = playerMan.currentGold - level4Cost;
 						}
 					}

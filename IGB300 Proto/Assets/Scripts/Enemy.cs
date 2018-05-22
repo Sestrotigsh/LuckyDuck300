@@ -12,23 +12,37 @@ public class Enemy : NavigationAgent
 	private ProjectileController bullet;
 
     public int team;
+    public int enemyTeam;
     public int newState = 0;
     private int currentState = 0;
     public int startNode;
     public int goal; // The final goal the minion / monster aims to reach
     System.Random rand = new System.Random();
 
+    private PlayerManagement playerMan;
+
+    public int value; // The gold value of the monster
+
+    public bool isStunned = false;
+    public float endOfStun;
+
     // Use this for initialization
     void Start()
     {
+        if (GameObject.FindGameObjectWithTag("Player" +enemyTeam))
+        {
+            playerMan = GameObject.FindGameObjectWithTag("Player" +enemyTeam).GetComponent<PlayerManagement>();
+        }
 
         if (this.tag == "Enemy1")
         {
             team = 1;
+            enemyTeam = 0;
         }
         else
         {
             team = 0;
+            enemyTeam = 1;
         }
 
         if (rand.Next(0, 2) == 0)
@@ -64,11 +78,20 @@ public class Enemy : NavigationAgent
                 break;
             //Hide
             case 1:
-			Die(health);
+			DestroyEnemy();
                 break;
         }
 
-        Move();
+        if (endOfStun <= Time.time)
+        {
+            isStunned = false;
+        }
+
+        if (isStunned == false)
+        {
+            Move();
+        }
+        
         
     }
 
@@ -105,19 +128,23 @@ public class Enemy : NavigationAgent
 
     }
 
-	private void Die(int damage)
+	public void Die(int damage)
     {
 		health -= damage;
 		if (health <= 0) {
 			Destroy(this.gameObject);
-		}
-        
+            playerMan.currentGold = playerMan.currentGold + value;
+		}      
     }
 
-	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag ("Projectile")) {
-			bullet = other.gameObject.GetComponent<ProjectileController> ();
-			Die(bullet.damage);
-		}
-	}
+    private void DestroyEnemy()
+    {
+        Destroy(this.gameObject);
+    }   
+
+    public void Stun(float timeStun)
+    {
+        isStunned = true;
+        endOfStun = Time.time + timeStun;
+    }
 }

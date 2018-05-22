@@ -174,7 +174,12 @@ MonoBehaviour:
   currentNodeIndex: 0
   moveSpeed: 10
   minDistance: 0.1
+  health: 1
   team: 0
+  enemyTeam: 0
   newState: 0
   startNode: 0
   goal: 0
+  value: 300
+  isStunned: 0
+  endOfStun: 0

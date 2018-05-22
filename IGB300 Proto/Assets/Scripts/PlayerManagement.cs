@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class PlayerManagement : MonoBehaviour {
+public class PlayerManagement : NetworkBehaviour {
 
+	GameManager gameManager;
 
     private static int playerTeam = 0; // Keep trask of which team both players are
 
@@ -12,7 +14,7 @@ public class PlayerManagement : MonoBehaviour {
 
     private SpawnMinions spawner; // Script associated with this team spanwer
     private EventTrigger baseHP; // cript associated with this team base HP
-    private GameObject canv; // The canvas and TYext attached with this player
+    private GameObject canv; // The canvas and Text attached with this player
     private GameObject canvHPT;
     private GameObject goldT;
     private GameObject incomeT;
@@ -22,9 +24,17 @@ public class PlayerManagement : MonoBehaviour {
     public int currentGold;
     public int incomeInterval = 5;
     private int timeCount;
+
+	public GameObject placeTower;
+	public Vector3 position;
+
+
+
+
+
 	// Use this for initialization
 	void Start () {
-
+		gameManager = GameObject.FindObjectOfType<GameManager> ();
 
         // Manage the team counting
 
@@ -44,6 +54,9 @@ public class PlayerManagement : MonoBehaviour {
         spawner = GameObject.FindGameObjectWithTag("Spawn"+thisPlayerTeam).GetComponent<SpawnMinions>();
         baseHP = GameObject.FindGameObjectWithTag("Base" + thisPlayerTeam).GetComponent<EventTrigger>();
         canv = this.transform.Find("Canvas").gameObject;
+        canvHPT = canv.transform.Find("BaseHPText").gameObject;
+        goldT = canv.transform.Find("GoldText").gameObject;
+        incomeT = canv.transform.Find("IncomeText").gameObject;
 
         // Set the income starting time
 
@@ -58,17 +71,14 @@ public class PlayerManagement : MonoBehaviour {
         SpawnMonster();
         UpdateCanvas();
         Income();
+
 	}
 
     private void UpdateCanvas() // Update the Base HP on the canvas
     {
-        canvHPT = canv.transform.Find("BaseHPText").gameObject;
-        canvHPT.GetComponent<Text>().text = "Remaining Health : " + baseHP.health;
-
-        goldT = canv.transform.Find("GoldText").gameObject;
-        goldT.GetComponent<Text>().text = "Gold : " + currentGold;
-
-        incomeT = canv.transform.Find("IncomeText").gameObject;
+  
+        canvHPT.GetComponent<Text>().text = "Remaining Health : " + baseHP.health;       
+        goldT.GetComponent<Text>().text = "Gold : " + currentGold;      
         incomeT.GetComponent<Text>().text = "Income : " + currentIncome + " Per "+incomeInterval +" seconds";
     }
 
@@ -92,4 +102,18 @@ public class PlayerManagement : MonoBehaviour {
             timeCount = timeCount + incomeInterval;
         }
     }
+
+	public void SpawnTower() {
+		if (isLocalPlayer) {
+			//Debug.Log (thisPlayerTeam);
+			//GameObject go = Instantiate (placeTower, position, transform.rotation);
+			CmdSpawnTower ();
+		}
+	}
+
+	[Command]
+	void CmdSpawnTower() {
+		GameObject go = Instantiate (placeTower, position, transform.rotation);
+		NetworkServer.SpawnWithClientAuthority(go,connectionToClient);
+	}
 }
