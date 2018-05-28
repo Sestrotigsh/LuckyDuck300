@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class TowerAttacking : MonoBehaviour {
 
@@ -14,10 +13,29 @@ public class TowerAttacking : MonoBehaviour {
 	public float Firepower = 800f;
 	public GameObject projectile;
 	public Transform barrel;
+	private PlayerNetwork player;
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("updateTarget", 0f, 0.5f);
+		// DIRTY HARD CODE - SHOULD BE FIXED IN FINAL BUT GOOD ENOUGH FOR PROTOTYPE
+		player = GameObject.FindGameObjectWithTag ("Player" + 0).GetComponent<PlayerNetwork>();
+		if (player.local) {
+			// CHECK IF THEY'RE ON THE CORRECT SIDE (player 0 is  < centre, player 1 is > centre)
+			if (transform.position.z < player.centreLineZ) {
+				InvokeRepeating ("updateTarget", 0f, 0.5f);
+			} else {
+				enabled = false;
+			}
+		} else {
+			player = GameObject.FindGameObjectWithTag ("Player" + 1).GetComponent<PlayerNetwork>();
+			if (player.local) {
+				if (transform.position.z > player.centreLineZ) {
+					InvokeRepeating ("updateTarget", 0f, 0.5f);
+				} else {
+					enabled = false;
+				}
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -29,11 +47,6 @@ public class TowerAttacking : MonoBehaviour {
 		Quaternion lookRotation = Quaternion.LookRotation (dir);
 		Vector3 rotation = Quaternion.Lerp(transform.rotation,lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
 		transform.rotation = Quaternion.Euler (0f, rotation.y, 0f);
-
-
-
-
-	
 		barrel.transform.LookAt (target);
 		if (fireCountdown <= 0f) {
 			Shoot ();
@@ -46,14 +59,12 @@ public class TowerAttacking : MonoBehaviour {
 	void Shoot() {
 		GameObject instance = Instantiate (projectile, barrel.position, barrel.rotation) as GameObject;
 		instance.GetComponent<Rigidbody> ().AddForce (barrel.forward * Firepower);
-		//NetworkServer.Spawn (instance);
 		Destroy (instance, 1.0f);
 	}
 
 	void updateTarget() {
-		GameObject[] enemies1 = GameObject.FindGameObjectsWithTag ("Enemy0");
-		GameObject[] enemies2 = GameObject.FindGameObjectsWithTag ("Enemy1");
-		GameObject[] enemies = enemies1.Concat (enemies2).ToArray ();
+
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy"+player.team);
 		float shortestDistance = Mathf.Infinity;
 		GameObject nearestEnemy = null;
 		foreach (GameObject enemy in enemies) {
@@ -68,6 +79,5 @@ public class TowerAttacking : MonoBehaviour {
 		} else {
 			target = null;
 		}
-
 	}
 }

@@ -3834,9 +3834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda18920bf12aaa45803ca085a5c04c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
-  enter: 0
-  exit: 0
+  textAbove: {fileID: 0}
+  currentHealth: 10
 --- !u!114 &114628641648920848
 MonoBehaviour:
   m_ObjectHideFlags: 1

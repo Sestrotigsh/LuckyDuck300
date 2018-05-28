@@ -1,94 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class SpawnMinions : MonoBehaviour {
+public class SpawnMinions : NetworkBehaviour {
 
-	public GameObject enemy;
+	public GameObject enemySpawner;
     public GameObject monster1;
     public GameObject monster2;
+	private PlayerManagement playerMan;
+	private PlayerNetwork PlayerNet;
 
     public int monster1Cost;
+	public int monster1IncomeBoost;
     public int monster2Cost;
-
-    private PlayerManagement playerMan;
-
-    private Vector3 position;
-	private int nextSpawn; // Determine the start of the next Wave
-	public int initialSpawn; // Determine the time for the first wavespawn
-	private int spawnDistance = 5; // Determine the time distance between the end and the start of the next wave 
-	public int waveLength = 5; // Number of second / number of minions the wave will be
-	private int remainingMinions; // The current time the wave start + the waveLength
-
-	public int team;
-	private Vector3 spawnSpot;
-
+	public int monster2IncomeBoost;
 
 	// Use this for initialization
 	void Start () {
-
-        remainingMinions = waveLength;
-		spawnSpot = transform.position;
-		spawnSpot.y = 0;
-		nextSpawn = initialSpawn;
-
+		playerMan = this.GetComponent<PlayerManagement> ();
+		PlayerNet = this.GetComponent<PlayerNetwork> ();
+		if (!PlayerNet.local) {
+			enabled = false;
+		}
+		// find the enemy spawner
+		int newTeam = this.GetComponent<PlayerNetwork>().team;
+		enemySpawner = GameObject.FindGameObjectWithTag ("Spawn" + (newTeam+1)%2);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Wave();
-       
-	}
-
-	private void Wave()
-	{
-
-		if (Time.time > nextSpawn)
-		{
-			if (remainingMinions > 0)
-			{
-				nextSpawn = nextSpawn + 1;
-				SpawnEnemy();
-                remainingMinions = remainingMinions - 1;
-			} else
-			{
-                remainingMinions = waveLength;
-				nextSpawn = nextSpawn + spawnDistance;
-			}                      
+		if (Input.GetKeyDown("o")) {
+			if (playerMan.currentGold >= monster1Cost) {
+				CmdSendMonster1();
+				playerMan.currentGold -= monster1Cost;
+				playerMan.currentIncome += monster1IncomeBoost;
+			}
+		}
+		else if (Input.GetKeyDown("p")) {
+			if (playerMan.currentGold >= monster2Cost) {
+				CmdSendMonster2();
+				playerMan.currentGold -= monster1Cost;
+				playerMan.currentIncome += monster2IncomeBoost;
+			}
 		}
 	}
 
-	private void SpawnEnemy()
-	{
-		GameObject enemies = Instantiate(enemy, spawnSpot, Quaternion.Euler(0, 0, 0));
-		enemies.tag = "Enemy" + team;
+	[Command]
+    void CmdSendMonster1() {
+		var currentMonster = Instantiate(monster1, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+		NetworkServer.Spawn (currentMonster);
 	}
 
-    public void SpawnMonster1()
-    {
-        if (playerMan.currentGold >= monster1Cost && Time.time >= initialSpawn)
-        {
-            GameObject enemies = Instantiate(monster1, spawnSpot, Quaternion.Euler(0, 0, 0));
-            enemies.tag = "Enemy" + team;
-            playerMan.currentIncome = playerMan.currentIncome + 2;
-            playerMan.currentGold = playerMan.currentGold - monster1Cost;
-        }
-  
-    }
-    public void SpawnMonster2()
-    {
-
-        if (playerMan.currentGold >= monster2Cost && Time.time >= initialSpawn)
-        {
-            GameObject enemies = Instantiate(monster2, spawnSpot, Quaternion.Euler(0, 0, 0));
-            enemies.tag = "Enemy" + team;
-            playerMan.currentIncome = playerMan.currentIncome + 5;
-            playerMan.currentGold = playerMan.currentGold - monster2Cost;
-        }
-    }
-
-    public void GetPlayer()
-    {
-        playerMan = GameObject.FindGameObjectWithTag("Player" + team).GetComponent<PlayerManagement>();
+	[Command]
+    void CmdSendMonster2() {
+		var currentMonster = Instantiate(monster2, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+		NetworkServer.Spawn (currentMonster);
     }
 }

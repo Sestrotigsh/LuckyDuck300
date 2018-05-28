@@ -6,30 +6,39 @@ using System;
 public class Enemy : NavigationAgent
 {
     //Movement Variables
+	public float centreZ;
     public float moveSpeed = 10.0f;
     public float minDistance = 0.1f;
 	public int health = 1;
 	private ProjectileController bullet;
 
     public int team;
+    public int enemyTeam;
     public int newState = 0;
     private int currentState = 0;
     public int startNode;
     public int goal; // The final goal the minion / monster aims to reach
     System.Random rand = new System.Random();
 
+	private PlayerManagement playerMan;
+	private PlayerNetwork playerNet;
+
+	public GameObject Spawner1;
+	public GameObject Spawner2;
+
+    public int value; // The gold value of the monster
+
+    public bool isStunned = false;
+    public float endOfStun;
+
     // Use this for initialization
     void Start()
     {
+		Spawner1 = GameObject.FindGameObjectWithTag ("Spawn" + 0);
+		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
+		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
+		float distanceToSpawn2 = Vector3.Distance (transform.position, Spawner2.transform.position);
 
-        if (this.tag == "Enemy1")
-        {
-            team = 1;
-        }
-        else
-        {
-            team = 0;
-        }
 
         if (rand.Next(0, 2) == 0)
         {
@@ -41,7 +50,16 @@ public class Enemy : NavigationAgent
         }
 
         //Find waypoint graph
-        graphNodes = GameObject.FindGameObjectWithTag("waypoint graph" + team).GetComponent<WaypointGraph>();
+		if (distanceToSpawn1 < distanceToSpawn2) {
+			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
+			playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
+			playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
+		} else {
+			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 1).GetComponent<WaypointGraph> ();
+			playerNet = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerNetwork> ();
+			playerMan = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerManagement> ();
+		}
+        
         //Initial node index to move to
         currentPath.Add(startNode);
 
@@ -64,11 +82,20 @@ public class Enemy : NavigationAgent
                 break;
             //Hide
             case 1:
-			Die(health);
+			DestroyEnemy();
                 break;
         }
 
-        Move();
+        if (endOfStun <= Time.timeSinceLevelLoad)
+        {
+            isStunned = false;
+        }
+
+        if (isStunned == false)
+        {
+            Move();
+        }
+        
         
     }
 
@@ -105,19 +132,32 @@ public class Enemy : NavigationAgent
 
     }
 
-	private void Die(int damage)
+	public void Die(int damage)
     {
 		health -= damage;
 		if (health <= 0) {
-			Destroy(this.gameObject);
-		}
-        
+			playerMan.currentGold = playerMan.currentGold + value;
+			playerNet.EnemyDie (this.gameObject);
+		}      
+    }
+
+
+
+    private void DestroyEnemy()
+    {
+		playerNet.EnemyDie (this.gameObject);
+    }   
+
+    public void Stun(float timeStun)
+    {
+        isStunned = true;
+        endOfStun = Time.time + timeStun;
     }
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.CompareTag ("Projectile")) {
-			bullet = other.gameObject.GetComponent<ProjectileController> ();
-			Die(bullet.damage);
+		if (other.CompareTag ("Projectile")) {
+			Die (other.GetComponent<ProjectileController> ().damage);
+			Destroy (other.gameObject);
 		}
 	}
 }

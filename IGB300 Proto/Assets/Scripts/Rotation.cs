@@ -7,16 +7,21 @@ public class Rotation : MonoBehaviour {
     private Vector3 curLoc;
     private Vector3 prevLoc;
     private Vector3 newAngle;
+    private Enemy enemy;
     public float lookSpeed = 10;
 
     // Use this for initialization
     void Start () {
-		
+        enemy = this.gameObject.GetComponent<Enemy>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Rotate();
+        if (enemy.isStunned == false)
+        {
+            Rotate();
+        }
+       
     }
 
     private void Rotate()

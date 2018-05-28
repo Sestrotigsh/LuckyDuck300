@@ -83,8 +83,6 @@ GameObject:
   - component: {fileID: 4400407399600830}
   - component: {fileID: 136987002820122032}
   - component: {fileID: 54953002511932946}
-  - component: {fileID: 114673089880720928}
-  - component: {fileID: 114683236960056692}
   - component: {fileID: 114994426258493794}
   m_Layer: 0
   m_Name: Projectile3
@@ -999,59 +997,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114673089880720928
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145822623567450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 117
-    i1: 151
-    i2: 52
-    i3: 232
-    i4: 22
-    i5: 215
-    i6: 130
-    i7: 100
-    i8: 88
-    i9: 187
-    i10: 99
-    i11: 130
-    i12: 1
-    i13: 160
-    i14: 255
-    i15: 238
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
---- !u!114 &114683236960056692
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1145822623567450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &114994426258493794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,6 +1008,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bc7d1e8086b0b4492850a8c5d274e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  caster: 
+  player: {fileID: 0}
   damage: 3
 --- !u!136 &136987002820122032
 CapsuleCollider:
