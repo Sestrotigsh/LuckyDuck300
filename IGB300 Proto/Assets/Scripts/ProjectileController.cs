@@ -20,8 +20,7 @@ public class ProjectileController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other) // Will check if an enemy is hit, and damage it accordingly
     {
-        if (other.gameObject.CompareTag("Enemy0") || other.gameObject.CompareTag("Enemy1"))
-        {
+        if (other.gameObject.CompareTag("Enemy0") || other.gameObject.CompareTag("Enemy1")) {
             enemy = other.gameObject.GetComponent<Enemy>();
 
             // If the caster is using the alien character, will modify the basic auto with the passive.

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 65115653806233516}
   - component: {fileID: 114573637285575768}
   - component: {fileID: 114636310221707584}
+  - component: {fileID: 114157476882409722}
   m_Layer: 0
   m_Name: tower2
   m_TagString: Tower2
@@ -144,6 +145,27 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114157476882409722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1051622316023276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0
+  m_SyncRotationAxis: 0
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114573637285575768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centre: 255
   range: 15
   fireRate: 3
   turnSpeed: 12

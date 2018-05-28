@@ -267,8 +267,6 @@ GameObject:
   - component: {fileID: 4661946518423300}
   - component: {fileID: 136857031739996316}
   - component: {fileID: 54443645176272152}
-  - component: {fileID: 114694846007733394}
-  - component: {fileID: 114596463183766578}
   - component: {fileID: 114205576926159812}
   m_Layer: 0
   m_Name: Arrow
@@ -1010,60 +1008,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bc7d1e8086b0b4492850a8c5d274e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
+  caster: 
+  player: {fileID: 0}
   damage: 1
---- !u!114 &114596463183766578
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1718781194477828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
---- !u!114 &114694846007733394
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1718781194477828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 231
-    i1: 197
-    i2: 225
-    i3: 210
-    i4: 3
-    i5: 82
-    i6: 110
-    i7: 164
-    i8: 90
-    i9: 163
-    i10: 96
-    i11: 92
-    i12: 150
-    i13: 141
-    i14: 95
-    i15: 75
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!136 &136857031739996316
 CapsuleCollider:
   m_ObjectHideFlags: 1

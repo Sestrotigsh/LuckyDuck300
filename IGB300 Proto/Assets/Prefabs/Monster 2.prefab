@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 114573880859812766}
   - component: {fileID: 54999390293888246}
   - component: {fileID: 65767693365600818}
+  - component: {fileID: 114272329558168536}
+  - component: {fileID: 114698871907628292}
   m_Layer: 0
   m_Name: Monster 2
   m_TagString: Untagged
@@ -154,6 +156,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookSpeed: 10
+--- !u!114 &114272329558168536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786990413400542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 234
+    i1: 156
+    i2: 181
+    i3: 175
+    i4: 75
+    i5: 214
+    i6: 35
+    i7: 164
+    i8: 10
+    i9: 55
+    i10: 210
+    i11: 92
+    i12: 74
+    i13: 131
+    i14: 53
+    i15: 140
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114573880859812766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,3 +217,24 @@ MonoBehaviour:
   value: 300
   isStunned: 0
   endOfStun: 0
+--- !u!114 &114698871907628292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786990413400542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 2
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1

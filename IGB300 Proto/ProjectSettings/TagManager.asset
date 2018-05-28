@@ -26,6 +26,7 @@ TagManager:
   - Fire
   - 'Environment '
   - Spell
+  - Monster
   layers:
   - Default
   - TransparentFX

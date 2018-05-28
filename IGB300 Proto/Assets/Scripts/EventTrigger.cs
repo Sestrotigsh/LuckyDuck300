@@ -5,39 +5,40 @@ using UnityEngine.Networking;
 
 public class EventTrigger : NetworkBehaviour
 {
-	public int health = 10;
+	// The bases health values and indicators
 	public TextMesh textAbove;
+	public PlayerNetwork player;
+	public int team;
+
 	// Use this for initialization
-	void Start()
-	{
-		if (this.CompareTag ("Base" + 0)) {
-			int team = 0;
-		} else if (this.CompareTag ("Base" + 1)) {
-			int team = 1;
+	void Start() {
+		player = null;
+		if (GameObject.FindGameObjectWithTag ("Player" + team) != null) {
+			player = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerNetwork> ();
+			textAbove.text = "" + player.health;
 		}
 	}
 
 	// Update is called once per frame
-	void Update()
-	{
-
+	void Update() {
+		if (player == null) {
+			if (GameObject.FindGameObjectWithTag ("Player" + team) != null) {
+				player = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerNetwork> ();
+			}
+		} else {
+			textAbove.text = "" + player.health;
+		}
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Enemy1" || other.tag == "Enemy0")
-		{
-			other.tag = "Dying Enemy";
-			if (health > 0)
-            {
-                health = health - 1;
-            } else
-            {
-                health = 0;
-            }
-			
-			textAbove.text = ""+health;
+	void OnTriggerEnter(Collider other) {
+		// check if enemy team enters base
+		if (player.local) {
+			if (other.CompareTag ("Enemy")) {
+				if (player.health > 0) {
+					player.TakeDamage();
+				}
+			}
 		}
-	}   
-
+		other.tag = "Dying Enemy";
+	}
 }
