@@ -176,7 +176,6 @@ public class SpellsAlien : MonoBehaviour
 				enemy.Die(spell2Damage);
 			}
 		}
-
 	}
 
 	private void RemainingTime() // Calculate the remaining time before next use, which will be used for the UI

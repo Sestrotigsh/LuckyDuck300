@@ -45,7 +45,14 @@ public class PlayerNetwork : NetworkBehaviour {
 			CmdUpdateHealth (health);
 		}
 		if (health <= 0) {
-			opponent.GetComponent<PlayerNetwork>().RpcVictory ();
+			// If the player is on the server - tell the client to win
+			if (isServer) {
+				RpcVictory();
+			// if the player is a client - tell the server to win
+			} else {
+				CmdVictory();
+			}
+			// end in defeat
 			SceneManager.LoadScene("Defeat", LoadSceneMode.Single);
 		}
 	}
@@ -78,8 +85,16 @@ public class PlayerNetwork : NetworkBehaviour {
 		health = amount;
 	}
 
+	[Command]
+	void CmdVictory () {
+		// Tell the opponent on the server they have won!
+		SceneManager.LoadScene("Victory", LoadSceneMode.Single);
+	}
 	[ClientRpc]
 	void RpcVictory() {
-		SceneManager.LoadScene("Victory", LoadSceneMode.Single);
+		// tell the client (excluding client on the server) they have won!
+		if (!isServer) {
+			SceneManager.LoadScene("Victory", LoadSceneMode.Single);
+		}
 	}
 }
