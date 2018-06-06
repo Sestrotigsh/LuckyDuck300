@@ -21,6 +21,9 @@ public class PlayerManagement : MonoBehaviour {
     public int incomeInterval = 5;
     private int timeCount;
 
+	// Controls for player reset when touching minion
+	private GameObject spawnpoint;
+
 	// Use this for initialization
 	void Start () {
         // Manage Gold
@@ -39,9 +42,8 @@ public class PlayerManagement : MonoBehaviour {
             {
                 player2 = GameObject.FindGameObjectWithTag("Player0").GetComponent<PlayerNetwork>();
             }
-            
         }
-
+		spawnpoint = GameObject.Find ("SpawnPoint" + (player.team + 1));
     }
 	
 	// Update is called once per frame
@@ -78,4 +80,14 @@ public class PlayerManagement : MonoBehaviour {
             timeCount = timeCount + incomeInterval;
         }
     }
+
+	void OnTriggerEnter(Collider other) {
+		if (!player.local) {
+			return;
+		}
+		if (other.CompareTag ("Enemy")) {
+			transform.position = spawnpoint.transform.position;
+			this.GetComponent<playerAnimation> ().setupCamera ();
+		}
+	}
 }

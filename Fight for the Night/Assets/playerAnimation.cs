@@ -28,6 +28,7 @@ public class playerAnimation : NetworkBehaviour {
 		shootTimer = 0;
 		shooting = false;
 		if (!isLocalPlayer) {
+			GetComponent<Animator> ().enabled = false;
 			return;
 		}
 		// set up the third person camera
@@ -66,7 +67,7 @@ public class playerAnimation : NetworkBehaviour {
 	}
 
 
-	void setupCamera() {
+	public void setupCamera() {
 		mainCamera = Camera.main.transform;
 		cameraLookTarget = transform.Find ("CameraTarget");
 		targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
