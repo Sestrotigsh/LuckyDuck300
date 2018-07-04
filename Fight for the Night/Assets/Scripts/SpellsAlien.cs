@@ -27,6 +27,8 @@ public class SpellsAlien : MonoBehaviour
 	public GameObject projectile;
 	public int baseAuto;
 	public int autoDamage;
+	public float fireRate = 0.4f;
+	private float fireTimer = 0.0f;
 
 	// Spell 1
 	float power = 1000;
@@ -69,22 +71,20 @@ public class SpellsAlien : MonoBehaviour
 		if (!this.GetComponent<PlayerNetwork>().local) {
 			return;
 		}
-		if (!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
-		{
-			if (Time.time >= CDTimer1 && Input.GetKeyDown("1"))
-			{
-				Spell1();
+		if (!(Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))) {
+			if (Time.time >= CDTimer1 && Input.GetKeyDown ("1")) {
+				Spell1 ();
 
+			} else if (Time.time >= CDTimer2 && Input.GetKeyDown ("2")) {
+				Spell2 ();
+
+			} else if (Input.GetMouseButton (0)) {
+				if (fireTimer < Time.timeSinceLevelLoad) {
+					BasicAttack ();
+					fireTimer = fireRate + Time.timeSinceLevelLoad;
+				}
 			}
-			else if (Time.time >= CDTimer2 && Input.GetKeyDown("2"))
-			{
-				Spell2();
-			}
-			else if (Input.GetMouseButtonDown(0))
-			{
-				BasicAttack();
-			}
-		}
+		} 
 		RemainingTime();
 	}
 

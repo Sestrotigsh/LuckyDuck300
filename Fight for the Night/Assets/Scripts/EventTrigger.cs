@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class EventTrigger : NetworkBehaviour
-{
+public class EventTrigger : NetworkBehaviour {
+	
 	// The bases health values and indicators
 	public TextMesh textAbove;
 	public PlayerNetwork player;

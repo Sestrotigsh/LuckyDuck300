@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class EnemyWaves : NetworkBehaviour {
 
+	// Spawners and enemy in the wave
 	public GameObject playerSpawner;
 	public GameObject enemySpawner;
 	public GameObject enemy;
@@ -23,18 +24,18 @@ public class EnemyWaves : NetworkBehaviour {
 		if (!PlayerNet.local) {
 			enabled = false;
 		}
-
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
 		playerSpawner = GameObject.FindGameObjectWithTag ("Spawn" + PlayerNet.team);
-
 	}
 
 	// Update is called once per frame
 	void Update () {
 		Wave();
 	}
-
+	/// <summary>
+	/// spawn the wave of minions
+	/// </summary>
 	private void Wave() {
 		if (Time.timeSinceLevelLoad > nextSpawn) {
 			if (remainingMinions > 0) {
@@ -48,10 +49,14 @@ public class EnemyWaves : NetworkBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// spawn the enemy with respect to the server
+	/// </summary>
+	/// <param name="pos">the position to spawn in</param>
 	[Command]
-	void CmdSpawnEnemy(Vector3 pos)
-	{
+	void CmdSpawnEnemy(Vector3 pos) {
 		var currentEnemy = Instantiate(enemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
 		NetworkServer.Spawn (currentEnemy);
 	}
+
 }

@@ -20,17 +20,17 @@ public class CinemaScreenMat : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time >= timer && usedMat == mat1 )
-        {
+		// Change the screen to the next viewing angle
+		if (Time.time >= timer && usedMat == mat1 ) {
             this.gameObject.GetComponent<MeshRenderer>().material = mat2;
             usedMat = mat2;
             timer = Time.time + interval;
-        } else if (Time.time >= timer && usedMat == mat2)
-        {
+		// change the screen to the next viewing angle
+        } else if (Time.time >= timer && usedMat == mat2) {
             this.gameObject.GetComponent<MeshRenderer>().material = mat1;
             usedMat = mat1;
             timer = Time.time + interval;
         }
-
     }
+
 }

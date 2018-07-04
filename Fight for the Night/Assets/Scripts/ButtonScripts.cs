@@ -6,27 +6,25 @@ using UnityEngine.UI;
 
 public class ButtonScripts : MonoBehaviour {
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+	/// <summary>
+	/// Load the main menu of the game.
+	/// </summary>
 	public void MainMenu() {
 		SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
 	}
 
-    public void GoToGame()
-    {
+	/// <summary>
+	/// loads the game map
+	/// </summary>
+    public void GoToGame() {
         SceneManager.LoadScene("Main Scene", LoadSceneMode.Single);
     }
 
-    public void Exit()
-    {
+	/// <summary>
+	/// Quit the game
+	/// </summary>
+    public void Exit() {
         Application.Quit();
     }
+
 }

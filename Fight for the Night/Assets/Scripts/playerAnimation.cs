@@ -50,18 +50,17 @@ public class playerAnimation : NetworkBehaviour {
 			anim.SetTrigger ("Jump");
 		}
 		if (!(Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))) {
-			if (Input.GetMouseButtonDown (0)) {
+			if (Input.GetMouseButton (0)) {
 				anim.SetTrigger ("Shoot");
 				shooting = true;
-				shootTimer = 0;
 			}
 		}
-		if (shooting == true) {
-			shootTimer += Time.deltaTime;
-			if (shootTimer > 0.2) {
-				shooting = false;
-			}
-		} else {
+		if (Input.GetMouseButtonUp (0)) {
+			shooting = false;
+			shootTimer = Time.timeSinceLevelLoad + 0.2f;
+		}
+
+		if (shooting == false && Time.timeSinceLevelLoad > shootTimer) {
 			transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
 		}
 	}
