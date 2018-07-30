@@ -16,6 +16,8 @@ public class SpawnMinions : NetworkBehaviour {
     public int monster2Cost;
 	public int monster2IncomeBoost;
 
+    //private int
+
 	// Use this for initialization
 	void Start () {
 		playerMan = this.GetComponent<PlayerManagement> ();
@@ -30,31 +32,49 @@ public class SpawnMinions : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown("o")) {
+		if (Input.GetKeyDown("u")) {
 			if (playerMan.currentGold >= monster1Cost) {
-				CmdSendMonster1();
+				CmdSendMonster1(true, 11);
 				playerMan.currentGold -= monster1Cost;
 				playerMan.currentIncome += monster1IncomeBoost;
 			}
 		}
-		else if (Input.GetKeyDown("p")) {
+        else if (Input.GetKeyDown("i")) {
+            if (playerMan.currentGold >= monster1Cost) {
+                CmdSendMonster1(true, 22);
+                playerMan.currentGold -= monster1Cost;
+                playerMan.currentIncome += monster1IncomeBoost;
+            }
+        }
+		else if (Input.GetKeyDown("o")) {
 			if (playerMan.currentGold >= monster2Cost) {
-				CmdSendMonster2();
+				CmdSendMonster2(true, 11);
 				playerMan.currentGold -= monster2Cost;
 				playerMan.currentIncome += monster2IncomeBoost;
 			}
 		}
+        else if (Input.GetKeyDown("p")) {
+            if (playerMan.currentGold >= monster2Cost) {
+                CmdSendMonster2(true, 22);
+                playerMan.currentGold -= monster2Cost;
+                playerMan.currentIncome += monster2IncomeBoost;
+            }
+        }
 	}
 
 	[Command]
-    void CmdSendMonster1() {
+    void CmdSendMonster1(bool customPath, int path) {
 		var currentMonster = Instantiate(monster1, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-		NetworkServer.Spawn (currentMonster);
+        currentMonster.GetComponent<Enemy>().customPathBool = customPath;
+        currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        NetworkServer.Spawn (currentMonster);
 	}
 
 	[Command]
-    void CmdSendMonster2() {
+    void CmdSendMonster2(bool customPath, int path) {
 		var currentMonster = Instantiate(monster2, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-		NetworkServer.Spawn (currentMonster);
+        currentMonster.GetComponent<Enemy>().customPathBool = customPath;
+        currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        NetworkServer.Spawn (currentMonster);
     }
 }

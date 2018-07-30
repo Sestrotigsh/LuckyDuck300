@@ -29,6 +29,9 @@ public class Enemy : NavigationAgent {
 	public GameObject Spawner1;
 	public GameObject Spawner2;
 
+    public bool customPathBool = false;
+    public int customPathDirection = 0;
+
     public int value; // The gold value of the monster
     public bool isStunned = false;
     public float endOfStun;
@@ -40,13 +43,21 @@ public class Enemy : NavigationAgent {
 		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
 		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
 		float distanceToSpawn2 = Vector3.Distance (transform.position, Spawner2.transform.position);
-		// choose which of the two paths to go down
-        if (rand.Next(0, 2) == 0) {
-            startNode = 22;
-        }
-        else {
-            startNode = 11;
-        }
+
+       
+            
+
+
+            // choose which of the two paths to go down
+            if (rand.Next(0, 2) == 0) {
+                startNode = 22;
+            } else {
+                startNode = 11;
+            }
+        
+
+
+
         //Find waypoint graph
 		if (distanceToSpawn1 < distanceToSpawn2) {
 			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
@@ -64,7 +75,15 @@ public class Enemy : NavigationAgent {
     // Update is called once per frame
     void Update()
     {
-		// If enemy is destroyed - perform relevant actio s
+        // Adjust the path to fit the players custom directions
+        if (customPathBool == true) {
+            currentPath.Remove(startNode);
+            currentPath.Add(customPathDirection);
+            customPathBool = false;
+        }
+
+
+		// If enemy is destroyed - perform relevant actions
         if (this.tag == "Dying Enemy") {
             currentState = 1;
         }
