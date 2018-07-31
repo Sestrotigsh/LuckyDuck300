@@ -75,7 +75,8 @@ public class playerAnimation : NetworkBehaviour {
 		float h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		float v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
-		transform.Rotate (0, h * rotateAmount, 0);
+		//transform.Rotate (0, h * rotateAmount, 0);
+		transform.Rotate (0, h * 10.0f, 0);
 		if (Input.GetKeyDown (KeyCode.Space)) {
             if (shooting == false) {
                 anim.SetTrigger ("Jump");
@@ -95,12 +96,7 @@ public class playerAnimation : NetworkBehaviour {
 
 		if (shooting == false && Time.timeSinceLevelLoad > shootTimer) {
 			transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
-		}
-
-//        if (anim.GetCurrentAnimatorStateInfo(0).IsName("pushing") == false) {
- //           this.GetComponent<SpellsAlien>().pushing == false;
-//        }
-            
+		}   
 	}
 
 	public void CheckScreen() {
