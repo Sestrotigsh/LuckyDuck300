@@ -11,7 +11,6 @@ public class PlayerTower : NetworkBehaviour {
 	public GameObject tower2;
 	public GameObject tower3;
 	public GameObject currentlyTouching;
-	private Vector3 yAdjust = new Vector3 (0f, 0.4f, 0f);
 	public int baseCost = 25;
 	public int level2Cost = 50;
 	public int level3Cost = 75;
@@ -42,26 +41,26 @@ public class PlayerTower : NetworkBehaviour {
 			if (Input.GetButtonDown ("Fire1")) {
 				if (currentlyTouching == null) {
 					if (this.GetComponent<PlayerManagement> ().currentGold >= baseCost) {
-						CmdcreateTower1 (ghost.transform.position - yAdjust, ghost.transform.rotation);
+						CmdcreateTower1 (ghost.transform.position, ghost.transform.rotation);
 						this.GetComponent<PlayerManagement> ().currentGold -= baseCost;
 					}
 				} else {
 					if (currentlyTouching.CompareTag ("TowerBase")) {
 						if (this.GetComponent<PlayerManagement> ().currentGold >= level2Cost) {
 							Destroy(currentlyTouching);
-							CmdcreateTower2 (ghost.transform.position - yAdjust, ghost.transform.rotation);
+							CmdcreateTower2 (ghost.transform.position, ghost.transform.rotation);
 							this.GetComponent<PlayerManagement> ().currentGold -= level2Cost;
 						}
 					} else if (currentlyTouching.CompareTag ("Tower1")) {
 						if (this.GetComponent<PlayerManagement> ().currentGold >= level3Cost) {
 							Destroy(currentlyTouching);
-							CmdcreateTower3 (ghost.transform.position - yAdjust, ghost.transform.rotation);
+							CmdcreateTower3 (ghost.transform.position, ghost.transform.rotation);
 							this.GetComponent<PlayerManagement> ().currentGold -= level3Cost;
 						}
 					} else if (currentlyTouching.CompareTag ("Tower2")) {
 						if (this.GetComponent<PlayerManagement> ().currentGold >= level4Cost) {
 							Destroy(currentlyTouching);
-							CmdcreateTower4 (ghost.transform.position - yAdjust, ghost.transform.rotation);
+							CmdcreateTower4 (ghost.transform.position, ghost.transform.rotation);
 							this.GetComponent<PlayerManagement> ().currentGold -= level4Cost;
 						}
 					}

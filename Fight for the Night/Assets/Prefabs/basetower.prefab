@@ -49,6 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4760866525358862}
+  - component: {fileID: 114174351988109854}
   m_Layer: 0
   m_Name: Rotate
   m_TagString: Untagged
@@ -314,7 +315,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1791237203701938
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -335,9 +336,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4657331720584814}
+  - component: {fileID: 114401510207632236}
+  - component: {fileID: 114222760401025084}
+  - component: {fileID: 65926290710425260}
   m_Layer: 0
   m_Name: basetower
-  m_TagString: Untagged
+  m_TagString: TowerBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -415,10 +419,6 @@ GameObject:
   - component: {fileID: 33758095261603432}
   - component: {fileID: 23120779345900312}
   - component: {fileID: 95955044015094856}
-  - component: {fileID: 65341606294730942}
-  - component: {fileID: 114392365322683878}
-  - component: {fileID: 114481454001671698}
-  - component: {fileID: 114334680033904340}
   m_Layer: 0
   m_Name: basetower
   m_TagString: TowerBase
@@ -623,10 +623,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1791237203701938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.041, y: 1.316, z: 0.682}
+  m_LocalPosition: {x: 0.016999995, y: 0.46000016, z: 0.6199998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4657331720584814}
+  m_Father: {fileID: 4760866525358862}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4657331720584814
@@ -640,7 +640,6 @@ Transform:
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 4914463001603044}
-  - {fileID: 4591134565564110}
   - {fileID: 4760866525358862}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -679,12 +678,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1062017672067128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.038, y: 1.194, z: 0.029}
+  m_LocalPosition: {x: -0.038, y: 0.944, z: 0.029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4551875678954254}
+  - {fileID: 4591134565564110}
   m_Father: {fileID: 4657331720584814}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4768614509417370
 Transform:
@@ -785,7 +785,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1956676711871282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4657331720584814}
@@ -917,18 +917,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1956676711871282}
   m_Mesh: {fileID: 4300000, guid: cc7ff19cfeb91c241bd4061d0c0c9dc6, type: 3}
---- !u!65 &65341606294730942
+--- !u!65 &65926290710425260
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956676711871282}
+  m_GameObject: {fileID: 1828147354518128}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.73523116, y: 1.1509726, z: 0.8562063}
-  m_Center: {x: -0.0011103898, y: 0.59199715, z: 0.03334494}
+  m_Size: {x: 1, y: 3.88, z: 1.29}
+  m_Center: {x: 0, y: 0, z: 0.15}
 --- !u!95 &95955044015094856
 Animator:
   serializedVersion: 3
@@ -965,15 +965,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114334680033904340
+--- !u!114 &114174351988109854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956676711871282}
+  m_GameObject: {fileID: 1062017672067128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 7.5
+  fireRate: 1.5
+  turnSpeed: 10
+  Firepower: 2400
+  projectile: {fileID: 1734392546086080, guid: 91bb83268f470474f8fd7bac90040382, type: 2}
+  barrel: {fileID: 4591134565564110}
+--- !u!114 &114222760401025084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828147354518128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
@@ -986,32 +1003,15 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &114392365322683878
+--- !u!114 &114401510207632236
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956676711871282}
+  m_GameObject: {fileID: 1828147354518128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 7.5
-  fireRate: 1.5
-  turnSpeed: 10
-  Firepower: 2400
-  projectile: {fileID: 1718781194477828, guid: e7c5e1d203526ea45aa3605c968d5f4b, type: 2}
-  barrel: {fileID: 4591134565564110}
---- !u!114 &114481454001671698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1956676711871282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneId:

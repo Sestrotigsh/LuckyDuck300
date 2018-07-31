@@ -76,7 +76,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1130301786178294
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -187,6 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4659661863304124}
+  - component: {fileID: 114913634391668806}
   m_Layer: 0
   m_Name: Rotate
   m_TagString: Untagged
@@ -247,9 +248,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000602828472056}
+  - component: {fileID: 114408183967129926}
+  - component: {fileID: 114932046737137102}
+  - component: {fileID: 65040276556977924}
   m_Layer: 0
   m_Name: tower1
-  m_TagString: Untagged
+  m_TagString: Tower1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,10 +374,6 @@ GameObject:
   - component: {fileID: 33818275740249062}
   - component: {fileID: 23472250027486158}
   - component: {fileID: 95891736604812712}
-  - component: {fileID: 65186415099559942}
-  - component: {fileID: 114193469154187838}
-  - component: {fileID: 114285339882814108}
-  - component: {fileID: 114580997257760430}
   m_Layer: 0
   m_Name: tower1
   m_TagString: Tower1
@@ -421,7 +421,6 @@ Transform:
   m_LocalPosition: {x: 3.4730606, y: -9.048967, z: 17.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4604036895242894}
   - {fileID: 4966065914528782}
   - {fileID: 4659661863304124}
   m_Father: {fileID: 0}
@@ -582,11 +581,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1130301786178294}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 1.92, z: 1.67}
+  m_LocalPosition: {x: 0.02500005, y: 0.6960001, z: 1.7440001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4000602828472056}
-  m_RootOrder: 0
+  m_Father: {fileID: 4659661863304124}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4648089178118540
 Transform:
@@ -609,12 +608,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248206774633394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.075, y: 1.224, z: -0.074}
+  m_LocalPosition: {x: -0.075, y: 2.07, z: -0.074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4912293496141072}
+  - {fileID: 4604036895242894}
   m_Father: {fileID: 4000602828472056}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4678131803680098
 Transform:
@@ -768,11 +768,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958301047280582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0014619827, y: -0.551033, z: -0.03267765}
+  m_LocalPosition: {x: 0.0014619827, y: 0.3, z: -0.03267765}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 4000602828472056}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23400778930841042
 MeshRenderer:
@@ -859,18 +859,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1958301047280582}
   m_Mesh: {fileID: 4300000, guid: a303f9f6a98fc144f8964f8d6e88df31, type: 3}
---- !u!65 &65186415099559942
+--- !u!65 &65040276556977924
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958301047280582}
+  m_GameObject: {fileID: 1404462247351014}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17434207, y: 0.4621521, z: 0.20250914}
-  m_Center: {x: -0.0002923794, y: 0.11020656, z: 0.0065355375}
+  m_Size: {x: 1.36, y: 5.07, z: 1.52}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95567040581708788
 Animator:
   serializedVersion: 3
@@ -907,32 +907,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114193469154187838
+--- !u!114 &114408183967129926
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958301047280582}
+  m_GameObject: {fileID: 1404462247351014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  fireRate: 2
-  turnSpeed: 11
-  Firepower: 2400
-  projectile: {fileID: 1713601052634354, guid: d061917913f73734894f30923fabe056, type: 2}
-  barrel: {fileID: 4604036895242894}
---- !u!114 &114285339882814108
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958301047280582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_SceneId:
@@ -956,12 +939,29 @@ MonoBehaviour:
     i15: 86
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &114580997257760430
+--- !u!114 &114913634391668806
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1958301047280582}
+  m_GameObject: {fileID: 1248206774633394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  fireRate: 2
+  turnSpeed: 11
+  Firepower: 2400
+  projectile: {fileID: 1006770151592932, guid: da9790cdf2bc8414b9f93d6b868c705f, type: 2}
+  barrel: {fileID: 4604036895242894}
+--- !u!114 &114932046737137102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404462247351014}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
