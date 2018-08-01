@@ -28,6 +28,7 @@ TagManager:
   - Spell
   - Monster
   - Bank
+  - ShootingPoint
   layers:
   - Default
   - TransparentFX

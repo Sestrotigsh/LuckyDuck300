@@ -13,12 +13,13 @@ public class playerAnimation : NetworkBehaviour {
 	[SerializeField] Vector2 mouseSensitivity;
 	Transform mainCamera;
 	Vector3 targetPosition;
-	Vector2 mouseInput;
+	[SerializeField] Vector2 mouseInput;
 	private float shootTimer;
 	private bool shooting;
 
 	public float rotateAmount;
 	public float speedMultiplier;
+	private Transform shootingPoint;
 
 	Animator anim;
 
@@ -27,6 +28,8 @@ public class playerAnimation : NetworkBehaviour {
 	[SerializeField] Vector3 checkPositionP2;
 	[SerializeField] Vector3 checkRotationP1;
 	[SerializeField] Vector3 checkRotationP2;
+	[SerializeField] float verticalLimit;
+	[SerializeField] float horizontalLimit;
 
 
 	private GameObject ScreenKeyHint;
@@ -39,12 +42,11 @@ public class playerAnimation : NetworkBehaviour {
 			GetComponent<Animator> ().enabled = false;
 			return;
 		}
+		shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
 		// set up the third person camera
 		anim = GetComponent<Animator>();
 		setupCamera();
 		ScreenKeyHint = GameObject.Find ("Screen Key Prompt");
-
-
 		if (this.gameObject.CompareTag ("Player0")) {
 			ScreenKeyHint.transform.position = new Vector3 (ScreenKeyHint.transform.position.x, ScreenKeyHint.transform.position.y, 260f);
 		} else if (this.gameObject.CompareTag ("Player1")) {
@@ -77,6 +79,10 @@ public class playerAnimation : NetworkBehaviour {
 		anim.SetFloat ("Speed", v);
 		//transform.Rotate (0, h * rotateAmount, 0);
 		transform.Rotate (0, h / 2.0f, 0);
+
+		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, h / 2.0f);
+
+		//mainCamera.transform.Rotate (0, h / 2.0f, 0);
 		if (Input.GetKeyDown (KeyCode.Space)) {
             if (shooting == false) {
                 anim.SetTrigger ("Jump");
@@ -96,6 +102,7 @@ public class playerAnimation : NetworkBehaviour {
 
 		if (shooting == false && Time.timeSinceLevelLoad > shootTimer) {
 			transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
+			mainCamera.transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
 		}   
 	}
 
@@ -112,12 +119,22 @@ public class playerAnimation : NetworkBehaviour {
 
 	}
 
+
+
+
+
+
 	public void setupCamera() {
 		mainCamera = Camera.main.transform;
 		cameraLookTarget = transform.Find ("CameraTarget");
 		targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
 		mainCamera.position = targetPosition;
 	}
+
+
+
+
+
 
 	void MoveCamera() {
 		if (!isLocalPlayer) {
@@ -126,14 +143,74 @@ public class playerAnimation : NetworkBehaviour {
 		if (lookingAtScreen == true) {
 			return;
 		}
-		targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
-		Quaternion targetRotation = Quaternion.LookRotation (cameraLookTarget.position - targetPosition);
-		mainCamera.position = Vector3.Lerp (mainCamera.transform.position, targetPosition, damping * Time.deltaTime);
-		mainCamera.rotation = Quaternion.Lerp (mainCamera.rotation, targetRotation, damping * Time.deltaTime);
-		mouseInput.x = Mathf.Lerp (mouseInput.x, Input.GetAxis ("Mouse X"), 1f / mouseDamping.x);
-		transform.Rotate (Vector3.up * mouseInput.x * mouseSensitivity.x);
-		mouseInput.y = Mathf.Lerp (mouseInput.y, Input.GetAxis ("Mouse Y"), 1f / mouseDamping.y);
-		mainCamera.transform.Rotate (Vector3.left * mouseInput.y * mouseSensitivity.y);
+
+
+
+
+
+		//targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
+		//Quaternion targetRotation = Quaternion.LookRotation (cameraLookTarget.position - targetPosition);
+		//mainCamera.position = Vector3.Lerp (mainCamera.transform.position, targetPosition, damping * Time.deltaTime);
+
+
+		// ISSUE IS HERE - REVERTS IT BACK TO TARGET POSITION WITHOUT CONSIDERING MOUSE ROTATION
+		// mainCamera.rotation = Quaternion.Lerp (mainCamera.rotation, targetRotation, damping * Time.deltaTime);
+
+		mouseInput.x = Input.GetAxis ("Mouse X");
+		mouseInput.y = Input.GetAxis ("Mouse Y");
+
+		if (mouseInput.y > 0) {
+			if (mainCamera.transform.rotation.eulerAngles.x > 0.0f && mainCamera.transform.rotation.eulerAngles.x < 300.0f) {
+				mainCamera.transform.Rotate((-1*mouseInput.y),0,0);
+				shootingPoint.Rotate((-1*mouseInput.y),0,0);
+			}
+		} else if (mouseInput.y < 0) {
+			if (mainCamera.transform.rotation.eulerAngles.x < 30.0f || mainCamera.transform.rotation.eulerAngles.x > 300.0f) {
+				mainCamera.transform.Rotate((-1*mouseInput.y),0,0);
+				shootingPoint.Rotate((-1*mouseInput.y),0,0);
+			}
+		}
+
+		transform.Rotate (0, mouseInput.x * 2.0f, 0);
+		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, mouseInput.x * 2.0f);
+
+
+
+		//difference = mainCamera.transform.rotation.y - this.transform.rotation.y + mouseInput.y;
+
+		//mainCamera.transform.rotation.x;
+		//if (difference < horizontalLimit && difference > (-1f*horizontalLimit)) {
+		//	mainCamera.transform.Rotate(0,mouseInput.x,0);
+		//}
+
+		//difference = mainCamera.transform.rotation.y - this.transform.rotation.y + mouseInput.y;
+
+		//if (difference < verticalLimit && difference > (-1f*verticalLimit)) {
+		//	mainCamera.transform.Rotate((-1*mouseInput.y),0,0);
+		//}
+
+		//mainCamera.transform.Rotate(0,mouseInput.x,0);
+		//mainCamera.transform.Rotate((-1*mouseInput.y),0,0);
+
+
+
+
+
+		//mainCamera.transform.Rotate (Vector3.up * mouseInput.x);
+		//mainCamera.transform.Rotate (Vector3.left * mouseInput.y);
+
+
+		//mouseInput.x = Mathf.Lerp (mouseInput.x, Input.GetAxis ("Mouse X"), 1f / mouseDamping.x);
+		//transform.Rotate (Vector3.up * mouseInput.x * mouseSensitivity.x);
+		//mouseInput.y = Mathf.Lerp (mouseInput.y, Input.GetAxis ("Mouse Y"), 1f / mouseDamping.y);
+		//mainCamera.transform.Rotate (Vector3.left * mouseInput.y * mouseSensitivity.y);
+
+		//mouseInput.x = Mathf.Lerp (mouseInput.x, Input.GetAxis ("Mouse X"), 1f / mouseDamping.x);
+
+
+
+
+
 	}
 
     public void ForcePush() {
