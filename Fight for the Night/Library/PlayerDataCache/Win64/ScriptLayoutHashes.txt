@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/joela/Desktop/301 OFFLINE/Builds/Multiplied by 10/IGB300 Proto.exe
+C:/Users/joela/Desktop/301 OFFLINE/Builds/2SWait/IGB300 Proto.exe
 SceneListBegin?
 Assets/Main Screen.unity
 Assets/Main Scene.unity
@@ -219,9 +219,9 @@ dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vintage1977
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-ae0f56e59ecb14a0324a53bbe8b5dd9e Assembly-CSharp.dll:.NetManager
+c23a425293106023144dfc1003b2fe70 Assembly-CSharp.dll:.NetManager
 a86fe3b9d3c8be6ebdb1363952acca3b Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageTechnicolor
-63f9582795187c6e0e6e5066f839ef50 Assembly-CSharp.dll:.MultiMenu
+99f38a1fb16efbebe68b0088d5be6a0c Assembly-CSharp.dll:.MultiMenu
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EnvironmentCollider
 2d5613dfea5ebe89d441816537142920 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
 530826feec1926aac6e3507dd4defaac Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageCommodore64

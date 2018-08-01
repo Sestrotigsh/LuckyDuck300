@@ -13,6 +13,7 @@ public class MultiMenu : MonoBehaviour {
 	public GameObject chooseCharacter;
 	public GameObject multiplayer;
 	public GameObject lobby;
+	public GameObject props;
 
 	public GameObject matchUIprefab;
 
@@ -35,6 +36,7 @@ public class MultiMenu : MonoBehaviour {
 
 	public void MainMenu() {
 		mainMenu.SetActive (true);
+		props.SetActive(true);
 		chooseCharacter.SetActive (false);
 		multiplayer.SetActive (false);
 		lobby.SetActive (false);
@@ -45,6 +47,7 @@ public class MultiMenu : MonoBehaviour {
 	/// </summary>
 	public void SelectCharacter() {
 		mainMenu.SetActive (false);
+		props.SetActive(false);
 		chooseCharacter.SetActive (true);
 		multiplayer.SetActive (false);
 		lobby.SetActive (false);
@@ -66,6 +69,7 @@ public class MultiMenu : MonoBehaviour {
 		chooseCharacter.SetActive (false);
 		multiplayer.SetActive (false);
 		lobby.SetActive (true);
+		props.SetActive(true);
 	}
 
 	public void CreateMatch() {

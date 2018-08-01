@@ -76,7 +76,7 @@ public class playerAnimation : NetworkBehaviour {
 		float v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
 		//transform.Rotate (0, h * rotateAmount, 0);
-		transform.Rotate (0, h * 10.0f, 0);
+		transform.Rotate (0, h / 2.0f, 0);
 		if (Input.GetKeyDown (KeyCode.Space)) {
             if (shooting == false) {
                 anim.SetTrigger ("Jump");

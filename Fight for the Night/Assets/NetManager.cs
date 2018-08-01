@@ -17,8 +17,12 @@ public class NetManager : NetworkLobbyManager {
 	public Transform matchesListGrid;
 	public GameObject matchUIprefab;
 	public GameObject joinButton;
+	public GameObject props;
 	public Text matchNameCH;
 	public InputField gameNameInputField;
+	public int playersConnected = 0;
+	private float wait;
+	private bool waiting = false;
 
 	MatchInfoSnapshot joinMatchCH;
 
@@ -27,6 +31,15 @@ public class NetManager : NetworkLobbyManager {
 
 	void Awake() {
 		singl = this;
+	}
+
+	void Update() {
+		if (waiting == true) {
+			if (Time.timeSinceLevelLoad > wait) {
+				waiting = false;
+				matchMaker.JoinMatch (joinMatchCH.networkId, "", "", "", 0, 0, MatchJoin);
+			}
+		}
 	}
 
 //	public void InitMatch() {
@@ -40,13 +53,16 @@ public class NetManager : NetworkLobbyManager {
 	}
 
 	public void ReturnMatch (bool success, string extendedInfo, List <MatchInfoSnapshot> matches) {
-		for (int i = 0; i < matches.Count; i++) {
-			// DO SOMETHING HERE TO SHOW THE CURRENT MATCHES
+		if (matches.Count > 0) {
+			Debug.Log(matches.Count);
 			joinButton.SetActive(true);
-			matchNameCH.text = matches [i].name;
-			joinMatchCH = matches [i];
-			//AddMatchSlot (matches [i]);
+			matchNameCH.text = matches [matches.Count-1].name;
+			joinMatchCH = matches [matches.Count-1];
 		}
+		//for (int i = 0; i < matches.Count; i++) {
+			
+			//AddMatchSlot (matches [i]);
+		//}
 	}
 
 	public void CreateMatch() {
@@ -62,19 +78,22 @@ public class NetManager : NetworkLobbyManager {
 		if (success) {
 			OpenLobby ();
 			NetworkServer.Listen (matchInfo, 9000);
-			StartHost (matchInfo);
+			base.StartHost (matchInfo);
 			// host = true;
 		}
 	}
 
+
+
 	public void TryToJoinMatch() {
-		matchMaker.JoinMatch (joinMatchCH.networkId, "", "", "", 0, 0, MatchJoin);
+		waiting = true;
+		wait = Time.timeSinceLevelLoad + 2.0f;
+		OpenLobby ();
 	}
 
 	void MatchJoin(bool success, string extendedInfo, MatchInfo matchInfo) {
 		if (success) {
-			StartClient (matchInfo);
-			OpenLobby ();
+			base.StartClient (matchInfo);
 			// Host = false;
 		}
 	}
@@ -83,6 +102,7 @@ public class NetManager : NetworkLobbyManager {
 		StopClient ();
 		StopHost ();
 		StopMatchMaker ();
+		playersConnected = 0;
 	}
 
 	public void OpenLobby() {
@@ -90,6 +110,7 @@ public class NetManager : NetworkLobbyManager {
 		chooseCharacter.SetActive (false);
 		multiplayer.SetActive (false);
 		lobby.SetActive (true);
+		props.SetActive(true);
 	}
 
 	public void AddMatchSlot(MatchInfoSnapshot mi) {
