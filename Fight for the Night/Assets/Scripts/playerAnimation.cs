@@ -30,7 +30,7 @@ public class playerAnimation : NetworkBehaviour {
 	[SerializeField] Vector3 checkRotationP2;
 	[SerializeField] float verticalLimit;
 	[SerializeField] float horizontalLimit;
-
+	//[SerializeField] float Midpoint;
 
 	private GameObject ScreenKeyHint;
 
@@ -52,6 +52,11 @@ public class playerAnimation : NetworkBehaviour {
 		} else if (this.gameObject.CompareTag ("Player1")) {
 			ScreenKeyHint.transform.position = new Vector3 (ScreenKeyHint.transform.position.x, ScreenKeyHint.transform.position.y, 270f);
 		}
+
+		//if (this.transform.position.z > Midpoint) {
+			//mainCamera.Rotate(0,180,0);
+			//shootingPoint.Rotate(0,180,0);
+		//}
 	}
 	
 	// Update is called once per frame

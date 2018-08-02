@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerNetwork : NetworkBehaviour {
 
-	public float centreLineZ;
+	public float centreLineX;
 	public int team;
 	public bool local;
 	public int health;
@@ -15,7 +15,7 @@ public class PlayerNetwork : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 		// Check which side of the map the player is on and then set which team they are on
-		if (this.transform.position.z < centreLineZ) {
+		if (this.transform.position.x < centreLineX) {
 			team = 0;
 		} else {
 			team = 1;

@@ -187,7 +187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1302419775487092
 GameObject:
   m_ObjectHideFlags: 1
@@ -814,7 +814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1975838742234242
 GameObject:
   m_ObjectHideFlags: 1
@@ -1689,7 +1689,7 @@ MonoBehaviour:
   incomeT: {fileID: 1271382087010908}
   bankBalanceT: {fileID: 1356316251508814}
   endGame: {fileID: 1814497330215508}
-  startingGold: 10
+  startingGold: 100
   currentIncome: 5
   currentGold: 0
   incomeInterval: 5
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6d1f960e40a8549b3f28d5c7371ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centreLineZ: 255
+  centreLineX: 190
   team: 0
   local: 0
   health: 10

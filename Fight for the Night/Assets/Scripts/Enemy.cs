@@ -6,7 +6,6 @@ using System;
 public class Enemy : NavigationAgent {
 	
     //Movement Variables
-	public float centreZ;
     public float moveSpeed = 10.0f;
     public float minDistance = 0.1f;
 	public int health = 1;
@@ -19,7 +18,7 @@ public class Enemy : NavigationAgent {
     private int currentState = 0;
     public int startNode;
     public int goal; // The final goal the minion / monster aims to reach
-    System.Random rand = new System.Random();
+    //System.Random rand = new System.Random();
 
 	// Player variables
 	private PlayerManagement playerMan;
@@ -29,8 +28,9 @@ public class Enemy : NavigationAgent {
 	public GameObject Spawner1;
 	public GameObject Spawner2;
 
-    public bool customPathBool = false;
-    public int customPathDirection = 0;
+    // TACTICAL GAMEPLAY ADDED BIT
+    //public bool customPathBool = false;
+    //public int customPathDirection = 0;
 
     public int value; // The gold value of the monster
     public bool isStunned = false;
@@ -44,16 +44,18 @@ public class Enemy : NavigationAgent {
 		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
 		float distanceToSpawn2 = Vector3.Distance (transform.position, Spawner2.transform.position);
 
+        startNode = 0;
+        goal = 11;
        
             
 
 
             // choose which of the two paths to go down
-            if (rand.Next(0, 2) == 0) {
-                startNode = 22;
-            } else {
-                startNode = 11;
-            }
+            //if (rand.Next(0, 2) == 0) {
+                //startNode = 22;
+            //} else {
+                //startNode = 11;
+            //}
         
 
 
@@ -75,12 +77,13 @@ public class Enemy : NavigationAgent {
     // Update is called once per frame
     void Update()
     {
+        // TACTICAL CONTROLS - ADDED IN LATER
         // Adjust the path to fit the players custom directions
-        if (customPathBool == true) {
-            currentPath.Remove(startNode);
-            currentPath.Add(customPathDirection);
-            customPathBool = false;
-        }
+        //if (customPathBool == true) {
+            //currentPath.Remove(startNode);
+            //currentPath.Add(customPathDirection);
+            //customPathBool = false;
+        //}
 
 
 		// If enemy is destroyed - perform relevant actions

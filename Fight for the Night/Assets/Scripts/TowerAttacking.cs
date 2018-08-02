@@ -21,7 +21,7 @@ public class TowerAttacking : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag ("Player" + 0).GetComponent<PlayerNetwork>();
 		if (player.local) {
 			// CHECK IF THEY'RE ON THE CORRECT SIDE (player 0 is  < centre, player 1 is > centre)
-			if (transform.position.z < player.centreLineZ) {
+			if (transform.position.x < player.centreLineX) {
 				InvokeRepeating ("updateTarget", 0f, 0.5f);
 			} else {
 				enabled = false;
@@ -29,7 +29,7 @@ public class TowerAttacking : MonoBehaviour {
 		} else {
 			player = GameObject.FindGameObjectWithTag ("Player" + 1).GetComponent<PlayerNetwork>();
 			if (player.local) {
-				if (transform.position.z > player.centreLineZ) {
+				if (transform.position.x > player.centreLineX) {
 					InvokeRepeating ("updateTarget", 0f, 0.5f);
 				} else {
 					enabled = false;
