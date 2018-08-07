@@ -117,6 +117,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 6a6c042f9ce64c1da6a72239cda3f659 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageAmaro
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
+5530757346898ab6d6c105ca5c4f4a33 Assembly-CSharp.dll:.SpellsSlasher
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 0f27c39183b9eb95eba0a228bea28273 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -239,4 +240,3 @@ d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vi
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageEarlybird
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageAden
-5530757346898ab6d6c105ca5c4f4a33 Assembly-CSharp.dll:.SpellsSlasher
