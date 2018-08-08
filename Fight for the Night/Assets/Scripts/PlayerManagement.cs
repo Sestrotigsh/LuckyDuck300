@@ -28,6 +28,8 @@ public class PlayerManagement : MonoBehaviour {
 	private int maxBank = 100;
 	private int currentBank = 0;
 
+    //private Transform mainCamera;
+
 	// Use this for initialization
 	void Start () {
         // Manage Gold
@@ -36,6 +38,9 @@ public class PlayerManagement : MonoBehaviour {
 		player = this.GetComponent<PlayerNetwork> ();
         if (player.team == 0)
         {
+            //mainCamera = Camera.main.transform;
+            //mainCamera.Rotate(0,180,0);
+
             if (GameObject.FindGameObjectWithTag("Player1"))
             {
                 player2 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerNetwork>();
@@ -47,6 +52,7 @@ public class PlayerManagement : MonoBehaviour {
                 player2 = GameObject.FindGameObjectWithTag("Player0").GetComponent<PlayerNetwork>();
             }
         }
+        
 		spawnpoint = GameObject.Find ("SpawnPoint" + (player.team + 1));
     }
 	

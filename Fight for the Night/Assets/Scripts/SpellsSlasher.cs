@@ -43,6 +43,8 @@ public class SpellsSlasher : MonoBehaviour
     public int CD1 = 12; // The actual CD between spell
     public float remainingTime1; // The number of seconds left before the next cast available
 
+    private bool isCutting = false;
+
     // Spell 2
     [Header("Spell 2 Components")]
 
@@ -99,6 +101,10 @@ public class SpellsSlasher : MonoBehaviour
                 }
             }
         }
+        if (isCutting == true)
+        {
+            Spell1();
+        }
         RemainingTime();
     }
 
@@ -139,26 +145,31 @@ public class SpellsSlasher : MonoBehaviour
 
         if (currentHit < numberOfHits)
         {
-            audioS.Play();
-            Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(2,2,2), Quaternion.identity);
-            
-            int i = 0;
-            while (i < hitColliders.Length)
+            if (Time.timeSinceLevelLoad >= CDTimer1)
             {
-                if (hitColliders[i].tag == "Enemy")
+                isCutting = true;
+                audioS.Play();
+                Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(2, 2, 2), Quaternion.identity);
+
+                int i = 0;
+                while (i < hitColliders.Length)
                 {
-                    Enemy enemy;
-                    enemy = hitColliders[i].GetComponent<Enemy>();
-                    enemy.Die(currentDamages);
+                    if (hitColliders[i].tag == "Enemy")
+                    {
+                        Enemy enemy;
+                        enemy = hitColliders[i].GetComponent<Enemy>();
+                        enemy.Die(currentDamages);
+                    }
+
+                    i++;
                 }
+                currentHit = currentHit + 1;
 
-                i++;
+                //Timing Management
+                CDTimer1 = (float)(Time.timeSinceLevelLoad + 0.5);
+                
             }
-            currentHit = currentHit + 1;
-
-            //Timing Management
-            CDTimer1 = (float)(Time.timeSinceLevelLoad + 0.5);
-            remainingTime1 = (float)0.5;
+            
         }
 
         if (currentHit == 6)
@@ -166,7 +177,7 @@ public class SpellsSlasher : MonoBehaviour
             //Timing Management
             CDTimer1 = Time.timeSinceLevelLoad + CD1;
             remainingTime1 = CD1;
-
+            isCutting = false;
             
             currentHit = 0;
         }

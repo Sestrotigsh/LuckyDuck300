@@ -29,6 +29,9 @@ TagManager:
   - Monster
   - Bank
   - ShootingPoint
+  - CameraStalk1
+  - BlockTrap0
+  - BlockTrap1
   layers:
   - Default
   - TransparentFX

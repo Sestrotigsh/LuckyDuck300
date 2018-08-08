@@ -13,6 +13,7 @@ public class playerAnimation : NetworkBehaviour {
 	[SerializeField] Vector2 mouseSensitivity;
 	Transform mainCamera;
 	Vector3 targetPosition;
+	Quaternion targetRotation;
 	[SerializeField] Vector2 mouseInput;
 	private float shootTimer;
 	private bool shooting;
@@ -33,13 +34,13 @@ public class playerAnimation : NetworkBehaviour {
 
 	//[SerializeField] float Midpoint;
 
-	private GameObject ScreenKeyHint;
+	//private GameObject ScreenKeyHint;
 
 	private float initialDistance;
 	private float currentDistance;
 
 	// Use this for initialization
-	void Start () {
+	void Start () { 
 		shootTimer = 0;
 		shooting = false;
 		if (!isLocalPlayer) {
@@ -70,12 +71,12 @@ public class playerAnimation : NetworkBehaviour {
 
 
 
-		ScreenKeyHint = GameObject.Find ("Screen Key Prompt");
-		if (this.gameObject.CompareTag ("Player0")) {
-			ScreenKeyHint.transform.position = new Vector3 (ScreenKeyHint.transform.position.x, ScreenKeyHint.transform.position.y, 260f);
-		} else if (this.gameObject.CompareTag ("Player1")) {
-			ScreenKeyHint.transform.position = new Vector3 (ScreenKeyHint.transform.position.x, ScreenKeyHint.transform.position.y, 270f);
-		}
+		//ScreenKeyHint = GameObject.Find ("Screen Key Prompt");
+		//if (this.gameObject.CompareTag ("Player0")) {
+			//ScreenKeyHint.transform.position = new Vector3 (ScreenKeyHint.transform.position.x, ScreenKeyHint.transform.position.y, 260f);
+		//} else if (this.gameObject.CompareTag ("Player1")) {
+			//ScreenKeyHint.transform.position = new Vector3 (ScreenKeyHint.transform.position.x, ScreenKeyHint.transform.position.y, 270f);
+		//}
 
 		//if (this.transform.position.z > Midpoint) {
 			//mainCamera.Rotate(0,180,0);
@@ -89,18 +90,18 @@ public class playerAnimation : NetworkBehaviour {
 			return;
 		}
 
-		if (Input.GetKeyUp ("z")) {
-			lookingAtScreen = false;
-			ScreenKeyHint.gameObject.SetActive (true);
-		}
+		//if (Input.GetKeyUp ("z")) {
+			//lookingAtScreen = false;
+			//ScreenKeyHint.gameObject.SetActive (true);
+		//}
 
-		if (Input.GetKey ("z")) {
-			CheckScreen ();
-		}
-		if (lookingAtScreen == true) {
-			ScreenKeyHint.gameObject.SetActive (false);
-			return;
-		}
+		//if (Input.GetKey ("z")) {
+			//CheckScreen ();
+		//}
+		//if (lookingAtScreen == true) {
+			//ScreenKeyHint.gameObject.SetActive (false);
+			//return;
+		//}
 
 		MoveCamera();
 		float h = CrossPlatformInputManager.GetAxis ("Horizontal");
@@ -211,18 +212,18 @@ public class playerAnimation : NetworkBehaviour {
 		}   
 	}
 
-	public void CheckScreen() {
-		lookingAtScreen = true;
-		if (this.gameObject.CompareTag ("Player0")) {
-			mainCamera.position = checkPositionP1;
-			mainCamera.transform.eulerAngles = checkRotationP1;
-		} else if (this.gameObject.CompareTag ("Player1")) {
-			mainCamera.position = checkPositionP2;
-			mainCamera.transform.eulerAngles = checkRotationP2;
-		}
+	//public void CheckScreen() {
+		//lookingAtScreen = true;
+		//if (this.gameObject.CompareTag ("Player0")) {
+			//mainCamera.position = checkPositionP1;
+			//mainCamera.transform.eulerAngles = checkRotationP1;
+		//} else if (this.gameObject.CompareTag ("Player1")) {
+			//mainCamera.position = checkPositionP2;
+			//mainCamera.transform.eulerAngles = checkRotationP2;
+		//}
 
 
-	}
+	//}
 
 
 
@@ -233,7 +234,9 @@ public class playerAnimation : NetworkBehaviour {
 		mainCamera = Camera.main.transform;
 		cameraLookTarget = transform.Find ("CameraTarget");
 		targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
+		targetRotation = cameraLookTarget.rotation;
 		mainCamera.position = targetPosition;
+		mainCamera.rotation = targetRotation;
 	}
 
 

@@ -42,6 +42,8 @@ public class EventTrigger : NetworkBehaviour {
         {
 
         }
-		other.tag = "Dying Enemy";
+        if (other.CompareTag ("Enemy")) {
+        	other.tag = "Dying Enemy";
+        }
 	}
 }
