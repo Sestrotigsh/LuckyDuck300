@@ -63,7 +63,7 @@ public class SpellsAlien : MonoBehaviour
 		spell1T = canv.transform.Find("Spell1").gameObject.transform.Find("Text").gameObject;
 		spell2T = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
-		frontPos = GameObject.FindWithTag("ShootingPoint").transform;
+		frontPos = GameObject.FindWithTag("CameraTarget").transform;
 	}
 
 	// Update is called once per frame

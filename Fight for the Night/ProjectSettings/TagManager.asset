@@ -32,6 +32,7 @@ TagManager:
   - CameraStalk1
   - BlockTrap0
   - BlockTrap1
+  - CameraTarget
   layers:
   - Default
   - TransparentFX
