@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 911, y: 442}
-  m_MaxSize: {x: 22006, y: 10021}
+  m_MinSize: {x: 917, y: 442}
+  m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 142
+  controlID: 148
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 29
+  controlID: 52
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 570
     height: 221
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -206,8 +206,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 635
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 0
     width: 277
     height: 635
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.038205776, y: -0.097589575, z: 0.003752248, w: 0.9945018}
     speed: 2
-    m_Value: {x: 0.03820518, y: -0.09758805, z: 0.0037521892, w: 0.9944863}
+    m_Value: {x: -0.03820578, y: 0.097589575, z: -0.0037522481, w: -0.9945019}
   m_Size:
     m_Target: 33.460514
     speed: 2
@@ -602,9 +602,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 98090200
-    m_LastClickedID: 133528
-    m_ExpandedIDs: 9a5cfeff7c6dfeffbe71feff2075feff0879feffb0f7ffffe6fbffff00000000cc4800001a520000da590000766100009a7a0000cc8900007e900000529c00009e9e0000e4290200a23e0200
+    m_SelectedIDs: 1ec20000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 5c75feff387afeff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -623,7 +623,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ExpandedScenes:
-  - Main Scene
+  - Main Screen
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -665,20 +665,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Visuals/Posters
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/Visuals/Posters
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\joela\Documents\GitHub\LuckyDuck300\Fight for the Night
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 680a0000
-    m_LastClickedID: 2664
-    m_ExpandedIDs: 00000000680a0000780a0000ce0a0000320c0000500e0000c20e0000a8100000e01600001c4800001e48000000ca9a3b
+    m_SelectedIDs: bac40000
+    m_LastClickedID: 50362
+    m_ExpandedIDs: 000000005cc0000062c00000b2c0000034c1000002c2000032c20000eec20000fac40000842c0100862c010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -706,7 +706,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000680a0000780a0000ce0a0000320c0000500e0000c20e0000a8100000e01600001c4800001e480000
+    m_ExpandedIDs: 000000005cc0000062c00000b2c0000034c1000002c2000032c20000eec20000fac40000842c0100862c0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
