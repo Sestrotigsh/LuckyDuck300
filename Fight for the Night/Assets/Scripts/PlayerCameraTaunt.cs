@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCameraTaunt : MonoBehaviour {
-
+///// CONTROLS THE PLAYERS TAUNT ABILITY AND THE CHECK OTHER PLAYERS SCREEN SETTING
 
     private bool lookingAtScreen = false;   
 

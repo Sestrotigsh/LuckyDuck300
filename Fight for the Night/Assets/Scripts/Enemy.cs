@@ -4,20 +4,18 @@ using UnityEngine;
 using System;
 
 public class Enemy : NavigationAgent {
-	
+///// CONTROLS ENEMY AI MOVEMENT AND DEATH
+
     //Movement Variables
     public float moveSpeed = 10.0f;
     public float minDistance = 0.1f;
 	public int health = 1;
-	private ProjectileController bullet;
 
 	// Multiplayer variables
-    public int team;
-    public int enemyTeam;
-    public int newState = 0;
     private int currentState = 0;
     public int startNode;
-    public int goal; // The final goal the minion / monster aims to reach
+    public int goal; // The final goal the minion / monster aims to 
+    // TACTICAL CONTROLS - RANDOM NUMBER
     //System.Random rand = new System.Random();
 
 	// Player variables
@@ -28,7 +26,7 @@ public class Enemy : NavigationAgent {
 	public GameObject Spawner1;
 	public GameObject Spawner2;
 
-    // TACTICAL GAMEPLAY ADDED BIT
+    // TACTICAL CONTROLS - CHOOSE WHICH PATH TO SEND MINIONS
     //public bool customPathBool = false;
     //public int customPathDirection = 0;
 
@@ -46,20 +44,14 @@ public class Enemy : NavigationAgent {
 
         startNode = 0;
         goal = 11;
-       
-            
-
-
-            // choose which of the two paths to go down
-            //if (rand.Next(0, 2) == 0) {
-                //startNode = 22;
-            //} else {
-                //startNode = 11;
-            //}
+        // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
+        // choose which of the two paths to go down
+        //if (rand.Next(0, 2) == 0) {
+            //startNode = 22;
+        //} else {
+            //startNode = 11;
+        //}
         
-
-
-
         //Find waypoint graph
 		if (distanceToSpawn1 < distanceToSpawn2) {
 			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
@@ -75,16 +67,14 @@ public class Enemy : NavigationAgent {
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        // TACTICAL CONTROLS - ADDED IN LATER
+    void Update() {
+        // TACTICAL CONTROLS - PLAYER CONTROLLED MINION PATH
         // Adjust the path to fit the players custom directions
-        //if (customPathBool == true) {
+        // if (customPathBool == true) {
             //currentPath.Remove(startNode);
             //currentPath.Add(customPathDirection);
             //customPathBool = false;
         //}
-
 
 		// If enemy is destroyed - perform relevant actions
         if (this.tag == "Dying Enemy") {

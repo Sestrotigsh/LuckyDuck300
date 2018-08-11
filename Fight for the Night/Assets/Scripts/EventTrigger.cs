@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class EventTrigger : NetworkBehaviour {
-	
+///// CONTROLS PLAYERS BASE OBJECTS
+
 	// The bases health values and indicators
 	public TextMesh textAbove;
 	public PlayerNetwork player;
@@ -13,6 +14,7 @@ public class EventTrigger : NetworkBehaviour {
 	// Use this for initialization
 	void Start() {
 		player = null;
+		// find the player
 		if (GameObject.FindGameObjectWithTag ("Player" + team) != null) {
 			player = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerNetwork> ();
 			textAbove.text = "" + player.health;
@@ -21,6 +23,7 @@ public class EventTrigger : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update() {
+		// if player not yet found - find the player
 		if (player == null) {
 			if (GameObject.FindGameObjectWithTag ("Player" + team) != null) {
 				player = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerNetwork> ();
@@ -31,17 +34,14 @@ public class EventTrigger : NetworkBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		// check if enemy team enters base
+		// check if enemy enters base
 		if (player.local) {
 			if (other.CompareTag ("Enemy")) {
 				if (player.health > 0) {
 					player.TakeDamage();
 				}
 			}
-		} else
-        {
-
-        }
+		} 
         if (other.CompareTag ("Enemy")) {
         	other.tag = "Dying Enemy";
         }

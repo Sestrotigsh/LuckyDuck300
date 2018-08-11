@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public class TrapsScript : MonoBehaviour {
-
+///// CONTROLS PLAYERS TRAPS
 
     private PlayerNetwork player;
     private int team;

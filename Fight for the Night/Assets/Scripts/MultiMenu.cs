@@ -6,23 +6,18 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
 public class MultiMenu : MonoBehaviour {
+///// CONTROLS THE MENU SYSTEM AND HOW MATCHES ARE ADDED 
 
-	public Transform matchesListGrid;
-	 
+	public Transform matchesListGrid;	 
 	public GameObject mainMenu;
 	public GameObject chooseCharacter;
 	public GameObject multiplayer;
 	public GameObject lobby;
 	public GameObject props;
-
 	public GameObject matchUIprefab;
-
 	public InputField gameNameInputField;
-
 	public MatchInfoSnapshot snapshot;
-
 	public static MultiMenu singleton;
-
 	List <GameObject> matchSlots = new List<GameObject>();
 
 	void awake() {
@@ -34,6 +29,7 @@ public class MultiMenu : MonoBehaviour {
 		MainMenu ();
 	}
 
+	// load the main menu
 	public void MainMenu() {
 		mainMenu.SetActive (true);
 		props.SetActive(true);
@@ -64,6 +60,7 @@ public class MultiMenu : MonoBehaviour {
 		NetManager.singl.SearchForMatch ();
 	}
 
+	// open the lobby
 	public void OpenLobby() {
 		mainMenu.SetActive (false);
 		chooseCharacter.SetActive (false);
@@ -72,12 +69,13 @@ public class MultiMenu : MonoBehaviour {
 		props.SetActive(true);
 	}
 
+	// create the match
 	public void CreateMatch() {
 		OpenLobby ();
 		NetManager.singl.CreateMatch();
 	}
 
-
+	// join the match
 	public void JoinMatch() {
 		if (snapshot.currentSize < snapshot.maxSize) {
 			OpenLobby();
@@ -85,10 +83,12 @@ public class MultiMenu : MonoBehaviour {
 		}
 	}
 
+	// update the game name
 	public void UpdateGameName(string name) {
 		NetManager.singl.currentMatch.matchName = name;
 	}
 
+	// return to the main menu
 	public void BackToMenu() {
 		mainMenu.SetActive (false);
 		chooseCharacter.SetActive (false);
@@ -97,6 +97,7 @@ public class MultiMenu : MonoBehaviour {
 		NetManager.singl.BackToMultiplayerMenu();
 	}
 
+	// Add a new match to the match list
 	public void AddMatchSlot(MatchInfoSnapshot mi) {
 		GameObject go = Instantiate (matchUIprefab) as GameObject;
 		go.transform.SetParent (matchesListGrid);
@@ -109,5 +110,4 @@ public class MultiMenu : MonoBehaviour {
 		u.snapshot = mi;
 		matchSlots.Add (go);
 	}
-
 }

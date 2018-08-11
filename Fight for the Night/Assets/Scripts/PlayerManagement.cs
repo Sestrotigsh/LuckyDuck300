@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerManagement : MonoBehaviour {
+///// MANAGES THE PLAYERS CANVAS VARIABLES
 
 	public GameObject canv; // The canvas and Text attached with this player
 	public GameObject canvHPT;

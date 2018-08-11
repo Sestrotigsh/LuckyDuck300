@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player : NavigationAgent {
+///// PLAYER SCRIPT USED IN ENEMY SCRIPTS. DO NOT NEED TO USE OR ALTER THIS SCRIPT
 
     //Movement Variables
     public float moveSpeed = 10.0f;

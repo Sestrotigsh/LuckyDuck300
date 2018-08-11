@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class PlayerNetwork : NetworkBehaviour {
+////// CONTROLS THE PLAYERS NETWORKING VARIABLES
 
 	public float centreLineX;
 	public int team;

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class SpawnMinions : NetworkBehaviour {
+////// CONTROLS PLAYERS ABILITIES TO SPAWN MONSTERS TO ATTACK OTHER PLAYER
+
 
 	public GameObject enemySpawner;
     public GameObject monster1;

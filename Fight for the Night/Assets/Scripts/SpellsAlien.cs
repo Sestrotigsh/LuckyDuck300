@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SpellsAlien : MonoBehaviour
 {
+///// SPELLS FOR THE ALIEN
 
 	// Find the shooting position of each character. Currently at the front
 	private GameObject canv; // The canvas and Text attached with this player 

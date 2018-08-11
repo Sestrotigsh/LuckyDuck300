@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonScripts : MonoBehaviour {
+///// CONTROL UI BUTTONS
 
 	/// <summary>
 	/// Load the main menu of the game.

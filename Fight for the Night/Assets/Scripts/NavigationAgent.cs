@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class NavigationAgent : MonoBehaviour {
-
+///// CONTROLS THE ENEMY NAVIGATION - DO NOT NEED TO CHANGE
+    
     //Navigation Variables
     public WaypointGraph graphNodes;
     public List<int> openList = new List<int>();

@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 
 public class CameraNetworkManager : NetworkManager {
+///// MAKES CAMERA SLOWLY ROTATE WHEN PLAYER IS NOT IN COTROL
 
 	// Variables for camera rotation
 	[Header("Camera variables")]
@@ -9,7 +10,6 @@ public class CameraNetworkManager : NetworkManager {
 	[SerializeField] float cameraRotationRadius = 24.0f;
 	[SerializeField] float cameraRotationSpeed = 3.0f;
 	[SerializeField] bool canRotate = true;
-
 	float rotation;
 
 	/// <summary>

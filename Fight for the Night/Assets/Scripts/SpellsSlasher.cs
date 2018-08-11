@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SpellsSlasher : MonoBehaviour
 {
+///// SPELLS FOR THE SLASHER
 
     private GameObject canv; // The canvas and Text attached with this player 
 

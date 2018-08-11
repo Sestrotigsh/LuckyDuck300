@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerAttacking : MonoBehaviour {
-
+///// TOWERS SHOOTING WHEN ON CORRECT SIDE
+	
 	private Transform target;
 	public float range = 15.0f;
 	public float fireRate = 1.0f;
