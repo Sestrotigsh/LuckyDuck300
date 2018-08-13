@@ -34,6 +34,11 @@ public class Enemy : NavigationAgent {
     public bool isStunned = false;
     public float endOfStun;
 
+    // Death flashing effect variables
+    private float deathTimer = 0.0f;
+    private SkinnedMeshRenderer rend;
+    public GameObject mesh;
+
     // Use this for initialization
     void Start() {
 		// find spawners and calculate distances
@@ -64,10 +69,22 @@ public class Enemy : NavigationAgent {
 		}
         //Initial node index to move to
         currentPath.Add(startNode);
+
+        // initialise the renderer
+        rend = mesh.GetComponent<SkinnedMeshRenderer>();
+        //rend.material = mesh.Shader.Find("Blink");
     }
 
     // Update is called once per frame
     void Update() {
+        if (deathTimer != 0.0f) {
+            rend.material.SetFloat("_Blink", 1.0f);
+            this.GetComponent<BoxCollider>().enabled = false;
+            if (deathTimer < Time.timeSinceLevelLoad) {
+                playerNet.EnemyDie (this.gameObject);
+            }
+        }
+
         // TACTICAL CONTROLS - PLAYER CONTROLLED MINION PATH
         // Adjust the path to fit the players custom directions
         // if (customPathBool == true) {
@@ -135,14 +152,40 @@ public class Enemy : NavigationAgent {
 		health -= damage;
 		if (health <= 0) {
 			playerMan.currentGold = playerMan.currentGold + value;
-			playerNet.EnemyDie (this.gameObject);
+
+
+            isStunned = true;
+            endOfStun = Time.time + 2.0f;
+            deathTimer = Time.timeSinceLevelLoad + 0.75f;
+
+
+
+
+
+
+			//playerNet.EnemyDie (this.gameObject);
 		}      
     }
 	/// <summary>
 	/// delete the enemy from the game
 	/// </summary>
     private void DestroyEnemy() {
-		playerNet.EnemyDie (this.gameObject);
+
+
+
+
+
+
+        ///////// CODE BEING ALTERED HERE
+        isStunned = true;
+        endOfStun = Time.time + 2.0f;
+        deathTimer = Time.timeSinceLevelLoad + 0.75f;
+
+
+
+
+
+		//playerNet.EnemyDie (this.gameObject);
     }   
 
 	/// <summary>

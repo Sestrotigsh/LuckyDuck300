@@ -533,6 +533,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137212771586309360, guid: 7ff133e0eb16657488408bcddf253146,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a7f89e0ae78f5b449bba348423261012, type: 2}
     m_RemovedComponents:
     - {fileID: 114151723205281968, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
     - {fileID: 114165237338199938, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
@@ -2654,7 +2659,7 @@ MonoBehaviour:
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 2
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 2
+  m_MinPlayers: 1
   m_LobbyPlayerPrefab: {fileID: 114943476679343588, guid: 557481bc1394af34fa9257a58baea38a,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1766774349886954, guid: dd8213cea6d98f54da4616f6aa99ec8c,
@@ -3642,6 +3647,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137212771586309360, guid: 7ff133e0eb16657488408bcddf253146,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a7f89e0ae78f5b449bba348423261012, type: 2}
     m_RemovedComponents:
     - {fileID: 114151723205281968, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
     - {fileID: 114165237338199938, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
@@ -3966,6 +3976,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 137212771586309360, guid: 7ff133e0eb16657488408bcddf253146,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a7f89e0ae78f5b449bba348423261012, type: 2}
     m_RemovedComponents:
     - {fileID: 114151723205281968, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
     - {fileID: 114165237338199938, guid: 7ff133e0eb16657488408bcddf253146, type: 2}

@@ -2719,9 +2719,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawner: {fileID: 0}
-  enemySpawner: {fileID: 0}
   enemy: {fileID: 1157679630148364, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
-  initialSpawn: 15
+  initialSpawn: 0
   waveLength: 5
 --- !u!114 &114986554474417242
 MonoBehaviour:

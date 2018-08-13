@@ -261,9 +261,6 @@ MonoBehaviour:
   moveSpeed: 2
   minDistance: 0.1
   health: 50
-  team: 0
-  enemyTeam: 0
-  newState: 0
   startNode: 0
   goal: 0
   Spawner1: {fileID: 0}
@@ -271,3 +268,4 @@ MonoBehaviour:
   value: 10
   isStunned: 0
   endOfStun: 0
+  mesh: {fileID: 1938171225957128}
