@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WaypointGraph : MonoBehaviour {
-
+///// CODE USED TO CONTROL WAYPOINT GRAPHS - DO NOT NEED TO ALTER THIS
 	public GameObject[] graphNodes;
 
 	// Use this for initialization

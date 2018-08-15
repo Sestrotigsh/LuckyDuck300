@@ -2,11 +2,10 @@
 using System.Collections;
 
 public class LinkedNodes : MonoBehaviour {
+///// SCRIPT TO CONTROL NODES - DO NOT NEED TO ALTER IN ANY WAY
 
 	public int index;
-
 	public GameObject[] linkedNodeObjects;
-
 	public int[] linkedNodesIndex;
 
 	// Use this for initialization

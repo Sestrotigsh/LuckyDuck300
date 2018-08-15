@@ -32,6 +32,11 @@ TagManager:
   - CameraStalk1
   - BlockTrap0
   - BlockTrap1
+  - CameraTarget
+  - Dying Enemy2
+  - QuitMenu
+  - BackMenu
+  - SideWall
   layers:
   - Default
   - TransparentFX

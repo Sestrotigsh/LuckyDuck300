@@ -4,17 +4,22 @@ using UnityEngine;
 
 
 public class TrapsScript : MonoBehaviour {
-
+    // CONTROLS PLAYERS TRAPS
 
     private PlayerNetwork player;
     private int team;
+
+    private GameObject enemyPlayer;
 
     public float trapHeight;
     public GameObject[] blockTrapList;
     private GameObject currentlyMoving;
     public float speed;
 
+    public ParticleSystem slowCurseParticles;
+
     public float blockTrapsCD;
+    public float slowCurseCD;
     public bool isBlocking = false;
 
     // Use this for initialization
@@ -24,20 +29,38 @@ public class TrapsScript : MonoBehaviour {
         if (team == 0)
         {
             blockTrapList = GameObject.FindGameObjectsWithTag("BlockTrap0");
+            slowCurseParticles = GameObject.FindGameObjectWithTag("SlowCurse1").GetComponent<ParticleSystem>();
         } else if (team ==1)
         {
             blockTrapList = GameObject.FindGameObjectsWithTag("BlockTrap1");
+            slowCurseParticles = GameObject.FindGameObjectWithTag("SlowCurse1").GetComponent<ParticleSystem>();
         }
-       
+
+        if (this.gameObject.CompareTag("Player0"))
+        {
+            enemyPlayer = GameObject.FindGameObjectWithTag("Player0");          
+        }
+        else if (this.gameObject.CompareTag("Player1"))
+        {
+            enemyPlayer = GameObject.FindGameObjectWithTag("Player0");
+        }
+
+
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+    
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown("5") && blockTrapsCD < Time.timeSinceLevelLoad && isBlocking == false)
         {
             BlockTrap();           
         }
-	}
+
+        if (Input.GetKeyDown("6") && slowCurseCD < Time.timeSinceLevelLoad)
+        {
+            SlowCurse();
+        }
+    }
 
     private void BlockTrap()
     {
@@ -92,14 +115,21 @@ public class TrapsScript : MonoBehaviour {
         yield break;
     }
 
-    private void StartTimer()
+    private void SlowCurse()
     {
-        StartCoroutine(BlockTrapActiveTimer());
+        float enemySpeed = enemyPlayer.GetComponent<playerAnimation>().speedMultiplier;
+        enemyPlayer.GetComponent<playerAnimation>().speedMultiplier = 2;
+        slowCurseParticles.Play();
+        StartCoroutine(SlowTimer(enemySpeed));
+
     }
 
-    private void StartFadeDown()
+    IEnumerator SlowTimer(float initial)
     {
-        StartCoroutine(FadeDown());
+        yield return new WaitForSeconds(7);
+        enemyPlayer.GetComponent<playerAnimation>().speedMultiplier = initial;
+        slowCurseCD = Time.timeSinceLevelLoad + 15;
+        slowCurseParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        yield break;
     }
-
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour {
-
+///// ROTATES ENEMIES TO LOOK THE CORRECT DIRECTION
+    
     private Vector3 curLoc;
     private Vector3 prevLoc;
     private Vector3 newAngle;

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SpellsSlasher : MonoBehaviour
 {
+///// SPELLS FOR THE SLASHER
 
     private GameObject canv; // The canvas and Text attached with this player 
 
@@ -55,7 +56,13 @@ public class SpellsSlasher : MonoBehaviour
     bool isDashing = false;
     private GameObject spell2Text;
 
-   
+    // Spell 3
+    private int damageMult = 0;
+    public int multValue;
+    public int spell3Damage;
+    private bool isSpinning = false;
+    public ParticleSystem spinDashEffect;
+
     // Use this for initialization
     void Start()
     {
@@ -99,6 +106,9 @@ public class SpellsSlasher : MonoBehaviour
                     BasicAttack();
                     fireTimer = fireRate + Time.timeSinceLevelLoad;
                 }
+            } else if (Input.GetKeyDown("2") && isDashing == true)
+            {
+                isSpinning = true;
             }
         }
         if (isCutting == true)
@@ -211,7 +221,31 @@ public class SpellsSlasher : MonoBehaviour
                 rbody.angularVelocity = Vector3.zero;
             
             }
+            if (isSpinning == true)
+           {
+               ComboSpin();
+           }
+            isSpinning = false;
             isDashing = false;
+        }
+        yield break;
+    }
+
+    private void ComboSpin()
+    {
+        ParticleSystem partInstance = Instantiate(spinDashEffect, transform);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 8);
+
+        for (int i =0; i< hitColliders.Length; i++)
+        {
+            if (hitColliders[i].tag == "Enemy")
+            {
+                Enemy enemy;
+                enemy = hitColliders[i].GetComponent<Enemy>();
+                enemy.Die(spell3Damage + (damageMult * multValue));
+                damageMult = 0;
+            }
+
         }
     }
 
@@ -243,10 +277,11 @@ public class SpellsSlasher : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isDashing == true)
+        if (isDashing == true && other.tag == "Enemy")
         {
             Enemy enemy = other.GetComponent<Enemy>();
             enemy.Die(spell2Damage);
+            damageMult += 1;
         }
     }
 }

@@ -4,20 +4,18 @@ using UnityEngine;
 using System;
 
 public class Enemy : NavigationAgent {
-	
+///// CONTROLS ENEMY AI MOVEMENT AND DEATH
+
     //Movement Variables
     public float moveSpeed = 10.0f;
     public float minDistance = 0.1f;
 	public int health = 1;
-	private ProjectileController bullet;
 
 	// Multiplayer variables
-    public int team;
-    public int enemyTeam;
-    public int newState = 0;
     private int currentState = 0;
     public int startNode;
-    public int goal; // The final goal the minion / monster aims to reach
+    public int goal; // The final goal the minion / monster aims to 
+    // TACTICAL CONTROLS - RANDOM NUMBER
     //System.Random rand = new System.Random();
 
 	// Player variables
@@ -28,13 +26,19 @@ public class Enemy : NavigationAgent {
 	public GameObject Spawner1;
 	public GameObject Spawner2;
 
-    // TACTICAL GAMEPLAY ADDED BIT
+    // TACTICAL CONTROLS - CHOOSE WHICH PATH TO SEND MINIONS
     //public bool customPathBool = false;
     //public int customPathDirection = 0;
 
     public int value; // The gold value of the monster
     public bool isStunned = false;
     public float endOfStun;
+
+    // Death flashing effect variables
+    private float deathTimer = 0.0f;
+    private SkinnedMeshRenderer rend;
+    public GameObject mesh;
+    public GameObject animator;
 
     // Use this for initialization
     void Start() {
@@ -46,20 +50,14 @@ public class Enemy : NavigationAgent {
 
         startNode = 0;
         goal = 11;
-       
-            
-
-
-            // choose which of the two paths to go down
-            //if (rand.Next(0, 2) == 0) {
-                //startNode = 22;
-            //} else {
-                //startNode = 11;
-            //}
+        // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
+        // choose which of the two paths to go down
+        //if (rand.Next(0, 2) == 0) {
+            //startNode = 22;
+        //} else {
+            //startNode = 11;
+        //}
         
-
-
-
         //Find waypoint graph
 		if (distanceToSpawn1 < distanceToSpawn2) {
 			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
@@ -72,23 +70,40 @@ public class Enemy : NavigationAgent {
 		}
         //Initial node index to move to
         currentPath.Add(startNode);
+
+        // initialise the renderer
+        rend = mesh.GetComponent<SkinnedMeshRenderer>();
+        //rend.material = mesh.Shader.Find("Blink");
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        // TACTICAL CONTROLS - ADDED IN LATER
+    void Update() {
+        if (deathTimer != 0.0f) {
+            rend.material.SetFloat("_Blink", 1.0f);
+            if (animator != null) {
+                animator.GetComponent<Animator>().enabled = false;
+            }
+            this.GetComponent<BoxCollider>().enabled = false;
+            if (deathTimer < Time.timeSinceLevelLoad) {
+                playerNet.EnemyDie (this.gameObject);
+            }
+        }
+
+        // TACTICAL CONTROLS - PLAYER CONTROLLED MINION PATH
         // Adjust the path to fit the players custom directions
-        //if (customPathBool == true) {
+        // if (customPathBool == true) {
             //currentPath.Remove(startNode);
             //currentPath.Add(customPathDirection);
             //customPathBool = false;
         //}
 
-
 		// If enemy is destroyed - perform relevant actions
         if (this.tag == "Dying Enemy") {
             currentState = 1;
+        }
+
+        if (this.tag == "Dying Enemy2") {
+            currentState = 2;
         }
 		// Switch to control enemiy moving or dying
         switch (currentState) {
@@ -98,7 +113,10 @@ public class Enemy : NavigationAgent {
                 break;
             //Die
             case 1:
-			DestroyEnemy();
+                DestroyEnemy();
+                break;
+            case 2:
+                playerNet.EnemyDie (this.gameObject);
                 break;
         }
 		// after sufficient time is passed - remove the stun effect
@@ -145,14 +163,40 @@ public class Enemy : NavigationAgent {
 		health -= damage;
 		if (health <= 0) {
 			playerMan.currentGold = playerMan.currentGold + value;
-			playerNet.EnemyDie (this.gameObject);
+
+
+            isStunned = true;
+            endOfStun = Time.time + 2.0f;
+            deathTimer = Time.timeSinceLevelLoad + 0.75f;
+
+
+
+
+
+
+			//playerNet.EnemyDie (this.gameObject);
 		}      
     }
 	/// <summary>
 	/// delete the enemy from the game
 	/// </summary>
     private void DestroyEnemy() {
-		playerNet.EnemyDie (this.gameObject);
+
+
+
+
+
+
+        ///////// CODE BEING ALTERED HERE
+        isStunned = true;
+        endOfStun = Time.time + 2.0f;
+        deathTimer = Time.timeSinceLevelLoad + 0.75f;
+
+
+
+
+
+		//playerNet.EnemyDie (this.gameObject);
     }   
 
 	/// <summary>
@@ -172,6 +216,9 @@ public class Enemy : NavigationAgent {
 		if (other.CompareTag ("Projectile")) {
 			Die (other.GetComponent<ProjectileController> ().damage);
 			Destroy (other.gameObject);
-		}
+		} else if (other.CompareTag("SideWall")) {
+            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
 	}
 }

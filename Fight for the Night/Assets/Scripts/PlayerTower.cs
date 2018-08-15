@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class PlayerTower : NetworkBehaviour {
-
+///// CONTROLS PLAYERS TOWER SPAWNING
+	
 	public GameObject ghost;
 	public GameObject towerBasic;
 	public GameObject tower1;

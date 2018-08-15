@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class EnemyWaves : NetworkBehaviour {
+// SPAWN GENERIC IN WAVES TO ATTACK THE PLAYER AND SHOW ON OTHER PLAYERS GAME
 
 	// Spawners and enemy in the wave
 	public GameObject playerSpawner;
-	public GameObject enemySpawner;
 	public GameObject enemy;
 
 	private int nextSpawn; // Determine the start of the next Wave
@@ -15,11 +15,11 @@ public class EnemyWaves : NetworkBehaviour {
 	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
 	public int waveLength = 5; // Number of second / number of minions the wave will be
 	private int remainingMinions; // The current time the wave start + the waveLength
-
-	private PlayerNetwork PlayerNet;
+	private PlayerNetwork PlayerNet; // networking attached to the player
 
 	// Use this for initialization
 	void Start () {
+		// only spawn for the local player
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
 		if (!PlayerNet.local) {
 			enabled = false;
@@ -33,6 +33,7 @@ public class EnemyWaves : NetworkBehaviour {
 	void Update () {
 		Wave();
 	}
+
 	/// <summary>
 	/// spawn the wave of minions
 	/// </summary>

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SpellsAlien : MonoBehaviour
 {
+///// SPELLS FOR THE ALIEN
 
 	// Find the shooting position of each character. Currently at the front
 	private GameObject canv; // The canvas and Text attached with this player 
@@ -45,9 +46,15 @@ public class SpellsAlien : MonoBehaviour
 	public int CD2; // The actual CD between spell
 	public float remainingTime2 = 0; // The number of seconds left before the next cast available
 	public ParticleSystem windSpin;
+	private bool isComboable = false;
 
 
 	// Spell 3
+	public List<Enemy> enemyList;
+    public int CD3;
+    public float CDTimer3 = 0;
+    public float remainingTime3 = 0;
+    public ParticleSystem alienExecute;
 	// Spell 4
 
 
@@ -63,7 +70,10 @@ public class SpellsAlien : MonoBehaviour
 		spell1T = canv.transform.Find("Spell1").gameObject.transform.Find("Text").gameObject;
 		spell2T = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
-		frontPos = GameObject.FindWithTag("ShootingPoint").transform;
+		foreach (Transform child in transform) if (child.CompareTag("CameraTarget")) {
+			frontPos = child;
+		}
+		//frontPos = GameObject.FindWithTag("CameraTarget").transform;
 	}
 
 	// Update is called once per frame
@@ -90,7 +100,10 @@ public class SpellsAlien : MonoBehaviour
 					BasicAttack ();
 					fireTimer = fireRate + Time.timeSinceLevelLoad;
 				}
-			}
+			} else if (Time.timeSinceLevelLoad >= CDTimer3 && Input.GetKeyDown("2") && isComboable == true)
+            {
+                ComboRepulsion();
+            }
 		} 
 		RemainingTime();
 	}
@@ -170,6 +183,7 @@ public class SpellsAlien : MonoBehaviour
 
 	IEnumerator Wait(Rigidbody rbody, Vector3 push, Enemy enemy, ParticleSystem part)
 	{ // Time associated with spell 2
+		isComboable = true;
 		yield return new WaitForSeconds(2);
 		if (rbody != null)
 		{
@@ -183,8 +197,26 @@ public class SpellsAlien : MonoBehaviour
 			{
 				enemy.Die(spell2Damage);
 			}
+			isComboable = false;
 		}
 	}
+
+	 private void ComboRepulsion()
+    {
+
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            if(enemyList[i] != null)
+            {
+                ParticleSystem partInstance = Instantiate(alienExecute, new Vector3(enemyList[i].transform.position.x, enemyList[i].transform.position.y + 0.7f, enemyList[i].transform.position.z), Quaternion.Euler(-90, 0, 0));
+                enemyList[i].Die(999999999);
+            }
+           
+        }
+        enemyList.Clear();
+        CDTimer3 = Time.timeSinceLevelLoad + CD3;
+        remainingTime3 = CD3;
+    }
 
 	private void RemainingTime() // Calculate the remaining time before next use, which will be used for the UI
 	{

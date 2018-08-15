@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerController : MonoBehaviour {
-
+///// CONTROLS TOWER UPGRADING 
 	public GameObject towerBasic;
 	public GameObject tower1;
 	public GameObject tower2;

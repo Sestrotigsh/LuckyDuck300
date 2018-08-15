@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleTimer : MonoBehaviour {
-
+///// CONTROLS HOW LONG PROJECTILE STAYS ACTIVE BEFORE CANCELLING OUT
+	
     public float timer;
     public float length;
 

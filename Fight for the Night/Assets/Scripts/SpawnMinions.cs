@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class SpawnMinions : NetworkBehaviour {
+////// CONTROLS PLAYERS ABILITIES TO SPAWN MONSTERS TO ATTACK OTHER PLAYER
+
 
 	public GameObject enemySpawner;
     public GameObject monster1;
@@ -16,7 +18,8 @@ public class SpawnMinions : NetworkBehaviour {
     public int monster2Cost;
 	public int monster2IncomeBoost;
 
-    //private int
+    public int monster1HPBoost;
+    public int monster2HPBoost;
 
 	// Use this for initialization
 	void Start () {
@@ -65,6 +68,8 @@ public class SpawnMinions : NetworkBehaviour {
 	[Command]
     void CmdSendMonster1() {
 		var currentMonster = Instantiate(monster1, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
+		monster1HPBoost = monster1HPBoost + 2;
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
        // currentMonster.GetComponent<Enemy>().customPathDirection = path;
         NetworkServer.Spawn (currentMonster);
@@ -73,6 +78,8 @@ public class SpawnMinions : NetworkBehaviour {
 	[Command]
     void CmdSendMonster2() {
 		var currentMonster = Instantiate(monster2, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
+        monster2HPBoost = monster2HPBoost + 2;
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
         //currentMonster.GetComponent<Enemy>().customPathDirection = path;
         NetworkServer.Spawn (currentMonster);

@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/joela/Desktop/301 OFFLINE/Builds/CRITIQUE 2/IGB300 Proto.exe
+C:/Users/joela/Desktop/301 OFFLINE/Builds/MULTIWEEK3/IGB300 Proto.exe
 SceneListBegin?
 Assets/Main Screen.unity
 Assets/Main Scene.unity
@@ -9,6 +9,7 @@ Assets/Defeat.unity
 SceneListEnd?
 12ce4307668d427a9a3c1287f7d6fc1a Assembly-CSharp.dll:.ParticleTimer
 3baa6929b4a2df9812ef4909209f3dd1 Assembly-CSharp.dll:.EventTrigger
+22594939f5688e0dee991ccf6d3ba1fb Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyMainMenu
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -31,6 +32,8 @@ f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventH
 c8760790342db6da8f165cc67ce4d3eb Assembly-CSharp.dll:Ibuprogames.VintageAsset.RenderDepth
 6a05a068efcd630cb63104f5ceb57e63 Assembly-CSharp.dll:.PlayerManagement
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.CustomLobbyHook
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:Prototype.NetworkLobby.EventSystemChecker
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageSutro
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -64,6 +67,7 @@ a44114bd4fa541174f78b4bb92bacb48 UnityEngine.UI.dll:UnityEngine.EventSystems.Sta
 e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 2d58ca16854b99daea8c45e9c0f367b7 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+a5bb8ffec32488c3a63a80725e1176a4 Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyInfoPanel
 50b0b141074b216c8b53b1bd467f73c9 Unity.TextMeshPro.dll:TMPro.TMP_InputField
 355155340922d0c9809156f3ce372a2d Assembly-CSharp.dll:.DAX_Rotator
 b827b25f832158fdaa480c476121350e Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TiltInput
@@ -100,6 +104,7 @@ e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 2d58ca16854b99daea8c45e9c0f367b7 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 b8d8e5f77dd87ffe8696f34855294757 Assembly-CSharp.dll:.MultiManager
+15e18fbed4de58b10e738c9d5b2c39dc Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyServerEntry
 2642e972953464c509bf3a54c61e2f6c Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageNES
 6a6c042f9ce64c1da6a72239cda3f659 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageSierra
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageInkwell
@@ -117,7 +122,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 6a6c042f9ce64c1da6a72239cda3f659 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageAmaro
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
-5530757346898ab6d6c105ca5c4f4a33 Assembly-CSharp.dll:.SpellsSlasher
+993bcad2bac0eecdbe94230819340098 Assembly-CSharp.dll:.SpellsSlasher
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 0f27c39183b9eb95eba0a228bea28273 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -139,7 +144,7 @@ d0153babae3c775e9a1beb9794436736 Assembly-CSharp.dll:.DAX_Rotator_XYZ
 2642e972953464c509bf3a54c61e2f6c Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageGameboy
 5bf7803541c1939b99abe1f718ec7ef0 Assembly-CSharp.dll:.Rotation
 8e79b007c36e5772438f605bf73fe0e6 Assembly-CSharp.dll:.CameraNetworkManager
-87026d84daa202b138aa93f139c4d2a4 Assembly-CSharp.dll:.EnemyWaves
+f9f19cc7746bb7783218418a2257bca3 Assembly-CSharp.dll:.EnemyWaves
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vintage70sTV
 382b8ef512fa8d6108723a01b57af65b UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
@@ -150,7 +155,9 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
+9ee9a18e8a2c382c9e176e737613fb01 Assembly-CSharp.dll:.ChoosePlayer
 fa1c317e7807ba3c9b05056693f277ff Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.Joystick
+b6e10536e036480bb164d6e41aa30b01 Assembly-CSharp.dll:.PlayerCameraTaunt
 1f4c32358f8645632776e16c1104bc15 Assembly-CSharp-firstpass.dll:UnityStandardAssets.Characters.ThirdPerson.ThirdPersonCharacter
 ca007c9c4d2f7ea55fa8ae04496a80d4 Assembly-CSharp.dll:.WaypointGraph
 6a6c042f9ce64c1da6a72239cda3f659 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageRise
@@ -163,15 +170,19 @@ d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vi
 40f786f83d45e014e5c3b4a63e7b04a9 Assembly-CSharp.dll:.PlayerNetwork
 0a366d3a4352c8b5dc8a8959238db205 Assembly-CSharp.dll:.NavigationAgent
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ButtonScripts
+e6af79a0ae6c367d0f8146bf72248ea7 Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyCountdownPanel
 d947b95c171314b81b313a2f4ffd0411 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.ButtonHandler
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.Characters.ThirdPerson.ThirdPersonUserControl
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
-eb39969cf84ed0df7b13d07b1e8fac7b Assembly-CSharp.dll:.SpellsAlien
+8d1b0058cfa841f32d3672f9d0c6ba30 Assembly-CSharp.dll:.SpellsAlien
 bdd24eb6790449fdce0d5adf5d52104d Assembly-CSharp.dll:.PlayerTower
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.MobileControlRig
+65f4635d53bf9c7045fcb5d8e9db26e2 Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyManager
 eaf0bcdb10d442a4029d615f41d09957 Unity.TextMeshPro.dll:TMPro.TextContainer
-3da015425cf33a6990976784054e33c0 Assembly-CSharp.dll:.Enemy
+35ea0e60d511b3f96c509ec65e03467f Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyTopPanel
+dfae368621ada10863a12b24c7048e38 Assembly-CSharp.dll:.Enemy
 689f1dc92ae344fc554d54b28e4f6f1f Assembly-CSharp.dll:.CinemaScreenMat
+b4eb654156c4fcee2d1069f283fa2095 Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyPlayer
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageWalden
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -198,7 +209,7 @@ d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vi
 e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 7f895d5fc65747559c4727ef8222cfb0 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageCGA
-f1b3ba3ec0e22c83c0ee5b41d121a79f Assembly-CSharp.dll:.SpawnMinions
+eaf66bed7109c2828335038b4a7c13f9 Assembly-CSharp.dll:.SpawnMinions
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageLomofi
 486cd95c82d8305219c352c06b776e1f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
@@ -207,6 +218,7 @@ e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTool
 70f7dc248db3379548a88e8d4fa049f8 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
+826dca6589fb449b36ad1a3da3a7e45b Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyPlayerList
 1a90b221dc803408fbafa883c12bcab4 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
 70f7dc248db3379548a88e8d4fa049f8 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
@@ -221,10 +233,12 @@ aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vintage1977
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 c23a425293106023144dfc1003b2fe70 Assembly-CSharp.dll:.NetManager
+ccaadcb53fad2592f1886858818f5f1c Assembly-CSharp.dll:.TrapsScript
 a86fe3b9d3c8be6ebdb1363952acca3b Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageTechnicolor
 99f38a1fb16efbebe68b0088d5be6a0c Assembly-CSharp.dll:.MultiMenu
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EnvironmentCollider
 2d5613dfea5ebe89d441816537142920 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyHook
 530826feec1926aac6e3507dd4defaac Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageCommodore64
 6a6c042f9ce64c1da6a72239cda3f659 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageHudson
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
@@ -237,6 +251,9 @@ d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vi
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageCrema
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:Prototype.NetworkLobby.DraggablePanel
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageEarlybird
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageAden
+ba00c26d46eb27902b95b03117b85877 Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyServerList
+7412cbbf1c0126d5b32b1350accafba8 Assembly-CSharp.dll:.ButtonHide

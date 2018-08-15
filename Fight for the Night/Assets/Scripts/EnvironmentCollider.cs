@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnvironmentCollider : MonoBehaviour {
+///// CONTROLS PROJECTILES AND ENEMIES DIRECT INTERACTION WITH ENVIRONMENT
 
 	/// <summary>
 	/// controls what happens when player spells or projectiles collide with the in game geometry
@@ -17,5 +18,4 @@ public class EnvironmentCollider : MonoBehaviour {
             other.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
     }
-
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerUpgrading : MonoBehaviour {
-
+///// DESTROYS CURRENT TOWER TO REPLACE IT WITH UPGRADED TOWER
 	public GameObject tower1;
 	public GameObject tower2;
 	public GameObject tower3;
