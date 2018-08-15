@@ -77,6 +77,9 @@ public class SpellsSlasher : MonoBehaviour
         canv = this.transform.Find("Canvas").gameObject;
         spell1Text = canv.transform.Find("Spell1").gameObject.transform.Find("Text").gameObject;
         spell2Text = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
+        foreach (Transform child in transform) if (child.CompareTag("ShootingPoint")) {
+            frontPos = child;
+        }
    
     }
 

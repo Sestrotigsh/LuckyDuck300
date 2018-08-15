@@ -2123,7 +2123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTeam: 0
-  quitbutton: {fileID: 0}
   alienClothes: {fileID: 1150850827479624}
   slasherClothes: {fileID: 1254454767723334}
 --- !u!114 &114263507572404800
@@ -2861,7 +2860,7 @@ MonoBehaviour:
   spell1Sound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   spell2Sound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   basicSound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
-  autoDamage: 0
+  autoDamage: 1
   fireRate: 0.4
   spell1Damage: 4
   CD1: 12
