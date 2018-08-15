@@ -1256,6 +1256,8 @@ GameObject:
   - component: {fileID: 390306048}
   - component: {fileID: 390306045}
   - component: {fileID: 390306047}
+  - component: {fileID: 390306051}
+  - component: {fileID: 390306052}
   m_Layer: 5
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -1472,6 +1474,30 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &390306051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390306044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe69bfcd108be84ca06a5e23d9c8516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &390306052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 390306044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6646d57d9e79d4142ada2965b62a3b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitButton: {fileID: 1828176249}
+  returnButton: {fileID: 450723226}
 --- !u!4 &412139644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4661946518423300, guid: e7c5e1d203526ea45aa3605c968d5f4b,

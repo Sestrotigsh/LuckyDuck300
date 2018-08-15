@@ -6,25 +6,36 @@ using UnityEngine.Networking;
 public class ChoosePlayer : NetworkBehaviour {
 
 	[SyncVar]
-	public int playerSelected;
-	private GameObject quitbutton;
+	public int playerTeam;
+	//public GameObject quitbutton;
+	public GameObject alienClothes;
+	public GameObject slasherClothes;
 
 	// Use this for initialization
 	void Start () {
-		quitbutton = GameObject.FindWithTag("QuitMenu");
-		quitbutton.SetActive(false);
+		//quitbutton = GameObject.FindWithTag("QuitMenu");
+		//quitbutton.SetActive(false);
 		// if the player has selected the alien
-		if (playerSelected == 1) {
-			// SPAWN THE ALIEN SHIT
+		if (playerTeam == 0) {
+			//Debug.Log("ALIEN PLAYER");
+			// CHANGE ANIMATION AVATAR
+			alienClothes.SetActive(true);
+			if (this.GetComponent<PlayerNetwork>().local) 
+				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
+			
+			
+
 		} 
 		// if the player has selected the slasher
-		if (playerSelected == 2) {
-			// SPAWN THE SLASHER SHIT
+		if (playerTeam == 1) {
+			//Debug.Log("SLASHER PLAYER");
+			// CHANGE ANIMATION AVATAR
+			slasherClothes.SetActive(true);
+			if (this.GetComponent<PlayerNetwork>().local) 
+				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
+			
+			
+
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

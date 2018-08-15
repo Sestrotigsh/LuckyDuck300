@@ -16,6 +16,7 @@ namespace Prototype.NetworkLobby
         static List<int> _colorInUse = new List<int>();
 
         public Button colorButton;
+        public Button teamButton; /////////////////////////////////////////
         public InputField nameInput;
         public Button readyButton;
         public Button waitingPlayerButton;
@@ -29,6 +30,12 @@ namespace Prototype.NetworkLobby
         public string playerName = "";
         [SyncVar(hook = "OnMyColor")]
         public Color playerColor = Color.white;
+        [SyncVar (hook = "OnMyTeam")] ///////////////////////////////////////
+        public int playerTeam = -1; ////////////////////////////////////////
+        public Sprite alienPoster;
+        public Sprite slasherPoster;
+        public GameObject teamPoster;
+
 
         public Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         public Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
@@ -64,6 +71,7 @@ namespace Prototype.NetworkLobby
             //will be created with the right value currently on server
             OnMyName(playerName);
             OnMyColor(playerColor);
+            OnMyTeam(playerTeam);
         }
 
         public override void OnStartAuthority()
@@ -110,6 +118,9 @@ namespace Prototype.NetworkLobby
 
             if (playerColor == Color.white)
                 CmdColorChange();
+
+            if (playerTeam == -1) ///////////////////////////////////
+                CmdTeamChange(); ////////////////////////////////////
                 
 
             ChangeReadyButtonColor(JoinColor);
@@ -124,6 +135,7 @@ namespace Prototype.NetworkLobby
 
             //we switch from simple name display to name input
             colorButton.interactable = true;
+            teamButton.interactable = true; ////////////////////////////////////////
             nameInput.interactable = true;
 
             nameInput.onEndEdit.RemoveAllListeners();
@@ -131,6 +143,9 @@ namespace Prototype.NetworkLobby
 
             colorButton.onClick.RemoveAllListeners();
             colorButton.onClick.AddListener(OnColorClicked);
+
+            teamButton.onClick.RemoveAllListeners(); ///////////////////////////////
+            teamButton.onClick.AddListener(OnTeamClicked); ////////////////////////
 
             readyButton.onClick.RemoveAllListeners();
             readyButton.onClick.AddListener(OnReadyClicked);
@@ -165,6 +180,7 @@ namespace Prototype.NetworkLobby
                 readyButton.interactable = false;
                 colorButton.interactable = false;
                 nameInput.interactable = false;
+                teamButton.interactable = false; ////////////////////////////////////////////
             }
             else
             {
@@ -176,6 +192,7 @@ namespace Prototype.NetworkLobby
                 readyButton.interactable = isLocalPlayer;
                 colorButton.interactable = isLocalPlayer;
                 nameInput.interactable = isLocalPlayer;
+                teamButton.interactable = isLocalPlayer; /////////////////////////////////////////
             }
         }
 
@@ -198,6 +215,15 @@ namespace Prototype.NetworkLobby
             colorButton.GetComponent<Image>().color = newColor;
         }
 
+        public void OnMyTeam(int newTeam) { ////////////////////////////////////////
+            playerTeam = newTeam; ///////////////////////////////////////////////
+            if (playerTeam == 0)
+                teamPoster.GetComponent<Image>().sprite = alienPoster;
+            if (playerTeam == 1)
+                teamPoster.GetComponent<Image>().sprite = slasherPoster;
+            // ADD CODE HERE TO CHANGE THE PICTURE OF THE RELEVANT TEAM ////////////////////////////
+        } ///////////////////////////////////////////////////////////////////////
+
         //===== UI Handler
 
         //Note that those handler use Command function, as we need to change the value on the server not locally
@@ -206,6 +232,11 @@ namespace Prototype.NetworkLobby
         {
             CmdColorChange();
         }
+
+        public void OnTeamClicked() { /////////////////////////////
+            CmdTeamChange(); /////////////////////////////////////////////
+        } ///////////////////////////////////////////////////////////
+
 
         public void OnReadyClicked()
         {
@@ -286,6 +317,12 @@ namespace Prototype.NetworkLobby
             }
 
             playerColor = Colors[idx];
+        }
+
+        [Command] ////////////////////////////////////////
+        public void CmdTeamChange() { //////////////////////////////////////// 
+            playerTeam = (playerTeam + 1) % 2;
+            Debug.Log(playerTeam);
         }
 
         [Command]

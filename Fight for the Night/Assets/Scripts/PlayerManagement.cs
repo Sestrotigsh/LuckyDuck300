@@ -100,10 +100,11 @@ public class PlayerManagement : MonoBehaviour {
 		if (!player.local) {
 			return;
 		}
-		if (other.CompareTag ("Enemy")) {
-			transform.position = spawnpoint.transform.position;
-			this.GetComponent<playerAnimation> ().setupCamera ();
-		}
+        // DUMMY CODE FOR PLAYERS PHYSICAL INTERACTIONS WITH THE ENEMIES - REPLACE SOON
+		//if (other.CompareTag ("Enemy")) {
+			//transform.position = spawnpoint.transform.position;
+			//this.GetComponent<playerAnimation> ().setupCamera ();
+		//}
 
 		if (other.CompareTag ("Bank")) {
 			currentGold = currentGold + currentBank;
