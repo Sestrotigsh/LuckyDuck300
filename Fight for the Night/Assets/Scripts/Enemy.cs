@@ -216,6 +216,9 @@ public class Enemy : NavigationAgent {
 		if (other.CompareTag ("Projectile")) {
 			Die (other.GetComponent<ProjectileController> ().damage);
 			Destroy (other.gameObject);
-		}
+		} else if (other.CompareTag("SideWall")) {
+            this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
 	}
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCameraTaunt : MonoBehaviour {
-///// CONTROLS THE PLAYERS TAUNT ABILITY AND THE CHECK OTHER PLAYERS SCREEN SETTING
+    // PLAYER TAUNT ABILITIES
 
     private bool lookingAtScreen = false;   
 
@@ -57,9 +57,9 @@ public class PlayerCameraTaunt : MonoBehaviour {
         audioS = enemyCamera.GetComponent<AudioSource>();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+    
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown("z"))
         {
             CheckScreen();
@@ -70,13 +70,13 @@ public class PlayerCameraTaunt : MonoBehaviour {
             Orbit();
         }
 
-        if (Input.GetKeyDown("3") && tauntRemainingTime < Time.timeSinceLevelLoad)
+        if (Input.GetKeyDown("3") && tauntRemainingTime < Time.timeSinceLevelLoad & lookingAtScreen == true)
         {
             audioS.clip = clip1;
             audioS.Play();
             tauntRemainingTime = Time.timeSinceLevelLoad + tauntCD;
         }
-        if (Input.GetKeyDown("4") && tauntRemainingTime < Time.timeSinceLevelLoad)
+        if (Input.GetKeyDown("4") && tauntRemainingTime < Time.timeSinceLevelLoad && lookingAtScreen == true)
         {
             audioS.clip = clip2;
             audioS.Play();

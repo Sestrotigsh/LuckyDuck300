@@ -658,7 +658,6 @@ GameObject:
   - component: {fileID: 82782103744540780}
   - component: {fileID: 136541133683980678}
   - component: {fileID: 114339581775957938}
-  - component: {fileID: 114441586278876886}
   m_Layer: 0
   m_Name: PlayerAlienV2
   m_TagString: Player
@@ -1843,6 +1842,8 @@ MonoBehaviour:
   monster1IncomeBoost: 1
   monster2Cost: 50
   monster2IncomeBoost: 3
+  monster1HPBoost: 2
+  monster2HPBoost: 2
 --- !u!114 &114109117232064576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2119,22 +2120,6 @@ MonoBehaviour:
   team: 0
   local: 0
   health: 10
---- !u!114 &114441586278876886
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766774349886954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 408acb7c580e44243bd7f64f7320d5ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trapHeight: 2
-  blockTrapList: []
-  speed: 0.5
-  blockTrapsCD: 0
-  isBlocking: 0
 --- !u!114 &114450270437368226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2247,6 +2232,12 @@ MonoBehaviour:
   CD2: 20
   remainingTime2: 0
   windSpin: {fileID: 198263037512002276, guid: 05981e42dfc314b41be97d3a0381bd1c, type: 2}
+  enemyList: []
+  CD3: 50
+  CDTimer3: 0
+  remainingTime3: 0
+  alienExecute: {fileID: 198377809097236778, guid: f3385d121ac1be543ba2034370024a27,
+    type: 2}
 --- !u!114 &114523663839771514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2720,7 +2711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpawner: {fileID: 0}
   enemy: {fileID: 1157679630148364, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
-  initialSpawn: 0
+  initialSpawn: 15
   waveLength: 5
 --- !u!114 &114986554474417242
 MonoBehaviour:

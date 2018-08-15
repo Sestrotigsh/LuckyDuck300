@@ -2685,7 +2685,7 @@ GameObject:
   - component: {fileID: 832423010}
   m_Layer: 0
   m_Name: EventSystem
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3754,7 +3754,6 @@ MonoBehaviour:
   mainPanel: {fileID: 1240923596}
   quit: {fileID: 1828176249}
   navPanel: {fileID: 2137206623}
-  backButton: {fileID: 450723226}
   matchNameInput: {fileID: 706982945}
 --- !u!1 &1250522044
 GameObject:
@@ -5630,7 +5629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1828176250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5732,8 +5731,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 56c4630952ccd9546aa30a1eddc073e8, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

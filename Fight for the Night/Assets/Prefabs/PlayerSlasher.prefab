@@ -1046,6 +1046,8 @@ MonoBehaviour:
   monster1IncomeBoost: 1
   monster2Cost: 50
   monster2IncomeBoost: 3
+  monster1HPBoost: 0
+  monster2HPBoost: 0
 --- !u!114 &114140606917599150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1266,7 +1268,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawner: {fileID: 0}
-  enemySpawner: {fileID: 0}
   enemy: {fileID: 1157679630148364, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
   initialSpawn: 15
   waveLength: 5
@@ -1690,9 +1691,13 @@ MonoBehaviour:
   spell1Damage: 4
   CD1: 12
   remainingTime1: 0
-  spell2Damage: 10
+  spell2Damage: 40
   CD2: 10
   remainingTime2: 0
+  multValue: 5
+  spell3Damage: 20
+  spinDashEffect: {fileID: 198682745860786906, guid: 0a05e3a8095ccf149ba3d4cb61b90a68,
+    type: 2}
 --- !u!114 &114728438600047220
 MonoBehaviour:
   m_ObjectHideFlags: 1

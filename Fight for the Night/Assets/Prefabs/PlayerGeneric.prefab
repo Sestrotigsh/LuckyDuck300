@@ -51,7 +51,6 @@ GameObject:
   - component: {fileID: 82876340529511872}
   - component: {fileID: 136548301563383552}
   - component: {fileID: 114094514210628316}
-  - component: {fileID: 114972807734796592}
   - component: {fileID: 114250845575978400}
   m_Layer: 0
   m_Name: PlayerGeneric
@@ -1012,7 +1011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06d8623594065a148abe2927b03a2b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: 0
+  playerSelected: 0
 --- !u!114 &114263507572404800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1346,6 +1345,11 @@ MonoBehaviour:
   CD2: 20
   remainingTime2: 0
   windSpin: {fileID: 198263037512002276, guid: 05981e42dfc314b41be97d3a0381bd1c, type: 2}
+  enemyList: []
+  CD3: 0
+  CDTimer3: 0
+  remainingTime3: 0
+  alienExecute: {fileID: 0}
 --- !u!114 &114471113133215294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1683,6 +1687,8 @@ MonoBehaviour:
   monster1IncomeBoost: 1
   monster2Cost: 50
   monster2IncomeBoost: 3
+  monster1HPBoost: 0
+  monster2HPBoost: 0
 --- !u!114 &114849270799077466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1779,22 +1785,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114972807734796592
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1194718770242504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 408acb7c580e44243bd7f64f7320d5ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trapHeight: 2
-  blockTrapList: []
-  speed: 0.5
-  blockTrapsCD: 0
-  isBlocking: 0
 --- !u!114 &114981185707433966
 MonoBehaviour:
   m_ObjectHideFlags: 1

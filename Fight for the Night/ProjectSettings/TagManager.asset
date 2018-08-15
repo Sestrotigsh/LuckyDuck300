@@ -36,6 +36,7 @@ TagManager:
   - Dying Enemy2
   - QuitMenu
   - BackMenu
+  - SideWall
   layers:
   - Default
   - TransparentFX
