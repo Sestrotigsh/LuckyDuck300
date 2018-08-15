@@ -33,6 +33,9 @@ TagManager:
   - BlockTrap0
   - BlockTrap1
   - CameraTarget
+  - Dying Enemy2
+  - QuitMenu
+  - BackMenu
   layers:
   - Default
   - TransparentFX

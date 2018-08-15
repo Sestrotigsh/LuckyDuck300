@@ -38,6 +38,7 @@ public class Enemy : NavigationAgent {
     private float deathTimer = 0.0f;
     private SkinnedMeshRenderer rend;
     public GameObject mesh;
+    public GameObject animator;
 
     // Use this for initialization
     void Start() {
@@ -79,6 +80,9 @@ public class Enemy : NavigationAgent {
     void Update() {
         if (deathTimer != 0.0f) {
             rend.material.SetFloat("_Blink", 1.0f);
+            if (animator != null) {
+                animator.GetComponent<Animator>().enabled = false;
+            }
             this.GetComponent<BoxCollider>().enabled = false;
             if (deathTimer < Time.timeSinceLevelLoad) {
                 playerNet.EnemyDie (this.gameObject);
@@ -97,6 +101,10 @@ public class Enemy : NavigationAgent {
         if (this.tag == "Dying Enemy") {
             currentState = 1;
         }
+
+        if (this.tag == "Dying Enemy2") {
+            currentState = 2;
+        }
 		// Switch to control enemiy moving or dying
         switch (currentState) {
             //Roam
@@ -105,7 +113,10 @@ public class Enemy : NavigationAgent {
                 break;
             //Die
             case 1:
-			DestroyEnemy();
+                DestroyEnemy();
+                break;
+            case 2:
+                playerNet.EnemyDie (this.gameObject);
                 break;
         }
 		// after sufficient time is passed - remove the stun effect

@@ -43,7 +43,7 @@ public class EventTrigger : NetworkBehaviour {
 			}
 		} 
         if (other.CompareTag ("Enemy")) {
-        	other.tag = "Dying Enemy";
+        	other.tag = "Dying Enemy2";
         }
 	}
 }
