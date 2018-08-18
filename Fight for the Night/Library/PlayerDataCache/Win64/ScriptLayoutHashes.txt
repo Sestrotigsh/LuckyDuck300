@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/joela/Desktop/301 OFFLINE/Builds/MULTIWEEK3/IGB300 Proto.exe
+C:/Users/joela/Desktop/301 OFFLINE/Builds/4.2/IGB300 Proto.exe
 SceneListBegin?
 Assets/Main Screen.unity
 Assets/Main Scene.unity
@@ -240,6 +240,7 @@ a86fe3b9d3c8be6ebdb1363952acca3b Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vi
 2d5613dfea5ebe89d441816537142920 Assembly-CSharp-firstpass.dll:UnityStandardAssets.CrossPlatformInput.TouchPad
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyHook
 530826feec1926aac6e3507dd4defaac Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageCommodore64
+7412cbbf1c0126d5b32b1350accafba8 Assembly-CSharp.dll:.ButtonHide
 6a6c042f9ce64c1da6a72239cda3f659 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageHudson
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageBrannan
@@ -256,4 +257,3 @@ d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.Vi
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 d1f498369518180751aba01732009220 Assembly-CSharp.dll:Ibuprogames.VintageAsset.VintageAden
 ba00c26d46eb27902b95b03117b85877 Assembly-CSharp.dll:Prototype.NetworkLobby.LobbyServerList
-7412cbbf1c0126d5b32b1350accafba8 Assembly-CSharp.dll:.ButtonHide
