@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1366
     height: 685
-  m_MinSize: {x: 950, y: 492}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 917, y: 442}
-  m_MaxSize: {x: 22012, y: 10021}
+  m_MinSize: {x: 913, y: 442}
+  m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
-  controlID: 28
+  controlID: 34
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 80
+  controlID: 35
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 651
     height: 265
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -180,8 +180,8 @@ MonoBehaviour:
     y: 265
     width: 651
     height: 370
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -205,8 +205,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 635
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -369,14 +369,14 @@ MonoBehaviour:
     height: 244
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 0
-  lastFramingTime: 2877.337232808768
+  lastFramingTime: 3371.282309515338
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 192.76248, y: 1.9396491, z: 227.44064}
+    m_Target: {x: 206.2248, y: 7.2189827, z: 214.55202}
     speed: 2
-    m_Value: {x: 192.76248, y: 1.9396491, z: 227.44064}
+    m_Value: {x: 206.2248, y: 7.2189827, z: 214.55202}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -404,13 +404,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.29075748, y: 0.35912958, z: -0.11880952, w: -0.878846}
+    m_Target: {x: -0.2907575, y: 0.35912958, z: -0.11880952, w: -0.87884605}
     speed: 2
-    m_Value: {x: -0.2907575, y: 0.3591296, z: -0.11880953, w: -0.87884605}
+    m_Value: {x: -0.2907575, y: 0.35912958, z: -0.11880952, w: -0.87884605}
   m_Size:
-    m_Target: 9.327778
+    m_Target: 9.093304
     speed: 2
-    m_Value: 9.327778
+    m_Value: 9.093304
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -644,23 +644,23 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: feb00400
+    m_SelectedIDs: de0f0000
     m_LastClickedID: 0
-    m_ExpandedIDs: b0f4faffa2f5faff68f7faff78f7faffb6f8faffeaf8fafff8a1fbff5eaafbff44abfbff0aadfbff1aadfbff58aefbff8caefbff2a3afdff2043fdfff043fdffb645fdffc645fdff0447fdff3847fdfff612feff3c17feffaa1ffeff7a20feff4022feff5022feff8e23feffc223feffdc31feffae32feff9e34feffd834feff4036feff9e36feff9e8ffeff4290feff3292feff6c92feffd493feff3294feffaecbffff8cccffff52ceffff62ceffffa0cfffffd4cfffff3ae8ffff1ae9ffffe4eafffff8eaffff3aecffff72ecffffe6fbffff00000000
+    m_ExpandedIDs: e690fcff9424fdff9824fdff6625fdff5649fdffda4ffdff7223feff8023fefffa39ffffacadfffffeb6ffffdad4ffffe6fbfffff4ffffff000000000c560000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: SoundPanel
+      m_OriginalName: SoundPanel
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -50730
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
@@ -707,20 +707,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Models
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Models
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\joela\Documents\GitHub\LuckyDuck300\Fight for the Night
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 30170000
-    m_LastClickedID: 5936
-    m_ExpandedIDs: 000000009c0a0000020b0000340d0000880d0000980f0000a00f0000fa0f00001e1000002a100000841000000411000094110000cc1300002017000030170000e81a0000e81c0000981d0000de1d00008a1e0000d24e0000d44e000000ca9a3b
+    m_SelectedIDs: 9c0a0000
+    m_LastClickedID: 2716
+    m_ExpandedIDs: 000000009c0a0000020b0000180d0000340d0000880d0000980f0000a00f0000fa0f0000201000002c100000861000000611000096110000ce1300002217000032170000ea1a0000ec1c00009c1d0000e21d00008e1e0000de4e0000e04e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -748,7 +748,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009c0a0000020b0000340d0000880d0000980f0000a00f0000fa0f00001e1000002a100000841000000411000094110000cc1300002017000030170000e81a0000e81c0000981d0000de1d00008a1e0000d24e0000d44e0000
+    m_ExpandedIDs: 000000009c0a0000020b0000340d0000880d0000980f0000a00f0000fa0f0000201000002c100000861000000611000096110000ce1300002217000032170000ea1a0000ec1c00009c1d0000e21d00008e1e0000de4e0000e04e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -779,15 +779,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: f04000002ee3ffffa2350000aaee0000580a00001607000048280000fa2700004a280000e8290000962900008e240000e6250000542400008640feff782500002e2500006e26000022400000362400003a24000084240000c6310000a4240000303100001e19ffff66250000062500003a250000f8240000402500000c250000482500003025000038310000382700006c2a0000162a0000d82a00001ce1faff8e3c0000f09df2ff6ec3e8fff08df6ffb873f6ff4687e7ff0231000002fde3ffc015e0ff523e000064de00007ade000080b2e6fffe6900002e7e000020300000062c0000043300002c08000052060000eca7ffff740e0000904500007c0e00002e17000046170000280b0000d01800005c12000042190000560d000038180000f2190000ec1100003a1700003a0b0000180f000048060000000000006411000028190000a61a00000e1900007a1a0000564e0000741c000074500000cc1400002a1000009011000094510000ea130000c0530000c2520000a2110000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: SlasherAnimationP2
-      m_OriginalName: SlasherAnimationP2
+      m_Name: Main Screen
+      m_OriginalName: Main Screen
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 307254
+      m_UserData: 4062
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -800,7 +800,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 60}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 16
   m_DirectoriesAreaWidth: 110
 --- !u!114 &17

@@ -7,6 +7,11 @@ using UnityEngine.UI;
 public class ButtonScripts : MonoBehaviour {
 ///// CONTROL UI BUTTONS
 
+	public GameObject optionsPanel;
+	public GameObject startMenu;
+	public GameObject controls;
+	public GameObject sounds;
+
 	/// <summary>
 	/// Load the main menu of the game.
 	/// </summary>
@@ -27,4 +32,26 @@ public class ButtonScripts : MonoBehaviour {
     public void Exit() {
         Application.Quit();
     }
+
+    public void Options() {
+    	startMenu.SetActive(false);
+    	optionsPanel.SetActive(true);
+    }
+
+    public void Menu() {
+    	startMenu.SetActive(true);
+    	optionsPanel.SetActive(false);
+    }
+
+    public void Controls() {
+    controls.SetActive(true);
+    sounds.SetActive(false);
+    }
+
+    public void Sounds() {
+    controls.SetActive(false);
+    sounds.SetActive(true);
+    }
+
+
 }
