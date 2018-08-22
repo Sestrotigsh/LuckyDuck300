@@ -43,6 +43,7 @@ public class Enemy : NavigationAgent {
     // Use this for initialization
     void Start() {
 		// find spawners and calculate distances
+
 		Spawner1 = GameObject.FindGameObjectWithTag ("Spawn" + 0);
 		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
 		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);

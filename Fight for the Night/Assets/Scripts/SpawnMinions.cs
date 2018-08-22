@@ -8,8 +8,12 @@ public class SpawnMinions : NetworkBehaviour {
 
 
 	public GameObject enemySpawner;
-    public GameObject monster1;
-    public GameObject monster2;
+
+    public GameObject monster1Alien;
+    public GameObject monster2Alien;
+    public GameObject monster1Slasher;
+    public GameObject monster2Slasher;
+
 	private PlayerManagement playerMan;
 	private PlayerNetwork PlayerNet;
 
@@ -51,14 +55,22 @@ public class SpawnMinions : NetworkBehaviour {
        // }
 		if (Input.GetKeyDown("o")) {
 			if (playerMan.currentGold >= monster1Cost) {
-				CmdSendMonster1();
+				if (PlayerNet.team == 0) {
+            		CmdSendMonster1Alien();
+				} else if (PlayerNet.team == 1) {
+					CmdSendMonster1Slasher();
+				}
 				playerMan.currentGold -= monster1Cost;
 				playerMan.currentIncome += monster1IncomeBoost;
 			}
 		}
         else if (Input.GetKeyDown("p")) {
             if (playerMan.currentGold >= monster2Cost) {
-                CmdSendMonster2();
+            	if (PlayerNet.team == 0) {
+            		CmdSendMonster2Alien();
+				} else if (PlayerNet.team == 1) {
+					CmdSendMonster2Slasher();
+				}
                 playerMan.currentGold -= monster2Cost;
                 playerMan.currentIncome += monster2IncomeBoost;
             }
@@ -66,8 +78,8 @@ public class SpawnMinions : NetworkBehaviour {
 	}
 
 	[Command]
-    void CmdSendMonster1() {
-		var currentMonster = Instantiate(monster1, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+    void CmdSendMonster1Alien() {
+		var currentMonster = Instantiate(monster1Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
 		monster1HPBoost = monster1HPBoost + 2;
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
@@ -76,8 +88,28 @@ public class SpawnMinions : NetworkBehaviour {
 	}
 
 	[Command]
-    void CmdSendMonster2() {
-		var currentMonster = Instantiate(monster2, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+    void CmdSendMonster2Alien() {
+		var currentMonster = Instantiate(monster2Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
+        monster2HPBoost = monster2HPBoost + 2;
+        //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
+        //currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        NetworkServer.Spawn (currentMonster);
+    }
+
+	[Command]
+    void CmdSendMonster1Slasher() {
+		var currentMonster = Instantiate(monster1Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
+		monster1HPBoost = monster1HPBoost + 2;
+        //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
+       // currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        NetworkServer.Spawn (currentMonster);
+	}
+
+    [Command]
+    void CmdSendMonster2Slasher() {
+		var currentMonster = Instantiate(monster2Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
         monster2HPBoost = monster2HPBoost + 2;
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;

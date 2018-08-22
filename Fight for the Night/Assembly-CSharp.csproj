@@ -110,6 +110,8 @@
      <Compile Include="Assets\Scripts\CinemaScreenMat.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnemyWaves.cs" />
+     <Compile Include="Assets\Scripts\EnemyWavesAlien.cs" />
+     <Compile Include="Assets\Scripts\EnemyWavesSlasher.cs" />
      <Compile Include="Assets\Scripts\EnvironmentCollider.cs" />
      <Compile Include="Assets\Scripts\EventTrigger.cs" />
      <Compile Include="Assets\Scripts\LinkedNodes.cs" />

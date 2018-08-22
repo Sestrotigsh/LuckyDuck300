@@ -90,7 +90,6 @@ GameObject:
   - component: {fileID: 114872725968137234}
   - component: {fileID: 114828503846231416}
   - component: {fileID: 95488905595335188}
-  - component: {fileID: 114345738344847362}
   - component: {fileID: 54432501982674288}
   - component: {fileID: 65919422314767164}
   - component: {fileID: 82876340529511872}
@@ -99,6 +98,7 @@ GameObject:
   - component: {fileID: 114250845575978400}
   - component: {fileID: 114855363493124360}
   - component: {fileID: 114902587911491526}
+  - component: {fileID: 114116939936796716}
   m_Layer: 0
   m_Name: PlayerGeneric
   m_TagString: Player
@@ -2005,6 +2005,23 @@ MonoBehaviour:
   audioS: {fileID: 0}
   clip1: {fileID: 8300000, guid: 0fe9ed7929dc30148963c5195d8ba0aa, type: 3}
   clip2: {fileID: 8300000, guid: 0fe9ed7929dc30148963c5195d8ba0aa, type: 3}
+--- !u!114 &114116939936796716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194718770242504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0065647cb0e5d45b15336556e489f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpawner: {fileID: 0}
+  alienEnemy: {fileID: 1461145966350000, guid: d9a032e6d13952f49a4cb3df76387536, type: 2}
+  slasherEnemy: {fileID: 1531717309921350, guid: 95724f07fee907145a33aa635baa4b3f,
+    type: 2}
+  initialSpawn: 0
+  waveLength: 5
 --- !u!114 &114127921072270482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2125,6 +2142,8 @@ MonoBehaviour:
   playerTeam: 0
   alienClothes: {fileID: 1150850827479624}
   slasherClothes: {fileID: 1254454767723334}
+  slasherChosen: 0
+  alienChosen: 0
 --- !u!114 &114263507572404800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2295,21 +2314,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114345738344847362
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1194718770242504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b0065647cb0e5d45b15336556e489f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpawner: {fileID: 0}
-  enemy: {fileID: 1157679630148364, guid: 7ff133e0eb16657488408bcddf253146, type: 2}
-  initialSpawn: 15
-  waveLength: 5
 --- !u!114 &114346802439132992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2648,6 +2652,8 @@ MonoBehaviour:
   team: 0
   local: 0
   health: 10
+  opponent: {fileID: 0}
+  opponentFound: 0
 --- !u!114 &114713655993073418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2761,8 +2767,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 0}
-  monster1: {fileID: 1380171019409932, guid: e26272fcde7ce4d48ba628b972a1a2e5, type: 2}
-  monster2: {fileID: 1009755382640590, guid: 149716928ac47734a9a33608bbc5b901, type: 2}
+  monster1Alien: {fileID: 1380171019409932, guid: e26272fcde7ce4d48ba628b972a1a2e5,
+    type: 2}
+  monster2Alien: {fileID: 1009755382640590, guid: 149716928ac47734a9a33608bbc5b901,
+    type: 2}
+  monster1Slasher: {fileID: 1095939829783864, guid: 880d2b87c8890af4285fa16450d7b48e,
+    type: 2}
+  monster2Slasher: {fileID: 1448698775432726, guid: 9986f3326b8d28c499fa9dbcef14a92b,
+    type: 2}
   monster1Cost: 20
   monster1IncomeBoost: 1
   monster2Cost: 50

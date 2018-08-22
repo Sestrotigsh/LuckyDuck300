@@ -8,7 +8,9 @@ public class EnemyWaves : NetworkBehaviour {
 
 	// Spawners and enemy in the wave
 	public GameObject playerSpawner;
-	public GameObject enemy;
+	//public GameObject enemy;
+	public GameObject alienEnemy;
+	public GameObject slasherEnemy;
 
 	private int nextSpawn; // Determine the start of the next Wave
 	public int initialSpawn; // Determine the time for the first wavespawn
@@ -27,6 +29,12 @@ public class EnemyWaves : NetworkBehaviour {
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
 		playerSpawner = GameObject.FindGameObjectWithTag ("Spawn" + PlayerNet.team);
+
+		//if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
+				//enemy = alienEnemy;
+		//} else if (transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				//enemy = slasherEnemy;
+		//}
 	}
 
 	// Update is called once per frame
@@ -41,7 +49,19 @@ public class EnemyWaves : NetworkBehaviour {
 		if (Time.timeSinceLevelLoad > nextSpawn) {
 			if (remainingMinions > 0) {
 				nextSpawn = nextSpawn + 1;
-				CmdSpawnEnemy(playerSpawner.transform.position);
+				if (PlayerNet.opponent != null) {
+					if (PlayerNet.opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+						CmdSpawnEnemyAlien(playerSpawner.transform.position);
+					} else if (PlayerNet.opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+						CmdSpawnEnemySlasher(playerSpawner.transform.position);
+					}
+				} else {
+					if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
+						CmdSpawnEnemyAlien(playerSpawner.transform.position);
+					} else {
+						CmdSpawnEnemySlasher(playerSpawner.transform.position);
+					}
+				}
 				remainingMinions = remainingMinions - 1;
 			} else {
 				remainingMinions = waveLength;
@@ -55,8 +75,14 @@ public class EnemyWaves : NetworkBehaviour {
 	/// </summary>
 	/// <param name="pos">the position to spawn in</param>
 	[Command]
-	void CmdSpawnEnemy(Vector3 pos) {
-		var currentEnemy = Instantiate(enemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+	void CmdSpawnEnemyAlien(Vector3 pos) {
+		var currentEnemy = Instantiate(alienEnemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+		NetworkServer.Spawn (currentEnemy);
+	}
+
+	[Command]
+	void CmdSpawnEnemySlasher(Vector3 pos) {
+		var currentEnemy = Instantiate(slasherEnemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
 		NetworkServer.Spawn (currentEnemy);
 	}
 
