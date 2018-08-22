@@ -16,6 +16,7 @@ public class TowerAttacking : MonoBehaviour {
 	public Transform barrel;
 	private PlayerNetwork player;
 
+
 	// Use this for initialization
 	void Start () {
 		// DIRTY HARD CODE - SHOULD BE FIXED IN FINAL BUT GOOD ENOUGH FOR PROTOTYPE
@@ -23,7 +24,7 @@ public class TowerAttacking : MonoBehaviour {
 		if (player.local) {
 			// CHECK IF THEY'RE ON THE CORRECT SIDE (player 0 is  < centre, player 1 is > centre)
 			if (transform.position.x < player.centreLineX) {
-				InvokeRepeating ("updateTarget", 0f, 0.5f);
+				InvokeRepeating ("updateTargetLeft", 0f, 0.5f);
 			} else {
 				enabled = false;
 			}
@@ -31,7 +32,7 @@ public class TowerAttacking : MonoBehaviour {
 			player = GameObject.FindGameObjectWithTag ("Player" + 1).GetComponent<PlayerNetwork>();
 			if (player.local) {
 				if (transform.position.x > player.centreLineX) {
-					InvokeRepeating ("updateTarget", 0f, 0.5f);
+					InvokeRepeating ("updateTargetRight", 0f, 0.5f);
 				} else {
 					enabled = false;
 				}
@@ -63,22 +64,46 @@ public class TowerAttacking : MonoBehaviour {
 		Destroy (instance, 2.0f);
 	}
 
-	void updateTarget() {
-
+	void updateTargetLeft() {
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		float shortestDistance = Mathf.Infinity;
 		GameObject nearestEnemy = null;
 		foreach (GameObject enemy in enemies) {
-			float distanceToEnemy = Vector3.Distance (transform.position, enemy.transform.position);
-			if (distanceToEnemy < shortestDistance) {
-				shortestDistance = distanceToEnemy;
-				nearestEnemy = enemy;
+			if (enemy.transform.position.x < player.centreLineX) {
+				float distanceToEnemy = Vector3.Distance (transform.position, enemy.transform.position);
+				if (distanceToEnemy < shortestDistance) {
+					shortestDistance = distanceToEnemy;
+					nearestEnemy = enemy;
+				}
 			}
 		}
+
 		if (nearestEnemy != null && shortestDistance < range) {
 			target = nearestEnemy.transform;
 		} else {
 			target = null;
 		}
 	}
+
+	void updateTargetRight() {
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+		float shortestDistance = Mathf.Infinity;
+		GameObject nearestEnemy = null;
+		foreach (GameObject enemy in enemies) {
+			if (enemy.transform.position.x > player.centreLineX) {
+				float distanceToEnemy = Vector3.Distance (transform.position, enemy.transform.position);
+				if (distanceToEnemy < shortestDistance) {
+					shortestDistance = distanceToEnemy;
+					nearestEnemy = enemy;
+				}
+			}
+		}
+
+		if (nearestEnemy != null && shortestDistance < range) {
+			target = nearestEnemy.transform;
+		} else {
+			target = null;
+		}
+	}
+
 }

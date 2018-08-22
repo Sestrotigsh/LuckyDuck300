@@ -34,14 +34,23 @@ public class playerAnimation : NetworkBehaviour {
 	private float initialDistance;
 	private float currentDistance;
 
+	private Vector3 oldPos;
+	private Vector3 newPos;
+
+
+
 	// Use this for initialization
 	void Start () { 
 		shootTimer = 0;
 		shooting = false;
 		if (!isLocalPlayer) {
-			//GetComponent<Animator> ().enabled = false;
+			oldPos = transform.position;
 			return;
 		}
+
+
+
+
 		shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
 		// set up the third person camera
 		anim = GetComponent<Animator>();
@@ -60,6 +69,20 @@ public class playerAnimation : NetworkBehaviour {
 			//mainCamera.Rotate(0,180,0);
 			//shootingPoint.Rotate(0,180,0);
 		//}
+	}
+
+	void LateFixedUpdate() {
+		if (isLocalPlayer) {
+			return;
+		}
+		newPos = transform.position;
+		if(oldPos != newPos) {
+			 anim.SetBool("Moving", true);
+		} else {
+			anim.SetBool("Moving", false);
+		}
+		oldPos = newPos;
+
 	}
 	
 	// Update is called once per frame
@@ -170,5 +193,9 @@ public class playerAnimation : NetworkBehaviour {
 
     public void ForcePush() {
         anim.SetTrigger("Push");
+    }
+
+    public void BigShoot() {
+    	anim.SetTrigger("BigShoot");
     }
 }

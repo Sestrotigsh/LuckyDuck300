@@ -6,30 +6,69 @@ using UnityEngine.Networking;
 public class PlayerTower : NetworkBehaviour {
 ///// CONTROLS PLAYERS TOWER SPAWNING
 	
+	public GameObject alienGhost;
+	public GameObject alienGhostRenderer;
+	public GameObject slasherGhost;
 	public GameObject ghost;
-	public GameObject towerBasic;
-	public GameObject tower1;
-	public GameObject tower2;
-	public GameObject tower3;
+	public GameObject alienTowerBasic;
+	public GameObject alienTower1;
+	public GameObject alienTower2;
+	public GameObject alienTower3;
+	public GameObject slasherTowerBasic;
+	public GameObject slasherTower1;
+	public GameObject slasherTower2;
+	public GameObject slasherTower3;
 	public GameObject currentlyTouching;
 	public int baseCost = 25;
 	public int level2Cost = 50;
 	public int level3Cost = 75;
 	public int level4Cost = 100;
 
+	private bool isAlien;
+	private PlayerNetwork PlayerNet;
+
 	// Use this for initialization
 	void Start () {
-		ghost.GetComponent<Renderer> ().enabled = false;
+		ghost = null;
+
+		PlayerNet = this.GetComponent<PlayerNetwork> ();
+		if (!PlayerNet.local) {
+			enabled = false;
+		}
+
+		if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
+			ghost = alienGhost;
+			isAlien = true;
+			ghost.SetActive(true);
+			ghost.GetComponent<Renderer> ().enabled = false;
+		} else if (transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+			ghost = slasherGhost;
+			ghost.SetActive(true);
+			isAlien = false;
+			ghost.GetComponent<Renderer> ().enabled = false;
+		}
+		
 		currentlyTouching = null;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isLocalPlayer) {
-			return;
+		if (ghost == null) {
+			if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
+				ghost = alienGhost;
+				isAlien = true;
+				ghost.SetActive(true);
+				ghost.GetComponent<Renderer> ().enabled = false;
+			} else if (transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				ghost = slasherGhost;
+				ghost.SetActive(true);
+				isAlien = false;
+				ghost.GetComponent<Renderer> ().enabled = false;
+			}
 		}
 
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
+			Debug.Log("SHIFT");
 			ghost.GetComponent<Renderer> ().enabled = true;
 		} 
 
@@ -42,26 +81,42 @@ public class PlayerTower : NetworkBehaviour {
 			if (Input.GetButtonDown ("Fire1")) {
 				if (currentlyTouching == null) {
 					if (this.GetComponent<PlayerManagement> ().currentGold >= baseCost) {
-						CmdcreateTower1 (ghost.transform.position, ghost.transform.rotation);
+						if (isAlien == true) {
+							CmdcreateTower1Alien (ghost.transform.position, ghost.transform.rotation);
+						} else {
+							CmdcreateTower1Slasher (ghost.transform.position, ghost.transform.rotation);
+						}
 						this.GetComponent<PlayerManagement> ().currentGold -= baseCost;
 					}
 				} else {
 					if (currentlyTouching.CompareTag ("TowerBase")) {
 						if (this.GetComponent<PlayerManagement> ().currentGold >= level2Cost) {
 							Destroy(currentlyTouching);
-							CmdcreateTower2 (ghost.transform.position, ghost.transform.rotation);
+							if (isAlien == true) {
+								CmdcreateTower2Alien (ghost.transform.position, ghost.transform.rotation);
+							} else {
+								CmdcreateTower2Slasher (ghost.transform.position, ghost.transform.rotation);
+							}
 							this.GetComponent<PlayerManagement> ().currentGold -= level2Cost;
 						}
 					} else if (currentlyTouching.CompareTag ("Tower1")) {
 						if (this.GetComponent<PlayerManagement> ().currentGold >= level3Cost) {
 							Destroy(currentlyTouching);
-							CmdcreateTower3 (ghost.transform.position, ghost.transform.rotation);
+							if (isAlien == true) {
+								CmdcreateTower3Alien (ghost.transform.position, ghost.transform.rotation);
+							} else {
+								CmdcreateTower3Slasher (ghost.transform.position, ghost.transform.rotation);
+							}
 							this.GetComponent<PlayerManagement> ().currentGold -= level3Cost;
 						}
 					} else if (currentlyTouching.CompareTag ("Tower2")) {
 						if (this.GetComponent<PlayerManagement> ().currentGold >= level4Cost) {
 							Destroy(currentlyTouching);
-							CmdcreateTower4 (ghost.transform.position, ghost.transform.rotation);
+							if (isAlien == true) {
+								CmdcreateTower4Alien (ghost.transform.position, ghost.transform.rotation);
+							} else {
+								CmdcreateTower4Slasher (ghost.transform.position, ghost.transform.rotation);
+							}
 							this.GetComponent<PlayerManagement> ().currentGold -= level4Cost;
 						}
 					}
@@ -72,26 +127,50 @@ public class PlayerTower : NetworkBehaviour {
 	}
 
 	[Command]
-	void CmdcreateTower1(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (towerBasic, position, rotation) as GameObject;
+	void CmdcreateTower1Alien(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (alienTowerBasic, position, rotation) as GameObject;
 		NetworkServer.Spawn (currentTower);
 	}
 
 	[Command]
-	void CmdcreateTower2(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (tower1, position, rotation) as GameObject;
+	void CmdcreateTower2Alien(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (alienTower1, position, rotation) as GameObject;
 		NetworkServer.Spawn (currentTower);
 	}
 
 	[Command]
-	void CmdcreateTower3(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (tower2, position, rotation) as GameObject;
+	void CmdcreateTower3Alien(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (alienTower2, position, rotation) as GameObject;
 		NetworkServer.Spawn (currentTower);
 	}
 
 	[Command]
-	void CmdcreateTower4(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (tower3, position, rotation) as GameObject;
+	void CmdcreateTower4Alien(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (alienTower3, position, rotation) as GameObject;
+		NetworkServer.Spawn (currentTower);
+	}
+
+		[Command]
+	void CmdcreateTower1Slasher(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (slasherTowerBasic, position, rotation) as GameObject;
+		NetworkServer.Spawn (currentTower);
+	}
+
+	[Command]
+	void CmdcreateTower2Slasher(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (slasherTower1, position, rotation) as GameObject;
+		NetworkServer.Spawn (currentTower);
+	}
+
+	[Command]
+	void CmdcreateTower3Slasher(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (slasherTower2, position, rotation) as GameObject;
+		NetworkServer.Spawn (currentTower);
+	}
+
+	[Command]
+	void CmdcreateTower4Slasher(Vector3 position, Quaternion rotation) {
+		var currentTower = Instantiate (slasherTower3, position, rotation) as GameObject;
 		NetworkServer.Spawn (currentTower);
 	}
 

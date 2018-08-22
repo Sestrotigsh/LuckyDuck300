@@ -14,6 +14,7 @@ public class SpellsAlien : MonoBehaviour
 
 	public GameObject spell1object;
 	public Transform frontPos;
+	private int team;
 
 	// Audio part
 	AudioSource audioS;
@@ -48,21 +49,35 @@ public class SpellsAlien : MonoBehaviour
 	public ParticleSystem windSpin;
 	private bool isComboable = false;
 
-
 	// Spell 3
 	public List<Enemy> enemyList;
     public int CD3;
     public float CDTimer3 = 0;
     public float remainingTime3 = 0;
     public ParticleSystem alienExecute;
-	// Spell 4
 
+	// Spell 4
+	public GameObject spell11object;
+    private float laserGap = 2;
+    private float laserGapTimer;
+    private float CDTimer11 = 0; // Next time the spell available
+    public int CD11; // The actual CD between spell
+    public float remainingTime11 = 0; // The number of seconds left before the next cast available
 
 	// Use this for initialization
 	void Start() {
 		if (!this.GetComponent<PlayerNetwork>().local) {
 			return;
 		}
+
+		if (this.tag == "Player0")
+        {
+            team = 0;
+        }
+        else
+        {
+            team = 1;
+        }
 
 		audioS = GetComponent<AudioSource>();
 
@@ -91,8 +106,13 @@ public class SpellsAlien : MonoBehaviour
 
 			} else if (Time.time >= CDTimer2 && Input.GetKeyDown ("2")) {
 				Spell2 ();
-
-			} else if (Input.GetMouseButton (0)) {
+			} else if (Time.timeSinceLevelLoad >= CDTimer3 && Input.GetKeyDown("2") && isComboable == true) {
+				ComboRepulsion();
+			} else if (Time.time >= CDTimer11 && Input.GetKeyDown("1") && Time.time < laserGapTimer)
+            {
+                Spell1Combo();
+            }
+			if (Input.GetMouseButton (0)) {
 				if (fireTimer < Time.timeSinceLevelLoad) {
                     if (this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("pushing") == true) {
                         return;
@@ -100,10 +120,7 @@ public class SpellsAlien : MonoBehaviour
 					BasicAttack ();
 					fireTimer = fireRate + Time.timeSinceLevelLoad;
 				}
-			} else if (Time.timeSinceLevelLoad >= CDTimer3 && Input.GetKeyDown("2") && isComboable == true)
-            {
-                ComboRepulsion();
-            }
+			} 
 		} 
 		RemainingTime();
 	}
@@ -125,6 +142,7 @@ public class SpellsAlien : MonoBehaviour
 		instance.GetComponent<ProjectileController>().damage = baseAuto;
 		instance.GetComponent<ProjectileController>().caster = "Alien";
 		instance.GetComponent<ProjectileController>().player = this.gameObject;
+		instance.GetComponent<ProjectileController>().team = team;
 		instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);        
 		Destroy(instance, 1.0f);
 		audioS.clip = basicSound;
@@ -138,14 +156,34 @@ public class SpellsAlien : MonoBehaviour
 		GameObject instance = Instantiate(spell1object, frontPos.transform.position, frontPos.transform.rotation);
 		instance.GetComponent<ProjectileController>().damage = spell1Damage;
 		instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
+		this.GetComponent<playerAnimation>().BigShoot();
 
 		//Timing Management
 		CDTimer1 = Time.time + CD1;
 		remainingTime1 = CD1;
+		laserGapTimer = Time.time + laserGap;
 
 		// Destroy
 		Destroy(instance, 2.5f);
 	}
+
+	    private void Spell1Combo() // Spell 1 of the Alien, the laser
+    {
+        audioS.clip = laserSound;
+        audioS.Play();
+        GameObject instance = Instantiate(spell11object, frontPos.transform.position, frontPos.transform.rotation);
+        instance.GetComponent<ProjectileController>().damage = spell1Damage;
+        instance.GetComponent<ProjectileController>().team = team;
+        instance.GetComponent<ProjectileController>().type = "Chill";
+        instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
+
+        //Timing Management
+        CDTimer11 = Time.time + CD11;
+        remainingTime11 = CD11;
+
+        // Destroy
+        Destroy(instance, 2.5f);
+    }
 
 	private void Spell2() { // Spell 2 Celestial push
 
@@ -167,11 +205,10 @@ public class SpellsAlien : MonoBehaviour
 				directionPush = new Vector3( hitColliders[i].transform.position.x - transform.position.x, 0, hitColliders[i].transform.position.z - transform.position.z);
 				rbody = hitColliders[i].GetComponent<Rigidbody>();
 				enemy = hitColliders[i].GetComponent<Enemy>();
+				enemyList.Add(enemy);
 				enemy.Stun(3);
 				rbody.AddForce(directionPush.normalized * power2);
-
 				StartCoroutine(Wait(rbody, directionPush, enemy, partInstance));
-
 			}
 			i++;
 		}
@@ -198,6 +235,7 @@ public class SpellsAlien : MonoBehaviour
 				enemy.Die(spell2Damage);
 			}
 			isComboable = false;
+			yield break;
 		}
 	}
 

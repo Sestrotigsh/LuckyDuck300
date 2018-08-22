@@ -11,7 +11,8 @@ public class PlayerNetwork : NetworkBehaviour {
 	public int team;
 	public bool local;
 	public int health;
-	private GameObject opponent;
+	public GameObject opponent;
+	public bool opponentFound;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,18 @@ public class PlayerNetwork : NetworkBehaviour {
 		} else {
 			team = 1;
 		}
+
 		tag = ("Player" + team);
 		opponent = GameObject.FindGameObjectWithTag ("Player" + (team + 1) % 2);
+		//if (opponent != null) {
+			//if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+				//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
+				//this.gameObject.GetComponent<EnemyWavesAlien>().enabled = true;
+			//} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				//this.gameObject.GetComponent<EnemyWavesSlasher>().enabled = true;
+				//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
+			//}
+		//}
 		// Check and store if the player is an actual player or just transform data from a player on another machine
 		if (isLocalPlayer) {
 			local = true;
@@ -35,6 +46,16 @@ public class PlayerNetwork : NetworkBehaviour {
 	void Update () {
 		if (opponent == null) {
 			opponent = GameObject.FindGameObjectWithTag ("Player" + (team + 1) % 2);
+			//if (opponent != null) {
+				//if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+					//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
+					//this.gameObject.GetComponent<EnemyWavesAlien>().enabled = true;
+				//} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+					//this.gameObject.GetComponent<EnemyWavesSlasher>().enabled = true;
+					//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
+				//}
+			//}
+			
 		}
 	}
 
