@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/TESTINGspace.unity
+- path: Assets/CharacterIntro.unity
   isLoaded: 1
   isActive: 1
