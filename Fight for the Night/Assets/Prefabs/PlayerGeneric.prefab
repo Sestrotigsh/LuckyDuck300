@@ -28,6 +28,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1040261287354310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4007432290170004}
+  - component: {fileID: 33977282735733136}
+  - component: {fileID: 23955952376873584}
+  m_Layer: 0
+  m_Name: AlienGhost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1083794542586672
 GameObject:
   m_ObjectHideFlags: 1
@@ -444,7 +461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1421991990363884
 GameObject:
   m_ObjectHideFlags: 1
@@ -1197,6 +1214,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4007432290170004
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040261287354310}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.36097318, y: 3.398179, z: 4.8}
+  m_LocalScale: {x: 12.586098, y: 12.586098, z: 12.586098}
+  m_Children: []
+  m_Father: {fileID: 4679234942945262}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4009440270660920
 Transform:
   m_ObjectHideFlags: 1
@@ -1559,10 +1589,10 @@ Transform:
   m_GameObject: {fileID: 1418053705476450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.3333333, z: 3.333333}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children: []
   m_Father: {fileID: 4679234942945262}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4452937994946338
 Transform:
@@ -1701,6 +1731,7 @@ Transform:
   - {fileID: 4064378998491026}
   - {fileID: 4300013275144170}
   - {fileID: 4148028575871450}
+  - {fileID: 4007432290170004}
   - {fileID: 4448023642726722}
   - {fileID: 4902628340232592}
   - {fileID: 224964688996350768}
@@ -1792,7 +1823,7 @@ Transform:
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children: []
   m_Father: {fileID: 4679234942945262}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 37.283, y: 180, z: 0}
 --- !u!4 &4758958785220322
 Transform:
@@ -1915,7 +1946,7 @@ Transform:
   m_LocalScale: {x: 3.333333, y: 3.333333, z: 3.333333}
   m_Children: []
   m_Father: {fileID: 4679234942945262}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4908140863061530
 Transform:
@@ -2093,6 +2124,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23955952376873584
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040261287354310}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 28284d216a3f1fd4c8018c35da6c6e5e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!33 &33566092761126460
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -2107,6 +2173,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418053705476450}
   m_Mesh: {fileID: 4300000, guid: cc7ff19cfeb91c241bd4061d0c0c9dc6, type: 3}
+--- !u!33 &33977282735733136
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1040261287354310}
+  m_Mesh: {fileID: 4300000, guid: 9ba06550a8049054ea5c55d5feb942eb, type: 3}
 --- !u!54 &54432501982674288
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -3283,11 +3356,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75957e7cb4a12b4cb5ece7cae71a880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghost: {fileID: 1418053705476450}
-  towerBasic: {fileID: 1828147354518128, guid: fcc03ff277df2aa44a5dd428dacceda5, type: 2}
-  tower1: {fileID: 1404462247351014, guid: 259f8de542c81304d9c855e36d418056, type: 2}
-  tower2: {fileID: 1051622316023276, guid: f066301322f96264cbdde1a0450e3b0b, type: 2}
-  tower3: {fileID: 1871181136148934, guid: 4e02868b8ea2acb488825d0c82bfff1f, type: 2}
+  alienGhost: {fileID: 1040261287354310}
+  slasherGhost: {fileID: 1418053705476450}
+  ghost: {fileID: 0}
+  alienTowerBasic: {fileID: 1970418193764904, guid: 7f2eaeb144600294b8981caebd2545fd,
+    type: 2}
+  alienTower1: {fileID: 1002784785905592, guid: 0b501d1589e9cb449811075663896199,
+    type: 2}
+  alienTower2: {fileID: 1185291367291432, guid: 5fe70b3061a867d44a610aaf553b12b0,
+    type: 2}
+  alienTower3: {fileID: 1532633202661860, guid: 5bd7b8c570b3d95478cc7b1f89e5d691,
+    type: 2}
+  slasherTowerBasic: {fileID: 1828147354518128, guid: fcc03ff277df2aa44a5dd428dacceda5,
+    type: 2}
+  slasherTower1: {fileID: 1404462247351014, guid: 259f8de542c81304d9c855e36d418056,
+    type: 2}
+  slasherTower2: {fileID: 1051622316023276, guid: f066301322f96264cbdde1a0450e3b0b,
+    type: 2}
+  slasherTower3: {fileID: 1871181136148934, guid: 4e02868b8ea2acb488825d0c82bfff1f,
+    type: 2}
   currentlyTouching: {fileID: 0}
   baseCost: 10
   level2Cost: 20
@@ -3856,7 +3943,7 @@ RectTransform:
   - {fileID: 224176929674971620}
   - {fileID: 224053550843022554}
   m_Father: {fileID: 4679234942945262}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4140,7 +4227,7 @@ RectTransform:
   - {fileID: 224712801745549180}
   - {fileID: 224293153867995078}
   m_Father: {fileID: 4679234942945262}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
