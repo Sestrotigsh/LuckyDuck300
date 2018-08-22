@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 471}
+  m_MinSize: {x: 950, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 3440
     height: 1307
-  m_MinSize: {x: 913, y: 421}
-  m_MaxSize: {x: 22008, y: 10021}
+  m_MinSize: {x: 917, y: 442}
+  m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 143
+  controlID: 28
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -132,8 +132,8 @@ MonoBehaviour:
     y: 0
     width: 1639
     height: 1307
-  m_MinSize: {x: 202, y: 421}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 202, y: 442}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
   controlID: 29
 --- !u!114 &7
@@ -154,8 +154,8 @@ MonoBehaviour:
     y: 0
     width: 1639
     height: 467
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -180,8 +180,8 @@ MonoBehaviour:
     y: 467
     width: 1639
     height: 840
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -205,8 +205,8 @@ MonoBehaviour:
     y: 0
     width: 514
     height: 1307
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -374,9 +374,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 191.78064, y: -39.02923, z: 392.209}
+    m_Target: {x: 199.41014, y: -52.48108, z: 378.23935}
     speed: 2
-    m_Value: {x: 191.78064, y: -39.02923, z: 392.209}
+    m_Value: {x: 199.41014, y: -52.48108, z: 378.23935}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -404,9 +404,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.1375333, y: 0.022263722, z: -0.0030959554, w: 0.9902421}
+    m_Target: {x: 0.18324538, y: 0.047729272, z: -0.008911261, w: 0.9818675}
     speed: 2
-    m_Value: {x: 0.1375333, y: 0.022263722, z: -0.0030959554, w: 0.9902421}
+    m_Value: {x: 0.18324538, y: 0.047729272, z: -0.008911261, w: 0.9818675}
   m_Size:
     m_Target: 160.93768
     speed: 2
@@ -644,28 +644,28 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 348b0d00
-    m_LastClickedID: 887604
-    m_ExpandedIDs: 063cf4ff345ef4ffcea6f4ff56acf4ff36f1f4ff58f6f4ffcc36f6ffb453f6ff2e6af6ff8880f6fffa88f6ff6243f8ff3e45f8ffca73f8ff64c4f8ff0ec8f8fff4def8ffa60ef9ffdcc7f9ffbee5f9ffa4fcf9ffdc7dfaffee7dfaffce8efaff3e90faff1891faff4c99faffa8d7faffbad7faff48f3faff1a17fbff2c17fbff9431fbff72a1fbfffa0bfcfff60ffcff5857fcffa460fcffa064fcff000000004cf201009cb50200507103005aa4050012ee0500febf0a0064f00c0074f60c0042f70c008c010d00f4610d00
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 3cdffcffb840fdff6244fdffda4bfdff0000000000740100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Props
-      m_OriginalName: Props
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 895916
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ExpandedScenes:
-  - Main Scene
+  - Main Screen
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -707,20 +707,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Jim\Documents\GitHub\LuckyDuck300\Fight for the Night
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 10c80100
-    m_LastClickedID: 116752
-    m_ExpandedIDs: 00000000bebe01001cbf01009ac001006cc2010076c20100c4c20100e0c20100ecc2010040c30100aec301000cc40100eec50100cac801006aca0100dccb010042cc010088cc0100fecc0100c2cf0100c4cf010000ca9a3b
+    m_SelectedIDs: f6550100
+    m_LastClickedID: 87542
+    m_ExpandedIDs: 00000000f655010054560100ce570100c0590100ca5901001a5a01003a5a0100465a01009e5a01000e5b0100765b0100565d0100426001000262010086630100046401004c640100ca640100ea680100ec68010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -748,7 +748,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000bebe01001cbf01009ac001006cc2010076c20100c4c20100ecc2010040c30100aec301000cc40100eec50100cac801006aca0100dccb010042cc010088cc0100fecc0100c2cf0100c4cf0100
+    m_ExpandedIDs: 00000000f655010054560100ce570100c0590100ca5901001a5a01003a5a0100465a01009e5a01000e5b0100765b0100565d0100426001000262010086630100046401004c640100ca640100ea680100ec680100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -775,22 +775,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: f04000002ee3ffffa2350000aaee0000580a00001607000048280000fa2700004a280000e8290000962900008e240000e6250000542400008640feff782500002e2500006e26000022400000362400003a24000084240000c6310000a4240000303100001e19ffff66250000062500003a250000f8240000402500000c250000482500003025000038310000382700006c2a0000162a0000d82a00001ce1faff8e3c0000f09df2ff6ec3e8fff08df6ffb873f6ff4687e7ff0231000002fde3ffc015e0ff523e000064de00007ade000080b2e6fffe6900002e7e000020300000062c0000043300002c08000052060000eca7ffff740e0000904500007c0e00002e17000046170000280b0000d01800005c12000042190000560d000038180000f2190000ec1100003a1700003a0b0000180f000048060000000000006411000028190000a61a00000e1900007a1a0000564e0000741c000074500000cc1400002a1000009011000094510000ea130000c0530000c2520000a21100006c510100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: by
-      m_OriginalName: by
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 798240
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
