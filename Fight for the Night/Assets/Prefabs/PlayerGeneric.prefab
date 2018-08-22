@@ -4686,7 +4686,7 @@ MonoBehaviour:
   remainingTime3: 0
   alienExecute: {fileID: 198377809097236778, guid: f3385d121ac1be543ba2034370024a27,
     type: 2}
-  spell11object: {fileID: 1411619796108030, guid: f323eeb9e2dab9d45a3349cf9bb05888,
+  spell11object: {fileID: 1692425543814728, guid: f323eeb9e2dab9d45a3349cf9bb05888,
     type: 2}
   CD11: 5
   remainingTime11: 0

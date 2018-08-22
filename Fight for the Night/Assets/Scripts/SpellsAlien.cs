@@ -199,7 +199,7 @@ public class SpellsAlien : MonoBehaviour
         int i = 0;
 		while (i < hitColliders.Length)
 		{
-			if (hitColliders[i].tag == "Enemy")
+			if (hitColliders[i].tag == "Enemy"+team)
 			{
 				Enemy enemy;
 				directionPush = new Vector3( hitColliders[i].transform.position.x - transform.position.x, 0, hitColliders[i].transform.position.z - transform.position.z);

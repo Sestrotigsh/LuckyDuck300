@@ -17,3 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Defeat.unity
     guid: 68848dc1e7673eb4c8b0c2145e6bcd8f
+  - enabled: 1
+    path: Assets/Tutorial.unity
+    guid: 68be9eaedef0a684d99f8fcf61d41f04
+  m_configObjects: {}

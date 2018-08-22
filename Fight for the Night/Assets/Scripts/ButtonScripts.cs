@@ -43,6 +43,11 @@ public class ButtonScripts : MonoBehaviour {
     	optionsPanel.SetActive(false);
     }
 
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
+    }
+
     public void Controls() {
     controls.SetActive(true);
     sounds.SetActive(false);

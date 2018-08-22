@@ -267,7 +267,7 @@ public class SpellsSlasher : MonoBehaviour
 
         for (int i =0; i< hitColliders.Length; i++)
         {
-            if (hitColliders[i].tag == "Enemy")
+            if (hitColliders[i].tag == "Enemy"+team)
             {
                 Enemy enemy;
                 enemy = hitColliders[i].GetComponent<Enemy>();
@@ -278,31 +278,31 @@ public class SpellsSlasher : MonoBehaviour
         }
     }
 
-        private void BattleCry()
+    private void BattleCry()
     {
-        audioS.clip = spell1ComboSound;
-        audioS.Play();
-        damageBoost = damageBoostValue;
-        if (this.tag == "Player0")
+    audioS.clip = spell1ComboSound;
+    audioS.Play();
+    damageBoost = damageBoostValue;
+    if (this.tag == "Player0")
+    {
+        foreach( GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy0"))
         {
-            foreach( GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy0"))
-            {
-                enemyToSlow.Add(enemy);
-            }
+            enemyToSlow.Add(enemy);
+        }
         } else
         {
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy1"))
-            {
-                enemyToSlow.Add(enemy);
-            }
-        }
-
-        foreach (GameObject enemy in enemyToSlow)
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy1"))
         {
-            enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+            enemyToSlow.Add(enemy);
         }
+    }
 
-        StartCoroutine(Buff());
+    foreach (GameObject enemy in enemyToSlow)
+    {
+        enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+    }
+
+    StartCoroutine(Buff());
     }
 
     IEnumerator Buff()

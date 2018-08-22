@@ -57,7 +57,15 @@ public class EnemyWavesSlasher : NetworkBehaviour {
 	[Command]
 	void CmdSpawnEnemy(Vector3 pos) {
 		var currentEnemy = Instantiate(enemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
-		NetworkServer.Spawn (currentEnemy);
+        if (playerSpawner.tag == "Spawn0")
+        {
+            currentEnemy.tag = "Enemy0";
+        }
+        else
+        {
+            currentEnemy.tag = "Enemy1";
+        }
+        NetworkServer.Spawn (currentEnemy);
 	}
 
 }
