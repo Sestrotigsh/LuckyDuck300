@@ -11,8 +11,10 @@ public class ChoosePlayer : NetworkBehaviour {
 	public GameObject alienClothes;
 	public GameObject slasherClothes;
 	public RuntimeAnimatorController alienController;
+	public RuntimeAnimatorController alienPlayer2;
 	public Avatar alienAvatar;
 	public RuntimeAnimatorController slasherController;
+	public RuntimeAnimatorController slasherPlayer2;
 	public Avatar slasherAvatar;
 	public bool slasherChosen = false;
 	public bool alienChosen = false;
@@ -28,9 +30,14 @@ public class ChoosePlayer : NetworkBehaviour {
 			alienClothes.SetActive(true);
 			alienChosen = true;
 			this.GetComponent<Animator>().avatar = alienAvatar;
-			this.GetComponent<Animator>().runtimeAnimatorController = alienController;
-			if (this.GetComponent<PlayerNetwork>().local) 
+			if (this.GetComponent<PlayerNetwork>().local) {
 				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
+				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
+			} else {
+				this.GetComponent<Animator>().runtimeAnimatorController = alienPlayer2;
+			}
+
+				
 		} 
 		// if the player has selected the slasher
 		if (playerTeam == 1) {
@@ -39,13 +46,13 @@ public class ChoosePlayer : NetworkBehaviour {
 			slasherClothes.SetActive(true);
 			slasherChosen = true;
 			this.GetComponent<Animator>().avatar = slasherAvatar;
-			this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
-			if (this.GetComponent<PlayerNetwork>().local) 
+
+			if (this.GetComponent<PlayerNetwork>().local) {
 				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
-
-			
-			
-
+				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
+			} else {
+				this.GetComponent<Animator>().runtimeAnimatorController = slasherPlayer2;
+			}
 		}
 	}
 }
