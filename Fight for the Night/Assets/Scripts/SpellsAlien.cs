@@ -138,6 +138,7 @@ public class SpellsAlien : MonoBehaviour
 		GameObject instance = Instantiate(spell1object, frontPos.transform.position, frontPos.transform.rotation);
 		instance.GetComponent<ProjectileController>().damage = spell1Damage;
 		instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
+		this.GetComponent<playerAnimation>().BigShoot();
 
 		//Timing Management
 		CDTimer1 = Time.time + CD1;

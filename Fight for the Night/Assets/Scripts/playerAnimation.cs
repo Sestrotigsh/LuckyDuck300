@@ -171,4 +171,8 @@ public class playerAnimation : NetworkBehaviour {
     public void ForcePush() {
         anim.SetTrigger("Push");
     }
+
+    public void BigShoot() {
+    	anim.SetTrigger("BigShoot");
+    }
 }
