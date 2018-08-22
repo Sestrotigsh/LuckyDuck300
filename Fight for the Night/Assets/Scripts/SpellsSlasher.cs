@@ -153,6 +153,7 @@ public class SpellsSlasher : MonoBehaviour
     {
         
         audioS.clip = spell1Sound;
+        this.GetComponent<playerAnimation>().BigShoot();
         // Time of the next hit in the spell 1
         currentDamages = currentHit * 2 + spell1Damage;
 
@@ -198,6 +199,7 @@ public class SpellsSlasher : MonoBehaviour
 
     private void Spell2()
     {
+        this.GetComponent<playerAnimation>().ForcePush();
         audioS.clip = spell2Sound;
         isDashing = true;
         Rigidbody rbody = this.gameObject.GetComponent<Rigidbody>();
