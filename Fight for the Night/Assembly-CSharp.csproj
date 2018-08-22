@@ -114,6 +114,7 @@
      <Compile Include="Assets\Scripts\EnemyWavesSlasher.cs" />
      <Compile Include="Assets\Scripts\EnvironmentCollider.cs" />
      <Compile Include="Assets\Scripts\EventTrigger.cs" />
+     <Compile Include="Assets\Scripts\HPBar.cs" />
      <Compile Include="Assets\Scripts\LinkedNodes.cs" />
      <Compile Include="Assets\Scripts\LobbyPlayerCustom.cs" />
      <Compile Include="Assets\Scripts\MatchesUI.cs" />

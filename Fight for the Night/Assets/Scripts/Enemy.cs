@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class Enemy : NavigationAgent {
@@ -10,8 +11,13 @@ public class Enemy : NavigationAgent {
     public float moveSpeed = 10.0f;
     public float minDistance = 0.1f;
 	public int health = 1;
+    public float currentHealth;
+    public float initialSpeed;
 
 	// Multiplayer variables
+    public int team;
+    public int enemyTeam;
+    public int newState = 0;
     private int currentState = 0;
     public int startNode;
     public int goal; // The final goal the minion / monster aims to 
@@ -25,6 +31,9 @@ public class Enemy : NavigationAgent {
 	// Spawn points
 	public GameObject Spawner1;
 	public GameObject Spawner2;
+
+    // HP Bar
+    public Image healthBar;
 
     // TACTICAL CONTROLS - CHOOSE WHICH PATH TO SEND MINIONS
     //public bool customPathBool = false;
@@ -42,8 +51,9 @@ public class Enemy : NavigationAgent {
 
     // Use this for initialization
     void Start() {
-		// find spawners and calculate distances
+    currentHealth = health;
 
+		// find spawners and calculate distances
 		Spawner1 = GameObject.FindGameObjectWithTag ("Spawn" + 0);
 		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
 		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
@@ -51,6 +61,7 @@ public class Enemy : NavigationAgent {
 
         startNode = 0;
         goal = 11;
+        initialSpeed = moveSpeed;
         // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
         // choose which of the two paths to go down
         //if (rand.Next(0, 2) == 0) {
@@ -161,20 +172,14 @@ public class Enemy : NavigationAgent {
 	/// </summary>
 	/// <param name="damage">The amount of damage to take</param>
 	public void Die(int damage) {
-		health -= damage;
-		if (health <= 0) {
+        Debug.Log(damage);
+		currentHealth = currentHealth - damage;
+        healthBar.fillAmount = currentHealth / health;
+		if (currentHealth <= 0) {
 			playerMan.currentGold = playerMan.currentGold + value;
-
-
             isStunned = true;
             endOfStun = Time.time + 2.0f;
-            deathTimer = Time.timeSinceLevelLoad + 0.75f;
-
-
-
-
-
-
+            deathTimer = Time.timeSinceLevelLoad + 0.75f; // CHANGE HAS OCCURED HERE FOR BUG FIXING was 0.75f
 			//playerNet.EnemyDie (this.gameObject);
 		}      
     }
@@ -182,21 +187,10 @@ public class Enemy : NavigationAgent {
 	/// delete the enemy from the game
 	/// </summary>
     private void DestroyEnemy() {
-
-
-
-
-
-
         ///////// CODE BEING ALTERED HERE
         isStunned = true;
         endOfStun = Time.time + 2.0f;
         deathTimer = Time.timeSinceLevelLoad + 0.75f;
-
-
-
-
-
 		//playerNet.EnemyDie (this.gameObject);
     }   
 
@@ -208,6 +202,20 @@ public class Enemy : NavigationAgent {
         isStunned = true;
         endOfStun = Time.time + timeStun;
     }
+
+    IEnumerator Slow()
+    {
+        moveSpeed = moveSpeed / 3;
+        yield return new WaitForSeconds(3);
+        moveSpeed = initialSpeed;
+        yield break;
+    }
+
+    public void GetSlowed()
+    {
+        StartCoroutine(Slow());
+    }
+
 
 	/// <summary>
 	/// When hit by projectile - call relevant methods and destroy the projectile

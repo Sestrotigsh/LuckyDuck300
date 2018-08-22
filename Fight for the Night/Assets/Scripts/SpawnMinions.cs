@@ -82,6 +82,14 @@ public class SpawnMinions : NetworkBehaviour {
 		var currentMonster = Instantiate(monster1Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
 		monster1HPBoost = monster1HPBoost + 2;
+		if (enemySpawner.tag == "Spawn0")
+        {
+            currentMonster.tag = "Enemy0";
+        }
+        else
+        {
+            currentMonster.tag = "Enemy1";
+        }
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
        // currentMonster.GetComponent<Enemy>().customPathDirection = path;
         NetworkServer.Spawn (currentMonster);
@@ -92,6 +100,14 @@ public class SpawnMinions : NetworkBehaviour {
 		var currentMonster = Instantiate(monster2Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
         monster2HPBoost = monster2HPBoost + 2;
+        if (enemySpawner.tag == "Spawn0")
+        {
+            currentMonster.tag = "Enemy0";
+        }
+        else
+        {
+            currentMonster.tag = "Enemy1";
+        }
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
         //currentMonster.GetComponent<Enemy>().customPathDirection = path;
         NetworkServer.Spawn (currentMonster);
@@ -102,6 +118,14 @@ public class SpawnMinions : NetworkBehaviour {
 		var currentMonster = Instantiate(monster1Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
 		monster1HPBoost = monster1HPBoost + 2;
+		 if (enemySpawner.tag == "Spawn0")
+        {
+            currentMonster.tag = "Enemy0";
+        }
+        else
+        {
+            currentMonster.tag = "Enemy1";
+        }
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
        // currentMonster.GetComponent<Enemy>().customPathDirection = path;
         NetworkServer.Spawn (currentMonster);
@@ -112,6 +136,14 @@ public class SpawnMinions : NetworkBehaviour {
 		var currentMonster = Instantiate(monster2Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
         monster2HPBoost = monster2HPBoost + 2;
+         if (enemySpawner.tag == "Spawn0")
+        {
+            currentMonster.tag = "Enemy0";
+        }
+        else
+        {
+            currentMonster.tag = "Enemy1";
+        }
         //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
         //currentMonster.GetComponent<Enemy>().customPathDirection = path;
         NetworkServer.Spawn (currentMonster);

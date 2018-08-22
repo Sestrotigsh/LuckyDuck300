@@ -16,11 +16,12 @@ public class SpellsSlasher : MonoBehaviour
     [Header("Audio Components")]
     public AudioClip spell1Sound;
     public AudioClip spell2Sound;
+    public AudioClip spell1ComboSound;
     public AudioClip basicSound;
     AudioSource audioS;
 
     // Passive
-
+    private int team;
 
     //Auto attack
     [Header("Basic Attack Components")]
@@ -63,6 +64,12 @@ public class SpellsSlasher : MonoBehaviour
     private bool isSpinning = false;
     public ParticleSystem spinDashEffect;
 
+    // SPell 4 : Battle cry
+    private float damageBoost = 0;
+    public float damageBoostValue = 0.2f;
+    private List<GameObject> enemyToSlow = new List<GameObject>();
+    private bool isCrying = false;
+
     // Use this for initialization
     void Start()
     {
@@ -70,6 +77,14 @@ public class SpellsSlasher : MonoBehaviour
         if (!this.GetComponent<PlayerNetwork>().local)
         {
             return;
+        }
+
+        if (this.tag == "Player0")
+        {
+            team = 0;
+        } else
+        {
+            team = 1;
         }
 
         audioS = GetComponent<AudioSource>();
@@ -102,7 +117,7 @@ public class SpellsSlasher : MonoBehaviour
                 Spell2();
 
             }
-            else if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0) && isCutting == false)
             {
                 if (fireTimer < Time.timeSinceLevelLoad)
                 {
@@ -112,8 +127,12 @@ public class SpellsSlasher : MonoBehaviour
             } else if (Input.GetKeyDown("2") && isDashing == true)
             {
                 isSpinning = true;
+            } else if (Input.GetKeyDown("1") && isCutting == true)
+            {
+                isCrying = true;
             }
         }
+
         if (isCutting == true)
         {
             Spell1();
@@ -136,7 +155,7 @@ public class SpellsSlasher : MonoBehaviour
         int i = 0;
         while (i < hitColliders.Length)
         {
-            if (hitColliders[i].tag == "Enemy")
+            if (hitColliders[i].tag == "Enemy"+team)
             {
                 Enemy enemy;
                 enemy = hitColliders[i].GetComponent<Enemy>();
@@ -168,7 +187,7 @@ public class SpellsSlasher : MonoBehaviour
                 int i = 0;
                 while (i < hitColliders.Length)
                 {
-                    if (hitColliders[i].tag == "Enemy")
+                    if (hitColliders[i].tag == "Enemy"+team)
                     {
                         Enemy enemy;
                         enemy = hitColliders[i].GetComponent<Enemy>();
@@ -194,6 +213,10 @@ public class SpellsSlasher : MonoBehaviour
             isCutting = false;
             
             currentHit = 0;
+             if (isCrying == true)
+            {
+                StartCoroutine(CryWait());
+            }
         }
     }
 
@@ -201,6 +224,7 @@ public class SpellsSlasher : MonoBehaviour
     {
         this.GetComponent<playerAnimation>().ForcePush();
         audioS.clip = spell2Sound;
+        audioS.Play();
         isDashing = true;
         Rigidbody rbody = this.gameObject.GetComponent<Rigidbody>();
         rbody.AddForce(transform.forward.normalized * 2000);
@@ -254,6 +278,52 @@ public class SpellsSlasher : MonoBehaviour
         }
     }
 
+        private void BattleCry()
+    {
+        audioS.clip = spell1ComboSound;
+        audioS.Play();
+        damageBoost = damageBoostValue;
+        if (this.tag == "Player0")
+        {
+            foreach( GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy0"))
+            {
+                enemyToSlow.Add(enemy);
+            }
+        } else
+        {
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy1"))
+            {
+                enemyToSlow.Add(enemy);
+            }
+        }
+
+        foreach (GameObject enemy in enemyToSlow)
+        {
+            enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+        }
+
+        StartCoroutine(Buff());
+    }
+
+    IEnumerator Buff()
+    {
+        yield return new WaitForSeconds(10);
+        damageBoost = 0;
+        foreach (GameObject enemy in enemyToSlow)
+        {
+            enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().initialSpeed;
+        }
+        enemyToSlow.Clear();
+        yield break;
+    }
+
+    IEnumerator CryWait()
+    {
+        yield return new WaitForSeconds(0.5f);
+        BattleCry();
+        isCrying = false; 
+        yield break;
+    }
 
     private void RemainingTime() // Calculate the remaining time before next use, which will be used for the UI, Usable for all characters
     {
@@ -282,10 +352,10 @@ public class SpellsSlasher : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (isDashing == true && other.tag == "Enemy")
+        if (isDashing == true && other.tag == "Enemy" + team)
         {
             Enemy enemy = other.GetComponent<Enemy>();
-            enemy.Die(spell2Damage);
+            enemy.Die(Mathf.RoundToInt(spell2Damage + (spell2Damage * damageBoost)));
             damageMult += 1;
         }
     }
