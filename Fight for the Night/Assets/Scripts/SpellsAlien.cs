@@ -31,6 +31,7 @@ public class SpellsAlien : MonoBehaviour
 	public int autoDamage;
 	public float fireRate = 0.4f;
 	private float fireTimer = 0.0f;
+	
 
 	// Spell 1
 	float power = 1000;
@@ -64,8 +65,14 @@ public class SpellsAlien : MonoBehaviour
     public int CD11; // The actual CD between spell
     public float remainingTime11 = 0; // The number of seconds left before the next cast available
 
+    // Recoil
+    public float accuracyCounter; // determines how much to distort accuracy
+    public float maxAccuracyDistortion; // the maximum amount of accuracy distortion
+    public Text Crosshairs;
+
 	// Use this for initialization
 	void Start() {
+		accuracyCounter = 0.0f;
 		if (!this.GetComponent<PlayerNetwork>().local) {
 			return;
 		}
@@ -85,15 +92,35 @@ public class SpellsAlien : MonoBehaviour
 		spell1T = canv.transform.Find("Spell1").gameObject.transform.Find("Text").gameObject;
 		spell2T = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
-		foreach (Transform child in transform) if (child.CompareTag("CameraTarget")) {
+		foreach (Transform child in transform) if (child.CompareTag("ShootingPoint")) {
 			frontPos = child;
 		}
-		//frontPos = GameObject.FindWithTag("CameraTarget").transform;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		if (accuracyCounter > 0.0f) {
+			accuracyCounter -= Time.deltaTime * 0.2f;
+		}
+
+		if (accuracyCounter <= 0.0f) {
+			Crosshairs.text = "          |\n        ~ ~\n          |";
+		} else if (accuracyCounter > 0.75f) {
+			Crosshairs.text = "          |\n\n   ~           ~\n\n          |";
+		} else if (accuracyCounter > 0.5f) {
+			Crosshairs.text = "          |\n\n    ~        ~\n\n          |";
+		} else if (accuracyCounter > 0.25f) {
+			Crosshairs.text = "          |\n       ~   ~\n          |";
+		} 
+
+
+
+
+
+
+
+		
 		if (!this.GetComponent<PlayerNetwork>().local) {
 			return;
 		}
@@ -118,6 +145,11 @@ public class SpellsAlien : MonoBehaviour
                         return;
                     }
 					BasicAttack ();
+
+
+
+
+
 					fireTimer = fireRate + Time.timeSinceLevelLoad;
 				}
 			} 
@@ -138,12 +170,21 @@ public class SpellsAlien : MonoBehaviour
 
 	private void BasicAttack()
 	{
-		GameObject instance = Instantiate(projectile, frontPos.position, frontPos.rotation) as GameObject;
+		///// INSTANTIATE BASED ON PERCENTAGE OF COUNTER FILLED AS PERCENTAGE OF ACCURACY DISTORTION
+		if (accuracyCounter < 1.0f) {
+			accuracyCounter += 0.175f + (Time.deltaTime * 0.2f);	
+		}
+		
+
+
+		Vector3 adjustedAccuracy = new Vector3 (Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion));
+		GameObject instance = Instantiate(projectile, (frontPos.position), frontPos.rotation) as GameObject;
+		instance.transform.Rotate(adjustedAccuracy);
 		instance.GetComponent<ProjectileController>().damage = baseAuto;
 		instance.GetComponent<ProjectileController>().caster = "Alien";
 		instance.GetComponent<ProjectileController>().player = this.gameObject;
 		instance.GetComponent<ProjectileController>().team = team;
-		instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);        
+		instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * power);       
 		Destroy(instance, 1.0f);
 		audioS.clip = basicSound;
 		audioS.Play();
@@ -153,9 +194,9 @@ public class SpellsAlien : MonoBehaviour
 	{
 		audioS.clip = laserSound;
 		audioS.Play();
-		GameObject instance = Instantiate(spell1object, frontPos.transform.position, frontPos.transform.rotation);
+		GameObject instance = Instantiate(spell1object, frontPos.transform.position, this.transform.rotation);
 		instance.GetComponent<ProjectileController>().damage = spell1Damage;
-		instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
+		instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);
 		this.GetComponent<playerAnimation>().BigShoot();
 
 		//Timing Management

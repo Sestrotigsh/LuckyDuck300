@@ -21,6 +21,7 @@ public class playerAnimation : NetworkBehaviour {
 	public float rotateAmount;
 	public float speedMultiplier;
 	private Transform shootingPoint;
+	public Transform accuracyTarget;
 	Animator anim;
 	private bool lookingAtScreen;
 	[SerializeField] Vector3 checkPositionP1;
@@ -47,7 +48,6 @@ public class playerAnimation : NetworkBehaviour {
 			oldPos = transform.position;
 			return;
 		}
-
 
 
 
@@ -105,6 +105,7 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 
 		MoveCamera();
+		shootingPoint.LookAt(accuracyTarget);
 		float h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		float v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
@@ -161,6 +162,9 @@ public class playerAnimation : NetworkBehaviour {
 		targetRotation = cameraLookTarget.rotation;
 		mainCamera.position = targetPosition;
 		mainCamera.rotation = targetRotation;
+		foreach (Transform child in mainCamera) {
+			accuracyTarget = child;
+		}
 	}
 
 
@@ -178,7 +182,6 @@ public class playerAnimation : NetworkBehaviour {
 		if (mouseInput.y > 0) {
 			if (mainCamera.transform.rotation.eulerAngles.x > 0.0f && mainCamera.transform.rotation.eulerAngles.x < 300.0f) {
 				mainCamera.transform.Rotate((-1*mouseInput.y),0,0);
-				shootingPoint.Rotate((-1*mouseInput.y),0,0);
 			}
 		} else if (mouseInput.y < 0) {
 			if (mainCamera.transform.rotation.eulerAngles.x < 30.0f || mainCamera.transform.rotation.eulerAngles.x > 300.0f) {

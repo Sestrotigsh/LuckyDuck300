@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 54749253751005204}
   m_Layer: 0
   m_Name: Slasher Minion
-  m_TagString: Enemy
+  m_TagString: Enemy0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,8 +163,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.834289, y: 6.84, z: 2.625722}
-  m_Center: {x: -0.21274161, y: 3.47, z: 0.059382915}
+  m_Size: {x: 1.3, y: 1.85, z: 0.8}
+  m_Center: {x: -0.9, y: 1.37, z: 0.38}
 --- !u!95 &95570632047804520
 Animator:
   serializedVersion: 3
@@ -401,6 +401,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: e7d3ddde9c34fa44f957e823c1085364, type: 2}
   - {fileID: 2100000, guid: e7d3ddde9c34fa44f957e823c1085364, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

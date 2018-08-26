@@ -91,6 +91,7 @@ public class Enemy : NavigationAgent {
     // Update is called once per frame
     void Update() {
         if (deathTimer != 0.0f) {
+            rend.materials[0].SetFloat("_Blink", 1.0f);
             rend.materials[1].SetFloat("_Blink", 1.0f);
             //rend.material.SetFloat("_Blink", 1.0f);
             if (animator != null) {

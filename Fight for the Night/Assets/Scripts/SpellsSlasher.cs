@@ -149,8 +149,8 @@ public class SpellsSlasher : MonoBehaviour
     private void BasicAttack()
     {
         audioS.clip = spell1Sound;
-        audioS.Play();
-        Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(2, 2, 2), Quaternion.identity);
+        //audioS.Play();
+        Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(1, 1, 1), Quaternion.identity); ///  IS THE HALF FROM CENTRE
 
         int i = 0;
         while (i < hitColliders.Length)

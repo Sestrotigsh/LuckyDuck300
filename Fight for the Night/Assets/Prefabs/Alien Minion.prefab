@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 54123922784896426}
   m_Layer: 0
   m_Name: Alien Minion
-  m_TagString: Enemy
+  m_TagString: Enemy0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,8 +315,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.834289, y: 6.84, z: 2.625722}
-  m_Center: {x: -0.21274161, y: 3.47, z: 0.059382915}
+  m_Size: {x: 2.834289, y: 2, z: 2.69}
+  m_Center: {x: -0.21274161, y: 1.52, z: -0.1}
 --- !u!95 &95664257138758552
 Animator:
   serializedVersion: 3
