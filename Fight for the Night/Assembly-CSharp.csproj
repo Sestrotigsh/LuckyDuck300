@@ -166,6 +166,7 @@
      <None Include="Assets\Packages\Imports\Ibuprogames\Vintage\Resources\Shaders\VintageHudson.shader" />
      <None Include="Assets\Shaders\Blink.shader" />
      <None Include="Assets\Packages\Imports\Ibuprogames\Vintage\Resources\Shaders\VintageLomofi.shader" />
+     <None Include="Assets\Packages\Curtains\Shaders\VIS_BumpSpec.shader" />
      <None Include="Assets\Packages\Imports\Ibuprogames\Vintage\Resources\Shaders\VintageHefe.shader" />
      <None Include="Assets\Visuals\Fonts\OpenSans\License!.txt" />
      <None Include="Assets\Packages\Imports\Ibuprogames\Vintage\Resources\Shaders\VintageToaster.shader" />
