@@ -60,7 +60,8 @@ public class PlayerManagement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!player.local) {
-			return;
+			canv.SetActive(false);
+            return;
 		}
         UpdateCanvas();
         Income();

@@ -7771,8 +7771,8 @@ GameObject:
   - component: {fileID: 128378944}
   - component: {fileID: 128378943}
   - component: {fileID: 128378942}
-  - component: {fileID: 128378941}
   - component: {fileID: 128378940}
+  - component: {fileID: 128378941}
   m_Layer: 0
   m_Name: Base
   m_TagString: Base0
@@ -7788,7 +7788,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 128378938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61.251015, y: 21.26, z: -14.63}
+  m_LocalPosition: {x: 61.251015, y: 21.6, z: -14.63}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 36116160}
@@ -7828,19 +7828,18 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!135 &128378941
-SphereCollider:
+--- !u!65 &128378941
+BoxCollider:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 135953916690204042, guid: 9497c3b4c61f1bb40bdd6e7a7cff2048,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 128378938}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.54, y: 0.35, z: 0.3}
+  m_Center: {x: -0.1, y: 0.17, z: 0.35}
 --- !u!114 &128378942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45084,9 +45083,9 @@ GameObject:
   - component: {fileID: 697637824}
   - component: {fileID: 697637829}
   - component: {fileID: 697637828}
-  - component: {fileID: 697637827}
   - component: {fileID: 697637826}
   - component: {fileID: 697637825}
+  - component: {fileID: 697637827}
   m_Layer: 0
   m_Name: Base 2
   m_TagString: Base1
@@ -45102,7 +45101,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697637823}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 69.46102, y: 21.03, z: -14.63}
+  m_LocalPosition: {x: 69.04, y: 21.03, z: -13.7}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 584777244}
@@ -45157,19 +45156,18 @@ MonoBehaviour:
   textAbove: {fileID: 584777245}
   player: {fileID: 0}
   team: 1
---- !u!135 &697637827
-SphereCollider:
+--- !u!65 &697637827
+BoxCollider:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 135734522935013708, guid: d1fbcdf4765436f448ac9ab37b883b7b,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 697637823}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.50000006
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.63, y: 0.35, z: 0.3}
+  m_Center: {x: -0.18, y: 0.17, z: -0.11}
 --- !u!23 &697637828
 MeshRenderer:
   m_ObjectHideFlags: 0

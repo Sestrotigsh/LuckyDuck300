@@ -35,15 +35,13 @@ public class EventTrigger : NetworkBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		// check if enemy enters base
-		if (player.local) {
-			if (other.CompareTag ("Enemy"+team)) {
+		if (other.CompareTag ("Enemy"+team)) {
+			if (player.local) {
 				if (player.health > 0) {
 					player.TakeDamage();
 				}
-			}
-		} 
-        if (other.CompareTag ("Enemy"+team)) {
-        	other.tag = "Dying Enemy2";
-        }
+				other.tag = "Dying Enemy2";
+			}	
+		}
 	}
 }

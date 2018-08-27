@@ -58,6 +58,11 @@ public class Enemy : NavigationAgent {
 		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
 		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
 		float distanceToSpawn2 = Vector3.Distance (transform.position, Spawner2.transform.position);
+        if (distanceToSpawn1 < distanceToSpawn2) {
+            this.tag = "Enemy"+0;
+        } else if (distanceToSpawn2 < distanceToSpawn1) {
+            this.tag = "Enemy"+1;
+        }
 
         startNode = 0;
         goal = 11;
