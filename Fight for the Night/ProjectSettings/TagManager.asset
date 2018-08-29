@@ -37,6 +37,8 @@ TagManager:
   - QuitMenu
   - BackMenu
   - SideWall
+  - Props0
+  - Props1
   layers:
   - Default
   - TransparentFX

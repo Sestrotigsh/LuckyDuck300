@@ -237,6 +237,7 @@ GameObject:
   - component: {fileID: 114902587911491526}
   - component: {fileID: 114116939936796716}
   - component: {fileID: 114389329088158042}
+  - component: {fileID: 114564741866900094}
   m_Layer: 0
   m_Name: PlayerGeneric
   m_TagString: Player
@@ -4328,6 +4329,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &114564741866900094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194718770242504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2c4462c241fe4442810115ecc2b1305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propsLeft: {fileID: 0}
+  propsRight: {fileID: 0}
 --- !u!114 &114595756631407086
 MonoBehaviour:
   m_ObjectHideFlags: 1
