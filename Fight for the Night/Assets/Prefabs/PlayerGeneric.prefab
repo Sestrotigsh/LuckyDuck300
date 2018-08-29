@@ -3737,7 +3737,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1194718770242504}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b0065647cb0e5d45b15336556e489f8, type: 3}
   m_Name: 
@@ -4340,8 +4340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c4462c241fe4442810115ecc2b1305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  propsLeft: {fileID: 0}
-  propsRight: {fileID: 0}
 --- !u!114 &114595756631407086
 MonoBehaviour:
   m_ObjectHideFlags: 1
