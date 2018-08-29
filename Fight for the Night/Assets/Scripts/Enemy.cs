@@ -32,6 +32,14 @@ public class Enemy : NavigationAgent {
 	public GameObject Spawner1;
 	public GameObject Spawner2;
 
+        public enum type
+    {
+        Minion,
+        Monster
+    };
+
+    public type minionType = type.Minion;
+
     // HP Bar
     public Image healthBar;
 
@@ -58,8 +66,21 @@ public class Enemy : NavigationAgent {
 		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
 		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
 		float distanceToSpawn2 = Vector3.Distance (transform.position, Spawner2.transform.position);
+        if (distanceToSpawn1 < distanceToSpawn2) {
+            this.tag = "Enemy"+0;
+        } else if (distanceToSpawn2 < distanceToSpawn1) {
+            this.tag = "Enemy"+1;
+        }
 
-        startNode = 0;
+
+        if (minionType == type.Minion)
+        {
+            startNode = 0;
+        } else if (minionType == type.Monster)
+        {
+            startNode = 5;
+        }
+
         goal = 11;
         initialSpeed = moveSpeed;
         // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
@@ -91,7 +112,9 @@ public class Enemy : NavigationAgent {
     // Update is called once per frame
     void Update() {
         if (deathTimer != 0.0f) {
-            rend.material.SetFloat("_Blink", 1.0f);
+            rend.materials[0].SetFloat("_Blink", 1.0f);
+            rend.materials[1].SetFloat("_Blink", 1.0f);
+            //rend.material.SetFloat("_Blink", 1.0f);
             if (animator != null) {
                 animator.GetComponent<Animator>().enabled = false;
             }
@@ -172,7 +195,6 @@ public class Enemy : NavigationAgent {
 	/// </summary>
 	/// <param name="damage">The amount of damage to take</param>
 	public void Die(int damage) {
-        Debug.Log(damage);
 		currentHealth = currentHealth - damage;
         healthBar.fillAmount = currentHealth / health;
 		if (currentHealth <= 0) {
@@ -203,17 +225,17 @@ public class Enemy : NavigationAgent {
         endOfStun = Time.time + timeStun;
     }
 
-    IEnumerator Slow()
+    IEnumerator Slow(int levelOfSlow, int duration)
     {
-        moveSpeed = moveSpeed / 3;
-        yield return new WaitForSeconds(3);
+        moveSpeed = moveSpeed / levelOfSlow;
+        yield return new WaitForSeconds(duration);
         moveSpeed = initialSpeed;
         yield break;
     }
 
-    public void GetSlowed()
+    public void GetSlowed(int levelOfSlow, int duration)
     {
-        StartCoroutine(Slow());
+        StartCoroutine(Slow(levelOfSlow, duration));
     }
 
 
@@ -222,10 +244,11 @@ public class Enemy : NavigationAgent {
 	/// </summary>
 	/// <param name="other">The projectile that hit the enemy</param>
 	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag ("Projectile")) {
-			Die (other.GetComponent<ProjectileController> ().damage);
-			Destroy (other.gameObject);
-		} else if (other.CompareTag("SideWall")) {
+		//if (other.CompareTag ("Projectile")) {
+			//Die (other.GetComponent<ProjectileController> ().damage);
+			//Destroy (other.gameObject);
+		//}
+         if (other.CompareTag("SideWall")) {
             this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             this.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }

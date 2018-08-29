@@ -21,6 +21,7 @@ public class playerAnimation : NetworkBehaviour {
 	public float rotateAmount;
 	public float speedMultiplier;
 	private Transform shootingPoint;
+	public Transform accuracyTarget;
 	Animator anim;
 	private bool lookingAtScreen;
 	[SerializeField] Vector3 checkPositionP1;
@@ -44,14 +45,21 @@ public class playerAnimation : NetworkBehaviour {
 		shootTimer = 0;
 		shooting = false;
 		if (!isLocalPlayer) {
-			oldPos = transform.position;
+			//oldPos = transform.position;
 			return;
 		}
 
 
+		GameObject[] shootingPointsList = GameObject.FindGameObjectsWithTag("ShootingPoint");
 
 
-		shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
+
+		shootingPoint = shootingPointsList[this.GetComponent<PlayerNetwork>().team].transform;
+
+
+
+
+		//shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
 		// set up the third person camera
 		anim = GetComponent<Animator>();
 		setupCamera();
@@ -71,19 +79,19 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 	}
 
-	void LateFixedUpdate() {
-		if (isLocalPlayer) {
-			return;
-		}
-		newPos = transform.position;
-		if(oldPos != newPos) {
-			 anim.SetBool("Moving", true);
-		} else {
-			anim.SetBool("Moving", false);
-		}
-		oldPos = newPos;
+	//void LateFixedUpdate() {
+		//if (isLocalPlayer) {
+			//return;
+		//}
+		//newPos = transform.position;
+		//if(oldPos != newPos) {
+			 //anim.SetBool("Moving", true);
+		//} else {
+			//anim.SetBool("Moving", false);
+		//}
+		//oldPos = newPos;
 
-	}
+	//}
 	
 	// Update is called once per frame
 	void Update () {
@@ -105,6 +113,7 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 
 		MoveCamera();
+		shootingPoint.LookAt(accuracyTarget);
 		float h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		float v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
@@ -161,6 +170,9 @@ public class playerAnimation : NetworkBehaviour {
 		targetRotation = cameraLookTarget.rotation;
 		mainCamera.position = targetPosition;
 		mainCamera.rotation = targetRotation;
+		foreach (Transform child in mainCamera) {
+			accuracyTarget = child;
+		}
 	}
 
 
@@ -197,5 +209,13 @@ public class playerAnimation : NetworkBehaviour {
 
     public void BigShoot() {
     	anim.SetTrigger("BigShoot");
+    }
+
+    public void SpinAttack() {
+    	anim.SetTrigger("Spin");
+    }
+
+    public void Yell() {
+    	anim.SetTrigger("Yell");
     }
 }

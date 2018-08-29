@@ -64,7 +64,7 @@ public class SpellsSlasher : MonoBehaviour
     private bool isSpinning = false;
     public ParticleSystem spinDashEffect;
 
-    // SPell 4 : Battle cry
+    // Spell 4 : Battle cry
     private float damageBoost = 0;
     public float damageBoostValue = 0.2f;
     private List<GameObject> enemyToSlow = new List<GameObject>();
@@ -149,8 +149,8 @@ public class SpellsSlasher : MonoBehaviour
     private void BasicAttack()
     {
         audioS.clip = spell1Sound;
-        audioS.Play();
-        Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(2, 2, 2), Quaternion.identity);
+        //audioS.Play();
+        Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(1, 1, 1), Quaternion.identity); ///  IS THE HALF FROM CENTRE
 
         int i = 0;
         while (i < hitColliders.Length)
@@ -262,12 +262,13 @@ public class SpellsSlasher : MonoBehaviour
 
     private void ComboSpin()
     {
+        this.GetComponent<playerAnimation>().SpinAttack();
         ParticleSystem partInstance = Instantiate(spinDashEffect, transform);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 8);
 
         for (int i =0; i< hitColliders.Length; i++)
         {
-            if (hitColliders[i].tag == "Enemy")
+            if (hitColliders[i].tag == "Enemy"+team)
             {
                 Enemy enemy;
                 enemy = hitColliders[i].GetComponent<Enemy>();
@@ -278,31 +279,33 @@ public class SpellsSlasher : MonoBehaviour
         }
     }
 
-        private void BattleCry()
+    private void BattleCry()
     {
-        audioS.clip = spell1ComboSound;
-        audioS.Play();
-        damageBoost = damageBoostValue;
-        if (this.tag == "Player0")
+    this.GetComponent<playerAnimation>().Yell();
+    audioS.clip = spell1ComboSound;
+    audioS.Play();
+    damageBoost = damageBoostValue;
+    if (this.tag == "Player0")
+    {
+        foreach( GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy0"))
         {
-            foreach( GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy0"))
-            {
-                enemyToSlow.Add(enemy);
-            }
+            enemyToSlow.Add(enemy);
+        }
         } else
         {
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy1"))
-            {
-                enemyToSlow.Add(enemy);
-            }
-        }
-
-        foreach (GameObject enemy in enemyToSlow)
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy1"))
         {
-            enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+            enemyToSlow.Add(enemy);
         }
+    }
 
-        StartCoroutine(Buff());
+    foreach (GameObject enemy in enemyToSlow)
+    {
+        //enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+        
+    }
+
+    StartCoroutine(Buff());
     }
 
     IEnumerator Buff()

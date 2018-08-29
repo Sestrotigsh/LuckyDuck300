@@ -26,6 +26,9 @@ public class PlayerNetwork : NetworkBehaviour {
 		tag = ("Player" + team);
 		opponent = GameObject.FindGameObjectWithTag ("Player" + (team + 1) % 2);
 		//if (opponent != null) {
+			//opponent.GetComponent<PlayerManagement>().canv.SetActive(false);
+		//}
+		//if (opponent != null) {
 			//if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
 				//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
 				//this.gameObject.GetComponent<EnemyWavesAlien>().enabled = true;
@@ -46,6 +49,9 @@ public class PlayerNetwork : NetworkBehaviour {
 	void Update () {
 		if (opponent == null) {
 			opponent = GameObject.FindGameObjectWithTag ("Player" + (team + 1) % 2);
+			//if (opponent != null) {
+				//opponent.GetComponent<PlayerManagement>().canv.SetActive(false);
+			//}
 			//if (opponent != null) {
 				//if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
 					//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
@@ -69,13 +75,26 @@ public class PlayerNetwork : NetworkBehaviour {
 		if (health <= 0) {
 			// If the player is on the server - tell the client to win
 			if (isServer) {
-				RpcVictory();
+				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+					RpcVictoryAlien();
+				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+					RpcVictorySlasher();
+				}
+				
 			// if the player is a client - tell the server to win
 			} else {
-				CmdVictory();
+				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+					CmdVictoryAlien();
+				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+					CmdVictorySlasher();
+				}
 			}
 			// end in defeat
-			SceneManager.LoadScene("Defeat", LoadSceneMode.Single);
+			if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+				SceneManager.LoadScene("DefeatAlien", LoadSceneMode.Single);
+			} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Single);
+			}			
 		}
 	}
 
@@ -108,15 +127,34 @@ public class PlayerNetwork : NetworkBehaviour {
 	}
 
 	[Command]
-	void CmdVictory () {
+	void CmdVictoryAlien () {
 		// Tell the opponent on the server they have won!
-		SceneManager.LoadScene("Victory", LoadSceneMode.Single);
+		SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
 	}
+
+	[Command]
+	void CmdVictorySlasher () {
+		// Tell the opponent on the server they have won!
+		SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
+	}
+
 	[ClientRpc]
-	void RpcVictory() {
+	void RpcVictoryAlien() {
 		// tell the client (excluding client on the server) they have won!
 		if (!isServer) {
-			SceneManager.LoadScene("Victory", LoadSceneMode.Single);
+			SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
 		}
 	}
+
+	[ClientRpc]
+	void RpcVictorySlasher() {
+		// tell the client (excluding client on the server) they have won!
+		if (!isServer) {
+			SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
+		}
+	}
+
+
+
+
 }

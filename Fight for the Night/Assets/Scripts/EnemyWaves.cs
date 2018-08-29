@@ -29,6 +29,8 @@ public class EnemyWaves : NetworkBehaviour {
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
 		playerSpawner = GameObject.FindGameObjectWithTag ("Spawn" + PlayerNet.team);
+		alienEnemy.tag = "Enemy"+PlayerNet.team;
+		slasherEnemy.tag = "Enemy"+PlayerNet.team;
 
 		//if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
 				//enemy = alienEnemy;
@@ -77,26 +79,12 @@ public class EnemyWaves : NetworkBehaviour {
 	[Command]
 	void CmdSpawnEnemyAlien(Vector3 pos) {
 		var currentEnemy = Instantiate(alienEnemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
-		if (playerSpawner.tag == "Spawn0")
-        {
-            currentEnemy.tag = "Enemy0";
-        } else
-        {
-            currentEnemy.tag = "Enemy1";
-        }
 		NetworkServer.Spawn (currentEnemy);
 	}
 
 	[Command]
 	void CmdSpawnEnemySlasher(Vector3 pos) {
 		var currentEnemy = Instantiate(slasherEnemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
-		if (playerSpawner.tag == "Spawn0")
-        {
-            currentEnemy.tag = "Enemy0";
-        } else
-        {
-            currentEnemy.tag = "Enemy1";
-        }
 		NetworkServer.Spawn (currentEnemy);
 	}
 
