@@ -32,10 +32,8 @@ public class ChoosePlayer : NetworkBehaviour {
 			this.GetComponent<Animator>().avatar = alienAvatar;
 			if (this.GetComponent<PlayerNetwork>().local) {
 				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
-				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
-			} else {
-				this.GetComponent<Animator>().runtimeAnimatorController = alienPlayer2;
 			}
+			this.GetComponent<Animator>().runtimeAnimatorController = alienController;
 
 				
 		} 
@@ -49,10 +47,8 @@ public class ChoosePlayer : NetworkBehaviour {
 
 			if (this.GetComponent<PlayerNetwork>().local) {
 				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
-				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
-			} else {
-				this.GetComponent<Animator>().runtimeAnimatorController = slasherPlayer2;
 			}
+			this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
 		}
 	}
 }

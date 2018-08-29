@@ -45,7 +45,7 @@ public class playerAnimation : NetworkBehaviour {
 		shootTimer = 0;
 		shooting = false;
 		if (!isLocalPlayer) {
-			oldPos = transform.position;
+			//oldPos = transform.position;
 			return;
 		}
 
@@ -79,19 +79,19 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 	}
 
-	void LateFixedUpdate() {
-		if (isLocalPlayer) {
-			return;
-		}
-		newPos = transform.position;
-		if(oldPos != newPos) {
-			 anim.SetBool("Moving", true);
-		} else {
-			anim.SetBool("Moving", false);
-		}
-		oldPos = newPos;
+	//void LateFixedUpdate() {
+		//if (isLocalPlayer) {
+			//return;
+		//}
+		//newPos = transform.position;
+		//if(oldPos != newPos) {
+			 //anim.SetBool("Moving", true);
+		//} else {
+			//anim.SetBool("Moving", false);
+		//}
+		//oldPos = newPos;
 
-	}
+	//}
 	
 	// Update is called once per frame
 	void Update () {
