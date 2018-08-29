@@ -301,7 +301,8 @@ public class SpellsSlasher : MonoBehaviour
 
     foreach (GameObject enemy in enemyToSlow)
     {
-        enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+        //enemy.GetComponent<Enemy>().moveSpeed = enemy.GetComponent<Enemy>().moveSpeed / 2;
+        
     }
 
     StartCoroutine(Buff());

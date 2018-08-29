@@ -986,11 +986,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 10
+  range: 12
   fireRate: 2
-  turnSpeed: 11
-  Firepower: 2400
-  projectile: {fileID: 1006770151592932, guid: da9790cdf2bc8414b9f93d6b868c705f, type: 2}
+  turnSpeed: 14
+  Firepower: 1000
+  projectile: {fileID: 1166184801799110, guid: 80f6ddae88fba5b44901f581c2734ee1, type: 2}
   barrel: {fileID: 4415905091608992}
 --- !u!114 &114657461739896252
 MonoBehaviour:

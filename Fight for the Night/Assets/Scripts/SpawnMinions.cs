@@ -22,9 +22,6 @@ public class SpawnMinions : NetworkBehaviour {
     public int monster2Cost;
 	public int monster2IncomeBoost;
 
-    public int monster1HPBoost;
-    public int monster2HPBoost;
-
 	// Use this for initialization
 	void Start () {
 		playerMan = this.GetComponent<PlayerManagement> ();
@@ -34,7 +31,7 @@ public class SpawnMinions : NetworkBehaviour {
 		}
 		// find the enemy spawner
 		int newTeam = this.GetComponent<PlayerNetwork>().team;
-		enemySpawner = GameObject.FindGameObjectWithTag ("Spawn" + (newTeam+1)%2);
+		enemySpawner = GameObject.FindGameObjectWithTag ("SpawnMonster" + (newTeam+1)%2);
 	}
 	
 	// Update is called once per frame
@@ -80,9 +77,8 @@ public class SpawnMinions : NetworkBehaviour {
 	[Command]
     void CmdSendMonster1Alien() {
 		var currentMonster = Instantiate(monster1Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
-		monster1HPBoost = monster1HPBoost + 2;
-		if (enemySpawner.tag == "Spawn0")
+		currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
+		if (enemySpawner.tag == "SpawnMonster0")
         {
             currentMonster.tag = "Enemy0";
         }
@@ -98,9 +94,8 @@ public class SpawnMinions : NetworkBehaviour {
 	[Command]
     void CmdSendMonster2Alien() {
 		var currentMonster = Instantiate(monster2Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
-        monster2HPBoost = monster2HPBoost + 2;
-        if (enemySpawner.tag == "Spawn0")
+        currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
+        if (enemySpawner.tag == "SpawnMonster0")
         {
             currentMonster.tag = "Enemy0";
         }
@@ -116,9 +111,8 @@ public class SpawnMinions : NetworkBehaviour {
 	[Command]
     void CmdSendMonster1Slasher() {
 		var currentMonster = Instantiate(monster1Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster1HPBoost;
-		monster1HPBoost = monster1HPBoost + 2;
-		 if (enemySpawner.tag == "Spawn0")
+        currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
+		 if (enemySpawner.tag == "SpawnMonster0")
         {
             currentMonster.tag = "Enemy0";
         }
@@ -134,9 +128,8 @@ public class SpawnMinions : NetworkBehaviour {
     [Command]
     void CmdSendMonster2Slasher() {
 		var currentMonster = Instantiate(monster2Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-		currentMonster.GetComponent<Enemy>().health = currentMonster.GetComponent<Enemy>().health + monster2HPBoost;
-        monster2HPBoost = monster2HPBoost + 2;
-         if (enemySpawner.tag == "Spawn0")
+        currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
+         if (enemySpawner.tag == "SpawnMonster0")
         {
             currentMonster.tag = "Enemy0";
         }

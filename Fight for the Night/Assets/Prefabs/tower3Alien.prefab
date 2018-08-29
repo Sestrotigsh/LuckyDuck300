@@ -401,7 +401,7 @@ MonoBehaviour:
   fireRate: 5
   turnSpeed: 15
   Firepower: 2400
-  projectile: {fileID: 1044617924438072, guid: 2cbcb576741da1f499d5e00f96fe3781, type: 2}
+  projectile: {fileID: 1324085094496918, guid: 80f6ddae88fba5b44901f581c2734ee1, type: 2}
   barrel: {fileID: 4752859845902302}
 --- !u!114 &114940240482221756
 MonoBehaviour:

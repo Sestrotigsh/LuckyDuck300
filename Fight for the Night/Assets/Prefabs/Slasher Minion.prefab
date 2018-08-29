@@ -293,6 +293,7 @@ MonoBehaviour:
   goal: 0
   Spawner1: {fileID: 0}
   Spawner2: {fileID: 0}
+  minionType: 0
   healthBar: {fileID: 114683335183565440}
   value: 1
   isStunned: 0

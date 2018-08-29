@@ -131,7 +131,7 @@ public class SpellsAlien : MonoBehaviour
                 if (this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("pushing") == true) {
                     return;
                 }
-                Spell1 ();
+                StartCoroutine(Spell1 ());
 
 			} else if (Time.time >= CDTimer2 && Input.GetKeyDown ("2")) {
 				Spell2 ();
@@ -139,7 +139,7 @@ public class SpellsAlien : MonoBehaviour
 				ComboRepulsion();
 			} else if (Time.time >= CDTimer11 && Input.GetKeyDown("1") && Time.time < laserGapTimer)
             {
-                Spell1Combo();
+                StartCoroutine(Spell1Combo());
             }
 			if (Input.GetMouseButton (0)) {
 				if (fireTimer < Time.timeSinceLevelLoad) {
@@ -192,14 +192,15 @@ public class SpellsAlien : MonoBehaviour
 		audioS.Play();
 	}
 
-	private void Spell1() // Spell 1 of the Alien, the laser
+	IEnumerator Spell1() // Spell 1 of the Alien, the laser
 	{
+		this.GetComponent<playerAnimation>().BigShoot();
+        yield return new WaitForSeconds(0.5f);
 		audioS.clip = laserSound;
 		audioS.Play();
 		GameObject instance = Instantiate(spell1object, frontPos.transform.position, this.transform.rotation);
 		instance.GetComponent<ProjectileController>().damage = spell1Damage;
 		instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);
-		this.GetComponent<playerAnimation>().BigShoot();
 
 		//Timing Management
 		CDTimer1 = Time.time + CD1;
@@ -208,16 +209,18 @@ public class SpellsAlien : MonoBehaviour
 
 		// Destroy
 		Destroy(instance, 2.5f);
+		yield break;
 	}
 
-	    private void Spell1Combo() // Spell 1 of the Alien, the laser
+	    IEnumerator Spell1Combo() // Spell 1 of the Alien, the laser
     {
+    	this.GetComponent<playerAnimation>().BigShoot();
+        yield return new WaitForSeconds(0.5f);
         audioS.clip = laserSound;
         audioS.Play();
         GameObject instance = Instantiate(spell11object, frontPos.transform.position, frontPos.transform.rotation);
         instance.GetComponent<ProjectileController>().damage = spell1Damage;
         instance.GetComponent<ProjectileController>().team = team;
-        instance.GetComponent<ProjectileController>().type = "Chill";
         instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
 
         //Timing Management
@@ -226,6 +229,7 @@ public class SpellsAlien : MonoBehaviour
 
         // Destroy
         Destroy(instance, 2.5f);
+        yield break;
     }
 
 	private void Spell2() { // Spell 2 Celestial push

@@ -17,6 +17,8 @@ public class EnemyWavesSlasher : NetworkBehaviour {
 	private int remainingMinions; // The current time the wave start + the waveLength
 	private PlayerNetwork PlayerNet; // networking attached to the player
 
+	public int monster1HPBoost;
+
 	// Use this for initialization
 	void Start () {
 		// only spawn for the local player
@@ -46,6 +48,7 @@ public class EnemyWavesSlasher : NetworkBehaviour {
 			} else {
 				remainingMinions = waveLength;
 				nextSpawn = nextSpawn + spawnDistance;
+				monster1HPBoost = monster1HPBoost + 2;
 			}                      
 		}
 	}
@@ -57,6 +60,7 @@ public class EnemyWavesSlasher : NetworkBehaviour {
 	[Command]
 	void CmdSpawnEnemy(Vector3 pos) {
 		var currentEnemy = Instantiate(enemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
+		currentEnemy.GetComponent<Enemy>().health = currentEnemy.GetComponent<Enemy>().health + monster1HPBoost;
         if (playerSpawner.tag == "Spawn0")
         {
             currentEnemy.tag = "Enemy0";
