@@ -15,7 +15,7 @@ public class EnemyWaves : NetworkBehaviour {
 	private int nextSpawn; // Determine the start of the next Wave
 	public int initialSpawn; // Determine the time for the first wavespawn
 	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
-	public int waveLength = 5; // Number of second / number of minions the wave will be
+	public int waveLength = 3; // Number of second / number of minions the wave will be
 	private int remainingMinions; // The current time the wave start + the waveLength
 	private PlayerNetwork PlayerNet; // networking attached to the player
 
@@ -26,6 +26,7 @@ public class EnemyWaves : NetworkBehaviour {
 		if (!PlayerNet.local) {
 			enabled = false;
 		}
+       
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
 		playerSpawner = GameObject.FindGameObjectWithTag ("Spawn" + PlayerNet.team);
@@ -52,17 +53,21 @@ public class EnemyWaves : NetworkBehaviour {
 			if (remainingMinions > 0) {
 				nextSpawn = nextSpawn + 1;
 				if (PlayerNet.opponent != null) {
-					if (PlayerNet.opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-						CmdSpawnEnemyAlien(playerSpawner.transform.position);
-					} else if (PlayerNet.opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+                    if (PlayerNet.opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+                        CmdSpawnEnemyAlien(playerSpawner.transform.position);
+                        
+                    } else if (PlayerNet.opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
 						CmdSpawnEnemySlasher(playerSpawner.transform.position);
-					}
+                        
+                    }
 				} else {
 					if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
-						CmdSpawnEnemyAlien(playerSpawner.transform.position);
-					} else {
-						CmdSpawnEnemySlasher(playerSpawner.transform.position);
-					}
+                        CmdSpawnEnemyAlien(playerSpawner.transform.position);
+                       
+                    } else {
+                        CmdSpawnEnemySlasher(playerSpawner.transform.position);
+                        
+                    }
 				}
 				remainingMinions = remainingMinions - 1;
 			} else {

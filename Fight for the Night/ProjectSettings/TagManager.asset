@@ -39,6 +39,8 @@ TagManager:
   - SideWall
   - Props0
   - Props1
+  - SpawnMonster0
+  - SpawnMonster1
   layers:
   - Default
   - TransparentFX
@@ -50,7 +52,7 @@ TagManager:
   - 
   - CustomPostEffectIgnore
   - Sides Walls
-  - 
+  - Back Walls
   - 
   - 
   - 

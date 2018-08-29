@@ -20,25 +20,7 @@ public class TowerAttacking : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//// DIRTY HARD CODE - SHOULD BE FIXED IN FINAL BUT GOOD ENOUGH FOR PROTOTYPE
-		//player = GameObject.FindGameObjectWithTag ("Player" + 0).GetComponent<PlayerNetwork>();
-		//if (player.local) {
-			// CHECK IF THEY'RE ON THE CORRECT SIDE (player 0 is  < centre, player 1 is > centre)
-			//if (transform.position.x < player.centreLineX) {
-				//InvokeRepeating ("updateTargetLeft", 0f, 0.5f);
-			//} else {
-				//enabled = false;
-			//}
-		//} else {
-			//player = GameObject.FindGameObjectWithTag ("Player" + 1).GetComponent<PlayerNetwork>();
-			//if (player.local) {
-				//if (transform.position.x > player.centreLineX) {
-				//	InvokeRepeating ("updateTargetRight", 0f, 0.5f);
-				//} else {
-				//	enabled = false;
-				//}
-			//}
-		//}
+
 	}
 	
 	// Update is called once per frame
@@ -54,7 +36,7 @@ public class TowerAttacking : MonoBehaviour {
 		barrel.transform.LookAt (target);
 		if (fireCountdown <= Time.timeSinceLevelLoad) {
 			Shoot ();
-			fireCountdown = Time.timeSinceLevelLoad / fireRate;
+			fireCountdown = Time.timeSinceLevelLoad + fireRate;
 		}		
 	}
 

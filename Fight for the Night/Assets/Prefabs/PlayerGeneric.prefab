@@ -3747,7 +3747,7 @@ MonoBehaviour:
   slasherEnemy: {fileID: 1531717309921350, guid: 95724f07fee907145a33aa635baa4b3f,
     type: 2}
   initialSpawn: 15
-  waveLength: 5
+  waveLength: 6
 --- !u!114 &114127921072270482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4542,8 +4542,6 @@ MonoBehaviour:
   monster1IncomeBoost: 1
   monster2Cost: 50
   monster2IncomeBoost: 3
-  monster1HPBoost: 0
-  monster2HPBoost: 0
 --- !u!114 &114849270799077466
 MonoBehaviour:
   m_ObjectHideFlags: 1

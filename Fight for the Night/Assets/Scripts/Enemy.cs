@@ -22,21 +22,18 @@ public class Enemy : NavigationAgent {
     public int startNode;
     public int goal; // The final goal the minion / monster aims to 
     // TACTICAL CONTROLS - RANDOM NUMBER
-    //System.Random rand = new System.Random();
+    System.Random rand = new System.Random();
 
 	// Player variables
 	private PlayerManagement playerMan;
 	private PlayerNetwork playerNet;
 
-	// Spawn points
-	public GameObject Spawner1;
-	public GameObject Spawner2;
 
         public enum type
-    {
+        {
         Minion,
         Monster
-    };
+        };
 
     public type minionType = type.Minion;
 
@@ -62,37 +59,28 @@ public class Enemy : NavigationAgent {
     currentHealth = health;
 
 		// find spawners and calculate distances
-		Spawner1 = GameObject.FindGameObjectWithTag ("Spawn" + 0);
-		Spawner2 = GameObject.FindGameObjectWithTag ("Spawn" + 1);
-		float distanceToSpawn1 = Vector3.Distance (transform.position, Spawner1.transform.position);
-		float distanceToSpawn2 = Vector3.Distance (transform.position, Spawner2.transform.position);
-        if (distanceToSpawn1 < distanceToSpawn2) {
-            this.tag = "Enemy"+0;
-        } else if (distanceToSpawn2 < distanceToSpawn1) {
-            this.tag = "Enemy"+1;
-        }
-
-
+		
+        
         if (minionType == type.Minion)
         {
-            startNode = 0;
+            
         } else if (minionType == type.Monster)
         {
             startNode = 5;
         }
 
-        goal = 11;
+        goal = 16;
         initialSpeed = moveSpeed;
         // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
         // choose which of the two paths to go down
-        //if (rand.Next(0, 2) == 0) {
-            //startNode = 22;
-        //} else {
-            //startNode = 11;
-        //}
+        if (rand.Next(0, 2) == 0) {
+            startNode = 0;
+        } else {
+            startNode = 11;
+        }
         
         //Find waypoint graph
-		if (distanceToSpawn1 < distanceToSpawn2) {
+		if (this.tag == "Enemy0") {
 			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
 			playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
 			playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
