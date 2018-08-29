@@ -75,18 +75,18 @@ public class PlayerNetwork : NetworkBehaviour {
 		if (health <= 0) {
 			// If the player is on the server - tell the client to win
 			if (isServer) {
-				if (this.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-					RpcVictorySlasher();
-				} else if (this.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
 					RpcVictoryAlien();
+				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+					RpcVictorySlasher();
 				}
 				
 			// if the player is a client - tell the server to win
 			} else {
-				if (this.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-					CmdVictorySlasher();
-				} else if (this.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
 					CmdVictoryAlien();
+				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+					CmdVictorySlasher();
 				}
 			}
 			// end in defeat

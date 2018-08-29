@@ -100,6 +100,10 @@ public class SpellsAlien : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (!this.GetComponent<PlayerNetwork>().local) {
+			return;
+		}
+		
 		if (accuracyCounter > 0.0f) {
 			accuracyCounter -= Time.deltaTime * 0.2f;
 		}
@@ -121,9 +125,7 @@ public class SpellsAlien : MonoBehaviour
 
 
 		
-		if (!this.GetComponent<PlayerNetwork>().local) {
-			return;
-		}
+		
 		if (!(Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))) {
 			if (Time.time >= CDTimer1 && Input.GetKeyDown ("1")) {
                 if (this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("pushing") == true) {

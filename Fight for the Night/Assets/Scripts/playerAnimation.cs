@@ -50,8 +50,16 @@ public class playerAnimation : NetworkBehaviour {
 		}
 
 
+		GameObject[] shootingPointsList = GameObject.FindGameObjectsWithTag("ShootingPoint");
 
-		shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
+
+
+		shootingPoint = shootingPointsList[this.GetComponent<PlayerNetwork>().team].transform;
+
+
+
+
+		//shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
 		// set up the third person camera
 		anim = GetComponent<Animator>();
 		setupCamera();
@@ -182,6 +190,7 @@ public class playerAnimation : NetworkBehaviour {
 		if (mouseInput.y > 0) {
 			if (mainCamera.transform.rotation.eulerAngles.x > 0.0f && mainCamera.transform.rotation.eulerAngles.x < 300.0f) {
 				mainCamera.transform.Rotate((-1*mouseInput.y),0,0);
+				shootingPoint.Rotate((-1*mouseInput.y),0,0);
 			}
 		} else if (mouseInput.y < 0) {
 			if (mainCamera.transform.rotation.eulerAngles.x < 30.0f || mainCamera.transform.rotation.eulerAngles.x > 300.0f) {

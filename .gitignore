@@ -1,2 +1,7 @@
 [Ll]ibrary/
 [Oo]bj/
+
+.vs/
+
+*.csproj
+*.sln
