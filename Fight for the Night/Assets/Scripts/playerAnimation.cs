@@ -201,4 +201,12 @@ public class playerAnimation : NetworkBehaviour {
     public void BigShoot() {
     	anim.SetTrigger("BigShoot");
     }
+
+    public void SpinAttack() {
+    	anim.SetTrigger("Spin");
+    }
+
+    public void Yell() {
+    	anim.SetTrigger("Yell");
+    }
 }

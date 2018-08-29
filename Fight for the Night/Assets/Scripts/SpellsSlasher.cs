@@ -64,7 +64,7 @@ public class SpellsSlasher : MonoBehaviour
     private bool isSpinning = false;
     public ParticleSystem spinDashEffect;
 
-    // SPell 4 : Battle cry
+    // Spell 4 : Battle cry
     private float damageBoost = 0;
     public float damageBoostValue = 0.2f;
     private List<GameObject> enemyToSlow = new List<GameObject>();
@@ -262,6 +262,7 @@ public class SpellsSlasher : MonoBehaviour
 
     private void ComboSpin()
     {
+        this.GetComponent<playerAnimation>().SpinAttack();
         ParticleSystem partInstance = Instantiate(spinDashEffect, transform);
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, 8);
 
@@ -280,6 +281,7 @@ public class SpellsSlasher : MonoBehaviour
 
     private void BattleCry()
     {
+    this.GetComponent<playerAnimation>().Yell();
     audioS.clip = spell1ComboSound;
     audioS.Play();
     damageBoost = damageBoostValue;
