@@ -31,7 +31,7 @@ public class SpawnMinions : NetworkBehaviour {
 		}
 		// find the enemy spawner
 		int newTeam = this.GetComponent<PlayerNetwork>().team;
-		enemySpawner = GameObject.FindGameObjectWithTag ("SpawnMonster" + (newTeam+1)%2);
+		enemySpawner = GameObject.FindGameObjectWithTag ("SpawnMonster" + newTeam);
 	}
 	
 	// Update is called once per frame

@@ -12,6 +12,9 @@ public class EnemyWaves : NetworkBehaviour {
 	public GameObject alienEnemy;
 	public GameObject slasherEnemy;
 
+    private GameObject alienPrivate;
+    private GameObject slasherPrivate;
+
 	private int nextSpawn; // Determine the start of the next Wave
 	public int initialSpawn; // Determine the time for the first wavespawn
 	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
@@ -30,9 +33,10 @@ public class EnemyWaves : NetworkBehaviour {
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
 		playerSpawner = GameObject.FindGameObjectWithTag ("Spawn" + PlayerNet.team);
-		alienEnemy.tag = "Enemy"+PlayerNet.team;
-		slasherEnemy.tag = "Enemy"+PlayerNet.team;
 
+       
+        
+        
 		//if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
 				//enemy = alienEnemy;
 		//} else if (transform.Find("SlasherClothes").gameObject.activeSelf == true) {
@@ -84,13 +88,15 @@ public class EnemyWaves : NetworkBehaviour {
 	[Command]
 	void CmdSpawnEnemyAlien(Vector3 pos) {
 		var currentEnemy = Instantiate(alienEnemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
-		NetworkServer.Spawn (currentEnemy);
-	}
+        currentEnemy.tag = "Enemy" + PlayerNet.team;
+        NetworkServer.Spawn (currentEnemy);
+        
+    }
 
 	[Command]
 	void CmdSpawnEnemySlasher(Vector3 pos) {
 		var currentEnemy = Instantiate(slasherEnemy, pos, Quaternion.Euler(0, 0, 0)) as GameObject;
-		NetworkServer.Spawn (currentEnemy);
+        NetworkServer.Spawn (currentEnemy);
 	}
 
 }

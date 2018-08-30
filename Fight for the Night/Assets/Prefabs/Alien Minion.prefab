@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 54123922784896426}
   m_Layer: 0
   m_Name: Alien Minion
-  m_TagString: Enemy0
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
   health: 5
   currentHealth: 0
   initialSpeed: 0
-  team: 0
+  team: 5
   enemyTeam: 0
   newState: 0
   startNode: 0
