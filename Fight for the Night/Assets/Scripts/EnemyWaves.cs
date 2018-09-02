@@ -8,7 +8,7 @@ public class EnemyWaves : NetworkBehaviour {
 
     // Spawners and enemy in the wave
 
-    private GameObject spawner;
+    public GameObject spawner;
 	//public GameObject enemy;
 	public GameObject alienEnemy;
 	public GameObject slasherEnemy;
@@ -34,7 +34,7 @@ public class EnemyWaves : NetworkBehaviour {
 	void Start () {
         // only spawn for the local player
 
-        spawner = GameObject.FindGameObjectWithTag("Spawn");
+        
 
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
@@ -47,6 +47,11 @@ public class EnemyWaves : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+        if (spawner == null)
+        {
+            spawner = GameObject.FindGameObjectWithTag("Spawn");
+        }
 
         // Check the first player is in game
         if (player0Check == false)
