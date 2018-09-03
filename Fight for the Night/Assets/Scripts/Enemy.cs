@@ -59,16 +59,7 @@ public class Enemy : NavigationAgent {
     currentHealth = health;
 
 		// find spawners and calculate distances
-		
-        
-        if (minionType == type.Minion)
-        {
-            
-        } else if (minionType == type.Monster)
-        {
-            startNode = 5;
-        }
-
+		      
         goal = 16;
         initialSpeed = moveSpeed;
         // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
@@ -78,9 +69,17 @@ public class Enemy : NavigationAgent {
         } else {
             startNode = 11;
         }
-        
+        if (minionType == type.Minion)
+        {
+
+        }
+        else if (minionType == type.Monster)
+        {
+            startNode = 5;
+        }
+
         //Find waypoint graph
-		if (this.tag == "Enemy0") {
+        if (this.tag == "Enemy0") {
 			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
 			playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
 			playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
