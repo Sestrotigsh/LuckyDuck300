@@ -22,11 +22,15 @@ public class Enemy : NavigationAgent {
     public int startNode;
     public int goal; // The final goal the minion / monster aims to 
     // TACTICAL CONTROLS - RANDOM NUMBER
-    System.Random rand = new System.Random();
+
 
 	// Player variables
 	private PlayerManagement playerMan;
 	private PlayerNetwork playerNet;
+
+    public bool pathReady = false;
+    public bool teamReady = false;
+    public bool monsterReady = false;
 
 
         public enum type
@@ -56,52 +60,61 @@ public class Enemy : NavigationAgent {
 
     // Use this for initialization
     void Start() {
-    currentHealth = health;
-
-		// find spawners and calculate distances
-		      
+        currentHealth = health;
+		// find spawners and calculate distances    
         goal = 16;
         initialSpeed = moveSpeed;
-        // TACTICAL CONTROLS - SELECT RANDOM PATH TO TAKE
-        // choose which of the two paths to go down
-        if (rand.Next(0, 2) == 0) {
-            startNode = 0;
-        } else {
-            startNode = 11;
-        }
-        if (minionType == type.Minion)
-        {
-
-        }
-        else if (minionType == type.Monster)
-        {
-            startNode = 5;
-        }
-
-        //Find waypoint graph
-        if (this.tag == "Enemy0") {
-			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
-			playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
-			playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
-            team = 0;
-		} else if (this.tag == "Enemy1")
-        {
-			graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 1).GetComponent<WaypointGraph> ();
-			playerNet = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerNetwork> ();
-			playerMan = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerManagement> ();
-            team = 1;
-		}
-        //Initial node index to move to
-        currentPath.Add(startNode);
+        startNode = -1;
 
         // initialise the renderer
         rend = mesh.GetComponent<SkinnedMeshRenderer>();
-        //rend.material = mesh.Shader.Find("Blink");
+        //rend.material = mesh.Shader.Find("Blink");  
     }
 
     // Update is called once per frame
     void Update() {
-        if (deathTimer != 0.0f) {
+
+
+
+
+        // if the enemy has been assigned as a monster
+        if (monsterReady == true) {
+            // set it as a monster
+            if (minionType != type.Monster) {
+                minionType = type.Monster;
+            } 
+            // give it the desired start node
+            startNode = 5;
+            currentPath.Add(startNode);
+            monsterReady = false;
+        }
+
+        // if the team has been assigned
+        if (teamReady == true) {
+            if (this.tag == "Enemy0") {
+                graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
+                playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
+                playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
+                team = 0;
+            } else if (this.tag == "Enemy1") {
+                graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 1).GetComponent<WaypointGraph> ();
+                playerNet = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerNetwork> ();
+                playerMan = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerManagement> ();
+                team = 1;
+            }
+            teamReady = false;
+        }
+
+        // if the non monster has been assigned a path
+        if (pathReady == true) {
+            startNode = this.GetComponent<EnemyTagging>().path;
+            currentPath.Add(startNode);
+            pathReady = false;
+        }
+
+        // if the path is ready, progress with standard enemy behaviour
+        if (startNode != -1 && graphNodes != null) {
+            if (deathTimer != 0.0f) {
             rend.materials[0].SetFloat("_Blink", 1.0f);
             rend.materials[1].SetFloat("_Blink", 1.0f);
             //rend.material.SetFloat("_Blink", 1.0f);
@@ -122,7 +135,7 @@ public class Enemy : NavigationAgent {
             //customPathBool = false;
         //}
 
-		// If enemy is destroyed - perform relevant actions
+        // If enemy is destroyed - perform relevant actions
         if (this.tag == "Dying Enemy") {
             currentState = 1;
         }
@@ -130,7 +143,7 @@ public class Enemy : NavigationAgent {
         if (this.tag == "Dying Enemy2") {
             currentState = 2;
         }
-		// Switch to control enemiy moving or dying
+        // Switch to control enemiy moving or dying
         switch (currentState) {
             //Roam
             case 0:
@@ -144,13 +157,26 @@ public class Enemy : NavigationAgent {
                 playerNet.EnemyDie (this.gameObject);
                 break;
         }
-		// after sufficient time is passed - remove the stun effect
+        // after sufficient time is passed - remove the stun effect
         if (endOfStun <= Time.timeSinceLevelLoad) {
             isStunned = false;
         }
         if (isStunned == false) {
             Move();
         }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 
     /// <summary>

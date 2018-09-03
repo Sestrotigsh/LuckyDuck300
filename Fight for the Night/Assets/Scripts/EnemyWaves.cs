@@ -13,6 +13,8 @@ public class EnemyWaves : NetworkBehaviour {
 	public GameObject alienEnemy;
 	public GameObject slasherEnemy;
 
+    System.Random rand = new System.Random();
+
 	private int nextSpawn; // Determine the start of the next Wave
 	public int initialSpawn; // Determine the time for the first wavespawn
 	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
@@ -112,18 +114,38 @@ public class EnemyWaves : NetworkBehaviour {
 				
                 if (player0Opp == "Alien")
                 {
-                    CmdSpawnEnemyAlien( 0);
+                    // Pick the random path the enemy will take
+                     if (rand.Next(0, 2) == 0) {
+                        CmdSpawnEnemyAlien(0,0);
+                    } else {
+                        CmdSpawnEnemyAlien(0,11);
+                    }
                 } else
                 {
-                    CmdSpawnEnemySlasher( 0);
+                    // Pick the random path the enemy will take
+                    if (rand.Next(0, 2) == 0) {
+                        CmdSpawnEnemySlasher(0,0);
+                    } else {
+                        CmdSpawnEnemySlasher(0,11);
+                    }
                 }
-
+                
                 if (player1Opp == "Alien")
                 {
-                    CmdSpawnEnemyAlien( 1);
+                    // Pick the random path the enemy will take
+                    if (rand.Next(0, 2) == 0) {
+                        CmdSpawnEnemyAlien(1,0);
+                    } else {
+                        CmdSpawnEnemyAlien(1,11);
+                    }
                 } else
                 {
-                    CmdSpawnEnemySlasher(1);
+                    // Pick the random path the enemy will take
+                    if (rand.Next(0, 2) == 0) {
+                        CmdSpawnEnemySlasher(1,0);
+                    } else {
+                        CmdSpawnEnemySlasher(1,11);
+                    }
                 }
 
 				remainingMinions = remainingMinions - 1;
@@ -137,19 +159,24 @@ public class EnemyWaves : NetworkBehaviour {
 	/// <summary>
 	/// spawn the enemy with respect to the server
 	/// </summary>
-	/// <param name="pos">the position to spawn in</param>
 	[Command]
-	void CmdSpawnEnemyAlien( int minionTeam) {
+    // minion team is the enemies assigned team
+    // new path is the random path assigned
+	void CmdSpawnEnemyAlien( int minionTeam, int newPath) {
 		var currentEnemy = Instantiate(alienEnemy, spawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-        currentEnemy.tag = "Enemy" + minionTeam;
+        currentEnemy.GetComponent<EnemyTagging>().team = minionTeam;
+        currentEnemy.GetComponent<EnemyTagging>().path = newPath;
         NetworkServer.Spawn (currentEnemy);
         
     }
 
 	[Command]
-	void CmdSpawnEnemySlasher(int minionTeam) {
+    // minion team is the enemies assigned team
+    // new path is the random path assigned
+	void CmdSpawnEnemySlasher(int minionTeam, int newPath) {
 		var currentEnemy = Instantiate(slasherEnemy, spawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-        currentEnemy.tag = "Enemy" + minionTeam;
+        currentEnemy.GetComponent<EnemyTagging>().team = minionTeam;
+        currentEnemy.GetComponent<EnemyTagging>().path = newPath;
         NetworkServer.Spawn (currentEnemy);
 	}
 
