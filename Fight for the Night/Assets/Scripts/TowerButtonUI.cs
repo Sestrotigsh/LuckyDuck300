@@ -51,6 +51,7 @@ public class TowerButtonUI : MonoBehaviour {
     void OnMouseOver()
     {
         subPanel.SetActive(true);
+        Debug.Log("Raycast");
     }
 
     void OnMouseExit()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraRayCast : MonoBehaviour {
 
+    public float interactionRayLength = 10.0f;
+
     // Use this for initialization
     void Start()
     {
@@ -23,8 +25,6 @@ public class CameraRayCast : MonoBehaviour {
 
         Ray interactionRay = new Ray(playerPosition, forwardDirection);
         RaycastHit interactionRayHit;
-        float interactionRayLength = 5.0f;
-
         Vector3 interactionRayEndpoint = forwardDirection * interactionRayLength;
         Debug.DrawLine(playerPosition, interactionRayEndpoint);
     }

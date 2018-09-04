@@ -10,7 +10,8 @@ public class PlayerTower : NetworkBehaviour {
 	public GameObject alienGhostRenderer;
 	public GameObject slasherGhost;
 	public GameObject ghost;
-	public GameObject alienTowerBasic;
+    public GameObject towerSelectUI;
+    public GameObject alienTowerBasic;
 	public GameObject alienTower1;
 	public GameObject alienTower2;
 	public GameObject alienTower3;
@@ -29,13 +30,13 @@ public class PlayerTower : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ghost = null;
+		ghost = towerSelectUI;
 
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
 		if (!PlayerNet.local) {
 			enabled = false;
 		}
-
+        /* Replaced by UI
 		if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
 			ghost = alienGhost;
 			isAlien = true;
@@ -46,7 +47,7 @@ public class PlayerTower : NetworkBehaviour {
 			ghost.SetActive(true);
 			isAlien = false;
 			ghost.GetComponent<Renderer> ().enabled = false;
-		}
+		}*/
 		
 		currentlyTouching = null;
 	}
@@ -68,12 +69,12 @@ public class PlayerTower : NetworkBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
-			Debug.Log("SHIFT");
-			ghost.GetComponent<Renderer> ().enabled = true;
+			//Debug.Log("SHIFT");
+            ghost.SetActive(true);
 		} 
 
 		if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift)) {
-			ghost.GetComponent<Renderer> ().enabled = false;
+			ghost.SetActive(false);
 		}
 
 		// if player clicks then instantiate the tower model
