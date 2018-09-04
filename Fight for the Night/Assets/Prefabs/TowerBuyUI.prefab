@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 33012968371246460}
   - component: {fileID: 23508527982339896}
   - component: {fileID: 65027570112603516}
-  - component: {fileID: 114503096396468486}
   m_Layer: 0
   m_Name: TextPanel3
   m_TagString: Untagged
@@ -506,7 +505,6 @@ GameObject:
   - component: {fileID: 33815682800841484}
   - component: {fileID: 23958042362932316}
   - component: {fileID: 65590130204149518}
-  - component: {fileID: 114574857157306646}
   m_Layer: 0
   m_Name: TextPanel4
   m_TagString: Untagged
@@ -555,7 +553,6 @@ GameObject:
   - component: {fileID: 33203132199922046}
   - component: {fileID: 23888905359531926}
   - component: {fileID: 65206764148175988}
-  - component: {fileID: 114889124321553056}
   m_Layer: 0
   m_Name: TextPanel1
   m_TagString: Untagged
@@ -765,8 +762,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024367715191114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: 25}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 1.6, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4080990552139094}
   - {fileID: 4694643058294730}
@@ -1942,6 +1939,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subPanel: {fileID: 1770400544526076}
+  UImaterial: {fileID: 0}
+  highlightmaterial: {fileID: 0}
+  towerBasic: {fileID: 0}
+  currentlyTouching: {fileID: 0}
+  baseCost: 25
+  team: 0
 --- !u!114 &114470140116151280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1954,36 +1957,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subPanel: {fileID: 1032255875741200}
---- !u!114 &114503096396468486
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032255875741200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ad05092c9c50c41935d06b6d9331cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UImaterial: {fileID: 2100000, guid: 3f1b9d6db23d3df41af46cc948ee8ccb, type: 2}
-  highlightmaterial: {fileID: 2100000, guid: 5c9bc6abef1d24a409e45ed1016183ea, type: 2}
-  towerBasic: {fileID: 0}
-  currentlyTouching: {fileID: 0}
-  baseCost: 25
-  team: 0
---- !u!114 &114574857157306646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1770400544526076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ad05092c9c50c41935d06b6d9331cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UImaterial: {fileID: 2100000, guid: 3f1b9d6db23d3df41af46cc948ee8ccb, type: 2}
-  highlightmaterial: {fileID: 2100000, guid: 5c9bc6abef1d24a409e45ed1016183ea, type: 2}
+  UImaterial: {fileID: 0}
+  highlightmaterial: {fileID: 0}
   towerBasic: {fileID: 0}
   currentlyTouching: {fileID: 0}
   baseCost: 25
@@ -2000,19 +1975,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subPanel: {fileID: 1923623122972244}
---- !u!114 &114889124321553056
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1923623122972244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ad05092c9c50c41935d06b6d9331cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UImaterial: {fileID: 2100000, guid: 3f1b9d6db23d3df41af46cc948ee8ccb, type: 2}
-  highlightmaterial: {fileID: 2100000, guid: 5c9bc6abef1d24a409e45ed1016183ea, type: 2}
+  UImaterial: {fileID: 0}
+  highlightmaterial: {fileID: 0}
   towerBasic: {fileID: 0}
   currentlyTouching: {fileID: 0}
   baseCost: 25

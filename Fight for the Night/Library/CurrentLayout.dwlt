@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 471}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -108,7 +108,7 @@ MonoBehaviour:
     y: 30
     width: 1680
     height: 917
-  m_MinSize: {x: 917, y: 421}
+  m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
   controlID: 28
@@ -132,8 +132,8 @@ MonoBehaviour:
     y: 0
     width: 625
     height: 917
-  m_MinSize: {x: 202, y: 421}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 202, y: 442}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
   controlID: 29
 --- !u!114 &7
@@ -180,8 +180,8 @@ MonoBehaviour:
     y: 323
     width: 625
     height: 594
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
-  m_Stats: 0
+  m_Stats: 1
   m_SelectedSizes: 06000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
   m_ZoomArea:
@@ -369,14 +369,14 @@ MonoBehaviour:
     height: 302
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 4472.7841526537395
+  lastFramingTime: 383.12024346774524
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 2.6300263, y: 1.6998831, z: 4.999481}
+    m_Target: {x: -3.7368135, y: 3.5149999, z: 1.4269505}
     speed: 2
-    m_Value: {x: 2.6300263, y: 1.6998831, z: 4.999481}
+    m_Value: {x: -3.7368135, y: 3.5149999, z: 1.4269505}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -406,11 +406,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 0.99999994}
     speed: 2
-    m_Value: {x: -0, y: 0, z: -0, w: -0.99999994}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 3.693526
+    m_Target: 22
     speed: 2
-    m_Value: 3.693526
+    m_Value: 22
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -578,7 +578,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0e2effff08ecffffe4fbffffe6fbfffff4ffffff00000000
+    m_ExpandedIDs: 4ab9ffffc8f3ffffd8f3ffffeaf3ffffecf3fffff6f3ffff0af4ffff0cf4ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -639,20 +639,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Materials
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\mashwin\Documents\LuckyDuck300\Fight for the Night
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 760d0000
-    m_LastClickedID: 3446
-    m_ExpandedIDs: 00000000d40a0000e40a00003a0b0000240d0000760d0000f80e00007a0f0000820f0000d60f0000041000007e10000072110000161200007813000014190000301900000c1b0000961b0000d81b00007e1c0000404400004244000000ca9a3b
+    m_SelectedIDs: d0420000
+    m_LastClickedID: 17104
+    m_ExpandedIDs: 00000000a6370000ac37000002380000c0390000003a00006e3b0000ee3b0000f63b00004a3c0000703c0000e83c0000c23d0000643e0000be3f00001a45000030450000ec4600005e470000a047000040480000ac490000ae49000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -680,7 +680,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d40a0000e40a00003a0b0000240d0000760d0000f80e00007a0f0000820f0000d60f0000041000007e10000072110000161200007813000014190000301900000c1b0000961b0000d81b00007e1c00004044000042440000
+    m_ExpandedIDs: 00000000a6370000ac37000002380000c0390000003a00006e3b0000ee3b0000f63b00004a3c0000703c0000e83c0000c23d0000643e0000be3f00001a45000030450000ec4600005e470000a047000040480000ac490000ae490000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -711,18 +711,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: f04000002ee3ffffa2350000aaee0000580a00001607000048280000fa2700004a280000e8290000962900008e240000e6250000542400008640feff782500002e2500006e26000022400000362400003a24000084240000c6310000a4240000303100001e19ffff66250000062500003a250000f8240000402500000c250000482500003025000038310000382700006c2a0000162a0000d82a00001ce1faff8e3c0000f09df2ff6ec3e8fff08df6ffb873f6ff4687e7ff0231000002fde3ffc015e0ff523e000064de00007ade000080b2e6fffe6900002e7e000020300000062c0000043300002c08000052060000eca7ffff740e000090450000760e00007c0e00002e17000046170000280b0000d01800005c120000380b000042190000560d000038180000f2190000ec1100003a1700003a0b0000180f00004806000000000000301200006411000028190000a61a00000e1900007a1a00003e1b0000be3c0000ea0d0000761b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: NewTowerUI
+      m_OriginalName: NewTowerUI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 25070
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:

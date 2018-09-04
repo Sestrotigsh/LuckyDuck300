@@ -34,7 +34,7 @@ public class PlayerCameraTaunt : MonoBehaviour {
     private float tauntRemainingTime;
 
     // Use this for initialization
-    void Start () {
+    void Start() { 
 
         initialCamera = Camera.main;
         if (this.gameObject.CompareTag("Player0"))
