@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1025737911306040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1911916398614592
 GameObject:
   m_ObjectHideFlags: 1
@@ -3306,6 +3306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ad05092c9c50c41935d06b6d9331cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UImaterial: {fileID: 0}
+  highlightmaterial: {fileID: 0}
+  towerBasic: {fileID: 0}
+  currentlyTouching: {fileID: 0}
+  baseCost: 25
+  team: 0
 --- !u!114 &114296599398947450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3677,7 +3683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b75957e7cb4a12b4cb5ece7cae71a880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghost: {fileID: 1024367715191114, guid: b1beeec163d006c4596433c2b3a8b87f, type: 2}
+  ghost: {fileID: 1014720736935786}
   towerBasic: {fileID: 1828147354518128, guid: fcc03ff277df2aa44a5dd428dacceda5, type: 2}
   tower1: {fileID: 1404462247351014, guid: 259f8de542c81304d9c855e36d418056, type: 2}
   tower2: {fileID: 1051622316023276, guid: f066301322f96264cbdde1a0450e3b0b, type: 2}
