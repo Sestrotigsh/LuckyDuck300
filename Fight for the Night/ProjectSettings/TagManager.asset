@@ -40,6 +40,8 @@ TagManager:
   - SpawnMonster0
   - SpawnMonster1
   - Spawn
+  - Lobby
+  - Lighting
   layers:
   - Default
   - TransparentFX

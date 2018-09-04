@@ -1509,7 +1509,7 @@ GameObject:
   - component: {fileID: 390306052}
   m_Layer: 5
   m_Name: LobbyManager
-  m_TagString: Untagged
+  m_TagString: Lobby
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2110,6 +2110,7 @@ MonoBehaviour:
   startMenu: {fileID: 0}
   controls: {fileID: 0}
   sounds: {fileID: 0}
+  LobbyManager: {fileID: 0}
 --- !u!114 &636529626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3857,6 +3858,7 @@ MonoBehaviour:
   startMenu: {fileID: 1218316434}
   controls: {fileID: 1203777063}
   sounds: {fileID: 1224869964}
+  LobbyManager: {fileID: 0}
 --- !u!1 &1224869964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1677359294974584, guid: b3936bf7ee971c143b5aba3d187624f8,
@@ -4890,10 +4892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9adbdac65a982174e9529faae40a5888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionsPanel: {fileID: 0}
-  startMenu: {fileID: 0}
+  optionsPanel: {fileID: 1218316434}
+  startMenu: {fileID: 884047339}
   controls: {fileID: 0}
   sounds: {fileID: 0}
+  LobbyManager: {fileID: 390306044}
 --- !u!1 &1512035236
 GameObject:
   m_ObjectHideFlags: 0
@@ -4989,7 +4992,7 @@ GameObject:
   - component: {fileID: 1522321709}
   - component: {fileID: 1522321708}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5963,6 +5966,7 @@ MonoBehaviour:
   startMenu: {fileID: 0}
   controls: {fileID: 0}
   sounds: {fileID: 0}
+  LobbyManager: {fileID: 0}
 --- !u!114 &1828176252
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class ButtonScripts : MonoBehaviour {
+public class ButtonScripts : NetworkBehaviour {
 ///// CONTROL UI BUTTONS
 
 	public GameObject optionsPanel;
 	public GameObject startMenu;
 	public GameObject controls;
 	public GameObject sounds;
+    public GameObject LobbyManager;
 
 	/// <summary>
 	/// Load the main menu of the game.
@@ -45,6 +47,9 @@ public class ButtonScripts : MonoBehaviour {
 
     public void Tutorial()
     {
+        optionsPanel.SetActive(false);
+        startMenu.SetActive(false);
+        LobbyManager.GetComponent<NetworkManager>().enabled = false;
         SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
     }
 
