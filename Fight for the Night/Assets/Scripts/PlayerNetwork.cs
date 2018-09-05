@@ -72,28 +72,32 @@ public class PlayerNetwork : NetworkBehaviour {
 		} else {
 			CmdUpdateHealth (health);
 		}
+
 		if (health <= 0) {
-			// If the player is on the server - tell the client to win
-			if (isServer) {
-				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-					RpcVictoryAlien();
-				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
-					RpcVictorySlasher();
-				}
+			if (isLocalPlayer) {
+				// If the player is on the server - tell the client to win
+				if (isServer) {
+					if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+						RpcVictoryAlien();
+					} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+						RpcVictorySlasher();
+					}
 			// if the player is a client - tell the server to win
-			} else {
+				} else {
+					if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+						CmdVictoryAlien();
+					} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+						CmdVictorySlasher();
+					}
+				}
+				// end in defeat
 				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-					CmdVictoryAlien();
+					SceneManager.LoadScene("DefeatAlien", LoadSceneMode.Single);
 				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
-					CmdVictorySlasher();
+					SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Single);
 				}
 			}
-			// end in defeat
-			if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-				SceneManager.LoadScene("DefeatAlien", LoadSceneMode.Single);
-			} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
-				SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Single);
-			}			
+			
 		}
 	}
 
