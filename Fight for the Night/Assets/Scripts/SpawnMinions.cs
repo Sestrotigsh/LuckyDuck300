@@ -22,8 +22,18 @@ public class SpawnMinions : NetworkBehaviour {
     public int monster2Cost;
 	public int monster2IncomeBoost;
 
-	// Use this for initialization
-	void Start () {
+    // Other variables
+    private bool player0Check = false;
+    private bool player1Check = false;
+
+    private string playerType = null;
+
+    private PlayerNetwork player0;
+    private PlayerNetwork player1;
+
+
+    // Use this for initialization
+    void Start () {
 		playerMan = this.GetComponent<PlayerManagement> ();
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
 		if (!PlayerNet.local) {
@@ -36,26 +46,71 @@ public class SpawnMinions : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//if (Input.GetKeyDown("u")) {
-			//if (playerMan.currentGold >= monster1Cost) {
-				//CmdSendMonster1(true, 11);
-				//playerMan.currentGold -= monster1Cost;
-				//playerMan.currentIncome += monster1IncomeBoost;
-			//}
-		//}
-        // else if (Input.GetKeyDown("i")) {
-            //if (playerMan.currentGold >= monster1Cost) {
-               // CmdSendMonster1(true, 22);
-                //playerMan.currentGold -= monster1Cost;
-                //playerMan.currentIncome += monster1IncomeBoost;
-           // }
-       // }
-		if (Input.GetKeyDown("o")) {
+
+        // Check the first player is in game
+        if (player0Check == false)
+        {
+            if (GameObject.FindGameObjectWithTag("Player0"))
+            {
+                player0 = GameObject.FindGameObjectWithTag("Player0").GetComponent<PlayerNetwork>();
+                player0Check = true;
+            }
+        }
+
+        // Check the second player is in game
+        if (player1Check == false)
+        {
+            if (GameObject.FindGameObjectWithTag("Player1"))
+            {
+                player1 = GameObject.FindGameObjectWithTag("Player1").GetComponent<PlayerNetwork>();
+                player1Check = true;
+            }
+        }
+
+        // Check for opponent
+        if (player0Check == true && player1Check == true && playerType == null)
+        {
+            if (this.tag == "Player0")
+            {
+                if (player1.opponent.transform.Find("AlienClothes").gameObject.activeSelf == true)
+                {
+                    playerType = "Alien";
+                }
+                else
+                {
+                    playerType = "Slasher";
+                }
+            } else
+            {
+                if (player0.opponent.transform.Find("AlienClothes").gameObject.activeSelf == true)
+                {
+                    playerType = "Alien";
+                }
+                else
+                {
+                    playerType = "Slasher";
+                }
+            }                     
+
+        }
+
+
+        if (Input.GetKeyDown("o")) {
 			if (playerMan.currentGold >= monster1Cost) {
-				if (PlayerNet.team == 0) {
-            		CmdSendMonster1Alien();
-				} else if (PlayerNet.team == 1) {
-					CmdSendMonster1Slasher();
+				if (playerType == "Alien") {
+                    // Check which team is spawning
+                    if (enemySpawner.tag == "SpawnMonster0") {
+                        CmdSendMonster1Alien(1,-10);
+                    } else {
+                        CmdSendMonster1Alien(0,-10);
+                    }
+				} else {
+                    // Check which team is spawning
+                    if (enemySpawner.tag == "SpawnMonster0") {
+                        CmdSendMonster1Slasher(1,-10);
+                    } else {
+                        CmdSendMonster1Slasher(0,-10);
+                    }
 				}
 				playerMan.currentGold -= monster1Cost;
 				playerMan.currentIncome += monster1IncomeBoost;
@@ -63,10 +118,20 @@ public class SpawnMinions : NetworkBehaviour {
 		}
         else if (Input.GetKeyDown("p")) {
             if (playerMan.currentGold >= monster2Cost) {
-            	if (PlayerNet.team == 0) {
-            		CmdSendMonster2Alien();
-				} else if (PlayerNet.team == 1) {
-					CmdSendMonster2Slasher();
+            	if (playerType == "Alien") {
+                    // Check which team is spawning
+                    if (enemySpawner.tag == "SpawnMonster0") {
+                        CmdSendMonster2Alien(1,-10);
+                    } else {
+                        CmdSendMonster2Alien(0,-10);
+                    }
+				} else {
+                    // Check which team is spawning
+                    if (enemySpawner.tag == "SpawnMonster0") {
+                        CmdSendMonster2Slasher(1,-10);
+                    } else {
+                        CmdSendMonster2Slasher(0,-10);
+                    }
 				}
                 playerMan.currentGold -= monster2Cost;
                 playerMan.currentIncome += monster2IncomeBoost;
@@ -74,71 +139,48 @@ public class SpawnMinions : NetworkBehaviour {
         }
 	}
 
+
 	[Command]
-    void CmdSendMonster1Alien() {
+    // minion team is a value denoting the minions team
+    // monsterPlaceholder is a value of -10 to define the enemy is a monster
+    void CmdSendMonster1Alien(int minionTeam, int monsterPlaceholder) {
 		var currentMonster = Instantiate(monster1Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
 		currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
-		if (enemySpawner.tag == "SpawnMonster0")
-        {
-            currentMonster.tag = "Enemy0";
-        }
-        else
-        {
-            currentMonster.tag = "Enemy1";
-        }
-        //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
-       // currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        currentMonster.GetComponent<EnemyTagging>().team = minionTeam;
+        currentMonster.GetComponent<EnemyTagging>().path = monsterPlaceholder;
         NetworkServer.Spawn (currentMonster);
 	}
 
 	[Command]
-    void CmdSendMonster2Alien() {
+    // minion team is a value denoting the minions team
+    // monsterPlaceholder is a value of -10 to define the enemy is a monster
+    void CmdSendMonster2Alien(int minionTeam, int monsterPlaceholder) {
 		var currentMonster = Instantiate(monster2Alien, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
-        if (enemySpawner.tag == "SpawnMonster0")
-        {
-            currentMonster.tag = "Enemy0";
-        }
-        else
-        {
-            currentMonster.tag = "Enemy1";
-        }
-        //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
-        //currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        currentMonster.GetComponent<EnemyTagging>().team = minionTeam;
+        currentMonster.GetComponent<EnemyTagging>().path = monsterPlaceholder;
         NetworkServer.Spawn (currentMonster);
     }
 
 	[Command]
-    void CmdSendMonster1Slasher() {
+    // minion team is a value denoting the minions team
+    // monsterPlaceholder is a value of -10 to define the enemy is a monster
+    void CmdSendMonster1Slasher(int minionTeam, int monsterPlaceholder) {
 		var currentMonster = Instantiate(monster1Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
-		 if (enemySpawner.tag == "SpawnMonster0")
-        {
-            currentMonster.tag = "Enemy0";
-        }
-        else
-        {
-            currentMonster.tag = "Enemy1";
-        }
-        //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
-       // currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        currentMonster.GetComponent<EnemyTagging>().team = minionTeam;
+        currentMonster.GetComponent<EnemyTagging>().path = monsterPlaceholder;
         NetworkServer.Spawn (currentMonster);
 	}
 
     [Command]
-    void CmdSendMonster2Slasher() {
+    // minion team is a value denoting the minions team
+    // monsterPlaceholder is a value of -10 to define the enemy is a monster
+    void CmdSendMonster2Slasher(int minionTeam, int monsterPlaceholder) {
 		var currentMonster = Instantiate(monster2Slasher, enemySpawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         currentMonster.GetComponent<Enemy>().minionType = Enemy.type.Monster;
-         if (enemySpawner.tag == "SpawnMonster0")
-        {
-            currentMonster.tag = "Enemy0";
-        }
-        else
-        {
-            currentMonster.tag = "Enemy1";
-        }
-        //currentMonster.GetComponent<Enemy>().customPathBool = customPath;
-        //currentMonster.GetComponent<Enemy>().customPathDirection = path;
+        currentMonster.GetComponent<EnemyTagging>().team = minionTeam;
+        currentMonster.GetComponent<EnemyTagging>().path = monsterPlaceholder;
         NetworkServer.Spawn (currentMonster);
     }
 }

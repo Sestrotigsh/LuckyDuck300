@@ -108,8 +108,31 @@ namespace Prototype.NetworkLobby
         }
 
         public void OnClickStart() {
+
+            if (props == null) {
+                var fooGroup = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+                     foreach(GameObject t in fooGroup){
+                        if(t.name == "Props"){
+                            props = t;
+                        }
+                        if (t.name == "DirectionalLight") {
+                            mainLight = t;
+                        }
+                    }
+            }
+
+
+
+
             startMenu.SetActive(false);
             props.SetActive(false);
+
+
+
+
+
+
+
             mainLight.SetActive(true);
             mainPanel.SetActive(true);
             quit.SetActive(true);

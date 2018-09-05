@@ -11,8 +11,6 @@ TagManager:
   - waypoint graph1
   - Enemy0
   - Enemy1
-  - Spawn1
-  - Spawn0
   - Player1
   - Player0
   - Base0
@@ -41,6 +39,9 @@ TagManager:
   - Props1
   - SpawnMonster0
   - SpawnMonster1
+  - Spawn
+  - Lobby
+  - Lighting
   layers:
   - Default
   - TransparentFX

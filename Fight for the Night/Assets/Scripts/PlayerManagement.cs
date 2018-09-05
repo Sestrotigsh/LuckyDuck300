@@ -13,6 +13,9 @@ public class PlayerManagement : MonoBehaviour {
 	public GameObject bankBalanceT;
     public GameObject endGame;
 
+    public Slider healthSlider;
+    public Slider GoldSlider;
+
     private EventTrigger baseHP;
 	private PlayerNetwork player;
     private PlayerNetwork player2;
@@ -69,10 +72,11 @@ public class PlayerManagement : MonoBehaviour {
 
     private void UpdateCanvas() // Update the Base HP on the canvas
     {
-		canvHPT.GetComponent<Text>().text = "Remaining Health : " + player.health;    
-        goldT.GetComponent<Text>().text = "Gold : " + currentGold;      
-        incomeT.GetComponent<Text>().text = "Income : " + currentIncome + " Per "+incomeInterval +" seconds";
-		bankBalanceT.GetComponent<Text> ().text = "Bank : " + currentBank;
+        healthSlider.value = player.health;
+        GoldSlider.value = currentBank + currentIncome;
+		canvHPT.GetComponent<Text>().text = player.health.ToString();
+        goldT.GetComponent<Text>().text =  currentGold.ToString();   
+        incomeT.GetComponent<Text>().text = currentIncome + "/"+incomeInterval + "s";
         if (player.health <= 0)
         {
             endGame.GetComponent<Text>().text = "Defeat";

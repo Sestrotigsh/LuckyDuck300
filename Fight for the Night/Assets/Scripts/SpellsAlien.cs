@@ -93,7 +93,9 @@ public class SpellsAlien : MonoBehaviour
 		spell2T = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
 		foreach (Transform child in transform) if (child.CompareTag("ShootingPoint")) {
-			frontPos = child;
+			if (child.tag != "GameController") {
+				frontPos = child;
+			}
 		}
 	}
 

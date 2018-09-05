@@ -171,7 +171,9 @@ public class playerAnimation : NetworkBehaviour {
 		mainCamera.position = targetPosition;
 		mainCamera.rotation = targetRotation;
 		foreach (Transform child in mainCamera) {
-			accuracyTarget = child;
+			if (child.CompareTag("GameController") == false) {
+				accuracyTarget = child;
+			}
 		}
 	}
 
