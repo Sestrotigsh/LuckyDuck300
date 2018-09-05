@@ -20,6 +20,7 @@ public class EnemyWaves : NetworkBehaviour {
 	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
 	public int waveLength = 3; // Number of second / number of minions the wave will be
 	private int remainingMinions; // The current time the wave start + the waveLength
+    public int waveCount = 0;
 
 
     // Other variables
@@ -153,6 +154,7 @@ public class EnemyWaves : NetworkBehaviour {
 			} else {
 				remainingMinions = waveLength;
 				nextSpawn = nextSpawn + spawnDistance;
+                waveCount = waveCount + 1;
 			}                      
 		}
 	}
@@ -167,6 +169,7 @@ public class EnemyWaves : NetworkBehaviour {
 		var currentEnemy = Instantiate(alienEnemy, spawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         currentEnemy.GetComponent<EnemyTagging>().team = minionTeam;
         currentEnemy.GetComponent<EnemyTagging>().path = newPath;
+        currentEnemy.GetComponent<EnemyTagging>().waveNumber = waveCount;
         NetworkServer.Spawn (currentEnemy);
         
     }
@@ -178,6 +181,7 @@ public class EnemyWaves : NetworkBehaviour {
 		var currentEnemy = Instantiate(slasherEnemy, spawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         currentEnemy.GetComponent<EnemyTagging>().team = minionTeam;
         currentEnemy.GetComponent<EnemyTagging>().path = newPath;
+        currentEnemy.GetComponent<EnemyTagging>().waveNumber = waveCount;
         NetworkServer.Spawn (currentEnemy);
 	}
 

@@ -13,6 +13,7 @@ public class Enemy : NavigationAgent {
 	public int health = 1;
     public float currentHealth;
     public float initialSpeed;
+    public int healthScalingValue;
 
 	// Multiplayer variables
     public int team;
@@ -31,6 +32,7 @@ public class Enemy : NavigationAgent {
     public bool pathReady = false;
     public bool teamReady = false;
     public bool monsterReady = false;
+    public bool healthReady = true;
 
 
         public enum type
@@ -73,10 +75,6 @@ public class Enemy : NavigationAgent {
 
     // Update is called once per frame
     void Update() {
-
-
-
-
         // if the enemy has been assigned as a monster
         if (monsterReady == true) {
             // set it as a monster
@@ -110,6 +108,12 @@ public class Enemy : NavigationAgent {
             startNode = this.GetComponent<EnemyTagging>().path;
             currentPath.Add(startNode);
             pathReady = false;
+        }
+
+        if (healthReady== true)
+        {
+            health = health + healthScalingValue * this.GetComponent<EnemyTagging>().waveNumber;
+            healthReady = false;
         }
 
         // if the path is ready, progress with standard enemy behaviour
@@ -164,19 +168,7 @@ public class Enemy : NavigationAgent {
         if (isStunned == false) {
             Move();
         }
-        }
-
-
-
-
-
-
-
-
-
-
-
-        
+        }       
     }
 
     /// <summary>
@@ -241,7 +233,8 @@ public class Enemy : NavigationAgent {
         endOfStun = Time.time + timeStun;
     }
 
-    IEnumerator Slow(int levelOfSlow, int duration)
+    // A slow of 2 means 50%
+    IEnumerator Slow(float levelOfSlow, int duration)
     {
         moveSpeed = moveSpeed / levelOfSlow;
         yield return new WaitForSeconds(duration);
@@ -249,7 +242,7 @@ public class Enemy : NavigationAgent {
         yield break;
     }
 
-    public void GetSlowed(int levelOfSlow, int duration)
+    public void GetSlowed(float levelOfSlow, int duration)
     {
         StartCoroutine(Slow(levelOfSlow, duration));
     }

@@ -12,6 +12,8 @@ public class EnemyTagging : NetworkBehaviour {
 	[SyncVar]
 	// The pathway defined when spawned
 	public int path = -1;
+    [SyncVar]
+    public int waveNumber;
 
 	// booleans used to stop tags being repeatedly changed in update
 	private bool teamDefined = false;

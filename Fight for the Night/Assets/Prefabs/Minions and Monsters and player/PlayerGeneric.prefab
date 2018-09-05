@@ -6515,6 +6515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subPanel: {fileID: 1845058531763298}
   playerMan: {fileID: 0}
+  subPanelText: {fileID: 0}
 --- !u!114 &114370891497531732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6674,6 +6675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subPanel: {fileID: 1586600680136378}
   playerMan: {fileID: 0}
+  subPanelText: {fileID: 0}
 --- !u!114 &114471113133215294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6978,8 +6980,9 @@ MonoBehaviour:
   alienEnemy: {fileID: 1461145966350000, guid: d9a032e6d13952f49a4cb3df76387536, type: 2}
   slasherEnemy: {fileID: 1531717309921350, guid: 95724f07fee907145a33aa635baa4b3f,
     type: 2}
-  initialSpawn: 0
+  initialSpawn: 15
   waveLength: 3
+  waveCount: 0
 --- !u!114 &114687981220623798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7117,6 +7120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subPanel: {fileID: 1078419362223970}
   playerMan: {fileID: 0}
+  subPanelText: {fileID: 0}
 --- !u!114 &114797375656416214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7306,21 +7310,44 @@ MonoBehaviour:
   slasherGhost: {fileID: 1418053705476450}
   ghost: {fileID: 0}
   towerSelectUI: {fileID: 0}
-  alienTowerBasic: {fileID: 1970418193764904, guid: 7f2eaeb144600294b8981caebd2545fd,
+  iceTowerUI: {fileID: 0}
+  baseTowerUI: {fileID: 0}
+  bombTowerUI: {fileID: 0}
+  alienBase1: {fileID: 1970418193764904, guid: f2c00f6f073c3574fbf4d24d202b7af7, type: 2}
+  alienBase2: {fileID: 1002784785905592, guid: b4e7561f049957b42a5d71b26c4d7adf, type: 2}
+  alienBase3: {fileID: 1185291367291432, guid: 81e6eabb023e93c498e5be49b891b32c, type: 2}
+  alienBase4: {fileID: 1532633202661860, guid: db8b671b7b3c60c4598b69dbc6df9041, type: 2}
+  alienBomb1: {fileID: 1617705710364176, guid: 6eecb5c45b582d04895ffbb7725460e5, type: 2}
+  alienBomb2: {fileID: 1987252893194010, guid: a86976232954e09459d960ffc0fd4b69, type: 2}
+  alienBomb3: {fileID: 1481333787656828, guid: 1bc0e21a3113ff04d9472cc08614dce7, type: 2}
+  alienBomb4: {fileID: 1419700400629930, guid: 414a0f8c48ad287499407988349642c3, type: 2}
+  alienIce1: {fileID: 1414783006424748, guid: 4369b8bca0c9f6544b671b8f18545c56, type: 2}
+  alienIce2: {fileID: 1386629922454800, guid: 8541b09973164d046869544b40ed3872, type: 2}
+  alienIce3: {fileID: 1430635496109656, guid: a103e45ba31849441839db4bbd1dee71, type: 2}
+  alienIce4: {fileID: 1487657099318266, guid: a9dfc87f08ec3fb4baf656c1ca1c7602, type: 2}
+  slasherBase1: {fileID: 1828147354518128, guid: c5b3e6a2867bd5b4f9ab9fd004eb3ada,
     type: 2}
-  alienTower1: {fileID: 1002784785905592, guid: 0b501d1589e9cb449811075663896199,
+  slasherBase2: {fileID: 1404462247351014, guid: bc515a2c1904d714fab6e69ca3922af0,
     type: 2}
-  alienTower2: {fileID: 1185291367291432, guid: 5fe70b3061a867d44a610aaf553b12b0,
+  slasherBase3: {fileID: 1051622316023276, guid: 343f11e555607784c96b58f40460fd6d,
     type: 2}
-  alienTower3: {fileID: 1532633202661860, guid: 5bd7b8c570b3d95478cc7b1f89e5d691,
+  slasherBase4: {fileID: 1871181136148934, guid: 364c10edcfdcc924588955cbd96f7217,
     type: 2}
-  slasherTowerBasic: {fileID: 1440116854437626, guid: a3445a6a6712feb40b6bf21d764e75f7,
+  slasherBomb1: {fileID: 1722946059693134, guid: 2ceb2f44cbc5db24890db0b8811809f9,
     type: 2}
-  slasherTower1: {fileID: 1580697150997428, guid: d6cd442d49516ca46bbed5cdce45170a,
+  slasherBomb2: {fileID: 1851728744861962, guid: 1b17223e0ae9aa04ea4cb2ea43f61245,
     type: 2}
-  slasherTower2: {fileID: 1017607573988506, guid: 8fa4f32879c2abe43aae2ce7b24b153e,
+  slasherBomb3: {fileID: 1518670231162742, guid: a0aaae7f8fd8df14ca809f5953f656e0,
     type: 2}
-  slasherTower3: {fileID: 1111356058568704, guid: 95ed917ad5f44cb42b19647670b1e772,
+  slasherBomb4: {fileID: 1410606534504292, guid: a3117c5c46098fc44ae6760053aa16fb,
+    type: 2}
+  slasherIce1: {fileID: 1992496858073182, guid: 1b158ea2ab6cc1e43b93c057e2385ecf,
+    type: 2}
+  slasherIce2: {fileID: 1129650943328396, guid: a85c2846e55666e4d94d641da204ed92,
+    type: 2}
+  slasherIce3: {fileID: 1316868994380014, guid: 3373f81443d441e488ed0cf08a29751c,
+    type: 2}
+  slasherIce4: {fileID: 1302138140966512, guid: c1bab38e5d15cd345a0e094b33303d4a,
     type: 2}
   currentlyTouching: {fileID: 0}
   baseCost: 10
