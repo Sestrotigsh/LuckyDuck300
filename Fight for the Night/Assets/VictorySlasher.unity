@@ -156,6 +156,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 137620816020652286, guid: 610d29daff137e84c9893cc9f724b099,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1362fffe25ed4546b539b6b004138d1, type: 2}
+    - target: {fileID: 137620816020652286, guid: 610d29daff137e84c9893cc9f724b099,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a1362fffe25ed4546b539b6b004138d1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 610d29daff137e84c9893cc9f724b099, type: 2}
   m_IsPrefabAsset: 0
@@ -392,6 +402,7 @@ MonoBehaviour:
   startMenu: {fileID: 0}
   controls: {fileID: 0}
   sounds: {fileID: 0}
+  LobbyManager: {fileID: 0}
 --- !u!114 &613844763
 MonoBehaviour:
   m_ObjectHideFlags: 0

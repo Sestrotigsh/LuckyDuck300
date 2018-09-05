@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -15,7 +15,7 @@ public class EnemyWaves : NetworkBehaviour {
 
     System.Random rand = new System.Random();
 
-	private int nextSpawn; // Determine the start of the next Wave
+	private float nextSpawn; // Determine the start of the next Wave
 	public int initialSpawn; // Determine the time for the first wavespawn
 	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
 	public int waveLength = 3; // Number of second / number of minions the wave will be
@@ -110,7 +110,7 @@ public class EnemyWaves : NetworkBehaviour {
 	private void Wave() {
 		if (Time.timeSinceLevelLoad > nextSpawn) {
 			if (remainingMinions > 0) {
-				nextSpawn = nextSpawn + 1;
+				nextSpawn = nextSpawn + 2.0f;
 				
                 if (player0Opp == "Alien")
                 {
@@ -149,6 +149,7 @@ public class EnemyWaves : NetworkBehaviour {
                 }
 
 				remainingMinions = remainingMinions - 1;
+
 			} else {
 				remainingMinions = waveLength;
 				nextSpawn = nextSpawn + spawnDistance;
