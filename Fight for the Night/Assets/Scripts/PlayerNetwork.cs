@@ -80,7 +80,6 @@ public class PlayerNetwork : NetworkBehaviour {
 				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
 					RpcVictorySlasher();
 				}
-				
 			// if the player is a client - tell the server to win
 			} else {
 				if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {

@@ -31,8 +31,9 @@ public class PlayerTower : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
-		if (!PlayerNet.local) {
-			enabled = false;
+		if (isLocalPlayer == false) {
+			this.enabled = false;
+			return;
 		}
 		
 
@@ -186,7 +187,7 @@ public class PlayerTower : NetworkBehaviour {
 						}
 					}
 				}
-				ghost.SetActive(false);
+				//ghost.SetActive(false);
 		}
 
 	}

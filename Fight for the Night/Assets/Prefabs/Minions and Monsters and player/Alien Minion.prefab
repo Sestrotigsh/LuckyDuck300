@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4782087053185586}
   - component: {fileID: 95664257138758552}
+  - component: {fileID: 114744490794024740}
   m_Layer: 0
   m_Name: UFO_v2 (1)
   m_TagString: Untagged
@@ -375,6 +376,9 @@ MonoBehaviour:
   newState: 0
   startNode: 0
   goal: 0
+  pathReady: 0
+  teamReady: 0
+  monsterReady: 0
   minionType: 0
   healthBar: {fileID: 114157281862110752}
   value: 1
@@ -538,6 +542,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
+  path: -1
+--- !u!114 &114744490794024740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1334056289622124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e5e450f544b034db33998065a045c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114959522392723686
 MonoBehaviour:
   m_ObjectHideFlags: 1
