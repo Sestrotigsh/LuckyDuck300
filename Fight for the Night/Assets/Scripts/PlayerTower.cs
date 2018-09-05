@@ -10,7 +10,8 @@ public class PlayerTower : NetworkBehaviour {
 	public GameObject alienGhostRenderer;
 	public GameObject slasherGhost;
 	public GameObject ghost;
-	public GameObject alienTowerBasic;
+    public GameObject towerSelectUI;
+    public GameObject alienTowerBasic;
 	public GameObject alienTower1;
 	public GameObject alienTower2;
 	public GameObject alienTower3;
@@ -29,13 +30,13 @@ public class PlayerTower : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		ghost = null;
-
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
 		if (!PlayerNet.local) {
 			enabled = false;
 		}
+		
 
+        /* Replaced by UI
 		if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
 			ghost = alienGhost;
 			isAlien = true;
@@ -46,13 +47,19 @@ public class PlayerTower : NetworkBehaviour {
 			ghost.SetActive(true);
 			isAlien = false;
 			ghost.GetComponent<Renderer> ().enabled = false;
-		}
+		}*/
 		
 		currentlyTouching = null;
+		ghost = GameObject.FindWithTag("GameController");
+		ghost.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
+			isAlien = true;
+		}
+		/* 
 		if (ghost == null) {
 			if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
 				ghost = alienGhost;
@@ -66,63 +73,13 @@ public class PlayerTower : NetworkBehaviour {
 				ghost.GetComponent<Renderer> ().enabled = false;
 			}
 		}
-
+		*/
 		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
-			Debug.Log("SHIFT");
-			ghost.GetComponent<Renderer> ().enabled = true;
+            ghost.SetActive(true);
 		} 
 
 		if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift)) {
-			ghost.GetComponent<Renderer> ().enabled = false;
-		}
-
-		// if player clicks then instantiate the tower model
-		if (ghost.GetComponent<Renderer> ().enabled == true) {
-			if (Input.GetButtonDown ("Fire1")) {
-				if (currentlyTouching == null) {
-					if (this.GetComponent<PlayerManagement> ().currentGold >= baseCost) {
-						if (isAlien == true) {
-							CmdcreateTower1Alien (ghost.transform.position, ghost.transform.rotation);
-						} else {
-							CmdcreateTower1Slasher (ghost.transform.position, ghost.transform.rotation);
-						}
-						this.GetComponent<PlayerManagement> ().currentGold -= baseCost;
-					}
-				} else {
-					if (currentlyTouching.CompareTag ("TowerBase")) {
-						if (this.GetComponent<PlayerManagement> ().currentGold >= level2Cost) {
-							Destroy(currentlyTouching);
-							if (isAlien == true) {
-								CmdcreateTower2Alien (ghost.transform.position, ghost.transform.rotation);
-							} else {
-								CmdcreateTower2Slasher (ghost.transform.position, ghost.transform.rotation);
-							}
-							this.GetComponent<PlayerManagement> ().currentGold -= level2Cost;
-						}
-					} else if (currentlyTouching.CompareTag ("Tower1")) {
-						if (this.GetComponent<PlayerManagement> ().currentGold >= level3Cost) {
-							Destroy(currentlyTouching);
-							if (isAlien == true) {
-								CmdcreateTower3Alien (ghost.transform.position, ghost.transform.rotation);
-							} else {
-								CmdcreateTower3Slasher (ghost.transform.position, ghost.transform.rotation);
-							}
-							this.GetComponent<PlayerManagement> ().currentGold -= level3Cost;
-						}
-					} else if (currentlyTouching.CompareTag ("Tower2")) {
-						if (this.GetComponent<PlayerManagement> ().currentGold >= level4Cost) {
-							Destroy(currentlyTouching);
-							if (isAlien == true) {
-								CmdcreateTower4Alien (ghost.transform.position, ghost.transform.rotation);
-							} else {
-								CmdcreateTower4Slasher (ghost.transform.position, ghost.transform.rotation);
-							}
-							this.GetComponent<PlayerManagement> ().currentGold -= level4Cost;
-						}
-					}
-				}
-				ghost.GetComponent<Renderer> ().enabled = false;
-			}
+			ghost.SetActive(false);
 		}
 	}
 
@@ -185,4 +142,51 @@ public class PlayerTower : NetworkBehaviour {
 		if (other.gameObject == currentlyTouching)
 			currentlyTouching = null;
 	}
-}
+
+	public void RecieveDirections (int towerChoice) {
+		if (currentlyTouching == null) { 
+			if (this.GetComponent<PlayerManagement> ().currentGold >= baseCost) {
+				if (isAlien == true) {
+					CmdcreateTower1Alien (alienGhost.transform.position, alienGhost.transform.rotation);
+				} else {
+					CmdcreateTower1Slasher (slasherGhost.transform.position, slasherGhost.transform.rotation);
+				}
+				this.GetComponent<PlayerManagement> ().currentGold -= baseCost;
+			}
+			} else {
+					if (currentlyTouching.CompareTag ("TowerBase")) {
+						if (this.GetComponent<PlayerManagement> ().currentGold >= level2Cost) {
+							Destroy(currentlyTouching);
+							if (isAlien == true) {
+								CmdcreateTower2Alien (alienGhost.transform.position, alienGhost.transform.rotation);
+							} else {
+								CmdcreateTower2Slasher (slasherGhost.transform.position, slasherGhost.transform.rotation);
+							}
+							this.GetComponent<PlayerManagement> ().currentGold -= level2Cost;
+						}
+					} else if (currentlyTouching.CompareTag ("Tower1")) {
+						if (this.GetComponent<PlayerManagement> ().currentGold >= level3Cost) {
+							Destroy(currentlyTouching);
+							if (isAlien == true) {
+								CmdcreateTower3Alien (alienGhost.transform.position, alienGhost.transform.rotation);
+							} else {
+								CmdcreateTower3Slasher (slasherGhost.transform.position, slasherGhost.transform.rotation);
+							}
+							this.GetComponent<PlayerManagement> ().currentGold -= level3Cost;
+						}
+					} else if (currentlyTouching.CompareTag ("Tower2")) {
+						if (this.GetComponent<PlayerManagement> ().currentGold >= level4Cost) {
+							Destroy(currentlyTouching);
+							if (isAlien == true) {
+								CmdcreateTower4Alien (alienGhost.transform.position, alienGhost.transform.rotation);
+							} else {
+								CmdcreateTower4Slasher (slasherGhost.transform.position, slasherGhost.transform.rotation);
+							}
+							this.GetComponent<PlayerManagement> ().currentGold -= level4Cost;
+						}
+					}
+				}
+				ghost.SetActive(false);
+		}
+
+	}
