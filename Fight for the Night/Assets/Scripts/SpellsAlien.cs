@@ -89,8 +89,8 @@ public class SpellsAlien : MonoBehaviour
 		audioS = GetComponent<AudioSource>();
 
 		canv = this.transform.Find("Canvas").gameObject;
-		spell1T = canv.transform.Find("Spell1").gameObject.transform.Find("Text").gameObject;
-		spell2T = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
+		spell1T = canv.transform.Find("Spell1(Alien)").gameObject.transform.Find("Text").gameObject;
+		spell2T = canv.transform.Find("Spell2(Alien)").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
 		foreach (Transform child in transform) if (child.CompareTag("ShootingPoint")) {
 			if (child.tag != "GameController") {
