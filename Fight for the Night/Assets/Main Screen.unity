@@ -1542,10 +1542,10 @@ MonoBehaviour:
   m_OfflineScene: Main Screen
   m_OnlineScene: 
   m_SpawnPrefabs:
-  - {fileID: 1828147354518128, guid: fcc03ff277df2aa44a5dd428dacceda5, type: 2}
-  - {fileID: 1404462247351014, guid: 259f8de542c81304d9c855e36d418056, type: 2}
-  - {fileID: 1051622316023276, guid: f066301322f96264cbdde1a0450e3b0b, type: 2}
-  - {fileID: 1871181136148934, guid: 4e02868b8ea2acb488825d0c82bfff1f, type: 2}
+  - {fileID: 1440116854437626, guid: a3445a6a6712feb40b6bf21d764e75f7, type: 2}
+  - {fileID: 1580697150997428, guid: d6cd442d49516ca46bbed5cdce45170a, type: 2}
+  - {fileID: 1017607573988506, guid: 8fa4f32879c2abe43aae2ce7b24b153e, type: 2}
+  - {fileID: 1111356058568704, guid: 95ed917ad5f44cb42b19647670b1e772, type: 2}
   - {fileID: 1380171019409932, guid: e26272fcde7ce4d48ba628b972a1a2e5, type: 2}
   - {fileID: 1009755382640590, guid: 149716928ac47734a9a33608bbc5b901, type: 2}
   - {fileID: 1461145966350000, guid: d9a032e6d13952f49a4cb3df76387536, type: 2}

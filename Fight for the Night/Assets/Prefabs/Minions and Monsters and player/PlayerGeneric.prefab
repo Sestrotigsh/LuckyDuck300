@@ -7314,13 +7314,13 @@ MonoBehaviour:
     type: 2}
   alienTower3: {fileID: 1532633202661860, guid: 5bd7b8c570b3d95478cc7b1f89e5d691,
     type: 2}
-  slasherTowerBasic: {fileID: 1828147354518128, guid: fcc03ff277df2aa44a5dd428dacceda5,
+  slasherTowerBasic: {fileID: 1440116854437626, guid: a3445a6a6712feb40b6bf21d764e75f7,
     type: 2}
-  slasherTower1: {fileID: 1404462247351014, guid: 259f8de542c81304d9c855e36d418056,
+  slasherTower1: {fileID: 1580697150997428, guid: d6cd442d49516ca46bbed5cdce45170a,
     type: 2}
-  slasherTower2: {fileID: 1051622316023276, guid: f066301322f96264cbdde1a0450e3b0b,
+  slasherTower2: {fileID: 1017607573988506, guid: 8fa4f32879c2abe43aae2ce7b24b153e,
     type: 2}
-  slasherTower3: {fileID: 1871181136148934, guid: 4e02868b8ea2acb488825d0c82bfff1f,
+  slasherTower3: {fileID: 1111356058568704, guid: 95ed917ad5f44cb42b19647670b1e772,
     type: 2}
   currentlyTouching: {fileID: 0}
   baseCost: 10

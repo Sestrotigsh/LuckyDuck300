@@ -956,6 +956,7 @@ MonoBehaviour:
   Firepower: 2400
   projectile: {fileID: 1006770151592932, guid: da9790cdf2bc8414b9f93d6b868c705f, type: 2}
   barrel: {fileID: 4604036895242894}
+  team: 0
 --- !u!114 &114932046737137102
 MonoBehaviour:
   m_ObjectHideFlags: 1

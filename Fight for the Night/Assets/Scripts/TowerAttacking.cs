@@ -11,6 +11,8 @@ public class TowerAttacking : MonoBehaviour {
 	public float turnSpeed = 10.0f;
 	private float fireCountdown = 0.0f;
 
+	private float centreLineX = 190.0f;
+
 	public float Firepower = 800f;
 	public GameObject projectile;
 	public Transform barrel;
@@ -20,11 +22,16 @@ public class TowerAttacking : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		if (this.transform.position.x < centreLineX) {
+			team = 0;
+		} else {
+			team = 1;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
 		UpdateTarget();
 		if (target == null) {
 			return;
