@@ -35,6 +35,10 @@ public class playerAnimation : NetworkBehaviour {
 	private float initialDistance;
 	private float currentDistance;
 
+
+	float h;
+	float v;
+
 	private Vector3 oldPos;
 	private Vector3 newPos;
 
@@ -114,8 +118,8 @@ public class playerAnimation : NetworkBehaviour {
 
 		MoveCamera();
 		shootingPoint.LookAt(accuracyTarget);
-		float h = CrossPlatformInputManager.GetAxis ("Horizontal");
-		float v = CrossPlatformInputManager.GetAxis ("Vertical");
+		h = CrossPlatformInputManager.GetAxis ("Horizontal");
+		v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
 		//transform.Rotate (0, h * rotateAmount, 0);
 		transform.Rotate (0, h / 2.0f, 0);
@@ -220,4 +224,15 @@ public class playerAnimation : NetworkBehaviour {
     public void Yell() {
     	anim.SetTrigger("Yell");
     }
+
+    // Minions push the player
+    void OnTriggerStay(Collider other) {
+    	if (other.CompareTag("Enemy0") || other.CompareTag("Enemy1")) {
+    		if (v > -0.01 && v < 0.01) {
+    			transform.position -= transform.forward * Time.deltaTime * speedMultiplier*2.0f;
+    		} else {
+    			transform.position -= transform.forward * Time.deltaTime * v*speedMultiplier*2.0f;
+    		}
+   		 }
+	}
 }

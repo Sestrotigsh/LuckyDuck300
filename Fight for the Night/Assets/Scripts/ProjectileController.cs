@@ -17,7 +17,7 @@ public class ProjectileController : MonoBehaviour {
     };
     public type currentType;
     // Slow value work as follow : 1 : 0% slow, 2 : 50% slow, 3 : 66% slow etc.
-    public int slowValue;
+    public float slowValue;
     public int duration;
 
     //AOE values

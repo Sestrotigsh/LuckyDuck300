@@ -18,6 +18,10 @@ public class ChoosePlayer : NetworkBehaviour {
 	public Avatar slasherAvatar;
 	public bool slasherChosen = false;
 	public bool alienChosen = false;
+	public GameObject AlienSpell1;
+	public GameObject AlienSpell2;
+	public GameObject SlasherSpell1;
+	public GameObject SlasherSpell2;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +35,8 @@ public class ChoosePlayer : NetworkBehaviour {
 			alienChosen = true;
 			this.GetComponent<Animator>().avatar = alienAvatar;
 			if (this.GetComponent<PlayerNetwork>().local) {
+				AlienSpell1.SetActive(true);
+				AlienSpell2.SetActive(true);
 				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
 			}
 			this.GetComponent<Animator>().runtimeAnimatorController = alienController;
@@ -46,7 +52,10 @@ public class ChoosePlayer : NetworkBehaviour {
 			this.GetComponent<Animator>().avatar = slasherAvatar;
 
 			if (this.GetComponent<PlayerNetwork>().local) {
+				SlasherSpell1.SetActive(true);
+				SlasherSpell2.SetActive(true);
 				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
+
 			}
 			this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
 		}

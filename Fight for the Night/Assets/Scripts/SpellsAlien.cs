@@ -89,8 +89,8 @@ public class SpellsAlien : MonoBehaviour
 		audioS = GetComponent<AudioSource>();
 
 		canv = this.transform.Find("Canvas").gameObject;
-		spell1T = canv.transform.Find("Spell1").gameObject.transform.Find("Text").gameObject;
-		spell2T = canv.transform.Find("Spell2").gameObject.transform.Find("Text").gameObject;
+		spell1T = canv.transform.Find("Spell1(Alien)").gameObject.transform.Find("Text").gameObject;
+		spell2T = canv.transform.Find("Spell2(Alien)").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
 		foreach (Transform child in transform) if (child.CompareTag("ShootingPoint")) {
 			if (child.tag != "GameController") {
@@ -196,6 +196,11 @@ public class SpellsAlien : MonoBehaviour
 
 	IEnumerator Spell1() // Spell 1 of the Alien, the laser
 	{
+		//Timing Management
+		CDTimer1 = Time.time + CD1;
+		remainingTime1 = CD1;
+		laserGapTimer = Time.time + laserGap;
+		
 		this.GetComponent<playerAnimation>().BigShoot();
         yield return new WaitForSeconds(0.5f);
 		audioS.clip = laserSound;
@@ -204,10 +209,7 @@ public class SpellsAlien : MonoBehaviour
 		instance.GetComponent<ProjectileController>().damage = spell1Damage;
 		instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);
 
-		//Timing Management
-		CDTimer1 = Time.time + CD1;
-		remainingTime1 = CD1;
-		laserGapTimer = Time.time + laserGap;
+
 
 		// Destroy
 		Destroy(instance, 2.5f);
@@ -216,18 +218,19 @@ public class SpellsAlien : MonoBehaviour
 
 	    IEnumerator Spell1Combo() // Spell 1 of the Alien, the laser
     {
+	//Timing Management
+        CDTimer11 = Time.time + CD11;
+        remainingTime11 = CD11;
+
     	this.GetComponent<playerAnimation>().BigShoot();
         yield return new WaitForSeconds(0.5f);
         audioS.clip = laserSound;
         audioS.Play();
-        GameObject instance = Instantiate(spell11object, frontPos.transform.position, frontPos.transform.rotation);
+        GameObject instance = Instantiate(spell11object, frontPos.transform.position, this.transform.rotation);
         instance.GetComponent<ProjectileController>().damage = spell1Damage;
         instance.GetComponent<ProjectileController>().team = team;
         instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
 
-        //Timing Management
-        CDTimer11 = Time.time + CD11;
-        remainingTime11 = CD11;
 
         // Destroy
         Destroy(instance, 2.5f);

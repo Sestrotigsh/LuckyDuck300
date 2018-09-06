@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
+using System;
 
 public class TowerButtonUI : NetworkBehaviour {
 
@@ -13,7 +15,8 @@ public class TowerButtonUI : NetworkBehaviour {
     private GameObject player1;
     public PlayerManagement playerMan;
     private PlayerTower playerBuild;
-
+    private Camera mainCamera;
+    public TextMesh subPanelText;
 
     void Start()
     {
@@ -31,6 +34,9 @@ public class TowerButtonUI : NetworkBehaviour {
                 }
             }
         }
+
+        subPanelText = subPanel.transform.Find("Text").GetComponent<TextMesh>();
+        
     }
 
     void Update()
@@ -52,16 +58,104 @@ public class TowerButtonUI : NetworkBehaviour {
         } else {
             if (subPanel.activeSelf == true) {
                  if (Input.GetButtonDown("Fire1")) {
-                    if (this.CompareTag("Tower1")) {
-                        playerBuild.RecieveDirections(1);
-                    } else if (this.CompareTag("Tower2")) {
-                        playerBuild.RecieveDirections(2);
-                    } else if (this.CompareTag("Tower3")) {
-                        playerBuild.RecieveDirections(3);
+                    if (this.CompareTag("TowerBase")) {
+                        playerBuild.ReceiveDirections(1);
+                    } else if (this.CompareTag("TowerBomb")) {
+                        playerBuild.ReceiveDirections(2);
+                    } else if (this.CompareTag("TowerIce")) {
+                        playerBuild.ReceiveDirections(3);
                     }
                 }
             }
         }
+
+        towerDetectionType();
+    }
+
+    private void towerDetectionType()
+    {
+        GameObject typeOfTower = playerBuild.currentlyTouching;
+
+        if (this.tag == "TowerBase")
+        {
+            subPanelText.text = "Base Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
+        } else if (this.tag == "TowerIce")
+        {
+            subPanelText.text = "Ice Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
+        } else if (this.tag == "TowerBomb")
+        {
+            subPanelText.text = "Bomb Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
+        }
+
+        if (typeOfTower != null)
+        {
+            if (this.tag == "TowerBase")
+            {
+                if (typeOfTower.tag == "BaseTower1")
+                {
+                    subPanelText.text = "Base Tower 2" + Environment.NewLine + "Cost :" + playerBuild.level2Cost;
+
+                }
+                else if (typeOfTower.tag == "BaseTower2")
+                {
+                    subPanelText.text = "Base Tower 3" + Environment.NewLine + "Cost :" + playerBuild.level3Cost;
+
+                }
+                else if (typeOfTower.tag == "BaseTower3")
+                {
+                    subPanelText.text = "Base Tower 4" + Environment.NewLine + "Cost :" + playerBuild.level4Cost;
+
+                }
+
+                else if (typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower1" || typeOfTower.tag == "IceTower2" || typeOfTower.tag == "IceTower3" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower1" || typeOfTower.tag == "BombTower2" || typeOfTower.tag == "BombTower3" || typeOfTower.tag == "BombTower4")
+                {
+                    this.gameObject.SetActive(false);
+                    
+                }            
+            }
+            else if (this.tag == "TowerIce")
+            {
+                if (typeOfTower.tag == "IceTower1")
+                {
+                    subPanelText.text = "Ice Tower 2" + Environment.NewLine + "Cost :" + playerBuild.level2Cost;
+                }
+                else if (typeOfTower.tag == "IceTower2")
+                {
+                    subPanelText.text = "Ice Tower 3" + Environment.NewLine + "Cost :" + playerBuild.level3Cost;
+                }
+                else if (typeOfTower.tag == "IceTower3")
+                {
+                    subPanelText.text = "Ice Tower 4" + Environment.NewLine + "Cost :" + playerBuild.level4Cost;
+                }
+
+                else if (typeOfTower.tag == "BaseTower1" || typeOfTower.tag == "BaseTower2" || typeOfTower.tag == "BaseTower3" || typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower1" || typeOfTower.tag == "BombTower2" || typeOfTower.tag == "BombTower3" || typeOfTower.tag == "BombTower4")
+                {
+                    this.gameObject.SetActive(false);
+                }           
+            }
+
+            else if (this.tag == "TowerBomb")
+            {
+                if (typeOfTower.tag == "BombTower1")
+                {
+                    subPanelText.text = "Bomb Tower 2" + Environment.NewLine + "Cost :" + playerBuild.level2Cost;
+                }
+                else if (typeOfTower.tag == "BombTower2")
+                {
+                    subPanelText.text = "Bomb Tower 3" + Environment.NewLine + "Cost :" + playerBuild.level3Cost;
+                }
+                else if (typeOfTower.tag == "BombTower3")
+                {
+                    subPanelText.text = "Bomb Tower 4" + Environment.NewLine + "Cost :" + playerBuild.level4Cost;
+                }
+
+                else if (typeOfTower.tag == "BaseTower1" || typeOfTower.tag == "BaseTower2" || typeOfTower.tag == "BaseTower3" || typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower1" || typeOfTower.tag == "IceTower2" || typeOfTower.tag == "IceTower3" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower4")
+                {
+                    this.gameObject.SetActive(false);
+                }
+            }
+        }       
+        
     }
 
     void OnMouseOver()
