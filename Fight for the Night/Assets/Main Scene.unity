@@ -11278,12 +11278,17 @@ Prefab:
     - target: {fileID: 82043373203303226, guid: 00d58a9965768c94f87ffa682cce746c,
         type: 2}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82043373203303226, guid: 00d58a9965768c94f87ffa682cce746c,
         type: 2}
       propertyPath: Loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82458817698584910, guid: 00d58a9965768c94f87ffa682cce746c,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00d58a9965768c94f87ffa682cce746c, type: 2}
@@ -21579,7 +21584,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 455806258}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &455806261
 Behaviour:
   m_ObjectHideFlags: 0
@@ -79696,7 +79701,12 @@ Prefab:
     - target: {fileID: 82546784636933132, guid: f3ba46662d4f74a43b0d22bb9d822862,
         type: 2}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82290313857743160, guid: f3ba46662d4f74a43b0d22bb9d822862,
+        type: 2}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3ba46662d4f74a43b0d22bb9d822862, type: 2}
