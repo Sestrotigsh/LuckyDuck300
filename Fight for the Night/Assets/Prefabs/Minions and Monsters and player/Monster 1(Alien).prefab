@@ -173,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069436409147194}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.33333334, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 0.6666667, z: -1}
   m_Children:
   - {fileID: 4820132728627616}
@@ -366,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: -1
   path: -1
+  waveNumber: 0
 --- !u!114 &114389156861945554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -384,11 +385,12 @@ MonoBehaviour:
   greedyPaintList: 
   currentPathIndex: 0
   currentNodeIndex: 0
-  moveSpeed: 4
+  moveSpeed: 3
   minDistance: 0.1
   health: 15
   currentHealth: 0
   initialSpeed: 0
+  healthScalingValue: 0
   team: 0
   enemyTeam: 0
   newState: 0
@@ -397,6 +399,7 @@ MonoBehaviour:
   pathReady: 0
   teamReady: 0
   monsterReady: 0
+  healthReady: 1
   minionType: 0
   healthBar: {fileID: 114524964514237782}
   value: 5
@@ -656,7 +659,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246903645768844}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1.3}
   m_LocalScale: {x: 0.024999999, y: 0.02, z: 0.03}
   m_Children:
   - {fileID: 224315750485862800}
@@ -665,7 +668,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.8000001}
+  m_AnchoredPosition: {x: 0.18, y: 2.64}
   m_SizeDelta: {x: 100, y: 39.525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224315750485862800

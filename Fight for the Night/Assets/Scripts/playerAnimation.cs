@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -39,8 +39,11 @@ public class playerAnimation : NetworkBehaviour {
 	float h;
 	float v;
 
+
 	private Vector3 oldPos;
 	private Vector3 newPos;
+
+	private bool usingTowers = false;
 
 
 
@@ -50,6 +53,7 @@ public class playerAnimation : NetworkBehaviour {
 		shooting = false;
 		if (!isLocalPlayer) {
 			//oldPos = transform.position;
+			this.GetComponent<AudioListener>().enabled = false;
 			return;
 		}
 
@@ -116,7 +120,23 @@ public class playerAnimation : NetworkBehaviour {
 			//return;
 		//}
 
-		MoveCamera();
+		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            usingTowers = true;
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+        {
+            usingTowers = false;
+        }
+
+        if (usingTowers == false)
+        {
+            MoveCamera();
+        }
+
+
 		shootingPoint.LookAt(accuracyTarget);
 		h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		v = CrossPlatformInputManager.GetAxis ("Vertical");
