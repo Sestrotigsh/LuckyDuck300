@@ -206,10 +206,14 @@ public class SpellsAlien : MonoBehaviour
 		audioS.clip = laserSound;
 		audioS.Play();
 		GameObject instance = Instantiate(spell1object, frontPos.transform.position, this.transform.rotation);
+
 		instance.GetComponent<ProjectileController>().damage = spell1Damage;
-		instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);
-
-
+		instance.GetComponent<ProjectileController>().caster = "Alien";
+		instance.GetComponent<ProjectileController>().player = this.gameObject;
+		instance.GetComponent<ProjectileController>().team = team;
+		instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);       
+		audioS.clip = laserSound;
+		audioS.Play();
 
 		// Destroy
 		Destroy(instance, 2.5f);
@@ -224,12 +228,14 @@ public class SpellsAlien : MonoBehaviour
 
     	this.GetComponent<playerAnimation>().BigShoot();
         yield return new WaitForSeconds(0.5f);
-        audioS.clip = laserSound;
-        audioS.Play();
+
         GameObject instance = Instantiate(spell11object, frontPos.transform.position, this.transform.rotation);
         instance.GetComponent<ProjectileController>().damage = spell1Damage;
+        instance.GetComponent<ProjectileController>().caster = "Alien";
+		instance.GetComponent<ProjectileController>().player = this.gameObject;
         instance.GetComponent<ProjectileController>().team = team;
-        instance.GetComponent<Rigidbody>().AddForce(frontPos.transform.forward * power);
+        instance.GetComponent<ProjectileController>().slowValue = 1;
+        instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);
 
 
         // Destroy

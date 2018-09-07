@@ -6670,6 +6670,7 @@ MonoBehaviour:
   checkRotationP2: {x: 0, y: 180, z: 0}
   verticalLimit: 0
   horizontalLimit: 0
+  running: {fileID: 8300000, guid: 493bacbf0b2fddb4f880beaf7956142e, type: 3}
 --- !u!114 &114452300660133734
 MonoBehaviour:
   m_ObjectHideFlags: 1
