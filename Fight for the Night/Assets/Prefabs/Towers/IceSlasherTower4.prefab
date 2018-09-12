@@ -1509,7 +1509,7 @@ MonoBehaviour:
   playerChar: {fileID: 0}
   upgradeArrow: {fileID: 1071438349151120, guid: de61dadc51b0aec41b23a54b7e0f4f4f,
     type: 2}
-  displayDistance: 0
+  displayDistance: 5
   dist: 0
 --- !u!114 &114910136903055890
 MonoBehaviour:
