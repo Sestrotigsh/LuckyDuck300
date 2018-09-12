@@ -56,6 +56,7 @@ namespace Prototype.NetworkLobby
         public GameObject title;
         public GameObject navPanel;
         public GameObject quitButton;
+        public GameObject Loading;
 
         void Start()
         {
@@ -344,8 +345,23 @@ namespace Prototype.NetworkLobby
 
         // --- Countdown management
 
-        //public override void OnLobbyServerPlayersReady()
-        //{
+        public override void OnLobbyServerPlayersReady()
+        {
+            Debug.Log(lobbySlots.Length);
+            if (lobbySlots[1] != null)  {
+                 for (int i = 0; i < lobbySlots.Length; ++i)
+            {
+                LobbyPlayer p = lobbySlots[i] as LobbyPlayer;
+                p.RpcLoading();
+            }
+            } else {
+                Loading.SetActive(false);
+            }
+
+
+
+
+            
             //title.SetActive(false);
 			//bool allready = true;
 			//for(int i = 0; i < lobbySlots.Length; ++i)
@@ -355,24 +371,25 @@ namespace Prototype.NetworkLobby
 			//}
 
 			//if(allready)
-				//StartCoroutine(ServerCountdownCoroutine());
-        //}
+		  //StartCoroutine(ServerCountdownCoroutine());
+            ServerChangeScene(playScene);
+        }
 
-        //public IEnumerator ServerCountdownCoroutine()
-        //{
-           // float remainingTime = prematchCountdown;
-           // int floorTime = Mathf.FloorToInt(remainingTime);
+        public IEnumerator ServerCountdownCoroutine()
+        {
+           float remainingTime = 2.0f;
+           int floorTime = Mathf.FloorToInt(remainingTime);
 
-           // while (remainingTime > 0)
-            //{
-              //  yield return null;
+           while (remainingTime > 0)
+            {
+                yield return null;
 
-                //remainingTime -= Time.deltaTime;
-                //int newFloorTime = Mathf.FloorToInt(remainingTime);
+                remainingTime -= Time.deltaTime;
+                int newFloorTime = Mathf.FloorToInt(remainingTime);
 
-                //if (newFloorTime != floorTime)
+                if (newFloorTime != floorTime) {
                 //{//to avoid flooding the network of message, we only send a notice to client when the number of plain seconds change.
-                  ///=  floorTime = newFloorTime;
+                  floorTime = newFloorTime;
 
                     //for (int i = 0; i < lobbySlots.Length; ++i)
                     //{
@@ -381,8 +398,8 @@ namespace Prototype.NetworkLobby
                           //  (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(floorTime);
                         //}
                     //}
-                //}
-            //}
+                }
+            }
 
             //for (int i = 0; i < lobbySlots.Length; ++i)
             //{
@@ -392,8 +409,8 @@ namespace Prototype.NetworkLobby
                 //}
             //}
 
-            //ServerChangeScene(playScene);
-        //}
+            ServerChangeScene(playScene);
+        }
 
         // ----------------- Client callbacks ------------------
 
@@ -429,5 +446,7 @@ namespace Prototype.NetworkLobby
             ChangeTo(mainMenuPanel);
             //infoPanel.Display("Client error : " + (errorCode == 6 ? "timeout" : errorCode.ToString()), "Close", null);
         }
+
+
     }
 }

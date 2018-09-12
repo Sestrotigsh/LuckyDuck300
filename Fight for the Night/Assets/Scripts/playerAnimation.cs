@@ -23,6 +23,7 @@ public class playerAnimation : NetworkBehaviour {
 	private Transform shootingPoint;
 	public Transform accuracyTarget;
 	Animator anim;
+	NetworkAnimator netAnim;
 	private bool lookingAtScreen;
 	[SerializeField] Vector3 checkPositionP1;
 	[SerializeField] Vector3 checkPositionP2;
@@ -70,6 +71,7 @@ public class playerAnimation : NetworkBehaviour {
 		//shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
 		// set up the third person camera
 		anim = GetComponent<Animator>();
+		netAnim = GetComponent<NetworkAnimator>();
 		setupCamera();
 		
 		initialDistance = Vector3.Distance(mainCamera.position, this.transform.position);
@@ -142,22 +144,18 @@ public class playerAnimation : NetworkBehaviour {
 		v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
 		//transform.Rotate (0, h * rotateAmount, 0);
-		transform.Rotate (0, h / 2.0f, 0);
-		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, h / 2.0f);
+		transform.Rotate (0, h/1.5f, 0);
+		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, h/1.5f);
 
 		//mainCamera.transform.Rotate (0, h / 2.0f, 0);
 		if (Input.GetKeyDown (KeyCode.Space)) {
             if (shooting == false) {
                 anim.SetTrigger ("Jump");
+                netAnim.SetTrigger("Jump");
             }
 			
 		}
-		if (!(Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))) {
-			if (Input.GetMouseButton (0)) {
-				anim.SetTrigger ("Shoot");
-				shooting = true;
-			}
-		}
+
 		if (Input.GetMouseButtonUp (0)) {
 			shooting = false;
 			shootTimer = Time.timeSinceLevelLoad + 0.2f;
@@ -210,8 +208,8 @@ public class playerAnimation : NetworkBehaviour {
 			return;
 		}
 
-		mouseInput.x = Input.GetAxis ("Mouse X");
-		mouseInput.y = Input.GetAxis ("Mouse Y");
+		mouseInput.x = Input.GetAxis ("Mouse X")/2.0f;
+		mouseInput.y = Input.GetAxis ("Mouse Y")/2.0f;
 
 		if (mouseInput.y > 0) {
 			if (mainCamera.transform.rotation.eulerAngles.x > 0.0f && mainCamera.transform.rotation.eulerAngles.x < 300.0f) {
@@ -225,8 +223,8 @@ public class playerAnimation : NetworkBehaviour {
 			}
 		}
 
-		transform.Rotate (0, mouseInput.x * 2.0f, 0);
-		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, mouseInput.x * 2.0f);
+		transform.Rotate (0, mouseInput.x, 0);
+		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, mouseInput.x);
 	}
 
     public void ForcePush() {
@@ -244,6 +242,12 @@ public class playerAnimation : NetworkBehaviour {
     public void Yell() {
     	anim.SetTrigger("Yell");
     }
+
+    public void UpdateShooting() {
+    	anim.SetTrigger ("Shoot");
+    	netAnim.SetTrigger("Shoot");
+    	shooting = true;
+	}
 
     // Minions push the player
     void OnTriggerStay(Collider other) {

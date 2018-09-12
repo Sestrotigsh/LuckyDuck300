@@ -15,6 +15,8 @@ public class tutorial : NetworkBehaviour {
 
     public GameObject menu;
     public GameObject title;
+    public GameObject leftArrow;
+    public GameObject rightArrow;
 
 	// Use this for initialization
 	void Start () {
@@ -36,26 +38,46 @@ public class tutorial : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("d") && imageNumber < imageForTutorial.Count-1)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && imageNumber < imageForTutorial.Count-1)
         {
-            imageNumber += 1;
             
-        } else if (Input.GetKeyDown("a") && imageNumber > 0)
-        {
-            imageNumber -= 1;
+            TutorialPics(1);
             
-        } else if (Input.GetKeyDown("d") && imageNumber == imageForTutorial.Count-1)
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow) && imageNumber > 0)
         {
-            title.SetActive(true);
-            menu.SetActive(true);
-            LobbyManager.GetComponent<NetworkManager>().enabled = true;
-            SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
-        }
-        TutorialPics();
+            TutorialPics(-1);
+        } 
     }
 
-    private void TutorialPics()
+    public void TutorialPics(int number)
     {
-        canvasImage.sprite = imageForTutorial[imageNumber];
+        if (number == 1) {
+            if (imageNumber == imageForTutorial.Count-2) {
+                rightArrow.SetActive(false);
+            } else if (imageNumber == 0) {
+                leftArrow.SetActive(true);
+            }
+        } else if (number == -1) {
+            if (imageNumber == 1) {
+                leftArrow.SetActive(false);
+            } else if (imageNumber == imageForTutorial.Count-1) {
+                rightArrow.SetActive(true);
+            }
+        }
+        
+        canvasImage.sprite = imageForTutorial[imageNumber + number];
+        imageNumber += number;
     }
+
+
+
+
+    public void ReturnToMenu() {
+        title.SetActive(true);
+        menu.SetActive(true);
+        LobbyManager.GetComponent<NetworkManager>().enabled = true;
+        SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
+    }
+
+
 }

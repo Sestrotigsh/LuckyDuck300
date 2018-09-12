@@ -20,6 +20,7 @@ namespace Prototype.NetworkLobby
         public InputField nameInput;
         public Button readyButton;
         public Button waitingPlayerButton;
+        private GameObject loading;
         //public Button removePlayerButton;
 
         //public GameObject localIcone;
@@ -47,6 +48,15 @@ namespace Prototype.NetworkLobby
 
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
+
+        void Start() {
+            var fooGroup = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+            foreach(GameObject t in fooGroup){
+                if(t.name == "Loading"){
+                    loading = t;
+                }
+            }
+        }
 
 
         public override void OnClientEnterLobby()
@@ -323,6 +333,11 @@ namespace Prototype.NetworkLobby
         public void CmdTeamChange() { //////////////////////////////////////// 
             playerTeam = (playerTeam + 1) % 2;
             Debug.Log(playerTeam);
+        }
+
+        [ClientRpc]
+        public void RpcLoading() {
+            loading.SetActive(true);
         }
 
         [Command]
