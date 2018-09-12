@@ -853,9 +853,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  fireRate: 5
+  fireRate: 1.5
   turnSpeed: 15
   Firepower: 2400
   projectile: {fileID: 1657713365626352, guid: f0b64fbfe9787164ea9c3ee674e03e58, type: 2}
   barrel: {fileID: 4618217961854728}
   team: 0
+  playerChar: {fileID: 0}
+  upgradeArrow: {fileID: 1071438349151120, guid: de61dadc51b0aec41b23a54b7e0f4f4f,
+    type: 2}
+  displayDistance: 0
+  dist: 0

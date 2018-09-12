@@ -114,9 +114,9 @@ public class SpellsAlien : MonoBehaviour
 			Crosshairs.text = "          |\n        ~ ~\n          |";
 		} else if (accuracyCounter > 0.75f) {
 			Crosshairs.text = "          |\n\n   ~           ~\n\n          |";
-		} else if (accuracyCounter > 0.5f) {
+		} else if (accuracyCounter > 0.5f && accuracyCounter < 0.65f) {
 			Crosshairs.text = "          |\n\n    ~        ~\n\n          |";
-		} else if (accuracyCounter > 0.25f) {
+		} else if (accuracyCounter > 0.25f && accuracyCounter < 0.4f) {
 			Crosshairs.text = "          |\n       ~   ~\n          |";
 		} 
 

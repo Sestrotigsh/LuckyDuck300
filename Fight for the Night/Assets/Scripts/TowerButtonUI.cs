@@ -81,10 +81,10 @@ public class TowerButtonUI : NetworkBehaviour {
             subPanelText.text = "Base Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
         } else if (this.tag == "TowerIce")
         {
-            subPanelText.text = "Ice Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
+            subPanelText.text = "Ice Tower 1" + Environment.NewLine + "Cost :" + playerBuild.iceCost;
         } else if (this.tag == "TowerBomb")
         {
-            subPanelText.text = "Bomb Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
+            subPanelText.text = "Bomb Tower 1" + Environment.NewLine + "Cost :" + playerBuild.bombCost;
         }
 
         if (typeOfTower != null)
@@ -93,17 +93,17 @@ public class TowerButtonUI : NetworkBehaviour {
             {
                 if (typeOfTower.tag == "BaseTower1")
                 {
-                    subPanelText.text = "Base Tower 2" + Environment.NewLine + "Cost :" + playerBuild.level2Cost;
+                    subPanelText.text = "Base Tower 2" + Environment.NewLine + "Cost :" + playerBuild.baselevel2Cost;
 
                 }
                 else if (typeOfTower.tag == "BaseTower2")
                 {
-                    subPanelText.text = "Base Tower 3" + Environment.NewLine + "Cost :" + playerBuild.level3Cost;
+                    subPanelText.text = "Base Tower 3" + Environment.NewLine + "Cost :" + playerBuild.baselevel3Cost;
 
                 }
                 else if (typeOfTower.tag == "BaseTower3")
                 {
-                    subPanelText.text = "Base Tower 4" + Environment.NewLine + "Cost :" + playerBuild.level4Cost;
+                    subPanelText.text = "Base Tower 4" + Environment.NewLine + "Cost :" + playerBuild.baselevel4Cost;
 
                 }
 
@@ -117,15 +117,15 @@ public class TowerButtonUI : NetworkBehaviour {
             {
                 if (typeOfTower.tag == "IceTower1")
                 {
-                    subPanelText.text = "Ice Tower 2" + Environment.NewLine + "Cost :" + playerBuild.level2Cost;
+                    subPanelText.text = "Ice Tower 2" + Environment.NewLine + "Cost :" + playerBuild.icelevel2Cost;
                 }
                 else if (typeOfTower.tag == "IceTower2")
                 {
-                    subPanelText.text = "Ice Tower 3" + Environment.NewLine + "Cost :" + playerBuild.level3Cost;
+                    subPanelText.text = "Ice Tower 3" + Environment.NewLine + "Cost :" + playerBuild.icelevel3Cost;
                 }
                 else if (typeOfTower.tag == "IceTower3")
                 {
-                    subPanelText.text = "Ice Tower 4" + Environment.NewLine + "Cost :" + playerBuild.level4Cost;
+                    subPanelText.text = "Ice Tower 4" + Environment.NewLine + "Cost :" + playerBuild.icelevel4Cost;
                 }
 
                 else if (typeOfTower.tag == "BaseTower1" || typeOfTower.tag == "BaseTower2" || typeOfTower.tag == "BaseTower3" || typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower1" || typeOfTower.tag == "BombTower2" || typeOfTower.tag == "BombTower3" || typeOfTower.tag == "BombTower4")
@@ -138,15 +138,15 @@ public class TowerButtonUI : NetworkBehaviour {
             {
                 if (typeOfTower.tag == "BombTower1")
                 {
-                    subPanelText.text = "Bomb Tower 2" + Environment.NewLine + "Cost :" + playerBuild.level2Cost;
+                    subPanelText.text = "Bomb Tower 2" + Environment.NewLine + "Cost :" + playerBuild.bomblevel2Cost;
                 }
                 else if (typeOfTower.tag == "BombTower2")
                 {
-                    subPanelText.text = "Bomb Tower 3" + Environment.NewLine + "Cost :" + playerBuild.level3Cost;
+                    subPanelText.text = "Bomb Tower 3" + Environment.NewLine + "Cost :" + playerBuild.bomblevel3Cost;
                 }
                 else if (typeOfTower.tag == "BombTower3")
                 {
-                    subPanelText.text = "Bomb Tower 4" + Environment.NewLine + "Cost :" + playerBuild.level4Cost;
+                    subPanelText.text = "Bomb Tower 4" + Environment.NewLine + "Cost :" + playerBuild.bomblevel4Cost;
                 }
 
                 else if (typeOfTower.tag == "BaseTower1" || typeOfTower.tag == "BaseTower2" || typeOfTower.tag == "BaseTower3" || typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower1" || typeOfTower.tag == "IceTower2" || typeOfTower.tag == "IceTower3" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower4")

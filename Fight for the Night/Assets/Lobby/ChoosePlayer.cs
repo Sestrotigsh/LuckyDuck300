@@ -22,9 +22,15 @@ public class ChoosePlayer : NetworkBehaviour {
 	public GameObject AlienSpell2;
 	public GameObject SlasherSpell1;
 	public GameObject SlasherSpell2;
+	public GameObject Loading;
 
 	// Use this for initialization
 	void Start () {
+		Loading = GameObject.FindWithTag("Loading");
+		if (Loading != null) {
+			Loading.SetActive(false);
+		}
+		
 		//quitbutton = GameObject.FindWithTag("QuitMenu");
 		//quitbutton.SetActive(false);
 		// if the player has selected the alien

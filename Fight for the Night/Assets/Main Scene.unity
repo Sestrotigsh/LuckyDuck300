@@ -2288,7 +2288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56824088}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Map2TowerBlocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4754,8 +4754,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.041669, z: 1}
+  m_Center: {x: 0, y: 0.52083546, z: 0}
 --- !u!23 &120425320
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7929,8 +7929,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.2670045, z: 1}
+  m_Center: {x: 0, y: 0.63350254, z: 0}
 --- !u!23 &175597998
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14027,8 +14027,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9317427, y: 8.96177, z: 1.1345049}
+  m_Center: {x: 0.034126174, y: 3.9808872, z: 0.06725247}
 --- !u!23 &317301208
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20259,8 +20259,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 13.599133, z: 1}
+  m_Center: {x: 0, y: 6.2995663, z: 0}
 --- !u!23 &439172531
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21112,8 +21112,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 9.50715, z: 1}
+  m_Center: {x: 0, y: 4.2535768, z: 0}
 --- !u!23 &450898123
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21642,7 +21642,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 455806258}
   m_LocalRotation: {x: 0.18395132, y: 0, z: 0, w: 0.9829354}
-  m_LocalPosition: {x: 189.2, y: 17.8, z: 185.3}
+  m_LocalPosition: {x: 190, y: 5, z: 208}
   m_LocalScale: {x: 1, y: 0.6, z: 1}
   m_Children:
   - {fileID: 455832268}
@@ -31453,8 +31453,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9471528, y: 11.428965, z: 1.1717172}
+  m_Center: {x: -0.026423823, y: 5.214428, z: 0.08585942}
 --- !u!23 &672901938
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39007,8 +39007,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 9.764513, z: 1}
+  m_Center: {x: 0, y: 4.382261, z: 0}
 --- !u!23 &820988245
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40726,8 +40726,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0481545, y: 2.6091352, z: 1}
+  m_Center: {x: -0.024077022, y: 0.80456597, z: -1.79283e-15}
 --- !u!23 &857144975
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43797,8 +43797,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 8.528038, z: 1}
+  m_Center: {x: 0, y: 3.7639966, z: 0}
 --- !u!23 &908500535
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54266,8 +54266,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.5864065, z: 1}
+  m_Center: {x: 0, y: 0.79320425, z: 0}
 --- !u!23 &1130158762
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80841,8 +80841,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0562688, y: 2.7220788, z: 1}
+  m_Center: {x: -0.028133564, y: 0.8610408, z: -1.9024004e-14}
 --- !u!23 &1706325823
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -88638,8 +88638,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 13.261105, z: 1}
+  m_Center: {x: 0, y: 6.130555, z: 0}
 --- !u!23 &1868018290
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -93925,8 +93925,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3.3289468, z: 1}
+  m_Center: {x: 0, y: 1.164474, z: 0}
 --- !u!23 &2002776696
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96337,7 +96337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056784926}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Map1TowerBlocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

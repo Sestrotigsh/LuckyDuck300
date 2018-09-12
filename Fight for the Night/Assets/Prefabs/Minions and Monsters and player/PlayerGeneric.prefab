@@ -6074,7 +6074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6083,7 +6083,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -6207,6 +6207,7 @@ MonoBehaviour:
   AlienSpell2: {fileID: 1740556551208404}
   SlasherSpell1: {fileID: 1277804806447906}
   SlasherSpell2: {fileID: 1734026180190302}
+  Loading: {fileID: 0}
 --- !u!114 &114263507572404800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6670,7 +6671,6 @@ MonoBehaviour:
   checkRotationP2: {x: 0, y: 180, z: 0}
   verticalLimit: 0
   horizontalLimit: 0
-  running: {fileID: 8300000, guid: 493bacbf0b2fddb4f880beaf7956142e, type: 3}
 --- !u!114 &114452300660133734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6953,7 +6953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6990,7 +6990,8 @@ MonoBehaviour:
   slasherEnemy: {fileID: 1531717309921350, guid: 95724f07fee907145a33aa635baa4b3f,
     type: 2}
   initialSpawn: 15
-  waveLength: 3
+  spawnDistance: 5
+  waveLength: 6
   waveCount: 0
 --- !u!114 &114687981220623798
 MonoBehaviour:
@@ -7163,7 +7164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7172,7 +7173,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_FontSize: 11
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -7280,13 +7281,13 @@ MonoBehaviour:
   repulsionSound: {fileID: 8300000, guid: 68c1033a9d7e41a42a8a4a7220a44b30, type: 3}
   basicSound: {fileID: 8300000, guid: d3275189fd6ef0f41bb6da525c59422d, type: 3}
   projectile: {fileID: 1282312097624474, guid: 4976163bb2fe4d741b3626cfdaf3eb6b, type: 2}
-  baseAuto: 2
+  baseAuto: 3
   autoDamage: 0
-  fireRate: 0.4
-  spell1Damage: 2
-  CD1: 5
+  fireRate: 0.7
+  spell1Damage: 5
+  CD1: 7
   remainingTime1: 0
-  spell2Damage: 30
+  spell2Damage: 20
   CD2: 20
   remainingTime2: 0
   windSpin: {fileID: 198263037512002276, guid: 05981e42dfc314b41be97d3a0381bd1c, type: 2}
@@ -7298,7 +7299,7 @@ MonoBehaviour:
     type: 2}
   spell11object: {fileID: 1692425543814728, guid: f323eeb9e2dab9d45a3349cf9bb05888,
     type: 2}
-  CD11: 5
+  CD11: 7
   remainingTime11: 0
   accuracyCounter: 0
   maxAccuracyDistortion: 10
@@ -7322,7 +7323,7 @@ MonoBehaviour:
   iceTowerUI: {fileID: 0}
   baseTowerUI: {fileID: 0}
   bombTowerUI: {fileID: 0}
-  alienBase1: {fileID: 1970418193764904, guid: f2c00f6f073c3574fbf4d24d202b7af7, type: 2}
+  alienBase1: {fileID: 1884971067797340, guid: f2c00f6f073c3574fbf4d24d202b7af7, type: 2}
   alienBase2: {fileID: 1002784785905592, guid: b4e7561f049957b42a5d71b26c4d7adf, type: 2}
   alienBase3: {fileID: 1185291367291432, guid: 81e6eabb023e93c498e5be49b891b32c, type: 2}
   alienBase4: {fileID: 1532633202661860, guid: db8b671b7b3c60c4598b69dbc6df9041, type: 2}
@@ -7360,9 +7361,17 @@ MonoBehaviour:
     type: 2}
   currentlyTouching: {fileID: 0}
   baseCost: 10
-  level2Cost: 20
-  level3Cost: 40
-  level4Cost: 100
+  baselevel2Cost: 20
+  baselevel3Cost: 30
+  baselevel4Cost: 40
+  bombCost: 25
+  bomblevel2Cost: 50
+  bomblevel3Cost: 75
+  bomblevel4Cost: 100
+  iceCost: 15
+  icelevel2Cost: 30
+  icelevel3Cost: 45
+  icelevel4Cost: 60
 --- !u!114 &114898405881622120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7408,16 +7417,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frontPos: {fileID: 4766060592765244, guid: 358ea438f64827f4c934b4b8758aa768, type: 2}
+  Crosshairs: {fileID: 114490050398768854}
   spell1Sound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   spell2Sound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   spell1ComboSound: {fileID: 0}
   basicSound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   autoDamage: 3
   fireRate: 0.4
-  spell1Damage: 4
+  spell1Damage: 2
   CD1: 12
   remainingTime1: 0
-  spell2Damage: 40
+  spell2Damage: 20
   CD2: 10
   remainingTime2: 0
   multValue: 5
@@ -7512,7 +7522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8772,7 +8782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23, y: -34.86}
+  m_AnchoredPosition: {x: 17, y: -34.86}
   m_SizeDelta: {x: 75, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224829425744489528
@@ -8866,7 +8876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24.7, y: -33.23}
+  m_AnchoredPosition: {x: 17, y: -33.23}
   m_SizeDelta: {x: 75, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224873077314690596

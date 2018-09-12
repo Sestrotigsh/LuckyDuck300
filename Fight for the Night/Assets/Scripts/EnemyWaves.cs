@@ -17,7 +17,7 @@ public class EnemyWaves : NetworkBehaviour {
 
 	private float nextSpawn; // Determine the start of the next Wave
 	public int initialSpawn; // Determine the time for the first wavespawn
-	private int spawnDistance = 10; // Determine the time distance between the end and the start of the next wave 
+	public int spawnDistance; // Determine the time distance between the end and the start of the next wave 
 	public int waveLength = 3; // Number of second / number of minions the wave will be
 	private int remainingMinions; // The current time the wave start + the waveLength
     public int waveCount = 0;
@@ -153,7 +153,7 @@ public class EnemyWaves : NetworkBehaviour {
 
 			} else {
 				remainingMinions = waveLength;
-				nextSpawn = nextSpawn + spawnDistance;
+				nextSpawn = Time.time + spawnDistance;
                 waveCount = waveCount + 1;
 			}                      
 		}
