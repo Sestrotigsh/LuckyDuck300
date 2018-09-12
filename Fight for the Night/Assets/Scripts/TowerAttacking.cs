@@ -18,6 +18,10 @@ public class TowerAttacking : MonoBehaviour {
 	public Transform barrel;
 	private PlayerNetwork player;
 	public int team;
+    public GameObject playerChar;
+    public GameObject upgradeArrow;
+    public int displayDistance;
+    public float dist;
 
 
 	// Use this for initialization
@@ -27,12 +31,18 @@ public class TowerAttacking : MonoBehaviour {
 		} else {
 			team = 1;
 		}
-	}
+        Vector3 arrowPosition = new Vector3(0, 2, 0);
+        playerChar = GameObject.FindGameObjectWithTag("Player" + team);
+        upgradeArrow = Instantiate(upgradeArrow, arrowPosition, transform.rotation, transform);
+        upgradeArrow.transform.localPosition = arrowPosition;
+        
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
-		UpdateTarget();
+        DisplayArrow();
+        UpdateTarget();
 		if (target == null) {
 			return;
 		}
@@ -44,7 +54,9 @@ public class TowerAttacking : MonoBehaviour {
 		if (fireCountdown <= Time.timeSinceLevelLoad) {
 			Shoot ();
 			fireCountdown = Time.timeSinceLevelLoad + fireRate;
-		}		
+		}
+
+       
 	}
 
 	void Shoot() {
@@ -72,4 +84,17 @@ public class TowerAttacking : MonoBehaviour {
 			target = null;
 		}
 	}
+
+    void DisplayArrow()
+    {
+        if ((Vector3.Distance(playerChar.transform.position, transform.position) < displayDistance) && (upgradeArrow.activeInHierarchy == false))
+        {
+            upgradeArrow.SetActive(true);
+            //upgradeArrow.transform.LookAt(playerChar.transform);
+            //upgradeArrow.transform.eulerAngles = new Vector3(0, upgradeArrow.transform.rotation.y, upgradeArrow.transform.rotation.z);
+        } else if (upgradeArrow.activeInHierarchy == true && (Vector3.Distance(playerChar.transform.position, transform.position) > displayDistance))
+        {
+            upgradeArrow.SetActive(false);
+        }       
+    }
 }
