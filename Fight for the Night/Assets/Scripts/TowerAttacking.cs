@@ -90,8 +90,8 @@ public class TowerAttacking : MonoBehaviour {
         if ((Vector3.Distance(playerChar.transform.position, transform.position) < displayDistance) && (upgradeArrow.activeInHierarchy == false))
         {
             upgradeArrow.SetActive(true);
-            //upgradeArrow.transform.LookAt(playerChar.transform);
-            //upgradeArrow.transform.eulerAngles = new Vector3(0, upgradeArrow.transform.rotation.y, upgradeArrow.transform.rotation.z);
+            Vector3 playerDir = new Vector3(playerChar.transform.position.x, this.transform.position.y, playerChar.transform.position.z);
+            upgradeArrow.transform.LookAt(playerDir);
         } else if (upgradeArrow.activeInHierarchy == true && (Vector3.Distance(playerChar.transform.position, transform.position) > displayDistance))
         {
             upgradeArrow.SetActive(false);
