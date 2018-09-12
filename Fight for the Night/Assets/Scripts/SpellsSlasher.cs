@@ -11,6 +11,7 @@ public class SpellsSlasher : MonoBehaviour
 
     // Find the shooting position of each character. Currently at the front
     public Transform frontPos;
+    public Text Crosshairs;
 
     // Audio part
     [Header("Audio Components")]
@@ -25,10 +26,8 @@ public class SpellsSlasher : MonoBehaviour
 
     //Auto attack
     [Header("Basic Attack Components")]
-   
-   
     public int autoDamage;
-    public float fireRate = 0.4f;
+    public float fireRate = 5.0f;
     private float fireTimer = 0.0f;
     
 
@@ -73,7 +72,7 @@ public class SpellsSlasher : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       
+       Crosshairs.text = "";
         if (!this.GetComponent<PlayerNetwork>().local)
         {
             return;
@@ -120,9 +119,10 @@ public class SpellsSlasher : MonoBehaviour
             else if (Input.GetMouseButton(0) && isCutting == false)
             {
                 if (fireTimer < Time.timeSinceLevelLoad)
-                {
-                    BasicAttack();
+                {  
                     fireTimer = fireRate + Time.timeSinceLevelLoad;
+                    BasicAttack();
+                    
                 }
             } else if (Input.GetKeyDown("2") && isDashing == true)
             {
@@ -148,6 +148,7 @@ public class SpellsSlasher : MonoBehaviour
 
     private void BasicAttack()
     {
+        this.GetComponent<playerAnimation>().UpdateShooting();
         audioS.clip = spell1Sound;
         //audioS.Play();
         Collider[] hitColliders = Physics.OverlapBox(frontPos.position, new Vector3(1, 1, 1), Quaternion.identity); ///  IS THE HALF FROM CENTRE
@@ -174,7 +175,7 @@ public class SpellsSlasher : MonoBehaviour
         audioS.clip = spell1Sound;
         this.GetComponent<playerAnimation>().BigShoot();
         // Time of the next hit in the spell 1
-        currentDamages = currentHit * 1 + spell1Damage;
+        currentDamages = currentHit * 2 + spell1Damage;
 
         if (currentHit < numberOfHits)
         {

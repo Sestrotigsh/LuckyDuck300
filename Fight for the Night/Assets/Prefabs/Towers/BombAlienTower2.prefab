@@ -364,6 +364,11 @@ MonoBehaviour:
   projectile: {fileID: 1608309334564742, guid: 9da3b7602d921f244a7263594fa8559b, type: 2}
   barrel: {fileID: 4731676827076092}
   team: 0
+  playerChar: {fileID: 0}
+  upgradeArrow: {fileID: 1071438349151120, guid: de61dadc51b0aec41b23a54b7e0f4f4f,
+    type: 2}
+  displayDistance: 0
+  dist: 0
 --- !u!114 &114584452358249278
 MonoBehaviour:
   m_ObjectHideFlags: 1
