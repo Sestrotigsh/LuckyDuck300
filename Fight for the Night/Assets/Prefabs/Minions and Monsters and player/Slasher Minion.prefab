@@ -714,7 +714,7 @@ MonoBehaviour:
   health: 5
   currentHealth: 0
   initialSpeed: 0
-  healthScalingValue: 0
+  healthScalingValue: 3
   team: 0
   enemyTeam: 0
   newState: 0

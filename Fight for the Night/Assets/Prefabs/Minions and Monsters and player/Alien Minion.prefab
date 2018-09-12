@@ -371,6 +371,7 @@ MonoBehaviour:
   health: 5
   currentHealth: 0
   initialSpeed: 0
+  healthScalingValue: 3
   team: 5
   enemyTeam: 0
   newState: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   pathReady: 0
   teamReady: 0
   monsterReady: 0
+  healthReady: 1
   minionType: 0
   healthBar: {fileID: 114157281862110752}
   value: 1
@@ -543,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   path: -1
+  waveNumber: 0
 --- !u!114 &114744490794024740
 MonoBehaviour:
   m_ObjectHideFlags: 1

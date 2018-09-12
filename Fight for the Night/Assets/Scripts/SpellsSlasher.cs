@@ -174,7 +174,7 @@ public class SpellsSlasher : MonoBehaviour
         audioS.clip = spell1Sound;
         this.GetComponent<playerAnimation>().BigShoot();
         // Time of the next hit in the spell 1
-        currentDamages = currentHit * 2 + spell1Damage;
+        currentDamages = currentHit * 1 + spell1Damage;
 
         if (currentHit < numberOfHits)
         {

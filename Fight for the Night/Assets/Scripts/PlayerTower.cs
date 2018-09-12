@@ -47,12 +47,22 @@ public class PlayerTower : NetworkBehaviour {
     [Header ("Cost and Other")]
 	public GameObject currentlyTouching;
 
-	public int baseCost = 25;
-	public int level2Cost = 50;
-	public int level3Cost = 75;
-	public int level4Cost = 100;
+	public int baseCost;
+	public int baselevel2Cost;
+	public int baselevel3Cost;
+	public int baselevel4Cost;
 
-	private bool isAlien;
+    public int bombCost;
+    public int bomblevel2Cost;
+    public int bomblevel3Cost;
+    public int bomblevel4Cost;
+
+    public int iceCost;
+    public int icelevel2Cost;
+    public int icelevel3Cost;
+    public int icelevel4Cost;
+
+    private bool isAlien;
 	private PlayerNetwork PlayerNet;
 
 
@@ -294,7 +304,7 @@ public class PlayerTower : NetworkBehaviour {
 
                 case 2:
 
-                    if (this.GetComponent<PlayerManagement>().currentGold >= baseCost)
+                    if (this.GetComponent<PlayerManagement>().currentGold >= bombCost)
                     {
                         if (isAlien == true)
                         {
@@ -305,14 +315,14 @@ public class PlayerTower : NetworkBehaviour {
                             CmdcreateBomb1Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                         }
 
-                        this.GetComponent<PlayerManagement>().currentGold -= baseCost;
+                        this.GetComponent<PlayerManagement>().currentGold -= bombCost;
                     }
                     break;
 
 
                 case 3:
 
-                    if (this.GetComponent<PlayerManagement>().currentGold >= baseCost)
+                    if (this.GetComponent<PlayerManagement>().currentGold >= iceCost)
                     {
                         if (isAlien == true)
                         {
@@ -323,7 +333,7 @@ public class PlayerTower : NetworkBehaviour {
                             CmdcreateIce1Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                         }
 
-                        this.GetComponent<PlayerManagement>().currentGold -= baseCost;
+                        this.GetComponent<PlayerManagement>().currentGold -= iceCost;
                     }
                     break;
             }
@@ -333,7 +343,7 @@ public class PlayerTower : NetworkBehaviour {
 
         if (currentlyTouching != null && currentlyTouching.CompareTag("BaseTower1"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level2Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= baselevel2Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -344,12 +354,12 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateTower2Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level2Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= baselevel2Cost;
             }
         }
         else if (currentlyTouching != null && currentlyTouching.CompareTag("IceTower1"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level2Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= icelevel2Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -360,12 +370,12 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateIce2Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level2Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= icelevel2Cost;
             }
         }
         else if (currentlyTouching != null && currentlyTouching.CompareTag("BombTower1"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level2Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel2Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -376,7 +386,7 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateBomb2Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level2Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= bomblevel2Cost;
             }
         }
 
@@ -384,7 +394,7 @@ public class PlayerTower : NetworkBehaviour {
 
         else if (currentlyTouching != null && currentlyTouching.CompareTag("BaseTower2"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level3Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= baselevel3Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -395,12 +405,12 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateTower3Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level3Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= baselevel3Cost;
             }
         }
         else if (currentlyTouching != null && currentlyTouching.CompareTag("IceTower2"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level3Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= icelevel3Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -411,11 +421,11 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateIce3Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level3Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= icelevel3Cost;
             }
         } else if (currentlyTouching != null && currentlyTouching.CompareTag("BombTower2"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level3Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel3Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -426,7 +436,7 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateBomb3Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level3Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= bomblevel3Cost;
             }
         }
 
@@ -434,7 +444,7 @@ public class PlayerTower : NetworkBehaviour {
 
         else if (currentlyTouching != null && currentlyTouching.CompareTag("BaseTower3"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level4Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= baselevel4Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -445,13 +455,13 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateTower4Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level4Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= baselevel4Cost;
             }
         }
 
         else if (currentlyTouching != null && currentlyTouching.CompareTag("IceTower3"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level4Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= icelevel4Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -462,13 +472,13 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateIce4Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level4Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= icelevel4Cost;
             }
         }
 
         else if (currentlyTouching != null && currentlyTouching.CompareTag("BombTower3"))
         {
-            if (this.GetComponent<PlayerManagement>().currentGold >= level4Cost)
+            if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel4Cost)
             {
                 Destroy(currentlyTouching);
                 if (isAlien == true)
@@ -479,7 +489,7 @@ public class PlayerTower : NetworkBehaviour {
                 {
                     CmdcreateBomb4Slasher(slasherGhost.transform.position, slasherGhost.transform.rotation);
                 }
-                this.GetComponent<PlayerManagement>().currentGold -= level4Cost;
+                this.GetComponent<PlayerManagement>().currentGold -= bomblevel4Cost;
             }
         }
     }

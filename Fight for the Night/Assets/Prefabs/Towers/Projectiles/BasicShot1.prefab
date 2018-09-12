@@ -279,7 +279,7 @@ MonoBehaviour:
   currentType: 0
   slowValue: 0
   duration: 0
-  aoeSize: 5
+  aoeSize: 0
 --- !u!114 &114275608572807000
 MonoBehaviour:
   m_ObjectHideFlags: 1

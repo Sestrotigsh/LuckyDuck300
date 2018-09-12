@@ -6670,7 +6670,6 @@ MonoBehaviour:
   checkRotationP2: {x: 0, y: 180, z: 0}
   verticalLimit: 0
   horizontalLimit: 0
-  running: {fileID: 8300000, guid: 493bacbf0b2fddb4f880beaf7956142e, type: 3}
 --- !u!114 &114452300660133734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6990,7 +6989,8 @@ MonoBehaviour:
   slasherEnemy: {fileID: 1531717309921350, guid: 95724f07fee907145a33aa635baa4b3f,
     type: 2}
   initialSpawn: 15
-  waveLength: 3
+  spawnDistance: 5
+  waveLength: 6
   waveCount: 0
 --- !u!114 &114687981220623798
 MonoBehaviour:
@@ -7280,13 +7280,13 @@ MonoBehaviour:
   repulsionSound: {fileID: 8300000, guid: 68c1033a9d7e41a42a8a4a7220a44b30, type: 3}
   basicSound: {fileID: 8300000, guid: d3275189fd6ef0f41bb6da525c59422d, type: 3}
   projectile: {fileID: 1282312097624474, guid: 4976163bb2fe4d741b3626cfdaf3eb6b, type: 2}
-  baseAuto: 2
+  baseAuto: 3
   autoDamage: 0
-  fireRate: 0.4
-  spell1Damage: 2
-  CD1: 5
+  fireRate: 0.7
+  spell1Damage: 5
+  CD1: 7
   remainingTime1: 0
-  spell2Damage: 30
+  spell2Damage: 20
   CD2: 20
   remainingTime2: 0
   windSpin: {fileID: 198263037512002276, guid: 05981e42dfc314b41be97d3a0381bd1c, type: 2}
@@ -7298,7 +7298,7 @@ MonoBehaviour:
     type: 2}
   spell11object: {fileID: 1692425543814728, guid: f323eeb9e2dab9d45a3349cf9bb05888,
     type: 2}
-  CD11: 5
+  CD11: 7
   remainingTime11: 0
   accuracyCounter: 0
   maxAccuracyDistortion: 10
@@ -7360,9 +7360,17 @@ MonoBehaviour:
     type: 2}
   currentlyTouching: {fileID: 0}
   baseCost: 10
-  level2Cost: 20
-  level3Cost: 40
-  level4Cost: 100
+  baselevel2Cost: 20
+  baselevel3Cost: 30
+  baselevel4Cost: 40
+  bombCost: 25
+  bomblevel2Cost: 50
+  bomblevel3Cost: 75
+  bomblevel4Cost: 100
+  iceCost: 15
+  icelevel2Cost: 30
+  icelevel3Cost: 45
+  icelevel4Cost: 60
 --- !u!114 &114898405881622120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7414,10 +7422,10 @@ MonoBehaviour:
   basicSound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   autoDamage: 3
   fireRate: 0.4
-  spell1Damage: 4
+  spell1Damage: 2
   CD1: 12
   remainingTime1: 0
-  spell2Damage: 40
+  spell2Damage: 20
   CD2: 10
   remainingTime2: 0
   multValue: 5

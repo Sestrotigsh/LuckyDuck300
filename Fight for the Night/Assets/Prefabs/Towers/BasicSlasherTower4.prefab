@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  fireRate: 5
+  fireRate: 1.5
   turnSpeed: 15
   Firepower: 2400
   projectile: {fileID: 1657713365626352, guid: f0b64fbfe9787164ea9c3ee674e03e58, type: 2}
