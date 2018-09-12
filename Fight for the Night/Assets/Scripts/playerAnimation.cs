@@ -142,9 +142,10 @@ public class playerAnimation : NetworkBehaviour {
 		h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat ("Speed", v);
+		anim.SetFloat("Lateral", h);
 		//transform.Rotate (0, h * rotateAmount, 0);
-		transform.Rotate (0, h / 1.5f, 0);
-		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, h / 1.5f);
+		//transform.Rotate (0, h / 1.5f, 0);
+		//mainCamera.transform.RotateAround(this.transform.position,Vector3.up, h / 1.5f);
 
 		//mainCamera.transform.Rotate (0, h / 2.0f, 0);
 		if (Input.GetKeyDown (KeyCode.Space)) {
@@ -154,13 +155,7 @@ public class playerAnimation : NetworkBehaviour {
             }
 			
 		}
-		if (!(Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))) {
-			if (Input.GetMouseButton (0)) {
-				anim.SetTrigger ("Shoot");
-				netAnim.SetTrigger("Shoot");
-				shooting = true;
-			}
-		}
+
 		if (Input.GetMouseButtonUp (0)) {
 			shooting = false;
 			shootTimer = Time.timeSinceLevelLoad + 0.2f;
@@ -168,6 +163,7 @@ public class playerAnimation : NetworkBehaviour {
 
 		if (shooting == false && Time.timeSinceLevelLoad > shootTimer) {
 			transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
+			transform.position += transform.right * Time.deltaTime * h * speedMultiplier;
 			currentDistance = Vector3.Distance(mainCamera.position, this.transform.position);
 			if (currentDistance != initialDistance) {
 				targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
@@ -188,6 +184,12 @@ public class playerAnimation : NetworkBehaviour {
 
 
 	//}
+
+	public void UpdateShooting() {
+				anim.SetTrigger ("Shoot");
+				netAnim.SetTrigger("Shoot");
+				shooting = true;
+	}
 
 
 	public void setupCamera() {
