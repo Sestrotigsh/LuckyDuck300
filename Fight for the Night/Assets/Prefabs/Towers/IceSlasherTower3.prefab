@@ -650,8 +650,8 @@ Transform:
   m_LocalPosition: {x: 184.85956, y: 0, z: 221.2582}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
-  - {fileID: 4470300645325736}
   - {fileID: 4428896219810198}
+  - {fileID: 4470300645325736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -905,7 +905,7 @@ Transform:
   - {fileID: 4411693764584902}
   - {fileID: 4317323974371238}
   m_Father: {fileID: 4076419712274858}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4443088362682080
 Transform:
@@ -942,7 +942,7 @@ Transform:
   - {fileID: 4371909337635064}
   - {fileID: 4733922809631602}
   m_Father: {fileID: 4076419712274858}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4527287474411916
 Transform:
@@ -1520,10 +1520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 7.5
+  range: 9
   fireRate: 1.5
-  turnSpeed: 10
-  Firepower: 2400
+  turnSpeed: 14
+  Firepower: 2200
   projectile: {fileID: 1559108011955206, guid: 9c959a1e5847d684792414395b033908, type: 2}
   barrel: {fileID: 4317323974371238}
   team: 0

@@ -342,7 +342,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   caster: 
   player: {fileID: 0}
-  damage: 16
+  damage: 12
   team: 0
   currentType: 2
   slowValue: 0

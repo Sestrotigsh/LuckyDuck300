@@ -359,8 +359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 12
   fireRate: 2
-  turnSpeed: 14
-  Firepower: 1000
+  turnSpeed: 13
+  Firepower: 2000
   projectile: {fileID: 1256869689219734, guid: 65581c4521214e849886946a60e4a2ff, type: 2}
   barrel: {fileID: 4415905091608992}
   team: 0

@@ -679,7 +679,7 @@ MonoBehaviour:
   healthReady: 1
   minionType: 0
   healthBar: {fileID: 114991153088729386}
-  value: 5
+  value: 2
   isStunned: 0
   endOfStun: 0
   mesh: {fileID: 1484791438801306}

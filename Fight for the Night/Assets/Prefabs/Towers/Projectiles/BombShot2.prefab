@@ -291,12 +291,12 @@ MonoBehaviour:
   enemy: {fileID: 0}
   caster: 
   player: {fileID: 0}
-  damage: 8
+  damage: 6
   team: 0
   currentType: 2
   slowValue: 0
   duration: 0
-  aoeSize: 5
+  aoeSize: 3
 --- !u!114 &114698954764234440
 MonoBehaviour:
   m_ObjectHideFlags: 1

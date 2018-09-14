@@ -1520,11 +1520,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b4bd1aa004fa94d84d93897b620878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 7.5
-  fireRate: 1.5
+  range: 7
+  fireRate: 2
   turnSpeed: 10
-  Firepower: 2400
-  projectile: {fileID: 1166184801799110, guid: 80f6ddae88fba5b44901f581c2734ee1, type: 2}
+  Firepower: 1800
+  projectile: {fileID: 1166184801799110, guid: 0a4cd4b3d9abb314c96fd93112831438, type: 2}
   barrel: {fileID: 4086141208957588}
   team: 0
   playerChar: {fileID: 0}

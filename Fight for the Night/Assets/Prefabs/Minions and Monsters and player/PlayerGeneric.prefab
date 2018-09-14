@@ -6990,7 +6990,7 @@ MonoBehaviour:
   slasherEnemy: {fileID: 1531717309921350, guid: 95724f07fee907145a33aa635baa4b3f,
     type: 2}
   initialSpawn: 15
-  spawnDistance: 5
+  spawnDistance: 3
   waveLength: 6
   waveCount: 0
 --- !u!114 &114687981220623798
@@ -7284,11 +7284,11 @@ MonoBehaviour:
   baseAuto: 3
   autoDamage: 0
   fireRate: 0.7
-  spell1Damage: 5
+  spell1Damage: 6
   CD1: 7
   remainingTime1: 0
-  spell2Damage: 20
-  CD2: 20
+  spell2Damage: 3
+  CD2: 15
   remainingTime2: 0
   windSpin: {fileID: 198263037512002276, guid: 05981e42dfc314b41be97d3a0381bd1c, type: 2}
   enemyList: []
@@ -7423,11 +7423,11 @@ MonoBehaviour:
   spell1ComboSound: {fileID: 0}
   basicSound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   autoDamage: 3
-  fireRate: 0.4
-  spell1Damage: 2
+  fireRate: 0.917
+  spell1Damage: 3
   CD1: 12
   remainingTime1: 0
-  spell2Damage: 20
+  spell2Damage: 15
   CD2: 10
   remainingTime2: 0
   multValue: 5

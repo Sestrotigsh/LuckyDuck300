@@ -151,7 +151,7 @@ MonoBehaviour:
   currentType: 3
   slowValue: 1.5
   duration: 1
-  aoeSize: 5
+  aoeSize: 2
 --- !u!135 &135741610629537558
 SphereCollider:
   m_ObjectHideFlags: 1
