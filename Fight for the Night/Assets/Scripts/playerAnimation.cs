@@ -245,7 +245,7 @@ public class playerAnimation : NetworkBehaviour {
 
     public void UpdateShooting() {
     	anim.SetTrigger ("Shoot");
-    	netAnim.SetTrigger("Shoot");
+    	//netAnim.SetTrigger("Shoot"); // ISSUE - INTERUPTS NON NETWORKED CHARACTERS ATTACK
     	shooting = true;
 	}
 

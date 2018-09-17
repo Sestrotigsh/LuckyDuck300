@@ -13,12 +13,48 @@ public class ButtonScripts : NetworkBehaviour {
 	public GameObject controls;
 	public GameObject sounds;
     public GameObject LobbyManager;
+    private GameObject mainPanel;
+    private GameObject title;
+
+
+    public void EnterLobbby() {
+        var fooGroup = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+                     foreach(GameObject t in fooGroup){
+                        if(t.name == "MainPanel"){
+                            mainPanel = t;
+                        }
+                    }
+        mainPanel.SetActive(false);
+    }
+
+
 
 	/// <summary>
 	/// Load the main menu of the game.
 	/// </summary>
 	public void MainMenu() {
-		SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
+        if (isServer) {
+            NetworkLobbyManager.singleton.StopHost();
+        } else {
+            NetworkLobbyManager.singleton.StopClient();
+        }
+        
+		var fooGroup = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+                     foreach(GameObject t in fooGroup){
+                        if(t.name == "StartOptions"){
+                            startMenu = t;
+                        }
+                        if (t.name == "OptionsPanel") {
+                            optionsPanel = t;
+                        }
+                        if (t.name == "Title") {
+                            title = t;
+                        }
+                    }
+        title.SetActive(true);
+        SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
+        Menu();
+
 	}
 
 	/// <summary>
