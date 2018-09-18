@@ -7209,6 +7209,7 @@ MonoBehaviour:
   monster1IncomeBoost: 1
   monster2Cost: 50
   monster2IncomeBoost: 3
+  spawnGap: 1.5
 --- !u!114 &114832480884015032
 MonoBehaviour:
   m_ObjectHideFlags: 1

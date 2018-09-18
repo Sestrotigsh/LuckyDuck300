@@ -17,7 +17,8 @@ namespace Prototype.NetworkLobby
         public GameObject props;
         public GameObject mainPanel;
         public GameObject quit;
-
+        public GameObject returnButton;
+        public GameObject serverList;
         public GameObject navPanel;
 
 
@@ -101,10 +102,12 @@ namespace Prototype.NetworkLobby
 
         void onEndEditGameName(string text)
         {
+            /*
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 OnClickCreateMatchmakingGame();
             }
+            */
         }
 
         public void OnClickStart() {
@@ -139,7 +142,16 @@ namespace Prototype.NetworkLobby
         }
 
         public void ClickBack() {
-            navPanel.SetActive(false);
+            // navPanel.SetActive(false);
+        startMenu.SetActive(false);
+        props.SetActive(false);
+        mainPanel.SetActive(true);
+        quit.SetActive(true);
+        navPanel.SetActive(false);
+        returnButton.SetActive(false);
+        serverList.SetActive(false);
+        lobbyPanel.gameObject.SetActive(false);
+
         }
 
     }

@@ -31,9 +31,13 @@ public class SpawnMinions : NetworkBehaviour {
     private PlayerNetwork player0;
     private PlayerNetwork player1;
 
+    private float timer;
+    public float spawnGap;
+
 
     // Use this for initialization
     void Start () {
+        timer = Time.timeSinceLevelLoad;
 		playerMan = this.GetComponent<PlayerManagement> ();
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
 		if (!PlayerNet.local) {
@@ -96,46 +100,57 @@ public class SpawnMinions : NetworkBehaviour {
 
 
         if (Input.GetKeyDown("o")) {
-			if (playerMan.currentGold >= monster1Cost) {
-				if (playerType == "Alien") {
+            if (timer < Time.timeSinceLevelLoad) {
+                 if (playerMan.currentGold >= monster1Cost) {
+                if (playerType == "Alien") {
                     // Check which team is spawning
                     if (enemySpawner.tag == "SpawnMonster0") {
                         CmdSendMonster1Alien(1,-10);
                     } else {
                         CmdSendMonster1Alien(0,-10);
                     }
-				} else {
+                } else {
                     // Check which team is spawning
                     if (enemySpawner.tag == "SpawnMonster0") {
                         CmdSendMonster1Slasher(1,-10);
                     } else {
                         CmdSendMonster1Slasher(0,-10);
                     }
-				}
-				playerMan.currentGold -= monster1Cost;
-				playerMan.currentIncome += monster1IncomeBoost;
-			}
+                }
+                playerMan.currentGold -= monster1Cost;
+                playerMan.currentIncome += monster1IncomeBoost;
+            }
+            timer = Time.timeSinceLevelLoad + spawnGap;
+            }
+
+
+
+
 		}
         else if (Input.GetKeyDown("p")) {
-            if (playerMan.currentGold >= monster2Cost) {
-            	if (playerType == "Alien") {
+            if (timer < Time.timeSinceLevelLoad) {
+                            if (playerMan.currentGold >= monster2Cost) {
+                if (playerType == "Alien") {
                     // Check which team is spawning
                     if (enemySpawner.tag == "SpawnMonster0") {
                         CmdSendMonster2Alien(1,-10);
                     } else {
                         CmdSendMonster2Alien(0,-10);
                     }
-				} else {
+                } else {
                     // Check which team is spawning
                     if (enemySpawner.tag == "SpawnMonster0") {
                         CmdSendMonster2Slasher(1,-10);
                     } else {
                         CmdSendMonster2Slasher(0,-10);
                     }
-				}
+                }
                 playerMan.currentGold -= monster2Cost;
                 playerMan.currentIncome += monster2IncomeBoost;
             }
+                timer = Time.timeSinceLevelLoad + spawnGap;
+            }
+
         }
 	}
 

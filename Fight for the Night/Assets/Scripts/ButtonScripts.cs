@@ -15,6 +15,8 @@ public class ButtonScripts : NetworkBehaviour {
     public GameObject LobbyManager;
     private GameObject mainPanel;
     private GameObject title;
+    private GameObject returnButton;
+    private GameObject quitButton;
 
 
     public void EnterLobbby() {
@@ -27,12 +29,26 @@ public class ButtonScripts : NetworkBehaviour {
         mainPanel.SetActive(false);
     }
 
+    public void EnableReturnButton() {
+        var fooGroup = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+                     foreach(GameObject t in fooGroup){
+                        if(t.name == "BackButton"){
+                            returnButton = t;
+                        }
+                    }
+        returnButton.SetActive(true);
+    }
+
 
 
 	/// <summary>
 	/// Load the main menu of the game.
 	/// </summary>
 	public void MainMenu() {
+        Destroy(LobbyManager);
+        NetworkLobbyManager.Shutdown();
+        SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
+        /*
         if (isServer) {
             NetworkLobbyManager.singleton.StopHost();
         } else {
@@ -50,10 +66,19 @@ public class ButtonScripts : NetworkBehaviour {
                         if (t.name == "Title") {
                             title = t;
                         }
+                        if (t.name == "BackButton") {
+                            returnButton = t;
+                        }
+                        if (t.name == "ButtonQuit") {
+                            quitButton = t;
+                        }
                     }
         title.SetActive(true);
+        returnButton.SetActive(false);
+        quitButton.SetActive(false);
         SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
         Menu();
+        */
 
 	}
 

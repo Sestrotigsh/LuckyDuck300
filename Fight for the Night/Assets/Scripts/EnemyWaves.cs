@@ -42,7 +42,7 @@ public class EnemyWaves : NetworkBehaviour {
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
 	    
-        if (this.tag != "Player0")
+        if (!isLocalPlayer)
         {
             enabled = false;
         }

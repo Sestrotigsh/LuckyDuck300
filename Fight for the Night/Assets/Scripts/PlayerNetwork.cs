@@ -63,6 +63,15 @@ public class PlayerNetwork : NetworkBehaviour {
 			//}
 			
 		}
+		if (team == 0 && this.transform.position.x > centreLineX) {
+			Vector3 hardReset = transform.position;
+			hardReset.x = centreLineX - 1.0f;
+			transform.position = hardReset;
+		} else if (team == 1 && this.transform.position.x < centreLineX) {
+			Vector3 hardReset = transform.position;
+			hardReset.x = centreLineX + 1.0f;
+			transform.position = hardReset;
+		}
 	}
 
 	public void TakeDamage () {
