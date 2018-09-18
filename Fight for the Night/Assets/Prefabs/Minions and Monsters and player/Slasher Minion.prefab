@@ -711,7 +711,7 @@ MonoBehaviour:
   currentNodeIndex: 0
   moveSpeed: 3
   minDistance: 0.1
-  health: 5
+  health: 25
   currentHealth: 0
   initialSpeed: 0
   healthScalingValue: 3
