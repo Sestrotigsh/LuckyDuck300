@@ -206,7 +206,7 @@ public class Enemy : NavigationAgent {
 		currentHealth = currentHealth - damage;
         healthBar.fillAmount = currentHealth / health;
 		if (currentHealth <= 0) {
-			playerMan.currentGold = playerMan.currentGold + value;
+            playerMan.Earn(value);
             isStunned = true;
             endOfStun = Time.time + 2.0f;
             deathTimer = Time.timeSinceLevelLoad + 0.75f; // CHANGE HAS OCCURED HERE FOR BUG FIXING was 0.75f

@@ -87,7 +87,7 @@ public class TowerAttacking : MonoBehaviour {
 
     void DisplayArrow()
     {
-        if ((Vector3.Distance(playerChar.transform.position, transform.position) < displayDistance) && (upgradeArrow.activeInHierarchy == false))
+        if ((Vector3.Distance(playerChar.transform.position, transform.position) < displayDistance) && (upgradeArrow.activeInHierarchy == false) && (this.tag != "BaseTower4" || this.tag != "IceTower4 "|| this.tag != "BombTower4"))
         {
             upgradeArrow.SetActive(true);
             Vector3 playerDir = new Vector3(playerChar.transform.position.x, this.transform.position.y, playerChar.transform.position.z);

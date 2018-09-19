@@ -100,6 +100,59 @@ public class PlayerManagement : MonoBehaviour {
             timeCount = timeCount + incomeInterval;
         }
     }
+    public void Earn(int money)
+    {
+        float UITime = Time.time + 2;
+        currentGold = currentGold + money;
+        GameObject sign = new GameObject("player_Spend");
+        sign.transform.parent = this.gameObject.transform;
+        sign.transform.rotation = Camera.main.transform.rotation; // Causes the text faces camera.
+        TextMesh tm = sign.AddComponent<TextMesh>();
+        tm.text = "+" + money + " Gold";
+        tm.color = new Color(0.8f, 0.8f, 0.8f);
+        tm.fontStyle = FontStyle.Bold;
+        tm.alignment = TextAlignment.Center;
+        tm.anchor = TextAnchor.MiddleCenter;
+        tm.characterSize = 0.065f;
+        tm.fontSize = 40;
+        sign.transform.position = this.transform.position + Vector3.up * 2.5f;
+        Destroy(sign, 1.5f);
+    }
+
+    public void Spend(int money)
+    {
+        float UITime = Time.time + 2;
+        currentGold = currentGold - money;
+        GameObject sign = new GameObject("player_Spend");
+        sign.transform.parent = this.gameObject.transform;
+        sign.transform.rotation = Camera.main.transform.rotation; // Causes the text faces camera.
+        TextMesh tm = sign.AddComponent<TextMesh>();
+        tm.text = "-" + money +" Gold";
+        tm.color = new Color(0.8f, 0.8f, 0.8f);
+        tm.fontStyle = FontStyle.Bold;
+        tm.alignment = TextAlignment.Center;
+        tm.anchor = TextAnchor.MiddleCenter;
+        tm.characterSize = 0.065f;
+        tm.fontSize = 40;
+        sign.transform.position = this.transform.position + Vector3.up * 2.5f;
+        Destroy(sign, 1.5f);
+        
+    }
+    IEnumerator MoveUp(float timing, GameObject panel)
+    {
+        
+        if (Time.time < timing)
+        {
+            Debug.Log("rroke");
+            panel.transform.Translate(Vector3.up * Time.deltaTime);
+            yield return null;
+        }
+        else
+        {
+            Destroy(panel);
+            yield break;
+        }
+    }
 
 	void OnTriggerEnter(Collider other) {
 		if (!player.local) {
