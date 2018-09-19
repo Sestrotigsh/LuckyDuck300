@@ -7196,6 +7196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c65247a8c53d57478c34672d935da57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnDistance: 10
   enemySpawner: {fileID: 0}
   monster1Alien: {fileID: 1380171019409932, guid: e26272fcde7ce4d48ba628b972a1a2e5,
     type: 2}

@@ -6,6 +6,9 @@ using UnityEngine.Networking;
 public class SpawnMinions : NetworkBehaviour {
 ////// CONTROLS PLAYERS ABILITIES TO SPAWN MONSTERS TO ATTACK OTHER PLAYER
 
+    private GameObject prompts;
+    private float promptDistance;
+    public float spawnDistance;
 
 	public GameObject enemySpawner;
 
@@ -40,11 +43,14 @@ public class SpawnMinions : NetworkBehaviour {
         timer = Time.timeSinceLevelLoad;
 		playerMan = this.GetComponent<PlayerManagement> ();
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
+        int newTeam = this.GetComponent<PlayerNetwork>().team;
+        prompts = GameObject.FindGameObjectWithTag("Prompts"+newTeam);
 		if (!PlayerNet.local) {
+            prompts.SetActive(false);
 			enabled = false;
 		}
+
 		// find the enemy spawner
-		int newTeam = this.GetComponent<PlayerNetwork>().team;
 		enemySpawner = GameObject.FindGameObjectWithTag ("SpawnMonster" + newTeam);
 	}
 	
@@ -98,8 +104,12 @@ public class SpawnMinions : NetworkBehaviour {
 
         }
 
+        // check the distance to the prompts
+        promptDistance = Vector3.Distance(prompts.transform.position, this.transform.position);
 
-        if (Input.GetKeyDown("o")) {
+        if (promptDistance < spawnDistance) {
+            prompts.SetActive(true);
+                    if (Input.GetKeyDown("o")) {
             if (timer < Time.timeSinceLevelLoad) {
                  if (playerMan.currentGold >= monster1Cost) {
                 if (playerType == "Alien") {
@@ -126,7 +136,7 @@ public class SpawnMinions : NetworkBehaviour {
 
 
 
-		}
+        }
         else if (Input.GetKeyDown("p")) {
             if (timer < Time.timeSinceLevelLoad) {
                             if (playerMan.currentGold >= monster2Cost) {
@@ -152,6 +162,11 @@ public class SpawnMinions : NetworkBehaviour {
             }
 
         }
+
+        } else {
+            prompts.SetActive(false);
+        }
+
 	}
 
 
