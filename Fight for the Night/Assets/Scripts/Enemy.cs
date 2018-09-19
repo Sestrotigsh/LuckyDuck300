@@ -50,7 +50,7 @@ public class Enemy : NavigationAgent {
     //public bool customPathBool = false;
     //public int customPathDirection = 0;
 
-    public int value; // The gold value of the monster
+    public float value; // The gold value of the monster
     public bool isStunned = false;
     public float endOfStun;
 
@@ -206,7 +206,12 @@ public class Enemy : NavigationAgent {
 		currentHealth = currentHealth - damage;
         healthBar.fillAmount = currentHealth / health;
 		if (currentHealth <= 0) {
+
+            ///////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            value = value / (Mathf.Log10 (playerMan.currentGold) / 2);
 			playerMan.currentGold = playerMan.currentGold + value;
+
             isStunned = true;
             endOfStun = Time.time + 2.0f;
             deathTimer = Time.timeSinceLevelLoad + 0.75f; // CHANGE HAS OCCURED HERE FOR BUG FIXING was 0.75f

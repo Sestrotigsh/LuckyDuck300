@@ -22,7 +22,7 @@ public class PlayerManagement : MonoBehaviour {
 
     public int startingGold = 50;
     public int currentIncome;
-    public int currentGold;
+    public float currentGold;
     public int incomeInterval = 5;
     private int timeCount;
 
@@ -75,7 +75,7 @@ public class PlayerManagement : MonoBehaviour {
         healthSlider.value = player.health;
         GoldSlider.value = currentBank + currentIncome;
 		canvHPT.GetComponent<Text>().text = player.health.ToString();
-        goldT.GetComponent<Text>().text =  currentGold.ToString();   
+        goldT.GetComponent<Text>().text =  Mathf.Ceil(currentGold).ToString();   
         incomeT.GetComponent<Text>().text = currentIncome + "/"+incomeInterval + "s";
         if (player.health <= 0)
         {
