@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
-public class InGamePause : MonoBehaviour {
+public class InGamePause : NetworkBehaviour {
     /* Script for In Game Pause Menu
     Start and Update run the panel bool
     Methods are key button presses
@@ -23,7 +24,9 @@ public class InGamePause : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (!isLocalPlayer) {
+            this.enabled = false;
+        }
         //Get Pause Button (Escape Key) Input
         if (Input.GetKey(KeyCode.M))
         {
@@ -41,7 +44,31 @@ public class InGamePause : MonoBehaviour {
         {
             if (pauseMenu.activeInHierarchy == true)
             {
-                SceneManager.LoadScene(0);
+                GameObject opponent = this.GetComponent<PlayerNetwork>().opponent;
+                // If the player is on the server - tell the client to win
+                if (isServer) {
+                    if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+                        RpcVictoryAlien();
+                    } else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+                        RpcVictorySlasher();
+                    }
+            // if the player is a client - tell the server to win
+                } else {
+                    if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+                        CmdVictoryAlien();
+                    } else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+                        CmdVictorySlasher();
+                    }
+                }
+                // end in defeat
+                if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+                    SceneManager.LoadScene("DefeatAlien", LoadSceneMode.Single);
+                } else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+                    SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Single);
+                }
+                //SceneManager.LoadScene(0);
+
+                //SceneManager.LoadScene(0);
             }
         }
 
@@ -54,6 +81,35 @@ public class InGamePause : MonoBehaviour {
             }
         }
 
+    }
+
+
+    [Command]
+    void CmdVictoryAlien () {
+        // Tell the opponent on the server they have won!
+        SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
+    }
+
+    [Command]
+    void CmdVictorySlasher () {
+        // Tell the opponent on the server they have won!
+        SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
+    }
+
+    [ClientRpc]
+    void RpcVictoryAlien() {
+        // tell the client (excluding client on the server) they have won!
+        if (!isServer) {
+            SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
+        }
+    }
+
+    [ClientRpc]
+    void RpcVictorySlasher() {
+        // tell the client (excluding client on the server) they have won!
+        if (!isServer) {
+            SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
+        }
     }
 
        

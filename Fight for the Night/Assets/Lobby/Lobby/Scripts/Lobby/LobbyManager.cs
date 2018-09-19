@@ -438,7 +438,9 @@ namespace Prototype.NetworkLobby
         public override void OnClientDisconnect(NetworkConnection conn)
         {
             base.OnClientDisconnect(conn);
-            ChangeTo(mainMenuPanel);
+            //ChangeTo(mainMenuPanel);
+            Shutdown();
+            SceneManager.LoadScene("Main Screen", LoadSceneMode.Single);
         }
 
         public override void OnClientError(NetworkConnection conn, int errorCode)
