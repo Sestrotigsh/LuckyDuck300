@@ -100,7 +100,7 @@ public class PlayerManagement : MonoBehaviour {
             timeCount = timeCount + incomeInterval;
         }
     }
-    public void Earn(int money)
+    public void Earn(float money)
     {
         float UITime = Time.time + 2;
         currentGold = currentGold + money;
@@ -119,7 +119,7 @@ public class PlayerManagement : MonoBehaviour {
         Destroy(sign, 1.5f);
     }
 
-    public void Spend(int money)
+    public void Spend(float money)
     {
         float UITime = Time.time + 2;
         currentGold = currentGold - money;
