@@ -57,7 +57,7 @@ public class TowerButtonUI : NetworkBehaviour {
         }
         } else {
             if (subPanel.activeSelf == true) {
-                 if (Input.GetButtonDown("Fire1")) {
+                if (Input.GetButtonDown("Fire1")) {
                     if (this.CompareTag("TowerBase")) {
                         playerBuild.ReceiveDirections(1);
                     } else if (this.CompareTag("TowerBomb")) {
@@ -74,7 +74,6 @@ public class TowerButtonUI : NetworkBehaviour {
 
     private void towerDetectionType()
     {
-        GameObject typeOfTower = playerBuild.currentlyTouching;
 
         if (this.tag == "TowerBase")
         {
@@ -87,27 +86,28 @@ public class TowerButtonUI : NetworkBehaviour {
             subPanelText.text = "Bomb Tower 1" + Environment.NewLine + "Cost :" + playerBuild.bombCost;
         }
 
-        if (typeOfTower != null)
+        if (playerBuild.currentlyTouching != null && playerBuild.currentlyTouching.CompareTag("TowerLocation"))
         {
+            TowerSpot.type typeOfTower = playerBuild.currentlyTouching.GetComponent<TowerSpot>().currentType;
             if (this.tag == "TowerBase")
             {
-                if (typeOfTower.tag == "BaseTower1")
+                if (typeOfTower == TowerSpot.type.Base1)
                 {
                     subPanelText.text = "Base Tower 2" + Environment.NewLine + "Cost :" + playerBuild.baselevel2Cost;
 
                 }
-                else if (typeOfTower.tag == "BaseTower2")
+                else if (typeOfTower == TowerSpot.type.Base2)
                 {
                     subPanelText.text = "Base Tower 3" + Environment.NewLine + "Cost :" + playerBuild.baselevel3Cost;
 
                 }
-                else if (typeOfTower.tag == "BaseTower3")
+                else if (typeOfTower == TowerSpot.type.Base3)
                 {
                     subPanelText.text = "Base Tower 4" + Environment.NewLine + "Cost :" + playerBuild.baselevel4Cost;
 
                 }
 
-                else if (typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower1" || typeOfTower.tag == "IceTower2" || typeOfTower.tag == "IceTower3" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower1" || typeOfTower.tag == "BombTower2" || typeOfTower.tag == "BombTower3" || typeOfTower.tag == "BombTower4")
+                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb3)
                 {
                     this.gameObject.SetActive(false);
                     
@@ -115,20 +115,20 @@ public class TowerButtonUI : NetworkBehaviour {
             }
             else if (this.tag == "TowerIce")
             {
-                if (typeOfTower.tag == "IceTower1")
+                if (typeOfTower == TowerSpot.type.Ice1)
                 {
                     subPanelText.text = "Ice Tower 2" + Environment.NewLine + "Cost :" + playerBuild.icelevel2Cost;
                 }
-                else if (typeOfTower.tag == "IceTower2")
+                else if (typeOfTower == TowerSpot.type.Ice2)
                 {
                     subPanelText.text = "Ice Tower 3" + Environment.NewLine + "Cost :" + playerBuild.icelevel3Cost;
                 }
-                else if (typeOfTower.tag == "IceTower3")
+                else if (typeOfTower == TowerSpot.type.Ice3)
                 {
                     subPanelText.text = "Ice Tower 4" + Environment.NewLine + "Cost :" + playerBuild.icelevel4Cost;
                 }
 
-                else if (typeOfTower.tag == "BaseTower1" || typeOfTower.tag == "BaseTower2" || typeOfTower.tag == "BaseTower3" || typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower1" || typeOfTower.tag == "BombTower2" || typeOfTower.tag == "BombTower3" || typeOfTower.tag == "BombTower4")
+                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb3)
                 {
                     this.gameObject.SetActive(false);
                 }           
@@ -136,20 +136,20 @@ public class TowerButtonUI : NetworkBehaviour {
 
             else if (this.tag == "TowerBomb")
             {
-                if (typeOfTower.tag == "BombTower1")
+                if (typeOfTower == TowerSpot.type.Bomb1)
                 {
                     subPanelText.text = "Bomb Tower 2" + Environment.NewLine + "Cost :" + playerBuild.bomblevel2Cost;
                 }
-                else if (typeOfTower.tag == "BombTower2")
+                else if (typeOfTower == TowerSpot.type.Bomb2)
                 {
                     subPanelText.text = "Bomb Tower 3" + Environment.NewLine + "Cost :" + playerBuild.bomblevel3Cost;
                 }
-                else if (typeOfTower.tag == "BombTower3")
+                else if (typeOfTower == TowerSpot.type.Bomb3)
                 {
                     subPanelText.text = "Bomb Tower 4" + Environment.NewLine + "Cost :" + playerBuild.bomblevel4Cost;
                 }
 
-                else if (typeOfTower.tag == "BaseTower1" || typeOfTower.tag == "BaseTower2" || typeOfTower.tag == "BaseTower3" || typeOfTower.tag == "BaseTower4" || typeOfTower.tag == "IceTower1" || typeOfTower.tag == "IceTower2" || typeOfTower.tag == "IceTower3" || typeOfTower.tag == "IceTower4" || typeOfTower.tag == "BombTower4")
+                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Bomb3)
                 {
                     this.gameObject.SetActive(false);
                 }

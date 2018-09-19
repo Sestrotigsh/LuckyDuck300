@@ -127,15 +127,11 @@ public class SpawnMinions : NetworkBehaviour {
                         CmdSendMonster1Slasher(0,-10);
                     }
                 }
-                playerMan.currentGold -= monster1Cost;
+                playerMan.Spend(monster1Cost);
                 playerMan.currentIncome += monster1IncomeBoost;
             }
             timer = Time.timeSinceLevelLoad + spawnGap;
             }
-
-
-
-
         }
         else if (Input.GetKeyDown("p")) {
             if (timer < Time.timeSinceLevelLoad) {
@@ -155,7 +151,7 @@ public class SpawnMinions : NetworkBehaviour {
                         CmdSendMonster2Slasher(0,-10);
                     }
                 }
-                playerMan.currentGold -= monster2Cost;
+                playerMan.Spend(monster2Cost);
                 playerMan.currentIncome += monster2IncomeBoost;
             }
                 timer = Time.timeSinceLevelLoad + spawnGap;

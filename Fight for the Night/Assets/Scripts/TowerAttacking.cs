@@ -31,7 +31,7 @@ public class TowerAttacking : MonoBehaviour {
 		} else {
 			team = 1;
 		}
-        Vector3 arrowPosition = new Vector3(0, 2, 0);
+        Vector3 arrowPosition = new Vector3(0, 3, 0);
         playerChar = GameObject.FindGameObjectWithTag("Player" + team);
         upgradeArrow = Instantiate(upgradeArrow, arrowPosition, transform.rotation, transform);
         upgradeArrow.transform.localPosition = arrowPosition;
@@ -89,9 +89,16 @@ public class TowerAttacking : MonoBehaviour {
     {
         if ((Vector3.Distance(playerChar.transform.position, transform.position) < displayDistance) && (upgradeArrow.activeInHierarchy == false))
         {
-            upgradeArrow.SetActive(true);
-            Vector3 playerDir = new Vector3(playerChar.transform.position.x, this.transform.position.y, playerChar.transform.position.z);
-            upgradeArrow.transform.LookAt(playerDir);
+            if (this.transform.parent.tag == "BaseTower4" || this.transform.parent.tag == "IceTower4 " || this.transform.parent.tag == "BombTower4")
+            {
+
+            } else
+            {
+                upgradeArrow.SetActive(true);
+                Vector3 playerDir = new Vector3(playerChar.transform.position.x, this.transform.position.y, playerChar.transform.position.z);
+                upgradeArrow.transform.LookAt(playerDir);
+            }
+            
         } else if (upgradeArrow.activeInHierarchy == true && (Vector3.Distance(playerChar.transform.position, transform.position) > displayDistance))
         {
             upgradeArrow.SetActive(false);

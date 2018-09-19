@@ -42,6 +42,8 @@ TagManager:
   - Spawn
   - Lobby
   - Lighting
+  - TowerBomb
+  - TowerIce
   - BaseTower1
   - IceTower1
   - BombTower2
@@ -55,10 +57,9 @@ TagManager:
   - BombTower4
   - IceTower4
   - Loading
-  - TowerBomb
-  - TowerIce
   - Prompts1
   - Prompts0
+  - TowerLocation
   layers:
   - Default
   - TransparentFX
