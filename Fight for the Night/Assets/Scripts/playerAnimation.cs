@@ -208,8 +208,8 @@ public class playerAnimation : NetworkBehaviour {
 			return;
 		}
 
-		mouseInput.x = Input.GetAxis ("Mouse X");
-		mouseInput.y = Input.GetAxis ("Mouse Y");
+		mouseInput.x = Input.GetAxis ("Mouse X")/1.5f;
+		mouseInput.y = Input.GetAxis ("Mouse Y")/1.5f;
 
 		if (mouseInput.y > 0) {
 			if (mainCamera.transform.rotation.eulerAngles.x > 0.0f && mainCamera.transform.rotation.eulerAngles.x < 300.0f) {

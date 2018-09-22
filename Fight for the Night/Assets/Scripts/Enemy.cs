@@ -206,7 +206,9 @@ public class Enemy : NavigationAgent {
 		currentHealth = currentHealth - damage;
         healthBar.fillAmount = currentHealth / health;
 		if (currentHealth <= 0) {  
-            value = value / (Mathf.Log10 (playerMan.currentGold) / 2);
+            if (playerMan.currentGold > 10.0f) {
+                value = value / (Mathf.Log10 (playerMan.currentGold));              
+            }
 			playerMan.Earn(value);
             isStunned = true;
             endOfStun = Time.time + 2.0f;
