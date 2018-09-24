@@ -166,7 +166,10 @@ public class PlayerManagement : MonoBehaviour {
 
 		if (other.CompareTag ("Bank")) {
 			currentGold = currentGold + currentBank;
-			currentBank = 0;
+            if (currentBank != 0.0f) {
+               other.GetComponent<AudioSource>().Play(); 
+               currentBank = 0;
+            }
 		}
 	}
 }
