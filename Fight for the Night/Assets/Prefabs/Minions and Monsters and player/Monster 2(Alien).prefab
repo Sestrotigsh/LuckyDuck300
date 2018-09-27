@@ -547,6 +547,11 @@ MonoBehaviour:
   endOfStun: 0
   mesh: {fileID: 1225320186059612}
   animator: {fileID: 1121949854872134}
+  monsterNumber: 2
+  redS: {fileID: 2100000, guid: 773543f99965ea6439fd64c4e330a431, type: 2}
+  redL: {fileID: 2100000, guid: eab7f880fe377b1449dafb2a7e568b8a, type: 2}
+  blueS: {fileID: 2100000, guid: 04e0a3b0adfe1e14e8d644edc132f0a8, type: 2}
+  blueL: {fileID: 2100000, guid: 616a7d9e3e572b34f809eaf7d7559dba, type: 2}
 --- !u!114 &114940402305231948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -584,8 +589,8 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: eab7f880fe377b1449dafb2a7e568b8a, type: 2}
-  - {fileID: 2100000, guid: eab7f880fe377b1449dafb2a7e568b8a, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

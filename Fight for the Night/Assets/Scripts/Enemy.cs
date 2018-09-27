@@ -60,6 +60,14 @@ public class Enemy : NavigationAgent {
     public GameObject mesh;
     public GameObject animator;
 
+    private GameObject spawnerLeft;
+    private GameObject spawnerRight;
+    public int monsterNumber;
+    public Material redS;
+    public Material redL;
+    public Material blueS;
+    public Material blueL;
+
     // Use this for initialization
     void Start() {
         currentHealth = health;
@@ -77,6 +85,39 @@ public class Enemy : NavigationAgent {
     void Update() {
         // if the enemy has been assigned as a monster
         if (monsterReady == true) {
+            //Debug.Log("MonsterSet");
+            Material [] swap = new Material[2];
+                spawnerLeft = GameObject.FindGameObjectWithTag("SpawnMonster1");
+                spawnerRight = GameObject.FindGameObjectWithTag("SpawnMonster0");
+                if (Vector3.Distance(this.transform.position, spawnerLeft.transform.position) < Vector3.Distance(this.transform.position, spawnerRight.transform.position)) {
+                    if (monsterNumber == 1) {
+                        //Debug.Log("SmallRed");
+                        swap = rend.materials;
+                        swap[0] = redS;
+                        swap[1] = redS;
+                        rend.materials = swap;
+                    } else if (monsterNumber == 2) {
+                        //Debug.Log("LargeRed");
+                        swap = rend.materials;
+                        swap[0] = redL;
+                        swap[1] = redL;
+                        rend.materials = swap;
+                    }
+                } else {
+                    if (monsterNumber == 1) {
+                        //Debug.Log("smallBlue");
+                        swap = rend.materials;
+                        swap[0] = blueS;
+                        swap[1] = blueS;
+                        rend.materials = swap;
+                    } else if (monsterNumber == 2) {
+                        //Debug.Log("largeBlue");
+                         swap = rend.materials;
+                        swap[0] = blueL;
+                        swap[1] = blueL;
+                        rend.materials = swap;
+                    }
+                }
             // set it as a monster
             if (minionType != type.Monster) {
                 minionType = type.Monster;
