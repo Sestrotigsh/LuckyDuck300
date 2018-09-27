@@ -36,6 +36,8 @@ namespace Prototype.NetworkLobby
         public Sprite alienPoster;
         public Sprite slasherPoster;
         public GameObject teamPoster;
+        public GameObject leftPoster;
+        public GameObject rightPoster;
 
 
         public Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
@@ -49,13 +51,17 @@ namespace Prototype.NetworkLobby
         //static Color OddRowColor = new Color(250.0f / 255.0f, 250.0f / 255.0f, 250.0f / 255.0f, 1.0f);
         //static Color EvenRowColor = new Color(180.0f / 255.0f, 180.0f / 255.0f, 180.0f / 255.0f, 1.0f);
 
-        void Start() {
+        void Awake() {
             var fooGroup = Resources.FindObjectsOfTypeAll(typeof(GameObject));
             foreach(GameObject t in fooGroup){
                 if(t.name == "Loading"){
                     loading = t;
                 }
             }
+            loading.SetActive(true);
+            leftPoster = loading.transform.GetChild(0).gameObject;
+            rightPoster = loading.transform.GetChild(1).gameObject;
+            loading.SetActive(false);
         }
 
 
@@ -227,10 +233,22 @@ namespace Prototype.NetworkLobby
 
         public void OnMyTeam(int newTeam) { ////////////////////////////////////////
             playerTeam = newTeam; ///////////////////////////////////////////////
-            if (playerTeam == 0)
-                teamPoster.GetComponent<Image>().sprite = alienPoster;
-            if (playerTeam == 1)
+            if (playerTeam == 0) {
+                 teamPoster.GetComponent<Image>().sprite = alienPoster;
+                if (playerName == "Player1") {
+                    leftPoster.GetComponent<Image>().sprite = alienPoster;
+                } else if (playerName == "Player2") {
+                   rightPoster.GetComponent<Image>().sprite = alienPoster;
+                }
+            } else if (playerTeam == 1) {
                 teamPoster.GetComponent<Image>().sprite = slasherPoster;
+                if (playerName == "Player1") {
+                    leftPoster.GetComponent<Image>().sprite = slasherPoster;
+                } else if (playerName == "Player2") {
+                    rightPoster.GetComponent<Image>().sprite = slasherPoster;
+                }
+            }
+                
             // ADD CODE HERE TO CHANGE THE PICTURE OF THE RELEVANT TEAM ////////////////////////////
         } ///////////////////////////////////////////////////////////////////////
 
@@ -332,7 +350,6 @@ namespace Prototype.NetworkLobby
         [Command] ////////////////////////////////////////
         public void CmdTeamChange() { //////////////////////////////////////// 
             playerTeam = (playerTeam + 1) % 2;
-            Debug.Log(playerTeam);
         }
 
         [ClientRpc]
