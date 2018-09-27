@@ -182,7 +182,7 @@ public class SpellsAlien : MonoBehaviour
 
 
 		Vector3 adjustedAccuracy = new Vector3 (Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion));
-		GameObject instance = Instantiate(projectile, (frontPos.position), frontPos.rotation) as GameObject;
+		GameObject instance = Instantiate(projectile, (frontPos.position), this.transform.rotation) as GameObject;
 		instance.transform.Rotate(adjustedAccuracy);
 		instance.GetComponent<ProjectileController>().damage = baseAuto;
 		instance.GetComponent<ProjectileController>().caster = "Alien";

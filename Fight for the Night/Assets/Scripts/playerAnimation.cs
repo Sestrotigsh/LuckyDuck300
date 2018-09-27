@@ -151,7 +151,7 @@ public class playerAnimation : NetworkBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
             if (shooting == false) {
                 anim.SetTrigger ("Jump");
-                netAnim.SetTrigger("Jump");
+                //netAnim.SetTrigger("Jump");
             }
 			
 		}

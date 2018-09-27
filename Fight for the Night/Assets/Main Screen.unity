@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 2
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 2
+  m_MinPlayers: 1
   m_LobbyPlayerPrefab: {fileID: 11487034, guid: ad727d7e1462ecc4f83c898ecc501997,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1194718770242504, guid: bde10917aac436546b80a5d6c0fd40aa,
@@ -6427,42 +6427,42 @@ Prefab:
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 148
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -439
+      value: -201
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: -863.35864
+      value: 538.64136
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: -243.25906
+      value: 80.74094
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.27
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.7
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
         type: 2}
@@ -6474,7 +6474,29 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1818114138009134, guid: 926c43e2c46a5564a9985af52aa69547, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114068926573209648, guid: 926c43e2c46a5564a9985af52aa69547, type: 2}
+    - {fileID: 114403308203065180, guid: 926c43e2c46a5564a9985af52aa69547, type: 2}
+    - {fileID: 114301615154699358, guid: 926c43e2c46a5564a9985af52aa69547, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 926c43e2c46a5564a9985af52aa69547, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1971886076 stripped
@@ -6482,6 +6504,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1818114138009134, guid: 926c43e2c46a5564a9985af52aa69547,
     type: 2}
   m_PrefabInternal: {fileID: 1918548623}
+--- !u!114 &1971886077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1971886076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 3b7605330a414f64d855775f4159dd9e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!224 &1971886081 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224885662326573920, guid: 926c43e2c46a5564a9985af52aa69547,

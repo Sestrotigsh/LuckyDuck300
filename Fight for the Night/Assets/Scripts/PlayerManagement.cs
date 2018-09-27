@@ -108,7 +108,7 @@ public class PlayerManagement : MonoBehaviour {
         sign.transform.parent = this.gameObject.transform;
         sign.transform.rotation = Camera.main.transform.rotation; // Causes the text faces camera.
         TextMesh tm = sign.AddComponent<TextMesh>();
-        tm.text = "+" + money + " Gold";
+        tm.text = "+" + Mathf.Ceil(money) + " Gold";
         tm.color = new Color(0.8f, 0.8f, 0.8f);
         tm.fontStyle = FontStyle.Bold;
         tm.alignment = TextAlignment.Center;
@@ -127,7 +127,7 @@ public class PlayerManagement : MonoBehaviour {
         sign.transform.parent = this.gameObject.transform;
         sign.transform.rotation = Camera.main.transform.rotation; // Causes the text faces camera.
         TextMesh tm = sign.AddComponent<TextMesh>();
-        tm.text = "-" + money +" Gold";
+        tm.text = "-" + Mathf.Ceil(money) +" Gold";
         tm.color = new Color(0.8f, 0.8f, 0.8f);
         tm.fontStyle = FontStyle.Bold;
         tm.alignment = TextAlignment.Center;

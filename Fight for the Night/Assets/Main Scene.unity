@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 98251795}
   m_Layer: 0
   m_Name: BackwallDark
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 120425318}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1233,7 +1233,7 @@ GameObject:
   - component: {fileID: 123133003}
   m_Layer: 0
   m_Name: Cube (13)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2067,7 +2067,7 @@ GameObject:
   - component: {fileID: 146233805}
   m_Layer: 9
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3042,7 +3042,7 @@ GameObject:
   - component: {fileID: 224902670}
   m_Layer: 9
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4166,7 +4166,7 @@ GameObject:
   - component: {fileID: 328363000}
   m_Layer: 0
   m_Name: Cube (22)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4269,7 +4269,7 @@ GameObject:
   - component: {fileID: 361577946}
   m_Layer: 10
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4987,7 +4987,7 @@ GameObject:
   - component: {fileID: 424695634}
   m_Layer: 0
   m_Name: Ramp
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8548,7 +8548,7 @@ GameObject:
   - component: {fileID: 676684425}
   m_Layer: 0
   m_Name: Cube (9)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9689,7 +9689,7 @@ GameObject:
   - component: {fileID: 771141770}
   m_Layer: 9
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10948,7 +10948,7 @@ GameObject:
   - component: {fileID: 857144973}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11203,7 +11203,7 @@ GameObject:
   - component: {fileID: 863057728}
   m_Layer: 0
   m_Name: Ramp (1)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11306,7 +11306,7 @@ GameObject:
   - component: {fileID: 863509542}
   m_Layer: 9
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11542,7 +11542,7 @@ GameObject:
   - component: {fileID: 895596265}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11765,7 +11765,7 @@ GameObject:
   - component: {fileID: 908500533}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12707,7 +12707,7 @@ GameObject:
   - component: {fileID: 1008408137}
   m_Layer: 0
   m_Name: Ramp (6)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13142,7 +13142,7 @@ GameObject:
   - component: {fileID: 1051766860}
   m_Layer: 0
   m_Name: Ramp (5)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13809,7 +13809,7 @@ GameObject:
   - component: {fileID: 1075321974}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13983,7 +13983,7 @@ GameObject:
   - component: {fileID: 1100840505}
   m_Layer: 0
   m_Name: Cube (11)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14488,7 +14488,7 @@ GameObject:
   - component: {fileID: 1137227571}
   m_Layer: 0
   m_Name: Cube (10)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16554,7 +16554,7 @@ GameObject:
   - component: {fileID: 1288070553}
   m_Layer: 9
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23563,7 +23563,7 @@ GameObject:
   - component: {fileID: 1491170332}
   m_Layer: 0
   m_Name: Cube (17)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24827,7 +24827,7 @@ GameObject:
   - component: {fileID: 1599924559}
   m_Layer: 0
   m_Name: PPrompt
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25950,7 +25950,7 @@ GameObject:
   - component: {fileID: 1706325821}
   m_Layer: 0
   m_Name: Cube (15)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26420,7 +26420,7 @@ GameObject:
   - component: {fileID: 1779963941}
   m_Layer: 9
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27805,7 +27805,7 @@ GameObject:
   - component: {fileID: 1890565232}
   m_Layer: 0
   m_Name: Ramp (6)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29332,7 +29332,7 @@ GameObject:
   - component: {fileID: 1994805663}
   m_Layer: 0
   m_Name: Ramp (5)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29511,7 +29511,7 @@ GameObject:
   - component: {fileID: 2002776694}
   m_Layer: 0
   m_Name: Cube (23)
-  m_TagString: SideWall
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30540,7 +30540,7 @@ GameObject:
   - component: {fileID: 2082804379}
   m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31007,7 +31007,7 @@ GameObject:
   - component: {fileID: 2123175111}
   m_Layer: 9
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: 'Environment '
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
