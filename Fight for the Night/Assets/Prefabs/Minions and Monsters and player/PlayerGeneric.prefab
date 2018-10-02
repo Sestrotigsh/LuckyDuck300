@@ -7347,13 +7347,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78fe57c7fbbca534d90c691eb7d4bb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spell1object: {fileID: 1139820371983006, guid: 30887000440fb484881cce0258c63289,
+  spell1object: {fileID: 1000829668979204, guid: 30887000440fb484881cce0258c63289,
     type: 2}
   frontPos: {fileID: 0}
   laserSound: {fileID: 8300000, guid: fb5800479e15d7c409805eb7be2310fd, type: 3}
   repulsionSound: {fileID: 8300000, guid: 68c1033a9d7e41a42a8a4a7220a44b30, type: 3}
   basicSound: {fileID: 8300000, guid: d3275189fd6ef0f41bb6da525c59422d, type: 3}
-  projectile: {fileID: 1282312097624474, guid: 4976163bb2fe4d741b3626cfdaf3eb6b, type: 2}
+  projectile: {fileID: 1291518508100064, guid: 4976163bb2fe4d741b3626cfdaf3eb6b, type: 2}
   baseAuto: 3
   autoDamage: 0
   fireRate: 0.7
@@ -7370,7 +7370,7 @@ MonoBehaviour:
   remainingTime3: 0
   alienExecute: {fileID: 198377809097236778, guid: f3385d121ac1be543ba2034370024a27,
     type: 2}
-  spell11object: {fileID: 1692425543814728, guid: f323eeb9e2dab9d45a3349cf9bb05888,
+  spell11object: {fileID: 1725064087848410, guid: f323eeb9e2dab9d45a3349cf9bb05888,
     type: 2}
   CD11: 7
   remainingTime11: 0
