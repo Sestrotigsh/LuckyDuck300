@@ -74,6 +74,7 @@ public class TowerButtonUI : NetworkBehaviour {
 
     private void towerDetectionType()
     {
+      
 
         if (this.tag == "TowerBase")
         {
