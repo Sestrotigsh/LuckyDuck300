@@ -348,6 +348,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e580e7e9895fb4a8b95ce54734bcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iniRot: {x: 0, y: 0, z: 0, w: 0}
+  playerChar: {fileID: 0}
+  playerTeam: 0
 --- !u!114 &114153529961501886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,7 +375,7 @@ MonoBehaviour:
   currentHealth: 0
   initialSpeed: 0
   healthScalingValue: 3
-  team: 5
+  team: 0
   enemyTeam: 0
   newState: 0
   startNode: 0
@@ -388,6 +391,11 @@ MonoBehaviour:
   endOfStun: 0
   mesh: {fileID: 1904073086292116}
   animator: {fileID: 1334056289622124}
+  monsterNumber: 0
+  redS: {fileID: 0}
+  redL: {fileID: 0}
+  blueS: {fileID: 0}
+  blueL: {fileID: 0}
 --- !u!114 &114155866567245200
 MonoBehaviour:
   m_ObjectHideFlags: 1

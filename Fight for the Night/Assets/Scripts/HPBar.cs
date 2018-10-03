@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class HPBar : MonoBehaviour {
 
-     private Quaternion iniRot;
-
+    public Quaternion iniRot;
+    public GameObject playerChar;
+    public int playerTeam;
 	// Use this for initialization
 	void Start () {
-        iniRot = transform.rotation;
+        playerTeam = gameObject.GetComponentInParent<Enemy>().team;
+        playerChar = GameObject.FindGameObjectWithTag("Player" + playerTeam);
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	
     void LateUpdate()
     {
-        transform.rotation = iniRot;
+        Vector3 playerDir = new Vector3(playerChar.transform.position.x, this.transform.position.y, playerChar.transform.position.z);
+        this.gameObject.transform.LookAt(playerDir);
     }
 }
