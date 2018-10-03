@@ -79,12 +79,24 @@ public class TowerButtonUI : NetworkBehaviour {
         if (this.tag == "TowerBase")
         {
             subPanelText.text = "Base Tower 1" + Environment.NewLine + "Cost :" + playerBuild.baseCost;
+            if(playerMan.currentGold < playerBuild.baseCost)
+            {
+                subPanelText.color = new Color(1, 0, 0);
+            }
         } else if (this.tag == "TowerIce")
         {
             subPanelText.text = "Ice Tower 1" + Environment.NewLine + "Cost :" + playerBuild.iceCost;
+            if (playerMan.currentGold < playerBuild.iceCost)
+            {
+                subPanelText.color = new Color(1, 0, 0);
+            }
         } else if (this.tag == "TowerBomb")
         {
             subPanelText.text = "Bomb Tower 1" + Environment.NewLine + "Cost :" + playerBuild.bombCost;
+            if (playerMan.currentGold < playerBuild.bombCost)
+            {
+                subPanelText.color = new Color(1, 0, 0);
+            }
         }
 
         if (playerBuild.currentlyTouching != null && playerBuild.currentlyTouching.CompareTag("TowerLocation"))
@@ -95,16 +107,28 @@ public class TowerButtonUI : NetworkBehaviour {
                 if (typeOfTower == TowerSpot.type.Base1)
                 {
                     subPanelText.text = "Base Tower 2" + Environment.NewLine + "Cost :" + playerBuild.baselevel2Cost;
+                    if (playerMan.currentGold < playerBuild.baselevel2Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
 
                 }
                 else if (typeOfTower == TowerSpot.type.Base2)
                 {
                     subPanelText.text = "Base Tower 3" + Environment.NewLine + "Cost :" + playerBuild.baselevel3Cost;
+                    if (playerMan.currentGold < playerBuild.baselevel3Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
 
                 }
                 else if (typeOfTower == TowerSpot.type.Base3)
                 {
                     subPanelText.text = "Base Tower 4" + Environment.NewLine + "Cost :" + playerBuild.baselevel4Cost;
+                    if (playerMan.currentGold < playerBuild.baselevel4Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
 
                 }
 
@@ -119,14 +143,26 @@ public class TowerButtonUI : NetworkBehaviour {
                 if (typeOfTower == TowerSpot.type.Ice1)
                 {
                     subPanelText.text = "Ice Tower 2" + Environment.NewLine + "Cost :" + playerBuild.icelevel2Cost;
+                    if (playerMan.currentGold < playerBuild.icelevel2Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Ice2)
                 {
                     subPanelText.text = "Ice Tower 3" + Environment.NewLine + "Cost :" + playerBuild.icelevel3Cost;
+                    if (playerMan.currentGold < playerBuild.icelevel3Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Ice3)
                 {
                     subPanelText.text = "Ice Tower 4" + Environment.NewLine + "Cost :" + playerBuild.icelevel4Cost;
+                    if (playerMan.currentGold < playerBuild.icelevel4Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
                 }
 
                 else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb3)
@@ -140,14 +176,26 @@ public class TowerButtonUI : NetworkBehaviour {
                 if (typeOfTower == TowerSpot.type.Bomb1)
                 {
                     subPanelText.text = "Bomb Tower 2" + Environment.NewLine + "Cost :" + playerBuild.bomblevel2Cost;
+                    if (playerMan.currentGold < playerBuild.bomblevel2Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Bomb2)
                 {
                     subPanelText.text = "Bomb Tower 3" + Environment.NewLine + "Cost :" + playerBuild.bomblevel3Cost;
+                    if (playerMan.currentGold < playerBuild.bomblevel3Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Bomb3)
                 {
                     subPanelText.text = "Bomb Tower 4" + Environment.NewLine + "Cost :" + playerBuild.bomblevel4Cost;
+                    if (playerMan.currentGold < playerBuild.bomblevel4Cost)
+                    {
+                        subPanelText.color = new Color(1, 0, 0);
+                    }
                 }
 
                 else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Bomb3)

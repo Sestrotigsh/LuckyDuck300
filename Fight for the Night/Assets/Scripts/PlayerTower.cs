@@ -377,7 +377,7 @@ public class PlayerTower : NetworkBehaviour {
       
             else if (currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Base2)
             {
-                Debug.Log("Test1");
+               
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel3Cost)
                 {
                     Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
