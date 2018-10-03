@@ -35,6 +35,7 @@ public class playerAnimation : NetworkBehaviour {
 	//private GameObject ScreenKeyHint;
 	private float initialDistance;
 	private float currentDistance;
+	private PlayerNetwork playerNet;
 
 
 	float h;
@@ -52,7 +53,8 @@ public class playerAnimation : NetworkBehaviour {
 	void Start () { 
 		shootTimer = 0;
 		shooting = false;
-		if (!isLocalPlayer) {
+		playerNet = this.GetComponent<PlayerNetwork>();
+		if (!playerNet.local) {
 			//oldPos = transform.position;
 			this.GetComponent<AudioListener>().enabled = false;
 			return;
@@ -63,7 +65,7 @@ public class playerAnimation : NetworkBehaviour {
 
 
 
-		shootingPoint = shootingPointsList[this.GetComponent<PlayerNetwork>().team].transform;
+		shootingPoint = shootingPointsList[playerNet.team].transform;
 
 
 
@@ -105,7 +107,7 @@ public class playerAnimation : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isLocalPlayer) {
+		if (!playerNet.local) {
 			return;
 		}
 
@@ -201,9 +203,6 @@ public class playerAnimation : NetworkBehaviour {
 
 
 	void MoveCamera() {
-		if (!isLocalPlayer) {
-			return;
-		}
 		if (lookingAtScreen == true) {
 			return;
 		}

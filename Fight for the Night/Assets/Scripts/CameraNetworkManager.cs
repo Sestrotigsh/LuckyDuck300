@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 
-public class CameraNetworkManager : NetworkManager {
+// public class CameraNetworkManager : NetworkManager {
+public class CameraNetworkManager : MonoBehaviour {
 ///// MAKES CAMERA SLOWLY ROTATE WHEN PLAYER IS NOT IN COTROL
-
+	/*
 	// Variables for camera rotation
 	[Header("Camera variables")]
 	[SerializeField] Transform sceneCamera;
@@ -56,4 +57,5 @@ public class CameraNetworkManager : NetworkManager {
 		sceneCamera.Translate (0f, cameraRotationRadius, -cameraRotationRadius);
 		sceneCamera.LookAt (new Vector3 (190f, 45f, 180f));
 	}
+	*/
 }

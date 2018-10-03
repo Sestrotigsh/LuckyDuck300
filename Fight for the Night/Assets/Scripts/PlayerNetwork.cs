@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class PlayerNetwork : NetworkBehaviour {
 ////// CONTROLS THE PLAYERS NETWORKING VARIABLES
-
 	public float centreLineX;
 	public int team;
 	public bool local;
-	public int health;
+
 	public GameObject opponent;
 	public bool opponentFound;
+
+	[SyncVar]
+	public int health;
+	[SyncVar]
+	public bool winner = false;
+	[SyncVar]
+	public bool loser = false;
 
 	// Use this for initialization
 	void Start () {
@@ -72,18 +78,50 @@ public class PlayerNetwork : NetworkBehaviour {
 			hardReset.x = centreLineX + 1.0f;
 			transform.position = hardReset;
 		}
+
+		if (local && opponent != null) {
+			if (winner == true || opponent.GetComponent<PlayerNetwork>().loser == true) {
+					GameObject.FindGameObjectWithTag("MainCamera").SetActive(false);
+					//opponent.GetComponent<PlayerNetwork>().DeclareLoser();
+					if (this.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+						SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Additive);
+					} else if (this.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+						SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Additive);
+					}
+					this.gameObject.SetActive(false);
+			}
+			if (loser == true || opponent.GetComponent<PlayerNetwork>().winner == true) {
+					GameObject.FindGameObjectWithTag("MainCamera").SetActive(false);
+					//opponent.GetComponent<PlayerNetwork>().DeclareWinner();
+					if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+						SceneManager.LoadScene("DefeatAlien", LoadSceneMode.Additive);
+					} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+						SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Additive);
+					}
+					this.gameObject.SetActive(false);
+			}
+			if (health <= 0) {
+				DeclareLoser();
+			}
+		}
 	}
 
 	public void TakeDamage () {
-		health -= 1;
+		if (isServer) {
+			health -= 1;
+		}
+		
+
+
+
+		/*
 		if (isServer) {
 			RpcUpdateHealth (health);
 		} else {
 			CmdUpdateHealth (health);
 		}
-
-		if (health <= 0) {
-			if (isLocalPlayer) {
+		*/
+				/*
 				// If the player is on the server - tell the client to win
 				if (isServer) {
 					if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
@@ -105,9 +143,7 @@ public class PlayerNetwork : NetworkBehaviour {
 				} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
 					SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Single);
 				}
-			}
-			
-		}
+				*/
 	}
 
 	public void EnemyDie(GameObject enemy) {
@@ -128,28 +164,31 @@ public class PlayerNetwork : NetworkBehaviour {
 		Destroy (target);
 	}
 
+
+
+
+
+ 	
 	[Command]
 	void CmdUpdateHealth(int amount) {
 		health = amount;
 	}
-
 	[ClientRpc]
 	void RpcUpdateHealth(int amount) {
 		health = amount;
 	}
 
+	/*
 	[Command]
 	void CmdVictoryAlien () {
 		// Tell the opponent on the server they have won!
 		SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
 	}
-
 	[Command]
 	void CmdVictorySlasher () {
 		// Tell the opponent on the server they have won!
 		SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
 	}
-
 	[ClientRpc]
 	void RpcVictoryAlien() {
 		// tell the client (excluding client on the server) they have won!
@@ -157,7 +196,6 @@ public class PlayerNetwork : NetworkBehaviour {
 			SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
 		}
 	}
-
 	[ClientRpc]
 	void RpcVictorySlasher() {
 		// tell the client (excluding client on the server) they have won!
@@ -165,8 +203,30 @@ public class PlayerNetwork : NetworkBehaviour {
 			SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
 		}
 	}
+	*/
 
+	public void DeclareWinner() {
+		winner = true;
+		if (!isServer) {
+			CmdDelcareWinner();
+		}
+	}	
 
+	public void DeclareLoser() {
+		loser = true;
+		if (!isServer) {
+			CmdDelcareLoser();
+		}
+	}	
 
+	[Command]
+	void CmdDelcareWinner() {
+		winner = true;
+	}
+
+	[Command]
+	void CmdDelcareLoser() {
+		loser = true;
+	}
 
 }

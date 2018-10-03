@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.30692166, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -137,7 +137,7 @@ AudioListener:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 422435662}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &422435664
 Behaviour:
   m_ObjectHideFlags: 0
@@ -264,8 +264,8 @@ Canvas:
   m_GameObject: {fileID: 494450217}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 422435665}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Color: {r: 0.011764706, g: 0.5568628, b: 0.039215688, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -427,11 +427,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4030908725991314, guid: cefac69370fd4e549be202a021d1af4f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.26
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4030908725991314, guid: cefac69370fd4e549be202a021d1af4f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.97
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4030908725991314, guid: cefac69370fd4e549be202a021d1af4f, type: 2}
       propertyPath: m_LocalPosition.z

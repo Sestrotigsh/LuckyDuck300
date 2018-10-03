@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public class EventTrigger : NetworkBehaviour {
+public class EventTrigger : MonoBehaviour {
 ///// CONTROLS PLAYERS BASE OBJECTS
 
 	// The bases health values and indicators

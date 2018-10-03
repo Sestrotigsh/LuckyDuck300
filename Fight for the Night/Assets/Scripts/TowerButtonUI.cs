@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 using System;
 
-public class TowerButtonUI : NetworkBehaviour {
+public class TowerButtonUI : MonoBehaviour {
 
     // Use this for initialization
     //Panel
@@ -17,6 +16,7 @@ public class TowerButtonUI : NetworkBehaviour {
     private PlayerTower playerBuild;
     private Camera mainCamera;
     public TextMesh subPanelText;
+    private PlayerNetwork playerNet;
 
     void Start()
     {
@@ -24,6 +24,20 @@ public class TowerButtonUI : NetworkBehaviour {
         player1 = GameObject.FindWithTag("Player1");
 
         if (player0 != null) {
+
+
+
+
+            playerNet = player0.GetComponent<PlayerNetwork>();
+            if (playerNet.local) {
+                playerMan = player0.GetComponent<PlayerManagement>();
+                playerBuild = player0.GetComponent<PlayerTower>();
+            } else {
+                playerNet = player1.GetComponent<PlayerNetwork>();
+                playerMan = player1.GetComponent<PlayerManagement>();
+                playerBuild = player1.GetComponent<PlayerTower>();
+            }
+            /*
             if (player0.GetComponent<NetworkIdentity>().isLocalPlayer) {
                 playerMan = player0.GetComponent<PlayerManagement>();
                 playerBuild = player0.GetComponent<PlayerTower>();
@@ -33,6 +47,7 @@ public class TowerButtonUI : NetworkBehaviour {
                     playerBuild = player1.GetComponent<PlayerTower>();
                 }
             }
+            */
         }
 
         subPanelText = subPanel.transform.Find("Text").GetComponent<TextMesh>();
@@ -45,6 +60,22 @@ public class TowerButtonUI : NetworkBehaviour {
             player0 = GameObject.FindWithTag("Player0");
              player1 = GameObject.FindWithTag("Player1");
             if (player0 != null) {
+                playerNet = player0.GetComponent<PlayerNetwork>();
+                if (playerNet.local) {
+                    playerMan = player0.GetComponent<PlayerManagement>();
+                    playerBuild = player0.GetComponent<PlayerTower>();
+                } else if (player1 != null) {
+                    playerNet = player1.GetComponent<PlayerNetwork>();
+                    playerMan = player1.GetComponent<PlayerManagement>();
+                    playerBuild = player1.GetComponent<PlayerTower>();
+                }
+
+
+
+
+
+
+            /*
             if (player0.GetComponent<NetworkIdentity>().isLocalPlayer) {
                 playerMan = player0.GetComponent<PlayerManagement>();
                 playerBuild = player0.GetComponent<PlayerTower>();
@@ -54,6 +85,7 @@ public class TowerButtonUI : NetworkBehaviour {
                     playerBuild = player1.GetComponent<PlayerTower>();
                 }
             }
+            */
         }
         } else {
             if (subPanel.activeSelf == true) {
@@ -65,6 +97,8 @@ public class TowerButtonUI : NetworkBehaviour {
                     } else if (this.CompareTag("TowerIce")) {
                         playerBuild.ReceiveDirections(3);
                     }
+                    subPanel.SetActive(false);
+                    this.gameObject.SetActive(false);
                 }
             }
         }
@@ -107,8 +141,9 @@ public class TowerButtonUI : NetworkBehaviour {
 
                 }
 
-                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb3)
+                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb4)
                 {
+                    subPanel.SetActive(false);
                     this.gameObject.SetActive(false);
                     
                 }            
@@ -128,8 +163,9 @@ public class TowerButtonUI : NetworkBehaviour {
                     subPanelText.text = "Ice Tower 4" + Environment.NewLine + "Cost :" + playerBuild.icelevel4Cost;
                 }
 
-                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb3)
+                else if (typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Bomb1 || typeOfTower == TowerSpot.type.Bomb2 || typeOfTower == TowerSpot.type.Bomb3 || typeOfTower == TowerSpot.type.Bomb4)
                 {
+                    subPanel.SetActive(false);
                     this.gameObject.SetActive(false);
                 }           
             }
@@ -149,8 +185,9 @@ public class TowerButtonUI : NetworkBehaviour {
                     subPanelText.text = "Bomb Tower 4" + Environment.NewLine + "Cost :" + playerBuild.bomblevel4Cost;
                 }
 
-                else if (typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Bomb3)
+                else if (typeOfTower == TowerSpot.type.Bomb4 || typeOfTower == TowerSpot.type.Base1 || typeOfTower == TowerSpot.type.Base2 || typeOfTower == TowerSpot.type.Base3 || typeOfTower == TowerSpot.type.Base4 || typeOfTower == TowerSpot.type.Ice1 || typeOfTower == TowerSpot.type.Ice2 || typeOfTower == TowerSpot.type.Ice3 || typeOfTower == TowerSpot.type.Ice4)
                 {
+                    subPanel.SetActive(false);
                     this.gameObject.SetActive(false);
                 }
             }

@@ -21,6 +21,7 @@ public class TowerSpot : MonoBehaviour {
         Bomb2,
         Bomb3,
         Bomb4,
+        loading,
     };
 
     public type currentType;
@@ -32,6 +33,6 @@ public class TowerSpot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }

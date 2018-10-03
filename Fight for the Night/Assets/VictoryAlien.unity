@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.30692166, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -258,7 +258,7 @@ AudioListener:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 422435662}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &422435664
 Behaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +504,8 @@ GameObject:
   - component: {fileID: 494450219}
   - component: {fileID: 494450218}
   - component: {fileID: 494450222}
+  - component: {fileID: 494450224}
+  - component: {fileID: 494450223}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -556,8 +558,8 @@ Canvas:
   m_GameObject: {fileID: 494450217}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 422435665}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -601,6 +603,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuButton: {fileID: 449936516}
+--- !u!114 &494450223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494450217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.013127446, g: 0.5566038, b: 0.037903067, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &494450224
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494450217}
+  m_CullTransparentMesh: 0
 --- !u!1 &613844760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1068,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4030908725991314, guid: cefac69370fd4e549be202a021d1af4f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.97
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4030908725991314, guid: cefac69370fd4e549be202a021d1af4f, type: 2}
       propertyPath: m_LocalPosition.z

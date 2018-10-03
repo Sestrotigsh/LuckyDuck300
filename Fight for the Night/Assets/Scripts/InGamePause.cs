@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Networking;
 
-public class InGamePause : NetworkBehaviour {
+public class InGamePause : MonoBehaviour {
     /* Script for In Game Pause Menu
     Start and Update run the panel bool
     Methods are key button presses
@@ -13,19 +11,22 @@ public class InGamePause : NetworkBehaviour {
 
     //In Game Pause Menu Object
     public GameObject pauseMenu;
+    private PlayerNetwork playerNet;
 
 
 	// Use this for initialization
 	void Start () {
         pauseMenu.SetActive(false);
-
+        playerNet = this.GetComponent<PlayerNetwork>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer) {
+        //if (!isLocalPlayer) {
+        if (!playerNet.local) {
             this.enabled = false;
+            return;
         }
         //Get Pause Button (Escape Key) Input
         if (Input.GetKey(KeyCode.M))
@@ -44,7 +45,8 @@ public class InGamePause : NetworkBehaviour {
         {
             if (pauseMenu.activeInHierarchy == true)
             {
-                GameObject opponent = this.GetComponent<PlayerNetwork>().opponent;
+                playerNet.DeclareLoser();
+                /*
                 // If the player is on the server - tell the client to win
                 if (isServer) {
                     if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
@@ -69,9 +71,10 @@ public class InGamePause : NetworkBehaviour {
                 //SceneManager.LoadScene(0);
 
                 //SceneManager.LoadScene(0);
+                */
             }
         }
-
+        /*
         //Turn Menu Off
         if (Input.GetKey(KeyCode.J))
         {
@@ -80,10 +83,12 @@ public class InGamePause : NetworkBehaviour {
                 Application.Quit();
             }
         }
+        */
 
     }
 
 
+    /*
     [Command]
     void CmdVictoryAlien () {
         // Tell the opponent on the server they have won!
@@ -111,6 +116,7 @@ public class InGamePause : NetworkBehaviour {
             SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
         }
     }
+    */
 
        
             

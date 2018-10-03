@@ -65,11 +65,46 @@ public class PlayerTower : NetworkBehaviour {
     private bool isAlien;
 	private PlayerNetwork PlayerNet;
 
+     private GameObject[,] refArray = new GameObject[2,12];
+     private GameObject previousTower;
+     private bool loop = false;
+     private string loopString = "";
+     private int loopcost;
+     private int loopType;
+
 
 	// Use this for initialization
 	void Start () {
+        refArray[0,0] = alienBase1;
+        refArray[0,1] = alienBase2;
+         refArray[0,2] = alienBase3;
+         refArray[0,3] = alienBase4;
+         refArray[0,4] = alienBomb1;
+         refArray[0,5] = alienBomb2;
+         refArray[0,6] = alienBomb3;
+         refArray[0,7] = alienBomb4;
+         refArray[0,8] = alienIce1;
+         refArray[0,9] = alienIce2;
+         refArray[0,10] = alienIce3;
+         refArray[0,11] = alienIce4;
+
+         refArray[1,0] = slasherBase1;
+         refArray[1,1] = slasherBase2;
+         refArray[1,2] = slasherBase3;
+         refArray[1,3] = slasherBase4;
+         refArray[1,4] = slasherBomb1;
+        refArray[1,5] = slasherBomb2;
+        refArray[1,6] = slasherBomb3;
+        refArray[1,7] = slasherBomb4;
+        refArray[1,8] = slasherIce1;
+        refArray[1,9] = slasherIce2;
+        refArray[1,10] = slasherIce3;
+        refArray[1,11] = slasherIce4;
+
+
+
 		PlayerNet = this.GetComponent<PlayerNetwork> ();
-		if (isLocalPlayer == false) {
+		if (PlayerNet.local == false) {
 			this.enabled = false;
 			return;
 		}
@@ -85,6 +120,11 @@ public class PlayerTower : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(loop == true) {
+            loop = false;
+            RecalculateCurrentlyTouching(loopString, loopcost, loopType);
+        }
+
 		if (transform.Find("AlienClothes").gameObject.activeSelf == true) {
 			isAlien = true;
 		}
@@ -100,195 +140,17 @@ public class PlayerTower : NetworkBehaviour {
 			ghost.SetActive(false);
 		}
 	}
-    // Alien Towers
-
-	[Command]
-	void CmdcreateTower1Alien(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (alienBase1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
+    
+    // Unified spawn command
+    [Command]
+    void CmdCreateTower(Vector3 position, Quaternion rotation, int team, int towerRef, NetworkInstanceId id, bool level1) {
+        GameObject currentTower = Instantiate (refArray[team,towerRef], position, rotation);
         NetworkServer.Spawn (currentTower);
-	}
-
-	[Command]
-	void CmdcreateTower2Alien(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (alienBase2, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-	[Command]
-	void CmdcreateTower3Alien(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (alienBase3, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-	[Command]
-	void CmdcreateTower4Alien(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (alienBase4, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-    [Command]
-    void CmdcreateBomb1Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienBomb1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
+        if (!level1) {
+            GameObject oldTower = NetworkServer.FindLocalObject(id);
+            NetworkServer.Destroy(oldTower);
+        }
     }
-
-    [Command]
-    void CmdcreateBomb2Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienBomb2, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateBomb3Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienBomb3, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateBomb4Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienBomb4, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce1Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienIce1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce2Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienIce2, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce3Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienIce3, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce4Alien(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(alienIce4, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-
-    //Slasher towers
-
-    [Command]
-	void CmdcreateTower1Slasher(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (slasherBase1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-	[Command]
-	void CmdcreateTower2Slasher(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (slasherBase1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-	[Command]
-	void CmdcreateTower3Slasher(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (slasherBase2, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-	[Command]
-	void CmdcreateTower4Slasher(Vector3 position, Quaternion rotation) {
-		var currentTower = Instantiate (slasherBase3, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn (currentTower);
-	}
-
-    [Command]
-    void CmdcreateBomb1Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherBomb1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateBomb2Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherBomb2, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateBomb3Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherBomb3, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateBomb4Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherBomb4, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce1Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherIce1, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce2Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherIce2, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce3Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherIce3, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
-    [Command]
-    void CmdcreateIce4Slasher(Vector3 position, Quaternion rotation)
-    {
-        var currentTower = Instantiate(slasherIce4, position, rotation) as GameObject;
-        currentlyTouching.GetComponent<TowerSpot>().towerOn = currentTower;
-        NetworkServer.Spawn(currentTower);
-    }
-
 
     void OnTriggerEnter (Collider other) {
 		if (other.gameObject.CompareTag("Projectile") != true) {
@@ -303,25 +165,29 @@ public class PlayerTower : NetworkBehaviour {
 
     public void ReceiveDirections(int towerChoice)
     {
+        if (loop == false) {
         //////   Rank 2    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        if (currentlyTouching != null && currentlyTouching.CompareTag("TowerLocation") && currentlyTouching.GetComponent<TowerSpot>().isOccupied == true)
+        if (currentlyTouching != null && currentlyTouching.CompareTag("TowerLocation") && currentlyTouching.GetComponent<TowerSpot>().isOccupied == true )
         {
+            previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+            NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
+
             if(currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Base1)
             {                
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel2Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateTower2Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0, 1, previousTowerId, false);
+                        Debug.Log("AlienBase2");
                     }
                     else
                     {
-                        CmdcreateTower2Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,2, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(baselevel2Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Base2;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("BaseTower2", baselevel2Cost, 2);
+                    
                 }
             }           
 
@@ -329,17 +195,17 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= icelevel2Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateIce2Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,9, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateIce2Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,9, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(icelevel2Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Ice2;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("IceTower2", icelevel2Cost, 6);
+                    
                 }
             }              
        
@@ -347,17 +213,18 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel2Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
+                  
                     if (isAlien == true)
                     {
-                        CmdcreateBomb2Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,5, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateBomb2Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,5, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(bomblevel2Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Bomb2;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("BombTower2", bomblevel2Cost, 10);
+                    
                 }
             }              
         
@@ -367,20 +234,19 @@ public class PlayerTower : NetworkBehaviour {
       
             else if (currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Base2)
             {
-                Debug.Log("Test1");
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel3Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateTower3Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,2, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateTower3Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,2, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(baselevel3Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Base3;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("BaseTower3", baselevel3Cost, 3);
+                    
                 }
             }               
        
@@ -388,17 +254,17 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= icelevel3Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateIce3Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,10, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateIce3Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1, 10, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(icelevel3Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Ice3;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("IceTower3", icelevel3Cost, 7);
+                    
                 }
             }            
         
@@ -406,17 +272,17 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel3Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateBomb3Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,6, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateBomb3Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,6, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(bomblevel3Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Bomb3;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("BombTower3", bomblevel3Cost, 11);
+                    
                 }
             }              
        
@@ -427,17 +293,18 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel4Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateTower4Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,3, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateTower4Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,3, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(baselevel4Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Base4;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("BaseTower4", baselevel4Cost, 4);
+                    
                 }
             }              
        
@@ -445,17 +312,17 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= icelevel4Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn); ;
                     if (isAlien == true)
                     {
-                        CmdcreateIce4Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,11, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateIce4Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,11, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(icelevel4Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Ice4;
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("IceTower4", icelevel4Cost, 8);
+                    
                 }
             }              
 
@@ -463,25 +330,26 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel4Cost)
                 {
-                    Destroy(currentlyTouching.GetComponent<TowerSpot>().towerOn);
                     if (isAlien == true)
                     {
-                        CmdcreateBomb4Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,7, previousTowerId, false);
                     }
                     else
                     {
-                        CmdcreateBomb4Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,7, previousTowerId, false);
                     }
-                    this.GetComponent<PlayerManagement>().Spend(bomblevel4Cost);
-                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Bomb4;
-                }
-            }             
+                    currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
+                    RecalculateCurrentlyTouching("BombTower4", bomblevel4Cost, 12);
+                    
+                }             
+            }
         }
 
         //////////////////////////////////////// Initial ////////////////////////////////////////////////////////////////
 
         else if (currentlyTouching != null && currentlyTouching.CompareTag("TowerLocation") && currentlyTouching.GetComponent<TowerSpot>().isOccupied == false)
         {
+            NetworkInstanceId placeholder = this.gameObject.GetComponent<NetworkIdentity>().netId;
             switch (towerChoice)
             {
                 case 1:
@@ -490,17 +358,16 @@ public class PlayerTower : NetworkBehaviour {
                     {
                         if (isAlien == true)
                         {
-                            CmdcreateTower1Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                            CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,0, placeholder, true);
                         }
                         else
                         {
-                            CmdcreateTower1Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                            CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,0, placeholder, true);
                         }
-
-                        this.GetComponent<PlayerManagement>().Spend(baseCost);
+                        currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
                         currentlyTouching.GetComponent<TowerSpot>().isOccupied = true;
-                        currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Base1;
-
+                        RecalculateCurrentlyTouching("BaseTower1", baseCost, 1);
+                        
                     }
                     break;
 
@@ -511,16 +378,16 @@ public class PlayerTower : NetworkBehaviour {
                     {
                         if (isAlien == true)
                         {
-                            CmdcreateBomb1Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                            CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,4, placeholder, true);
                         }
                         else
                         {
-                            CmdcreateBomb1Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                            CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,4, placeholder, true);
                         }
-
-                        this.GetComponent<PlayerManagement>().Spend(bombCost);
+                        currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
                         currentlyTouching.GetComponent<TowerSpot>().isOccupied = true;
-                        currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Bomb1;
+                        RecalculateCurrentlyTouching("BombTower1", bombCost, 9);
+                        
                     }
                     break;
 
@@ -531,19 +398,44 @@ public class PlayerTower : NetworkBehaviour {
                     {
                         if (isAlien == true)
                         {
-                            CmdcreateIce1Alien(currentlyTouching.transform.position, alienGhost.transform.rotation);
+                            CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,8, placeholder, true);
                         }
                         else
                         {
-                            CmdcreateIce1Slasher(currentlyTouching.transform.position, slasherGhost.transform.rotation);
+                            CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,8, placeholder, true);
                         }
-
-                        this.GetComponent<PlayerManagement>().Spend(iceCost);
+                        currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
                         currentlyTouching.GetComponent<TowerSpot>().isOccupied = true;
-                        currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.Ice1;
+                        RecalculateCurrentlyTouching("IceTower1", iceCost, 5);
                     }
-                    break;
+                break;
             }
         }
+    }
+    }
+
+
+    public void RecalculateCurrentlyTouching (string type, int cost, int selectType) {
+            GameObject[] towers = GameObject.FindGameObjectsWithTag (type);
+            float shortestDistance = Mathf.Infinity;
+            GameObject nearestTower = null;
+            foreach (GameObject i in towers) {
+                float distanceToTower = Vector3.Distance (currentlyTouching.transform.position, i.transform.position);
+                if (distanceToTower < shortestDistance) {
+                    shortestDistance = distanceToTower;
+                    nearestTower = i;
+                }
+            }
+            if (shortestDistance < 3.0f) {
+                currentlyTouching.GetComponent<TowerSpot>().towerOn = nearestTower;
+                this.GetComponent<PlayerManagement>().Spend(cost);
+                currentlyTouching.GetComponent<TowerSpot>().currentType = (TowerSpot.type)selectType;
+            } else {
+                loop = true;
+                loopString = type;
+                loopcost = cost;
+                loopType = selectType;
+
+            }
     }
 }
