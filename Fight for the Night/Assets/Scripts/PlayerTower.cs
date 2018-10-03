@@ -169,13 +169,13 @@ public class PlayerTower : NetworkBehaviour {
         //////   Rank 2    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         if (currentlyTouching != null && currentlyTouching.CompareTag("TowerLocation") && currentlyTouching.GetComponent<TowerSpot>().isOccupied == true )
         {
-            previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
-            NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
-
+            
             if(currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Base1)
             {                
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel2Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0, 1, previousTowerId, false);
@@ -195,6 +195,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= icelevel2Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,9, previousTowerId, false);
@@ -213,7 +215,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel2Cost)
                 {
-                  
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,5, previousTowerId, false);
@@ -236,6 +239,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel3Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,2, previousTowerId, false);
@@ -254,6 +259,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= icelevel3Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,10, previousTowerId, false);
@@ -272,6 +279,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel3Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,6, previousTowerId, false);
@@ -293,6 +302,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= baselevel4Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
 
@@ -312,6 +323,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= icelevel4Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,11, previousTowerId, false);
@@ -330,6 +343,8 @@ public class PlayerTower : NetworkBehaviour {
             {
                 if (this.GetComponent<PlayerManagement>().currentGold >= bomblevel4Cost)
                 {
+                    previousTower = currentlyTouching.GetComponent<TowerSpot>().towerOn;
+                    NetworkInstanceId previousTowerId = previousTower.GetComponent<NetworkIdentity>().netId;
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0,7, previousTowerId, false);
@@ -428,6 +443,7 @@ public class PlayerTower : NetworkBehaviour {
             }
             if (shortestDistance < 3.0f) {
                 currentlyTouching.GetComponent<TowerSpot>().towerOn = nearestTower;
+                nearestTower.transform.Find("Rotate").GetComponent<TowerAttacking>().enabled = true;
                 this.GetComponent<PlayerManagement>().Spend(cost);
                 currentlyTouching.GetComponent<TowerSpot>().currentType = (TowerSpot.type)selectType;
             } else {
