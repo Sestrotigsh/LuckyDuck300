@@ -5,6 +5,34 @@ using UnityEngine.Networking;
 
 public class EnemyTagging : NetworkBehaviour {
 	// This class is used to control the tagging of enemies
+	
+
+
+
+
+	[SyncVar]
+    public Vector3 syncData = new Vector3(-1,-1,-1);
+
+
+
+	void Update() {
+		if (syncData.x == 1) {
+			this.GetComponent<Enemy>().SetType(syncData.x);
+			this.enabled = false; 
+		} else if (syncData.y == 0 || syncData.y == 11) {
+			this.GetComponent<Enemy>().SetPath(syncData.y, syncData.z);
+			this.enabled = false;
+		} 
+	}
+
+	/*
+
+
+
+
+
+
+
 
 	// The team defined when spawned
 	[SyncVar]
@@ -21,7 +49,36 @@ public class EnemyTagging : NetworkBehaviour {
 	private bool pathDefined2 = false;
 
 
+
+
+
+
+
+
+
+	private bool ready = false;
+
+
 	void Update() {
+		if (!ready) {
+			if (syncedInfo == 1) {
+				(this.GetComponent<Enemy>().type)syncedInfo;
+			}
+			ready = true;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 		// if team hasn't been tagged any time
 		if (teamDefined == false) {
 			// if the team has been changed from the default of -1
@@ -50,4 +107,5 @@ public class EnemyTagging : NetworkBehaviour {
 			}
 		}
 	}
+	*/
 }

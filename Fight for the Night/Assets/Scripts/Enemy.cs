@@ -27,13 +27,7 @@ public class Enemy : NavigationAgent {
 
 	// Player variables
 	private PlayerManagement playerMan;
-	private PlayerNetwork playerNet;
-
-    public bool pathReady = false;
-    public bool teamReady = false;
-    public bool monsterReady = false;
-    public bool healthReady = true;
-
+	public PlayerNetwork playerNet;
 
         public enum type
         {
@@ -62,6 +56,7 @@ public class Enemy : NavigationAgent {
 
     private GameObject spawnerLeft;
     private GameObject spawnerRight;
+    private GameObject generalSpawn;
     public int monsterNumber;
     public Material redS;
     public Material redL;
@@ -75,88 +70,16 @@ public class Enemy : NavigationAgent {
         goal = 16;
         initialSpeed = moveSpeed;
         startNode = -1;
-
         // initialise the renderer
         rend = mesh.GetComponent<SkinnedMeshRenderer>();
         //rend.material = mesh.Shader.Find("Blink");  
+        spawnerLeft = GameObject.FindGameObjectWithTag("SpawnMonster1");
+        spawnerRight = GameObject.FindGameObjectWithTag("SpawnMonster0");
+        generalSpawn = GameObject.FindGameObjectWithTag("Spawn");
     }
 
     // Update is called once per frame
     void Update() {
-        // if the enemy has been assigned as a monster
-        if (monsterReady == true) {
-            //Debug.Log("MonsterSet");
-            Material [] swap = new Material[2];
-                spawnerLeft = GameObject.FindGameObjectWithTag("SpawnMonster1");
-                spawnerRight = GameObject.FindGameObjectWithTag("SpawnMonster0");
-                if (Vector3.Distance(this.transform.position, spawnerLeft.transform.position) < Vector3.Distance(this.transform.position, spawnerRight.transform.position)) {
-                    if (monsterNumber == 1) {
-                        //Debug.Log("SmallRed");
-                        swap = rend.materials;
-                        swap[0] = redS;
-                        swap[1] = redS;
-                        rend.materials = swap;
-                    } else if (monsterNumber == 2) {
-                        //Debug.Log("LargeRed");
-                        swap = rend.materials;
-                        swap[0] = redL;
-                        swap[1] = redL;
-                        rend.materials = swap;
-                    }
-                } else {
-                    if (monsterNumber == 1) {
-                        //Debug.Log("smallBlue");
-                        swap = rend.materials;
-                        swap[0] = blueS;
-                        swap[1] = blueS;
-                        rend.materials = swap;
-                    } else if (monsterNumber == 2) {
-                        //Debug.Log("largeBlue");
-                         swap = rend.materials;
-                        swap[0] = blueL;
-                        swap[1] = blueL;
-                        rend.materials = swap;
-                    }
-                }
-            // set it as a monster
-            if (minionType != type.Monster) {
-                minionType = type.Monster;
-            } 
-            // give it the desired start node
-            startNode = 5;
-            currentPath.Add(startNode);
-            monsterReady = false;
-        }
-
-        // if the team has been assigned
-        if (teamReady == true) {
-            if (this.tag == "Enemy0") {
-                graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
-                playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
-                playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
-                team = 0;
-            } else if (this.tag == "Enemy1") {
-                graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 1).GetComponent<WaypointGraph> ();
-                playerNet = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerNetwork> ();
-                playerMan = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerManagement> ();
-                team = 1;
-            }
-            teamReady = false;
-        }
-
-        // if the non monster has been assigned a path
-        if (pathReady == true) {
-            startNode = this.GetComponent<EnemyTagging>().path;
-            currentPath.Add(startNode);
-            pathReady = false;
-        }
-
-        if (healthReady== true)
-        {
-            health = health + healthScalingValue * this.GetComponent<EnemyTagging>().waveNumber;
-            healthReady = false;
-        }
-
         // if the path is ready, progress with standard enemy behaviour
         if (startNode != -1 && graphNodes != null) {
             if (deathTimer != 0.0f) {
@@ -171,14 +94,6 @@ public class Enemy : NavigationAgent {
                 playerNet.EnemyDie (this.gameObject);
             }
         }
-
-        // TACTICAL CONTROLS - PLAYER CONTROLLED MINION PATH
-        // Adjust the path to fit the players custom directions
-        // if (customPathBool == true) {
-            //currentPath.Remove(startNode);
-            //currentPath.Add(customPathDirection);
-            //customPathBool = false;
-        //}
 
         // If enemy is destroyed - perform relevant actions
         if (this.tag == "Dying Enemy") {
@@ -210,7 +125,67 @@ public class Enemy : NavigationAgent {
             Move();
         }
         }       
+
+
+
+
+/*
+
+        // if the team has been assigned
+        if (teamReady == true) {
+            if (this.tag == "Enemy0") {
+                graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 0).GetComponent<WaypointGraph> ();
+                playerNet = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerNetwork> ();
+                playerMan = GameObject.FindGameObjectWithTag ("Player0").GetComponent<PlayerManagement> ();
+                team = 0;
+            } else if (this.tag == "Enemy1") {
+                graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + 1).GetComponent<WaypointGraph> ();
+                playerNet = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerNetwork> ();
+                playerMan = GameObject.FindGameObjectWithTag ("Player1").GetComponent<PlayerManagement> ();
+                team = 1;
+            }
+            teamReady = false;
+        }
+
+        // if the non monster has been assigned a path
+        if (pathReady == true) {
+            startNode = this.GetComponent<EnemyTagging>().path;
+            currentPath.Add(startNode);
+            pathReady = false;
+        }
+
+        if (healthReady== true)
+        {
+            health = health + healthScalingValue * this.GetComponent<EnemyTagging>().waveNumber;
+            healthReady = false;
+        }
+
+
+
+        \\
+        \
+
+
+
+
+
+
+
+
+        */
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     /// <summary>
     /// Move the enemy
@@ -252,7 +227,7 @@ public class Enemy : NavigationAgent {
             }
 			playerMan.Earn(value);
             isStunned = true;
-            endOfStun = Time.time + 2.0f;
+            endOfStun = Time.timeSinceLevelLoad + 2.0f;
             deathTimer = Time.timeSinceLevelLoad + 0.75f; // CHANGE HAS OCCURED HERE FOR BUG FIXING was 0.75f
 			//playerNet.EnemyDie (this.gameObject);
 		}      
@@ -263,7 +238,7 @@ public class Enemy : NavigationAgent {
     private void DestroyEnemy() {
         ///////// CODE BEING ALTERED HERE
         isStunned = true;
-        endOfStun = Time.time + 2.0f;
+        endOfStun = Time.timeSinceLevelLoad + 2.0f;
         deathTimer = Time.timeSinceLevelLoad + 0.75f;
 		//playerNet.EnemyDie (this.gameObject);
     }   
@@ -306,4 +281,65 @@ public class Enemy : NavigationAgent {
             this.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         }
 	}
+
+    public void SetType(float chosenType) {
+       minionType = (Enemy.type)Mathf. RoundToInt(chosenType);
+            Material [] swap = new Material[2];
+                if (Vector3.Distance(this.transform.position, spawnerLeft.transform.position) < Vector3.Distance(this.transform.position, spawnerRight.transform.position)) {
+                    team = 0;
+                    this.tag = "Enemy" + team;
+                    if (monsterNumber == 1) {
+                        //Debug.Log("SmallRed");
+                        swap = rend.materials;
+                        swap[0] = redS;
+                        swap[1] = redS;
+                        rend.materials = swap;
+                    } else if (monsterNumber == 2) {
+                        //Debug.Log("LargeRed");
+                        swap = rend.materials;
+                        swap[0] = redL;
+                        swap[1] = redL;
+                        rend.materials = swap;
+                    }
+                } else {
+                    team = 1;
+                    this.tag = "Enemy" + team;
+                    if (monsterNumber == 1) {
+                        //Debug.Log("smallBlue");
+                        swap = rend.materials;
+                        swap[0] = blueS;
+                        swap[1] = blueS;
+                        rend.materials = swap;
+                    } else if (monsterNumber == 2) {
+                        //Debug.Log("largeBlue");
+                         swap = rend.materials;
+                        swap[0] = blueL;
+                        swap[1] = blueL;
+                        rend.materials = swap;
+                    }
+                }
+            // give it the desired start node
+            graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + team).GetComponent<WaypointGraph> ();
+            playerNet = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerNetwork> ();
+            playerMan = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerManagement> ();
+            startNode = 5;
+            currentPath.Add(startNode);
+    }
+
+    public void SetPath(float chosenPath, float scalingHealth) {
+        if (transform.position.x < generalSpawn.transform.position.x) {
+            team = 0;
+        } else if (transform.position.x > generalSpawn.transform.position.x) {
+            team = 1;
+        }
+        this.tag = "Enemy" + team;
+        health = health + (healthScalingValue * Mathf.RoundToInt(scalingHealth));
+        currentHealth = health;
+        graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + team).GetComponent<WaypointGraph> ();
+        playerNet = GameObject.FindGameObjectWithTag ("Player"+team).GetComponent<PlayerNetwork> ();
+        playerMan = GameObject.FindGameObjectWithTag ("Player"+team).GetComponent<PlayerManagement> ();
+        startNode = Mathf. RoundToInt(chosenPath);
+        currentPath.Add(startNode);
+    }
+
 }

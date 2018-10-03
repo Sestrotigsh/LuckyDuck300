@@ -55,18 +55,6 @@ public class PlayerNetwork : NetworkBehaviour {
 	void Update () {
 		if (opponent == null) {
 			opponent = GameObject.FindGameObjectWithTag ("Player" + (team + 1) % 2);
-			//if (opponent != null) {
-				//opponent.GetComponent<PlayerManagement>().canv.SetActive(false);
-			//}
-			//if (opponent != null) {
-				//if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
-					//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
-					//this.gameObject.GetComponent<EnemyWavesAlien>().enabled = true;
-				//} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
-					//this.gameObject.GetComponent<EnemyWavesSlasher>().enabled = true;
-					//this.gameObject.GetComponent<EnemyWavesOffline>().enabled = false;
-				//}
-			//}
 			
 		}
 		if (team == 0 && this.transform.position.x > centreLineX) {
@@ -147,63 +135,26 @@ public class PlayerNetwork : NetworkBehaviour {
 	}
 
 	public void EnemyDie(GameObject enemy) {
-		if (isServer) {
-			RpcKillEnemy(enemy);
-		} else {
-			CmdKillEnemy(enemy);
-		}
-		Destroy (enemy);
+		NetworkInstanceId enemyID = enemy.GetComponent<NetworkIdentity>().netId;
+		CmdKillEnemy(enemyID);
 	}
 
 	[Command]
-	void CmdKillEnemy (GameObject target) {
-		Destroy (target);
-	}
-	[ClientRpc]
-	void RpcKillEnemy(GameObject target) {
-		Destroy (target);
+	void CmdKillEnemy (NetworkInstanceId ID) {
+		GameObject target = NetworkServer.FindLocalObject(ID);
+        NetworkServer.Destroy(target);
 	}
 
 
 
 
 
- 	
-	[Command]
-	void CmdUpdateHealth(int amount) {
-		health = amount;
-	}
-	[ClientRpc]
-	void RpcUpdateHealth(int amount) {
-		health = amount;
-	}
 
-	/*
-	[Command]
-	void CmdVictoryAlien () {
-		// Tell the opponent on the server they have won!
-		SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
-	}
-	[Command]
-	void CmdVictorySlasher () {
-		// Tell the opponent on the server they have won!
-		SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
-	}
-	[ClientRpc]
-	void RpcVictoryAlien() {
-		// tell the client (excluding client on the server) they have won!
-		if (!isServer) {
-			SceneManager.LoadScene("VictoryAlien", LoadSceneMode.Single);
-		}
-	}
-	[ClientRpc]
-	void RpcVictorySlasher() {
-		// tell the client (excluding client on the server) they have won!
-		if (!isServer) {
-			SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Single);
-		}
-	}
-	*/
+
+
+
+
+
 
 	public void DeclareWinner() {
 		winner = true;

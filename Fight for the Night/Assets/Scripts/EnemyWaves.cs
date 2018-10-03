@@ -7,23 +7,16 @@ public class EnemyWaves : NetworkBehaviour {
     // SPAWN GENERIC IN WAVES TO ATTACK THE PLAYER AND SHOW ON OTHER PLAYERS GAME
 
     // Spawners and enemy in the wave
-
+    
     public GameObject spawner;
-	//public GameObject enemy;
 	public GameObject alienEnemy;
 	public GameObject slasherEnemy;
+    private GameObject[,] refArray = new GameObject[1,2];
 
     System.Random rand = new System.Random();
 
-	private float nextSpawn; // Determine the start of the next Wave
-	public int initialSpawn; // Determine the time for the first wavespawn
-	public int spawnDistance; // Determine the time distance between the end and the start of the next wave 
-	public int waveLength = 3; // Number of second / number of minions the wave will be
-	private int remainingMinions; // The current time the wave start + the waveLength
-    public int waveCount = 0;
 
-
-    // Other variables
+        // Other variables
     private bool player0Check = false;
     private bool player1Check = false;
 
@@ -33,19 +26,37 @@ public class EnemyWaves : NetworkBehaviour {
     private PlayerNetwork player0;
     private PlayerNetwork player1;
 
+
+    public int waveLength = 3; // Number of second / number of minions the wave will be
+    private int remainingMinions; // The current time the wave start + the waveLength
+    private float nextSpawn; // Determine the start of the next Wave
+    public int initialSpawn; // Determine the time for the first wavespawn	
+	public int spawnDistance; // Determine the time distance between the end and the start of the next wave 
+    public int waveCount = 0;
+
+    private int selectedPath1 = -1;
+    private int selectedPath2 = -1;
+    private int selectedChar1 = -1;
+    private int selectedChar2 = -1;
+
+
+
 	// Use this for initialization
 	void Start () {
-        // only spawn for the local player
+        if (!isServer || !this.GetComponent<PlayerNetwork>().local) {
+            enabled = false;
+        }
+        refArray[0,0] = alienEnemy;
+        refArray[0,1] = slasherEnemy;
 
-        
 
 		remainingMinions = waveLength;
 		nextSpawn = initialSpawn;
-	    
-        if (!isLocalPlayer)
-        {
-            enabled = false;
-        }
+
+
+
+
+
 	}
 
 	// Update is called once per frame
@@ -94,95 +105,85 @@ public class EnemyWaves : NetworkBehaviour {
             {
                 player1Opp = "Slasher";
             }
+            nextSpawn = Time.timeSinceLevelLoad + initialSpawn;
 
         }
-            
-
         if (player0Opp != null && player1Opp != null)
         {
             Wave();
         }
-		
 	}
 
 	/// <summary>
 	/// spawn the wave of minions
 	/// </summary>
 	private void Wave() {
-		if (Time.timeSinceLevelLoad > nextSpawn) {
-			if (remainingMinions > 0) {
-				nextSpawn = nextSpawn + 2.0f;
-				
+        if (remainingMinions > 0) {
+            if (Time.timeSinceLevelLoad > nextSpawn) {
+
                 if (player0Opp == "Alien")
                 {
+                    selectedChar1 = 0;
                     // Pick the random path the enemy will take
                      if (rand.Next(0, 2) == 0) {
-                        CmdSpawnEnemyAlien(0,0);
+                        selectedPath1 = 0;
                     } else {
-                        CmdSpawnEnemyAlien(0,11);
+                        selectedPath1 = 11;
                     }
-                } else
-                {
+                } else {
+                    selectedChar1 = 1;
                     // Pick the random path the enemy will take
                     if (rand.Next(0, 2) == 0) {
-                        CmdSpawnEnemySlasher(0,0);
+                        selectedPath1 = 0;
                     } else {
-                        CmdSpawnEnemySlasher(0,11);
+                         selectedPath1 = 11;
                     }
                 }
                 
                 if (player1Opp == "Alien")
                 {
+                    selectedChar2 = 0;
                     // Pick the random path the enemy will take
                     if (rand.Next(0, 2) == 0) {
-                        CmdSpawnEnemyAlien(1,0);
+                         selectedPath2 = 0;
                     } else {
-                        CmdSpawnEnemyAlien(1,11);
+                        selectedPath2 = 11;
                     }
                 } else
                 {
+                    selectedChar2 = 1;
                     // Pick the random path the enemy will take
                     if (rand.Next(0, 2) == 0) {
-                        CmdSpawnEnemySlasher(1,0);
+                        selectedPath2 = 0;
                     } else {
-                        CmdSpawnEnemySlasher(1,11);
+                        selectedPath2 = 11;
                     }
                 }
+                CmdSpawnMinion(selectedChar1, selectedChar2, selectedPath1, selectedPath2, spawner.transform.position, waveCount);
 
-				remainingMinions = remainingMinions - 1;
-
-			} else {
-				remainingMinions = waveLength;
-				nextSpawn = Time.time + spawnDistance;
-                waveCount = waveCount + 1;
-			}                      
-		}
+                remainingMinions = remainingMinions - 1;
+                nextSpawn = Time.timeSinceLevelLoad + 2.0f;
+            }
+        } else {
+            remainingMinions = waveLength;
+            nextSpawn =  Time.timeSinceLevelLoad + spawnDistance;
+            waveCount = waveCount + 1;
+        }
 	}
 
-	/// <summary>
-	/// spawn the enemy with respect to the server
-	/// </summary>
-	[Command]
-    // minion team is the enemies assigned team
-    // new path is the random path assigned
-	void CmdSpawnEnemyAlien( int minionTeam, int newPath) {
-		var currentEnemy = Instantiate(alienEnemy, spawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-        currentEnemy.GetComponent<EnemyTagging>().team = minionTeam;
-        currentEnemy.GetComponent<EnemyTagging>().path = newPath;
-        currentEnemy.GetComponent<EnemyTagging>().waveNumber = waveCount;
-        NetworkServer.Spawn (currentEnemy);
-        
+
+
+
+
+    [Command]
+    void CmdSpawnMinion(int team1, int team2, int path1, int path2, Vector3 position, int healthScale) {
+        var currentEnemy1 = Instantiate(refArray[0,team1], (position - new Vector3 (5.0f, 0.0f, 0.0f)), Quaternion.Euler(0, 0, 0)) as GameObject;
+        currentEnemy1.GetComponent<EnemyTagging>().syncData.y = path1;
+        currentEnemy1.GetComponent<EnemyTagging>().syncData.z = healthScale;
+        NetworkServer.Spawn (currentEnemy1);
+        var currentEnemy2 = Instantiate(refArray[0,team2], (position + new Vector3 (5.0f, 0.0f, 0.0f)), Quaternion.Euler(0, 0, 0)) as GameObject;
+        currentEnemy2.GetComponent<EnemyTagging>().syncData.y = path2;
+        currentEnemy2.GetComponent<EnemyTagging>().syncData.z = healthScale;
+        NetworkServer.Spawn (currentEnemy2);
     }
-
-	[Command]
-    // minion team is the enemies assigned team
-    // new path is the random path assigned
-	void CmdSpawnEnemySlasher(int minionTeam, int newPath) {
-		var currentEnemy = Instantiate(slasherEnemy, spawner.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-        currentEnemy.GetComponent<EnemyTagging>().team = minionTeam;
-        currentEnemy.GetComponent<EnemyTagging>().path = newPath;
-        currentEnemy.GetComponent<EnemyTagging>().waveNumber = waveCount;
-        NetworkServer.Spawn (currentEnemy);
-	}
-
 }
