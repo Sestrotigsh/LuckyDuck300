@@ -129,11 +129,21 @@ public class PlayerTower : NetworkBehaviour {
 			isAlien = true;
 		}
 
-		if (Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) {
-            ghost.SetActive(true);
-            iceTowerUI.SetActive(true);
-            bombTowerUI.SetActive(true);
-            baseTowerUI.SetActive(true);
+		if ((Input.GetKeyDown (KeyCode.LeftShift) || Input.GetKeyDown (KeyCode.RightShift)) && currentlyTouching != null) {
+            if (currentlyTouching != null && currentlyTouching.CompareTag("TowerLocation"))
+            {
+                if (currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Base4 || currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Bomb4 || currentlyTouching.GetComponent<TowerSpot>().currentType == TowerSpot.type.Ice4)
+                {
+                    
+                } else
+                {
+                    ghost.SetActive(true);
+                    iceTowerUI.SetActive(true);
+                    bombTowerUI.SetActive(true);
+                    baseTowerUI.SetActive(true);
+                }
+            }
+            
 		} 
 
 		if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift)) {
