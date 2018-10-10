@@ -124,6 +124,17 @@ public class playerAnimation : NetworkBehaviour {
 			//return;
 		//}
 
+		if (mainCamera.transform.position.z < 206.0f) {
+			  mainCamera.transform.position += Vector3.forward * Time.deltaTime;
+		} else if (mainCamera.transform.position.z > 279.0f) {
+				mainCamera.transform.position -= Vector3.forward * Time.deltaTime;
+		} 
+		if (mainCamera.transform.position.x < 181.0f) {
+			mainCamera.transform.position += Vector3.right * Time.deltaTime;
+		} else if (mainCamera.transform.position.x > 197.0f) {
+			mainCamera.transform.position -= Vector3.right * Time.deltaTime;
+		}
+
 		if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             usingTowers = true;
@@ -144,12 +155,14 @@ public class playerAnimation : NetworkBehaviour {
 		shootingPoint.LookAt(accuracyTarget);
 		h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		v = CrossPlatformInputManager.GetAxis ("Vertical");
-		anim.SetFloat ("Speed", v);
+		anim.SetFloat("hSpeed", h);
+		anim.SetFloat ("vSpeed", v);
 		//transform.Rotate (0, h * rotateAmount, 0);
 		transform.Rotate (0, h/1.5f, 0);
 		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, h/1.5f);
 
 		//mainCamera.transform.Rotate (0, h / 2.0f, 0);
+		/*
 		if (Input.GetKeyDown (KeyCode.Space)) {
             if (shooting == false) {
                 anim.SetTrigger ("Jump");
@@ -157,14 +170,26 @@ public class playerAnimation : NetworkBehaviour {
             }
 			
 		}
+		*/
+
+		if (Input.GetMouseButtonDown(0) && usingTowers == false) {
+			anim.SetBool("Basic Bool", true);
+			anim.SetTrigger("Basic Trigger");
+		}
+
+		if (Input.GetKeyDown("3") && h == 0.0f && v == 0.0f) {
+			anim.SetTrigger("Taunt Trigger");
+		}
 
 		if (Input.GetMouseButtonUp (0)) {
+			anim.SetBool("Basic Bool", false);
 			shooting = false;
 			shootTimer = Time.timeSinceLevelLoad + 0.2f;
 		}
 
 		if (shooting == false && Time.timeSinceLevelLoad > shootTimer) {
 			transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
+			transform.position += transform.right * Time.deltaTime * (h/2.0f) * speedMultiplier;
 			currentDistance = Vector3.Distance(mainCamera.position, this.transform.position);
 			if (currentDistance != initialDistance) {
 				targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
@@ -224,28 +249,31 @@ public class playerAnimation : NetworkBehaviour {
 
 		transform.Rotate (0, mouseInput.x, 0);
 		mainCamera.transform.RotateAround(this.transform.position,Vector3.up, mouseInput.x);
+
+
+
 	}
 
     public void ForcePush() {
-        anim.SetTrigger("Push");
+        anim.SetTrigger("Push Trigger");
     }
 
     public void BigShoot() {
-    	anim.SetTrigger("BigShoot");
+    	anim.SetTrigger("Big Shoot Trigger");
     }
 
     public void SpinAttack() {
-    	anim.SetTrigger("Spin");
+    	anim.SetTrigger("Spin Trigger");
     }
 
     public void Yell() {
-    	anim.SetTrigger("Yell");
+    	anim.SetTrigger("Yell Trigger");
     }
 
     public void UpdateShooting() {
-    	anim.SetTrigger ("Shoot");
+    	//anim.SetBool("Shooting Bool", true);
     	//netAnim.SetTrigger("Shoot"); // ISSUE - INTERUPTS NON NETWORKED CHARACTERS ATTACK
-    	shooting = true;
+    	//shooting = true;
 	}
 
     // Minions push the player
