@@ -6428,12 +6428,12 @@ MonoBehaviour:
   spell2Sound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
   spell1ComboSound: {fileID: 0}
   basicSound: {fileID: 8300000, guid: 916e069b584019b4797e8948c797f3b9, type: 3}
-  autoDamage: 3
+  autoDamage: 10
   fireRate: 0.917
-  spell1Damage: 3
+  spell1Damage: 6
   CD1: 12
   remainingTime1: 0
-  spell2Damage: 15
+  spell2Damage: 20
   CD2: 10
   remainingTime2: 0
   multValue: 5
