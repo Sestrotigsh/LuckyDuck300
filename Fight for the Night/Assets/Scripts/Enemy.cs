@@ -9,6 +9,7 @@ public class Enemy : NavigationAgent {
 
     //Movement Variables
     public float moveSpeed = 10.0f;
+    private float tempSpeed;
     public float minDistance = 0.1f;
 	public int health = 1;
     public float currentHealth;
@@ -63,8 +64,13 @@ public class Enemy : NavigationAgent {
     public Material blueS;
     public Material blueL;
 
+    private GameObject inFront;
+
+
+
     // Use this for initialization
     void Start() {
+    	tempSpeed = moveSpeed;
         currentHealth = health;
 		// find spawners and calculate distances    
         goal = 16;
@@ -279,8 +285,24 @@ public class Enemy : NavigationAgent {
          if (other.CompareTag("SideWall")) {
             this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             this.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        } else if (other.CompareTag("Enemy0") || other.CompareTag("Enemy1")) {
+        	if (other.transform.position.z < this.transform.position.z) {
+        		inFront = other.gameObject;
+        		moveSpeed = 0.0f;
+        	}
         }
 	}
+
+	void OnTriggerExit(Collider other) {
+		if (inFront != null) {
+			if (other.gameObject == inFront) {
+				moveSpeed = tempSpeed;
+				inFront = null;
+			}
+		}
+	}
+
+
 
     public void SetType(float chosenType) {
        minionType = (Enemy.type)Mathf. RoundToInt(chosenType);
