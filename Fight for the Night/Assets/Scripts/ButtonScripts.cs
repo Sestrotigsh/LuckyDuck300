@@ -17,6 +17,7 @@ public class ButtonScripts : NetworkBehaviour {
     private GameObject title;
     private GameObject returnButton;
     private GameObject quitButton;
+    public GameObject graphicsSlider;
 
 
     public void EnterLobbby() {
@@ -99,11 +100,13 @@ public class ButtonScripts : NetworkBehaviour {
     public void Options() {
     	startMenu.SetActive(false);
     	optionsPanel.SetActive(true);
+        graphicsSlider.SetActive(true);
     }
 
     public void Menu() {
     	startMenu.SetActive(true);
     	optionsPanel.SetActive(false);
+        graphicsSlider.SetActive(false);
     }
 
     public void Tutorial()
