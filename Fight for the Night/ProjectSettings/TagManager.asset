@@ -60,6 +60,7 @@ TagManager:
   - Prompts1
   - Prompts0
   - TowerLocation
+  - Music
   layers:
   - Default
   - TransparentFX

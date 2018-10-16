@@ -137,6 +137,7 @@ public class PlayerTower : NetworkBehaviour {
                     
                 } else
                 {
+                    Cursor.visible = true;
                     ghost.SetActive(true);
                     iceTowerUI.SetActive(true);
                     bombTowerUI.SetActive(true);
@@ -148,6 +149,7 @@ public class PlayerTower : NetworkBehaviour {
 
 		if (Input.GetKeyUp (KeyCode.LeftShift) || Input.GetKeyUp (KeyCode.RightShift)) {
 			ghost.SetActive(false);
+            Cursor.visible = false;
 		}
 	}
     

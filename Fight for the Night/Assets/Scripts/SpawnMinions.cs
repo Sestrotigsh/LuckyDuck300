@@ -116,7 +116,7 @@ public class SpawnMinions : NetworkBehaviour {
 
         if (promptDistance < spawnDistance) {
             prompts.SetActive(true);
-                    if (Input.GetKeyDown("o")) {
+                    if (Input.GetKeyDown("q")) {
             if (timer < Time.timeSinceLevelLoad) {
                  if (playerMan.currentGold >= monster1Cost) {
                 if (playerType == "Alien") {
@@ -132,7 +132,7 @@ public class SpawnMinions : NetworkBehaviour {
             timer = Time.timeSinceLevelLoad + spawnGap;
             }
         }
-        else if (Input.GetKeyDown("p")) {
+        else if (Input.GetKeyDown("e")) {
             if (timer < Time.timeSinceLevelLoad) {
                 if (playerMan.currentGold >= monster2Cost) {
                 if (playerType == "Alien") {

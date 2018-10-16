@@ -7,6 +7,8 @@ public class PropsSpawn : MonoBehaviour {
 	private GameObject propsLeft;
 	private GameObject propsRight;
 	private bool left = false;
+	private GameObject SoundSystem;
+	public AudioClip endgameMusic;
 
 	// Use this for initialization
 	void Start () {
@@ -60,5 +62,15 @@ public class PropsSpawn : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void DeactivateProps() {
+		SoundSystem = GameObject.FindWithTag("Music");
+		AudioSource aud = SoundSystem.GetComponent<AudioSource>();
+		aud.Stop();
+		aud.clip = endgameMusic;
+		aud.Play();
+		propsRight.SetActive(false);
+		propsLeft.SetActive(false);
 	}
 }

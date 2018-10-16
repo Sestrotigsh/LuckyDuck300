@@ -7893,6 +7893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c4462c241fe4442810115ecc2b1305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endgameMusic: {fileID: 8300000, guid: aa8e745d60ef0b14f9b5be42d2211edc, type: 3}
 --- !u!114 &114990084239777864
 MonoBehaviour:
   m_ObjectHideFlags: 1

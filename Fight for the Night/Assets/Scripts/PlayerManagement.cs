@@ -37,6 +37,7 @@ public class PlayerManagement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Manage Gold
+        Cursor.visible = false;
         currentGold = currentGold + startingGold;
 		timeCount = incomeInterval;
 		player = this.GetComponent<PlayerNetwork> ();

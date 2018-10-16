@@ -31,12 +31,14 @@ public class InGamePause : MonoBehaviour {
         //Get Pause Button (Escape Key) Input
         if (Input.GetKey(KeyCode.M))
         {
+                Cursor.visible = true;
                 pauseMenu.SetActive(true);
             }
 
             //Turn Menu Off
         if (Input.GetKey(KeyCode.N))
         {
+                Cursor.visible = false;
                 pauseMenu.SetActive(false);
             }
 
@@ -45,6 +47,7 @@ public class InGamePause : MonoBehaviour {
         {
             if (pauseMenu.activeInHierarchy == true)
             {
+                Cursor.visible = true;
                 playerNet.DeclareLoser();
                 /*
                 // If the player is on the server - tell the client to win

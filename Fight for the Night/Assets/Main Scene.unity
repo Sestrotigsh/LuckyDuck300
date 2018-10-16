@@ -13303,8 +13303,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1074533259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.08, y: 0.70619583, z: 0.04786682}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0.38, y: 0.70619583, z: 0.04786682}
+  m_LocalScale: {x: -0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1201771956}
   m_RootOrder: 1
@@ -13316,7 +13316,7 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1074533259}
-  m_Text: '"O"'
+  m_Text: '"Q"'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -14158,7 +14158,7 @@ GameObject:
   - component: {fileID: 1141814989}
   m_Layer: 0
   m_Name: Music
-  m_TagString: Untagged
+  m_TagString: Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14172,7 +14172,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7230f32c7c382d7428be4dc3cd3225a1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f244a5843f7af274a8afcbbf97d19846, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.4
   m_Pitch: 1
@@ -14661,7 +14661,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 46accdc752762894e98e2b0f7d607b36, type: 2}
+  - {fileID: 2100000, guid: b4eaeb7caba63c448be51401fc42dd85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14981,7 +14981,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 81126309395272754, guid: b477aabed1649bc4195c4dc54d120549, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: b477aabed1649bc4195c4dc54d120549, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1170385942
@@ -22298,7 +22299,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 46accdc752762894e98e2b0f7d607b36, type: 2}
+  - {fileID: 2100000, guid: b4eaeb7caba63c448be51401fc42dd85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24552,7 +24553,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1599924557}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 5.91, y: 0.70619583, z: 0.04786682}
+  m_LocalPosition: {x: 5.65, y: 0.70619583, z: 0.04786682}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1180850785}
@@ -24565,7 +24566,7 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1599924557}
-  m_Text: '"P"'
+  m_Text: '"E"'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -27815,8 +27816,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1911147182}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.08, y: 0.70619583, z: 0.04786682}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalPosition: {x: 0.34, y: 0.70619583, z: 0.04786682}
+  m_LocalScale: {x: -0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1180850785}
   m_RootOrder: 1
@@ -27828,7 +27829,7 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1911147182}
-  m_Text: '"O"'
+  m_Text: '"Q"'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -28151,7 +28152,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b4eaeb7caba63c448be51401fc42dd85, type: 2}
+  - {fileID: 2100000, guid: 46accdc752762894e98e2b0f7d607b36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29617,7 +29618,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b4eaeb7caba63c448be51401fc42dd85, type: 2}
+  - {fileID: 2100000, guid: 46accdc752762894e98e2b0f7d607b36, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31069,7 +31070,7 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2131697054}
-  m_Text: '"P"'
+  m_Text: '"E"'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1

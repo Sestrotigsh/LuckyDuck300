@@ -76,7 +76,14 @@ public class PlayerNetwork : NetworkBehaviour {
 					} else if (this.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
 						SceneManager.LoadScene("VictorySlasher", LoadSceneMode.Additive);
 					}
+					Cursor.visible = true;
+					this.GetComponent<EnemyWaves>().enabled = false;
+					this.GetComponent<PropsSpawn>().DeactivateProps();
+					this.GetComponent<AudioListener>().enabled = false;
+					opponent.SetActive(false);
 					this.gameObject.SetActive(false);
+
+					opponent.SetActive(false);
 			}
 			if (loser == true || opponent.GetComponent<PlayerNetwork>().winner == true) {
 					GameObject.FindGameObjectWithTag("MainCamera").SetActive(false);
@@ -86,6 +93,11 @@ public class PlayerNetwork : NetworkBehaviour {
 					} else if (opponent.transform.Find("SlasherClothes").gameObject.activeSelf == true) {
 						SceneManager.LoadScene("DefeatSlasher", LoadSceneMode.Additive);
 					}
+					Cursor.visible = true;
+					this.GetComponent<EnemyWaves>().enabled = false;
+					this.GetComponent<PropsSpawn>().DeactivateProps();
+					this.GetComponent<AudioListener>().enabled = false;
+					opponent.SetActive(false);
 					this.gameObject.SetActive(false);
 			}
 			if (health <= 0) {
