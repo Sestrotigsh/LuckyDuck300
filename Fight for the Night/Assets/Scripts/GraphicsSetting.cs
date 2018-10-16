@@ -18,4 +18,8 @@ public class GraphicsSetting : MonoBehaviour {
 	public void UpdateGraphics(Slider slider) {
 		 QualitySettings.SetQualityLevel(Mathf.RoundToInt(slider.value-1), true);
 	}
+
+	public void UpdateSound(Slider slider) {
+		AudioListener.volume = slider.value;
+	}
 }

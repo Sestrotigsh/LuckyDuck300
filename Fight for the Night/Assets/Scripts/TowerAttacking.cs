@@ -63,6 +63,7 @@ public class TowerAttacking : MonoBehaviour {
 		GameObject instance = Instantiate (projectile, barrel.position, barrel.rotation) as GameObject;
 		instance.GetComponent<ProjectileController>().team = team;
 		instance.GetComponent<Rigidbody> ().AddForce (barrel.forward * Firepower);
+		this.GetComponent<AudioSource>().Play();
 		Destroy(instance, 2.0f);
 	}
 
