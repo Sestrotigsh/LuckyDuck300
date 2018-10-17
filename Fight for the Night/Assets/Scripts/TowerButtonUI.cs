@@ -116,6 +116,9 @@ public class TowerButtonUI : MonoBehaviour {
             if(playerMan.currentGold < playerBuild.baseCost)
             {
                 subPanelText.color = new Color(1, 0, 0);
+            } else
+            {
+                subPanelText.color = new Color(1, 1, 1);
             }
         } else if (this.tag == "TowerIce")
         {
@@ -124,12 +127,20 @@ public class TowerButtonUI : MonoBehaviour {
             {
                 subPanelText.color = new Color(1, 0, 0);
             }
+            else
+            {
+                subPanelText.color = new Color(1, 1, 1);
+            }
         } else if (this.tag == "TowerBomb")
         {
             subPanelText.text = "Bomb Tower 1" + Environment.NewLine + "Cost :" + playerBuild.bombCost;
             if (playerMan.currentGold < playerBuild.bombCost)
             {
                 subPanelText.color = new Color(1, 0, 0);
+            }
+            else
+            {
+                subPanelText.color = new Color(1, 1, 1);
             }
         }
 
@@ -145,6 +156,10 @@ public class TowerButtonUI : MonoBehaviour {
                     {
                         subPanelText.color = new Color(1, 0, 0);
                     }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
+                    }
 
                 }
                 else if (typeOfTower == TowerSpot.type.Base2)
@@ -154,6 +169,10 @@ public class TowerButtonUI : MonoBehaviour {
                     {
                         subPanelText.color = new Color(1, 0, 0);
                     }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
+                    }
 
                 }
                 else if (typeOfTower == TowerSpot.type.Base3)
@@ -162,6 +181,10 @@ public class TowerButtonUI : MonoBehaviour {
                     if (playerMan.currentGold < playerBuild.baselevel4Cost)
                     {
                         subPanelText.color = new Color(1, 0, 0);
+                    }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
                     }
 
                 }
@@ -182,6 +205,10 @@ public class TowerButtonUI : MonoBehaviour {
                     {
                         subPanelText.color = new Color(1, 0, 0);
                     }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Ice2)
                 {
@@ -190,6 +217,10 @@ public class TowerButtonUI : MonoBehaviour {
                     {
                         subPanelText.color = new Color(1, 0, 0);
                     }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Ice3)
                 {
@@ -197,6 +228,10 @@ public class TowerButtonUI : MonoBehaviour {
                     if (playerMan.currentGold < playerBuild.icelevel4Cost)
                     {
                         subPanelText.color = new Color(1, 0, 0);
+                    }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
                     }
                 }
 
@@ -216,6 +251,10 @@ public class TowerButtonUI : MonoBehaviour {
                     {
                         subPanelText.color = new Color(1, 0, 0);
                     }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Bomb2)
                 {
@@ -224,6 +263,10 @@ public class TowerButtonUI : MonoBehaviour {
                     {
                         subPanelText.color = new Color(1, 0, 0);
                     }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
+                    }
                 }
                 else if (typeOfTower == TowerSpot.type.Bomb3)
                 {
@@ -231,6 +274,10 @@ public class TowerButtonUI : MonoBehaviour {
                     if (playerMan.currentGold < playerBuild.bomblevel4Cost)
                     {
                         subPanelText.color = new Color(1, 0, 0);
+                    }
+                    else
+                    {
+                        subPanelText.color = new Color(1, 1, 1);
                     }
                 }
 

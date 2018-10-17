@@ -249,7 +249,7 @@ public class Enemy : NavigationAgent {
 	/// <param name="timeStun">The amount of time to be stunned</param>
     public void Stun(float timeStun) {
         isStunned = true;
-        endOfStun = Time.time + timeStun;
+        endOfStun = Time.timeSinceLevelLoad+ timeStun;
     }
 
     // A slow of 2 means 50%

@@ -1471,7 +1471,7 @@ MonoBehaviour:
   fireRate: 2
   turnSpeed: 12
   Firepower: 1800
-  projectile: {fileID: 1151538747763664, guid: 36e86da70788d7b4aa390834372c69b4, type: 2}
+  projectile: {fileID: 1174518398665938, guid: 36e86da70788d7b4aa390834372c69b4, type: 2}
   barrel: {fileID: 4591134565564110}
   team: 0
   playerChar: {fileID: 0}
