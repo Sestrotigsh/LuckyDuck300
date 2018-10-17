@@ -6984,7 +6984,7 @@ MonoBehaviour:
   spell1Damage: 6
   CD1: 7
   remainingTime1: 0
-  spell2Damage: 3
+  spell2Damage: 8
   CD2: 15
   remainingTime2: 0
   windSpin: {fileID: 198280786160775954, guid: 32cd8ca595a315d4daef034cfc223a4b, type: 2}
@@ -6994,12 +6994,12 @@ MonoBehaviour:
   remainingTime3: 0
   alienExecute: {fileID: 198377809097236778, guid: f3385d121ac1be543ba2034370024a27,
     type: 2}
-  spell11object: {fileID: 1725064087848410, guid: f323eeb9e2dab9d45a3349cf9bb05888,
+  spell11object: {fileID: 1677600654328520, guid: f323eeb9e2dab9d45a3349cf9bb05888,
     type: 2}
   CD11: 7
   remainingTime11: 0
   accuracyCounter: 0
-  maxAccuracyDistortion: 10
+  maxAccuracyDistortion: 0
   Crosshairs: {fileID: 114520957888534024}
 --- !u!114 &114681959878446640
 MonoBehaviour:
