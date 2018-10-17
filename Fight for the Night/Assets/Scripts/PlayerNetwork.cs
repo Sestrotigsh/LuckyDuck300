@@ -155,9 +155,11 @@ public class PlayerNetwork : NetworkBehaviour {
 		if (method == 1) {
 			if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
 				GameObject instance = Instantiate(alienMinionDeath, enemy.transform.position, enemy.transform.rotation) as GameObject;
+				instance.GetComponent<AudioSource>().Play();
 				Destroy(instance, 0.5f);	
 			} else {
 				GameObject instance = Instantiate(slasherMinionDeath, enemy.transform.position, enemy.transform.rotation) as GameObject;
+				instance.GetComponent<AudioSource>().Play();
 				Destroy(instance, 0.5f);	
 			}	
 		}
