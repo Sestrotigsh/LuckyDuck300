@@ -91,7 +91,7 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 	}
 
-	
+	/*
 	void LateFixedUpdate() {
 		if (isLocalPlayer) {
 			return;
@@ -106,6 +106,7 @@ public class playerAnimation : NetworkBehaviour {
 		
 
 	}
+	*/
 	
 	// Update is called once per frame
 	void Update () {
