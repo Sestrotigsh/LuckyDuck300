@@ -13,6 +13,9 @@ public class PlayerNetwork : NetworkBehaviour {
 	public GameObject opponent;
 	public bool opponentFound;
 
+	public GameObject slasherMinionDeath;
+	public GameObject alienMinionDeath;
+
 	[SyncVar]
 	public int health;
 	[SyncVar]
@@ -146,9 +149,20 @@ public class PlayerNetwork : NetworkBehaviour {
 				*/
 	}
 
-	public void EnemyDie(GameObject enemy) {
+	public void EnemyDie(GameObject enemy, int method) {
 		NetworkInstanceId enemyID = enemy.GetComponent<NetworkIdentity>().netId;
 		CmdKillEnemy(enemyID);
+		if (method == 1) {
+			if (opponent.transform.Find("AlienClothes").gameObject.activeSelf == true) {
+				GameObject instance = Instantiate(alienMinionDeath, enemy.transform.position, enemy.transform.rotation) as GameObject;
+				Destroy(instance, 0.5f);	
+			} else {
+				GameObject instance = Instantiate(slasherMinionDeath, enemy.transform.position, enemy.transform.rotation) as GameObject;
+				Destroy(instance, 0.5f);	
+			}	
+		}
+		//audioS.clip = basicSound;
+		//audioS.Play();
 	}
 
 	[Command]

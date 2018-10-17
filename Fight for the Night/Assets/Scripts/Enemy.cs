@@ -87,15 +87,15 @@ public class Enemy : NavigationAgent {
         // if the path is ready, progress with standard enemy behaviour
         if (startNode != -1 && graphNodes != null) {
             if (deathTimer != 0.0f) {
-            rend.materials[0].SetFloat("_Blink", 1.0f);
-            rend.materials[1].SetFloat("_Blink", 1.0f);
+            //rend.materials[0].SetFloat("_Blink", 1.0f);
+            //rend.materials[1].SetFloat("_Blink", 1.0f);
             //rend.material.SetFloat("_Blink", 1.0f);
             if (animator != null) {
                 animator.GetComponent<Animator>().enabled = false;
             }
             this.GetComponent<BoxCollider>().enabled = false;
             if (deathTimer < Time.timeSinceLevelLoad) {
-                playerNet.EnemyDie (this.gameObject);
+                playerNet.EnemyDie (this.gameObject, 1);
             }
         }
 
@@ -118,7 +118,7 @@ public class Enemy : NavigationAgent {
                 DestroyEnemy();
                 break;
             case 2:
-                playerNet.EnemyDie (this.gameObject);
+                playerNet.EnemyDie (this.gameObject, 2);
                 break;
         }
         // after sufficient time is passed - remove the stun effect
@@ -230,9 +230,7 @@ public class Enemy : NavigationAgent {
                 value = value / (Mathf.Log10 (playerMan.currentGold));              
             }
 			playerMan.Earn(value);
-            isStunned = true;
-            endOfStun = Time.timeSinceLevelLoad + 2.0f;
-            deathTimer = Time.timeSinceLevelLoad + 0.75f; // CHANGE HAS OCCURED HERE FOR BUG FIXING was 0.75f
+            DestroyEnemy();
 			//playerNet.EnemyDie (this.gameObject);
 		}      
     }
@@ -243,7 +241,7 @@ public class Enemy : NavigationAgent {
         ///////// CODE BEING ALTERED HERE
         isStunned = true;
         endOfStun = Time.timeSinceLevelLoad + 2.0f;
-        deathTimer = Time.timeSinceLevelLoad + 0.75f;
+        deathTimer = Time.timeSinceLevelLoad + 0.1f;
 		//playerNet.EnemyDie (this.gameObject);
     }   
 

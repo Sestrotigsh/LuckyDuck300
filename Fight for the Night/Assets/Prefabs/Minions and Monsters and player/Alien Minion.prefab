@@ -380,10 +380,7 @@ MonoBehaviour:
   newState: 0
   startNode: 0
   goal: 0
-  pathReady: 0
-  teamReady: 0
-  monsterReady: 0
-  healthReady: 1
+  playerNet: {fileID: 0}
   minionType: 0
   healthBar: {fileID: 114157281862110752}
   value: 1
@@ -551,9 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42acfa152f86f54ca9c17588aa0d2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
-  path: -1
-  waveNumber: 0
+  syncData: {x: -1, y: -1, z: -1}
 --- !u!114 &114744490794024740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -592,7 +587,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 28284d216a3f1fd4c8018c35da6c6e5e, type: 2}
+  - {fileID: 2100000, guid: a7f89e0ae78f5b449bba348423261012, type: 2}
   - {fileID: 2100000, guid: a7f89e0ae78f5b449bba348423261012, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

@@ -7628,6 +7628,10 @@ MonoBehaviour:
   local: 0
   opponent: {fileID: 0}
   opponentFound: 0
+  slasherMinionDeath: {fileID: 1876081050882714, guid: e5df5caad603c8349ba3481b8ded0927,
+    type: 2}
+  alienMinionDeath: {fileID: 1150934714579380, guid: 779aa8c25fbd0e1488637639c9fff976,
+    type: 2}
   health: 10
   winner: 0
   loser: 0
