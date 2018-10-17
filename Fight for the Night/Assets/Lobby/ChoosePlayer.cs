@@ -46,8 +46,7 @@ public class ChoosePlayer : NetworkBehaviour {
 				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
 				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
 			} else {
-				//this.GetComponent<Animator>().runtimeAnimatorController = alienPlayer2;
-				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
+				this.GetComponent<Animator>().runtimeAnimatorController = alienPlayer2;
 			}
 			
 				
@@ -66,8 +65,7 @@ public class ChoosePlayer : NetworkBehaviour {
 				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
 				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
 			} else {
-				//this.GetComponent<Animator>().runtimeAnimatorController = slasherPlayer2;
-				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
+				this.GetComponent<Animator>().runtimeAnimatorController = slasherPlayer2;
 			}
 			
 		}
