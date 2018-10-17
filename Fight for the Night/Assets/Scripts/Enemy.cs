@@ -64,6 +64,7 @@ public class Enemy : NavigationAgent {
     public Material blueL;
 
     private GameObject inFront;
+    private float sign = 0.5f;
 
 
 
@@ -281,12 +282,26 @@ public class Enemy : NavigationAgent {
          if (other.CompareTag("SideWall")) {
             this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
             this.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        } else if (other.CompareTag("Enemy0") || other.CompareTag("Enemy1")) {
-        	if (other.transform.position.z < this.transform.position.z) {
-        		GetSlowed(2.0f, 1);
-        	}
-        }
+        } 
 	}
+
+    void OnTriggerStay(Collider other) {
+        if (startNode != -1 && graphNodes != null) {
+            if (other.CompareTag("Enemy0") || other.CompareTag("Enemy1")) {
+            if (other.gameObject != inFront) {
+                inFront = other.gameObject;
+                if (other.transform.position.z < this.transform.position.z) {
+                    sign = 0.2f;
+            } else if (other.transform.position.z > this.transform.position.z) {
+                sign = -0.1f;
+            }
+        }
+        transform.position = Vector3.MoveTowards(transform.position, graphNodes.graphNodes[currentPath[currentPathIndex]].transform.position, moveSpeed * sign);
+
+            }
+
+        }
+    }
 
     public void SetType(float chosenType) {
        minionType = (Enemy.type)Mathf. RoundToInt(chosenType);

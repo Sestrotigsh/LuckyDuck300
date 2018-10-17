@@ -55,7 +55,7 @@ public class playerAnimation : NetworkBehaviour {
 		shooting = false;
 		playerNet = this.GetComponent<PlayerNetwork>();
 		if (!playerNet.local) {
-			//oldPos = transform.position;
+			oldPos = transform.position;
 			this.GetComponent<AudioListener>().enabled = false;
 			return;
 		}
@@ -91,19 +91,22 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 	}
 
-	//void LateFixedUpdate() {
-		//if (isLocalPlayer) {
-			//return;
-		//}
-		//newPos = transform.position;
-		//if(oldPos != newPos) {
-			 //anim.SetBool("Moving", true);
-		//} else {
-			//anim.SetBool("Moving", false);
-		//}
-		//oldPos = newPos;
+	/*
+	void LateFixedUpdate() {
+		if (isLocalPlayer) {
+			return;
+		}
+		newPos = transform.position;
+		if(transform.position != oldPos) {
+			 anim.SetBool("Moving", true);
+			 oldPos = transform.position;
+		} else {
+			anim.SetBool("Moving", false);
+		}
+		
 
-	//}
+	}
+	*/
 	
 	// Update is called once per frame
 	void Update () {

@@ -33,6 +33,9 @@ public class TowerAttacking : MonoBehaviour {
 		}
         Vector3 arrowPosition = new Vector3(0, 3, 0);
         playerChar = GameObject.FindGameObjectWithTag("Player" + team);
+        if (playerChar.GetComponent<PlayerNetwork>().local == false) {
+        	this.enabled = false;
+        }
         upgradeArrow = Instantiate(upgradeArrow, arrowPosition, transform.rotation, transform);
         upgradeArrow.transform.localPosition = arrowPosition;
         

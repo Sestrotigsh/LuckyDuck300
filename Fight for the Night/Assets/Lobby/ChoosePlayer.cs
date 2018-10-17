@@ -44,9 +44,12 @@ public class ChoosePlayer : NetworkBehaviour {
 				AlienSpell1.SetActive(true);
 				AlienSpell2.SetActive(true);
 				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
+				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
+			} else {
+				//this.GetComponent<Animator>().runtimeAnimatorController = alienPlayer2;
+				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
 			}
-			this.GetComponent<Animator>().runtimeAnimatorController = alienController;
-
+			
 				
 		} 
 		// if the player has selected the slasher
@@ -61,9 +64,12 @@ public class ChoosePlayer : NetworkBehaviour {
 				SlasherSpell1.SetActive(true);
 				SlasherSpell2.SetActive(true);
 				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
-
+				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
+			} else {
+				//this.GetComponent<Animator>().runtimeAnimatorController = slasherPlayer2;
+				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
 			}
-			this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
+			
 		}
 	}
 }

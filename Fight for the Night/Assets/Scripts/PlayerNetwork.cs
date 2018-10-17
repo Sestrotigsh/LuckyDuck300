@@ -110,8 +110,9 @@ public class PlayerNetwork : NetworkBehaviour {
 	}
 
 	public void TakeDamage () {
-		if (isServer) {
-			health -= 1;
+		if (local) {
+			CmdUpdateHealth();
+			//health -= 1;
 		}
 		
 
@@ -148,7 +149,7 @@ public class PlayerNetwork : NetworkBehaviour {
 				}
 				*/
 	}
-
+	// Method denotes whether to play death effect or not - 1 = player killed enemy so play effect, 2 = enemy reached end so just destroy enemy
 	public void EnemyDie(GameObject enemy, int method) {
 		NetworkInstanceId enemyID = enemy.GetComponent<NetworkIdentity>().netId;
 		CmdKillEnemy(enemyID);
@@ -163,8 +164,6 @@ public class PlayerNetwork : NetworkBehaviour {
 				Destroy(instance, 0.5f);	
 			}	
 		}
-		//audioS.clip = basicSound;
-		//audioS.Play();
 	}
 
 	[Command]
@@ -174,7 +173,10 @@ public class PlayerNetwork : NetworkBehaviour {
 	}
 
 
-
+	[Command]
+	void CmdUpdateHealth() {
+		health -= 1;
+	}
 
 
 
