@@ -91,7 +91,7 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 	}
 
-	
+	/*	
 	void LateFixedUpdate() {
 		if (isLocalPlayer) {
 			return;
@@ -103,9 +103,11 @@ public class playerAnimation : NetworkBehaviour {
 		} else {
 			anim.SetBool("Moving", false);
 		}
+
 		
 
 	}
+			*/
 	
 	// Update is called once per frame
 	void Update () {
