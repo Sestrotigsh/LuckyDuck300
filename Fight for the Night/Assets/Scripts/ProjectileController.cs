@@ -87,7 +87,11 @@ public class ProjectileController : MonoBehaviour {
             {
                 Destroy(this.gameObject);
             }
-        }    
+        }  else if (other.gameObject.CompareTag("Environment"))
+        {
+          
+            Destroy(this.gameObject);
+        }  
     }
 
     IEnumerator Slow()
