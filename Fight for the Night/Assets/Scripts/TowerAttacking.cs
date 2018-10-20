@@ -44,6 +44,14 @@ public class TowerAttacking : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (playerChar == null) {
+			playerChar = GameObject.FindGameObjectWithTag("Player" + team);
+        	if (playerChar.GetComponent<PlayerNetwork>().local == false) {
+        		this.enabled = false;
+        	}
+		}
+
+
         DisplayArrow();
         UpdateTarget();
 		if (target == null) {
@@ -57,9 +65,7 @@ public class TowerAttacking : MonoBehaviour {
 		if (fireCountdown <= Time.timeSinceLevelLoad) {
 			Shoot ();
 			fireCountdown = Time.timeSinceLevelLoad + fireRate;
-		}
-
-       
+		}       
 	}
 
 	void Shoot() {

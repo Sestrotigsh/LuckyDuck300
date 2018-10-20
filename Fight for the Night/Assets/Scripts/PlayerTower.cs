@@ -449,8 +449,10 @@ public class PlayerTower : NetworkBehaviour {
             foreach (GameObject i in towers) {
                 float distanceToTower = Vector3.Distance (currentlyTouching.transform.position, i.transform.position);
                 if (distanceToTower < shortestDistance) {
-                    shortestDistance = distanceToTower;
-                    nearestTower = i;
+                    if ((PlayerNet.team == 0 && i.transform.position.x < PlayerNet.centreLineX) || (PlayerNet.team == 1 && i.transform.position.x > PlayerNet.centreLineX)) {
+                        shortestDistance = distanceToTower;
+                        nearestTower = i;
+                    }
                 }
             }
             if (shortestDistance < 3.0f) {
