@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18154545, g: 0.22718893, b: 0.30740538, a: 1}
+  m_IndirectSpecularColor: {r: 0.18154499, g: 0.22718829, b: 0.30740425, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15591,6 +15591,10 @@ Prefab:
       propertyPath: near clip plane
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1256433105175546, guid: b477aabed1649bc4195c4dc54d120549, type: 2}
+      propertyPath: m_TagString
+      value: Target
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 81126309395272754, guid: b477aabed1649bc4195c4dc54d120549, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: b477aabed1649bc4195c4dc54d120549, type: 2}
@@ -26058,6 +26062,16 @@ Prefab:
         type: 2}
       propertyPath: m_Volume
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82292555135752642, guid: f3ba46662d4f74a43b0d22bb9d822862,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82546784636933132, guid: f3ba46662d4f74a43b0d22bb9d822862,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3ba46662d4f74a43b0d22bb9d822862, type: 2}

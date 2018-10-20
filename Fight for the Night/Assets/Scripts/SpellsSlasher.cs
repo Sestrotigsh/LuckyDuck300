@@ -69,6 +69,8 @@ public class SpellsSlasher : MonoBehaviour
     private List<GameObject> enemyToSlow = new List<GameObject>();
     private bool isCrying = false;
 
+    private bool basicSlash = false;
+
     // Use this for initialization
     void Start()
     {
@@ -116,12 +118,13 @@ public class SpellsSlasher : MonoBehaviour
                 Spell2();
 
             }
-            else if (Input.GetMouseButton(0) && isCutting == false)
+            else if (Input.GetMouseButtonDown(0) && isCutting == false && basicSlash == false)
             {
                 if (fireTimer < Time.timeSinceLevelLoad)
                 {  
                     fireTimer = fireRate + Time.timeSinceLevelLoad;
                     BasicAttack();
+                    basicSlash = true;
                     
                 }
             } else if (Input.GetKeyDown("2") && isDashing == true)
@@ -130,6 +133,10 @@ public class SpellsSlasher : MonoBehaviour
             } else if (Input.GetKeyDown("1") && isCutting == true)
             {
                 isCrying = true;
+            }
+
+            if (Input.GetMouseButtonUp(0)) {
+                basicSlash = false;
             }
         }
 

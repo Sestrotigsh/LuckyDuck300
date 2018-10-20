@@ -364,9 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42acfa152f86f54ca9c17588aa0d2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: -1
-  path: -1
-  waveNumber: 0
+  syncData: {x: -1, y: -1, z: -1}
 --- !u!114 &114389156861945554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -396,12 +394,10 @@ MonoBehaviour:
   newState: 0
   startNode: 0
   goal: 0
-  pathReady: 0
-  teamReady: 0
-  monsterReady: 0
-  healthReady: 1
+  playerNet: {fileID: 0}
   minionType: 0
   healthBar: {fileID: 114524964514237782}
+  healthbarEntire: {fileID: 1246903645768844}
   value: 2
   isStunned: 0
   endOfStun: 0
@@ -574,6 +570,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e580e7e9895fb4a8b95ce54734bcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iniRot: {x: 0, y: 0, z: 0, w: 0}
+  playerChar: {fileID: 0}
+  playerTeam: 0
 --- !u!137 &137864113300761438
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

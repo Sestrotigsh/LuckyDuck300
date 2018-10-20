@@ -23,7 +23,7 @@ public class playerAnimation : NetworkBehaviour {
 	private Transform shootingPoint;
 	public Transform accuracyTarget;
 	Animator anim;
-	NetworkAnimator netAnim;
+	//NetworkAnimator netAnim;
 	private bool lookingAtScreen;
 	[SerializeField] Vector3 checkPositionP1;
 	[SerializeField] Vector3 checkPositionP2;
@@ -41,6 +41,10 @@ public class playerAnimation : NetworkBehaviour {
 	float h;
 	float v;
 
+	[SyncVar (hook = "StateChangedNet")]
+	public string changedState;
+
+	private int isSlasher = 0;
 
 	private Vector3 oldPos;
 	private Vector3 newPos;
@@ -51,9 +55,15 @@ public class playerAnimation : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () { 
+		if (transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+			isSlasher = 2;
+		} else if (transform.Find("AlienClothes").gameObject.activeSelf == true){
+			isSlasher = 1;
+		}
 		shootTimer = 0;
 		shooting = false;
 		playerNet = this.GetComponent<PlayerNetwork>();
+		anim = GetComponent<Animator>();
 		if (!playerNet.local) {
 			oldPos = transform.position;
 			this.GetComponent<AudioListener>().enabled = false;
@@ -72,8 +82,7 @@ public class playerAnimation : NetworkBehaviour {
 
 		//shootingPoint = GameObject.FindWithTag("ShootingPoint").transform;
 		// set up the third person camera
-		anim = GetComponent<Animator>();
-		netAnim = GetComponent<NetworkAnimator>();
+		//netAnim = GetComponent<NetworkAnimator>();
 		setupCamera();
 		
 		initialDistance = Vector3.Distance(mainCamera.position, this.transform.position);
@@ -91,27 +100,31 @@ public class playerAnimation : NetworkBehaviour {
 		//}
 	}
 
-	/*	
-	void LateFixedUpdate() {
-		if (isLocalPlayer) {
-			return;
-		}
-		newPos = transform.position;
-		if(transform.position != oldPos) {
-			 anim.SetBool("Moving", true);
-			 oldPos = transform.position;
-		} else {
-			anim.SetBool("Moving", false);
-		}
-
-		
-
-	}
-			*/
 	
 	// Update is called once per frame
 	void Update () {
+		if (isSlasher == 0) {
+			if (transform.Find("SlasherClothes").gameObject.activeSelf == true) {
+				isSlasher = 2;
+			} else if (transform.Find("AlienClothes").gameObject.activeSelf == true){
+				isSlasher = 1;
+			}
+		}
+
+
 		if (!playerNet.local) {
+			newPos = transform.position;
+			h = 2.0f*(newPos.x-oldPos.x) / (Time.deltaTime * speedMultiplier);
+			v = (newPos.z - oldPos.z) / (Time.deltaTime * speedMultiplier);
+			if (Mathf.Abs(h) > 0.2f) {
+				h = 1.0f;
+			}
+			if (Mathf.Abs(v) > 0.2f) {
+				v = 1.0f;
+			}
+			anim.SetFloat("hSpeed", h);
+			anim.SetFloat ("vSpeed", v);
+			oldPos = newPos;
 			return;
 		}
 
@@ -156,7 +169,7 @@ public class playerAnimation : NetworkBehaviour {
         }
 
 
-		shootingPoint.LookAt(accuracyTarget);
+		//shootingPoint.LookAt(accuracyTarget);
 		h = CrossPlatformInputManager.GetAxis ("Horizontal");
 		v = CrossPlatformInputManager.GetAxis ("Vertical");
 		anim.SetFloat("hSpeed", h);
@@ -177,23 +190,59 @@ public class playerAnimation : NetworkBehaviour {
 		*/
 
 		if (Input.GetMouseButtonDown(0) && usingTowers == false) {
-			anim.SetBool("Basic Bool", true);
-			anim.SetTrigger("Basic Trigger");
+			if (isSlasher == 2) {
+				anim.SetTrigger("Basic Trigger");
+				if (isServer) {
+					changedState = "Basic Trigger";
+				} else {
+					CmdSecondPlayerAnim("Basic Trigger");
+				}
+			} else {
+				anim.SetBool("Basic Bool", true);
+				if (isServer) {
+					changedState = "Basic Bool T";
+				} else {
+					CmdSecondPlayerAnim("Basic Bool T");
+				}
+			}
 		}
 
-		if (Input.GetKeyDown("3") && h == 0.0f && v == 0.0f) {
-			anim.SetTrigger("Taunt Trigger");
-		}
+		//if (Input.GetKeyDown("3") && h == 0.0f && v == 0.0f) {
+			//anim.SetTrigger("Taunt Trigger");
+			//changedState = "Taunt Trigger";
+		//}
 
 		if (Input.GetMouseButtonUp (0)) {
 			anim.SetBool("Basic Bool", false);
+			if (isServer) {
+				changedState = "Basic Bool F";
+			} else {
+				CmdSecondPlayerAnim("Basic Bool F");
+			}
 			shooting = false;
 			shootTimer = Time.timeSinceLevelLoad + 0.2f;
 		}
 
 		if (shooting == false && Time.timeSinceLevelLoad > shootTimer) {
+
+
+
+
+
+
+
+
+
+
 			transform.position += transform.forward * Time.deltaTime * v*speedMultiplier;
 			transform.position += transform.right * Time.deltaTime * (h/2.0f) * speedMultiplier;
+			
+
+
+
+
+
+
 			currentDistance = Vector3.Distance(mainCamera.position, this.transform.position);
 			if (currentDistance != initialDistance) {
 				targetPosition = cameraLookTarget.position + (transform.forward * cameraOffset.z) + (transform.up * cameraOffset.y) + (transform.right * cameraOffset.x);
@@ -223,11 +272,6 @@ public class playerAnimation : NetworkBehaviour {
 		targetRotation = cameraLookTarget.rotation;
 		mainCamera.position = targetPosition;
 		mainCamera.rotation = targetRotation;
-		foreach (Transform child in mainCamera) {
-			if (child.CompareTag("GameController") == false) {
-				accuracyTarget = child;
-			}
-		}
 	}
 
 
@@ -260,18 +304,38 @@ public class playerAnimation : NetworkBehaviour {
 
     public void ForcePush() {
         anim.SetTrigger("Push Trigger");
+        if (isServer) {
+			changedState = "Push Trigger";
+		} else {
+			CmdSecondPlayerAnim("Push Trigger");
+		}
     }
 
     public void BigShoot() {
     	anim.SetTrigger("Big Shoot Trigger");
+    	if (isServer) {
+			changedState = "Big Shoot Trigger";
+		} else {
+			CmdSecondPlayerAnim("Big Shoot Trigger");
+		}
     }
 
     public void SpinAttack() {
     	anim.SetTrigger("Spin Trigger");
+    	if (isServer) {
+			changedState = "Spin Trigger";
+		} else {
+			CmdSecondPlayerAnim("Spin Trigger");
+		}
     }
 
     public void Yell() {
     	anim.SetTrigger("Yell Trigger");
+    	 if (isServer) {
+			changedState = "Yell Trigger";
+		} else {
+			CmdSecondPlayerAnim("Yell Trigger");
+		}
     }
 
     public void UpdateShooting() {
@@ -289,5 +353,25 @@ public class playerAnimation : NetworkBehaviour {
     			transform.position -= transform.forward * Time.deltaTime * v*speedMultiplier*2.0f;
     		}
    		 }
+	}
+
+
+	public void StateChangedNet(string updateState) {
+		if (!playerNet.local) {
+			if (updateState == "Basic Bool F") {
+				anim.SetBool("Basic Bool", false);
+			} else if (updateState == "Basic Bool T") {
+				anim.SetBool("Basic Bool", true);
+			} else {
+				Debug.Log(updateState);
+				anim.SetTrigger(updateState);
+			}
+		}
+			//Debug.Log(updateState);
+	}
+
+	[Command] 
+	void CmdSecondPlayerAnim (string newSet) {
+		changedState = newSet;
 	}
 }

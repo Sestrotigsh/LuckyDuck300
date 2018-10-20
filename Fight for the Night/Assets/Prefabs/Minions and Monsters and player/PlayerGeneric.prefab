@@ -5593,8 +5593,8 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672515537450790}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: cf02ba49f9911a046b69311c1f725f18, type: 3}
-  m_Controller: {fileID: 9100000, guid: 12e82b5ff05c836418bd3c5ebe91e74e, type: 2}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6659,6 +6659,7 @@ MonoBehaviour:
   checkRotationP2: {x: 0, y: 180, z: 0}
   verticalLimit: 0
   horizontalLimit: 0
+  changedState: 
 --- !u!114 &114535348664451378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6781,10 +6782,10 @@ MonoBehaviour:
   alienClothes: {fileID: 1713539378579324}
   slasherClothes: {fileID: 1999074149413326}
   alienController: {fileID: 9100000, guid: 40c31aa47c90b1945a4176c526f26733, type: 2}
-  alienPlayer2: {fileID: 9100000, guid: fa67bffd2a6a95545bbf542745553983, type: 2}
+  alienPlayer2: {fileID: 9100000, guid: 40c31aa47c90b1945a4176c526f26733, type: 2}
   alienAvatar: {fileID: 9000000, guid: a750cb774b767eb499085c39a3a24703, type: 3}
   slasherController: {fileID: 9100000, guid: 9a7ba7b4f188d7240a5706b4f4a059f4, type: 2}
-  slasherPlayer2: {fileID: 9100000, guid: c150d045d01e3c940b8d3a1cd12de31f, type: 2}
+  slasherPlayer2: {fileID: 9100000, guid: 9a7ba7b4f188d7240a5706b4f4a059f4, type: 2}
   slasherAvatar: {fileID: 9000000, guid: fcbf12d9831931446b834acd5414da4f, type: 3}
   slasherChosen: 0
   alienChosen: 0
@@ -6973,7 +6974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell1object: {fileID: 1000829668979204, guid: 30887000440fb484881cce0258c63289,
     type: 2}
-  frontPos: {fileID: 0}
+  frontPos: {fileID: 4578734599223182}
+  accuracyTarget: {fileID: 0}
   laserSound: {fileID: 8300000, guid: fb5800479e15d7c409805eb7be2310fd, type: 3}
   repulsionSound: {fileID: 8300000, guid: 68c1033a9d7e41a42a8a4a7220a44b30, type: 3}
   basicSound: {fileID: 8300000, guid: d3275189fd6ef0f41bb6da525c59422d, type: 3}
@@ -7599,7 +7601,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1672515537450790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 

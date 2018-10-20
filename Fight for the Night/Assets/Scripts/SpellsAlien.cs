@@ -16,6 +16,9 @@ public class SpellsAlien : MonoBehaviour
 	public Transform frontPos;
 	private int team;
 
+	Transform mainCamera;
+	public Transform accuracyTarget;
+
 	// Audio part
 	AudioSource audioS;
 	public AudioClip laserSound;
@@ -31,6 +34,12 @@ public class SpellsAlien : MonoBehaviour
 	public int autoDamage;
 	public float fireRate = 0.4f;
 	private float fireTimer = 0.0f;
+
+	private float bigShootNetworkTimer = 0.0f;
+	private float bigShootNetworkFireRate = 1.0f;
+
+	private float pushNetworkTimer = 0.0f;
+	private float pushNetworkFireRate = 1.0f;
 	
 
 	// Spell 1
@@ -72,10 +81,6 @@ public class SpellsAlien : MonoBehaviour
 
 	// Use this for initialization
 	void Start() {
-		accuracyCounter = 0.0f;
-		if (!this.GetComponent<PlayerNetwork>().local) {
-			return;
-		}
 
 		if (this.tag == "Player0")
         {
@@ -86,23 +91,62 @@ public class SpellsAlien : MonoBehaviour
             team = 1;
         }
 
+		if (!this.GetComponent<PlayerNetwork>().local) {
+			return;
+		}
+		accuracyCounter = 0.0f;
+
+
 		audioS = GetComponent<AudioSource>();
 
 		canv = this.transform.Find("Canvas").gameObject;
 		spell1T = canv.transform.Find("Spell1(Alien)").gameObject.transform.Find("Text").gameObject;
 		spell2T = canv.transform.Find("Spell2(Alien)").gameObject.transform.Find("Text").gameObject;
 		autoDamage = baseAuto;
-		foreach (Transform child in transform) if (child.CompareTag("ShootingPoint")) {
-			if (child.tag != "GameController") {
-				frontPos = child;
+
+		mainCamera = Camera.main.transform;
+		
+		foreach (Transform child in mainCamera) {
+			if (child.CompareTag("Target")) {
+				accuracyTarget = child;
 			}
 		}
+
+		
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		if (!this.GetComponent<PlayerNetwork>().local) {
+			if (this.GetComponent<Animator>().GetBool("Basic Bool")) {
+				if (fireTimer < Time.timeSinceLevelLoad) {
+					GameObject instance = Instantiate(projectile, (frontPos.position), this.transform.rotation) as GameObject;
+					instance.GetComponent<ProjectileController>().damage = 0;
+					instance.GetComponent<ProjectileController>().caster = "Alien";
+					instance.GetComponent<ProjectileController>().player = this.gameObject;
+					instance.GetComponent<ProjectileController>().team = team;
+					instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * power);       
+					Destroy(instance, 1.0f);
+					fireTimer = fireRate + Time.timeSinceLevelLoad;
+				}
+			} else if (this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(2).IsName("Big shoot") == true) {
+				if (bigShootNetworkTimer < Time.timeSinceLevelLoad) {
+					GameObject instance = Instantiate(spell1object, frontPos.transform.position, this.transform.rotation);
+					instance.GetComponent<ProjectileController>().damage = 0;
+					instance.GetComponent<ProjectileController>().caster = "Alien";
+					instance.GetComponent<ProjectileController>().player = this.gameObject;
+					instance.GetComponent<ProjectileController>().team = team;
+					instance.GetComponent<Rigidbody>().AddForce(this.transform.forward * power);
+					Destroy(instance, 2.5f);
+					bigShootNetworkTimer = bigShootNetworkFireRate + Time.timeSinceLevelLoad;
+				}
+			} else if (this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(2).IsName("Force push") == true) {
+				if (pushNetworkTimer < Time.timeSinceLevelLoad) {
+					ParticleSystem partInstance = Instantiate(windSpin, transform);
+					pushNetworkTimer = pushNetworkFireRate + Time.timeSinceLevelLoad;
+				}
+			}
 			return;
 		}
 		
@@ -181,9 +225,10 @@ public class SpellsAlien : MonoBehaviour
 		
 
 
-		Vector3 adjustedAccuracy = new Vector3 (Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion));
+		//Vector3 adjustedAccuracy = new Vector3 (Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion),Random.Range(-1*accuracyCounter*maxAccuracyDistortion,accuracyCounter*maxAccuracyDistortion));
 		GameObject instance = Instantiate(projectile, (frontPos.position), this.transform.rotation) as GameObject;
-		instance.transform.Rotate(adjustedAccuracy);
+		//instance.transform.Rotate(adjustedAccuracy);
+		instance.transform.LookAt(accuracyTarget);
 		instance.GetComponent<ProjectileController>().damage = baseAuto;
 		instance.GetComponent<ProjectileController>().caster = "Alien";
 		instance.GetComponent<ProjectileController>().player = this.gameObject;

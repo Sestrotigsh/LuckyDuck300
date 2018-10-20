@@ -39,6 +39,7 @@ public class Enemy : NavigationAgent {
 
     // HP Bar
     public Image healthBar;
+    public GameObject healthbarEntire;
 
     // TACTICAL CONTROLS - CHOOSE WHICH PATH TO SEND MINIONS
     //public bool customPathBool = false;
@@ -225,7 +226,9 @@ public class Enemy : NavigationAgent {
 	/// <param name="damage">The amount of damage to take</param>
 	public void Die(int damage) {
 		currentHealth = currentHealth - damage;
-        healthBar.fillAmount = currentHealth / health;
+        if (playerNet.local) {
+            healthBar.fillAmount = currentHealth / health;
+        }
 		if (currentHealth <= 0) {  
             if (playerMan.currentGold > 10.0f) {
                 value = value / (Mathf.Log10 (playerMan.currentGold));              
@@ -342,6 +345,9 @@ public class Enemy : NavigationAgent {
             // give it the desired start node
             graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + team).GetComponent<WaypointGraph> ();
             playerNet = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerNetwork> ();
+            if (!playerNet.local) {
+                healthbarEntire.gameObject.SetActive(false);
+            }
             playerMan = GameObject.FindGameObjectWithTag ("Player" + team).GetComponent<PlayerManagement> ();
             startNode = 5;
             currentPath.Add(startNode);
@@ -358,6 +364,9 @@ public class Enemy : NavigationAgent {
         currentHealth = health;
         graphNodes = GameObject.FindGameObjectWithTag ("waypoint graph" + team).GetComponent<WaypointGraph> ();
         playerNet = GameObject.FindGameObjectWithTag ("Player"+team).GetComponent<PlayerNetwork> ();
+        if (!playerNet.local) {
+                healthbarEntire.gameObject.SetActive(false);
+            }
         playerMan = GameObject.FindGameObjectWithTag ("Player"+team).GetComponent<PlayerManagement> ();
         startNode = Mathf. RoundToInt(chosenPath);
         currentPath.Add(startNode);

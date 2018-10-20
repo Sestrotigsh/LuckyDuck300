@@ -40,10 +40,10 @@ public class ChoosePlayer : NetworkBehaviour {
 			alienClothes.SetActive(true);
 			alienChosen = true;
 			this.GetComponent<Animator>().avatar = alienAvatar;
+			this.gameObject.GetComponent<SpellsAlien>().enabled = true;
 			if (this.GetComponent<PlayerNetwork>().local) {
 				AlienSpell1.SetActive(true);
 				AlienSpell2.SetActive(true);
-				this.gameObject.GetComponent<SpellsAlien>().enabled = true;
 				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
 			} else {
 				this.GetComponent<Animator>().runtimeAnimatorController = alienController;
@@ -59,11 +59,10 @@ public class ChoosePlayer : NetworkBehaviour {
 			slasherClothes.SetActive(true);
 			slasherChosen = true;
 			this.GetComponent<Animator>().avatar = slasherAvatar;
-
+			this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
 			if (this.GetComponent<PlayerNetwork>().local) {
 				SlasherSpell1.SetActive(true);
 				SlasherSpell2.SetActive(true);
-				this.gameObject.GetComponent<SpellsSlasher>().enabled = true;
 				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;
 			} else {
 				this.GetComponent<Animator>().runtimeAnimatorController = slasherController;

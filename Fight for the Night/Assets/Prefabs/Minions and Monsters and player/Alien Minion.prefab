@@ -383,6 +383,7 @@ MonoBehaviour:
   playerNet: {fileID: 0}
   minionType: 0
   healthBar: {fileID: 114157281862110752}
+  healthbarEntire: {fileID: 1380333473471154}
   value: 1
   isStunned: 0
   endOfStun: 0
