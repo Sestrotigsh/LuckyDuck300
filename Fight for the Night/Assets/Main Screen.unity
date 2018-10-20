@@ -2211,7 +2211,7 @@ MonoBehaviour:
   m_ShowLobbyGUI: 0
   m_MaxPlayers: 2
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 1
+  m_MinPlayers: 2
   m_LobbyPlayerPrefab: {fileID: 11487034, guid: ad727d7e1462ecc4f83c898ecc501997,
     type: 2}
   m_GamePlayerPrefab: {fileID: 1672515537450790, guid: bde10917aac436546b80a5d6c0fd40aa,
@@ -4887,7 +4887,7 @@ GameObject:
   - component: {fileID: 1218316436}
   m_Layer: 0
   m_Name: StartOptions
-  m_TagString: Untagged
+  m_TagString: Startup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

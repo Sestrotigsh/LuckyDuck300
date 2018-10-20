@@ -62,6 +62,7 @@ TagManager:
   - TowerLocation
   - Music
   - Target
+  - Startup
   layers:
   - Default
   - TransparentFX

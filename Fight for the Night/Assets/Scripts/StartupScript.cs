@@ -8,9 +8,9 @@ public class StartupScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		StartMenu = GameObject.FindWithTag("Startup");
 		StartMenu.SetActive(true);
 		Cursor.visible = true;
-
 	}
 	
 	// Update is called once per frame
