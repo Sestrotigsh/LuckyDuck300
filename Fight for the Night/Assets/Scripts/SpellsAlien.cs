@@ -150,6 +150,7 @@ public class SpellsAlien : MonoBehaviour
 			return;
 		}
 		
+		/*
 		if (accuracyCounter > 0.0f) {
 			accuracyCounter -= Time.deltaTime * 0.2f;
 		}
@@ -162,7 +163,9 @@ public class SpellsAlien : MonoBehaviour
 			Crosshairs.text = "          |\n\n    ~        ~\n\n          |";
 		} else if (accuracyCounter > 0.25f && accuracyCounter < 0.4f) {
 			Crosshairs.text = "          |\n       ~   ~\n          |";
-		} 
+		}
+		*/
+
 
 
 
