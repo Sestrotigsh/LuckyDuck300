@@ -9,7 +9,8 @@ public class ButtonScripts : NetworkBehaviour {
 ///// CONTROL UI BUTTONS
 
 	public GameObject optionsPanel;
-	public GameObject startMenu;
+    public GameObject creditsPanel;
+    public GameObject startMenu;
 	public GameObject controls;
 	public GameObject sounds;
     public GameObject LobbyManager;
@@ -100,14 +101,26 @@ public class ButtonScripts : NetworkBehaviour {
 
     public void Options() {
     	startMenu.SetActive(false);
-    	optionsPanel.SetActive(true);
+        creditsPanel.SetActive(false);
+        optionsPanel.SetActive(true);
         graphicsSlider.SetActive(true);
         soundSlider.SetActive(true);
     }
 
+    public void Credits()
+    {
+        startMenu.SetActive(false);
+        creditsPanel.SetActive(true);
+        optionsPanel.SetActive(false);
+        graphicsSlider.SetActive(false);
+        soundSlider.SetActive(false);
+    }
+
+
     public void Menu() {
     	startMenu.SetActive(true);
-    	optionsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        optionsPanel.SetActive(false);
         graphicsSlider.SetActive(false);
         soundSlider.SetActive(false);
     }
@@ -115,12 +128,14 @@ public class ButtonScripts : NetworkBehaviour {
     public void Tutorial()
     {
         optionsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
         startMenu.SetActive(false);
         LobbyManager.GetComponent<NetworkManager>().enabled = false;
         SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
     }
 
     public void Controls() {
+    
     controls.SetActive(true);
     sounds.SetActive(false);
     }
