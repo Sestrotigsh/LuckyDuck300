@@ -41,6 +41,8 @@ public class playerAnimation : NetworkBehaviour {
 	float h;
 	float v;
 
+	float updateTime = 0.0f;
+
 	[SyncVar (hook = "StateChangedNet")]
 	public string changedState;
 
@@ -65,7 +67,7 @@ public class playerAnimation : NetworkBehaviour {
 		playerNet = this.GetComponent<PlayerNetwork>();
 		anim = GetComponent<Animator>();
 		if (!playerNet.local) {
-			oldPos = transform.position;
+			oldPos = transform.localPosition;
 			this.GetComponent<AudioListener>().enabled = false;
 			return;
 		}
@@ -113,18 +115,34 @@ public class playerAnimation : NetworkBehaviour {
 
 
 		if (!playerNet.local) {
-			newPos = transform.position;
-			h = 2.0f*(newPos.x-oldPos.x) / (Time.deltaTime * speedMultiplier);
-			v = (newPos.z - oldPos.z) / (Time.deltaTime * speedMultiplier);
-			if (Mathf.Abs(h) > 0.2f) {
-				h = 1.0f;
+			if (Time.timeSinceLevelLoad > updateTime) {
+				newPos = transform.localPosition;
+				h = 2.0f*(newPos.x-oldPos.x) / (Time.deltaTime * speedMultiplier);
+				v = (newPos.z - oldPos.z) / (Time.deltaTime * speedMultiplier);
+				float hOld = h;
+				float vOld = v;
+				if (Mathf.Abs(h) > 0.3f) {
+					h = 1.0f;
+				} else {
+					h = 0.0f;
+				}
+				if (Mathf.Abs(v) > 0.3f) {
+					v = 1.0f;
+				} else {
+					v = 0.0f;
+				}
+				if (v == 1.0f && h == 1.0f) {
+					if (Mathf.Abs(vOld) - Mathf.Abs(hOld) > 3.0f) {
+						h = 0.0f;
+					} else if (Mathf.Abs(hOld) - Mathf.Abs(vOld) > 3.0f) {
+						v = 0.0f;
+					}
+				}
+				anim.SetFloat("hSpeed", h);
+				anim.SetFloat ("vSpeed", v);
+				oldPos = newPos;
+				updateTime = Time.timeSinceLevelLoad + 0.2f;
 			}
-			if (Mathf.Abs(v) > 0.2f) {
-				v = 1.0f;
-			}
-			anim.SetFloat("hSpeed", h);
-			anim.SetFloat ("vSpeed", v);
-			oldPos = newPos;
 			return;
 		}
 
