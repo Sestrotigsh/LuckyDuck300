@@ -289,20 +289,15 @@ public class Enemy : NavigationAgent {
 	}
 
     void OnTriggerStay(Collider other) {
-        if (startNode != -1 && graphNodes != null) {
-            if (other.CompareTag("Enemy0") || other.CompareTag("Enemy1")) {
-            if (other.gameObject != inFront) {
-                inFront = other.gameObject;
-                if (other.transform.position.z < this.transform.position.z) {
-                    sign = 0.2f;
-            } else if (other.transform.position.z > this.transform.position.z) {
-                sign = -0.1f;
+        if (startNode != -1 && graphNodes != null)
+        {
+            if (other.CompareTag("Enemy0") || other.CompareTag("Enemy1"))
+            {
+                if (other.gameObject.GetComponent<Enemy>().isStunned == false)
+                {
+                    Stun(0.1f);
+                }
             }
-        }
-        transform.position = Vector3.MoveTowards(transform.position, graphNodes.graphNodes[currentPath[currentPathIndex]].transform.position, moveSpeed * sign);
-
-            }
-
         }
     }
 

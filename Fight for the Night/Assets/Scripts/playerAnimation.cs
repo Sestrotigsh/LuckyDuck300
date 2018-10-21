@@ -41,6 +41,8 @@ public class playerAnimation : NetworkBehaviour {
 	float h;
 	float v;
 
+    float timerAnim;
+
 	[SyncVar (hook = "StateChangedNet")]
 	public string changedState;
 
@@ -69,6 +71,8 @@ public class playerAnimation : NetworkBehaviour {
 			this.GetComponent<AudioListener>().enabled = false;
 			return;
 		}
+
+        timerAnim = Time.timeSinceLevelLoad;
 
 
 		GameObject[] shootingPointsList = GameObject.FindGameObjectsWithTag("ShootingPoint");
@@ -113,19 +117,26 @@ public class playerAnimation : NetworkBehaviour {
 
 
 		if (!playerNet.local) {
-			newPos = transform.position;
-			h = 2.0f*(newPos.x-oldPos.x) / (Time.deltaTime * speedMultiplier);
-			v = (newPos.z - oldPos.z) / (Time.deltaTime * speedMultiplier);
-			if (Mathf.Abs(h) > 0.2f) {
-				h = 1.0f;
-			}
-			if (Mathf.Abs(v) > 0.2f) {
-				v = 1.0f;
-			}
-			anim.SetFloat("hSpeed", h);
-			anim.SetFloat ("vSpeed", v);
-			oldPos = newPos;
-			return;
+            if (timerAnim < Time.timeSinceLevelLoad)
+            {
+                newPos = transform.position;
+                h = 2.0f * (newPos.x - oldPos.x) / (Time.deltaTime * speedMultiplier);
+                v = (newPos.z - oldPos.z) / (Time.deltaTime * speedMultiplier);
+                if (Mathf.Abs(h) > 0.2f)
+                {
+                    h = 1.0f;
+                }
+                if (Mathf.Abs(v) > 0.2f)
+                {
+                    v = 1.0f;
+                }
+                anim.SetFloat("hSpeed", h);
+                anim.SetFloat("vSpeed", v);
+                oldPos = newPos;
+                timerAnim = Time.timeSinceLevelLoad + 0.2f;
+                return;
+            }
+			
 		}
 
 		//if (Input.GetKeyUp ("z")) {
