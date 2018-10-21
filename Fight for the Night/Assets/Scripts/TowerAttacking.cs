@@ -44,9 +44,9 @@ public class TowerAttacking : MonoBehaviour {
 	void Update () {
 		if (playerChar == null) {
 			playerChar = GameObject.FindGameObjectWithTag("Player" + team);
-        	if (playerChar.GetComponent<PlayerNetwork>().local == false) {
-        		this.enabled = false;
-        	}
+        	//if (playerChar.GetComponent<PlayerNetwork>().local == false) {
+        		//this.enabled = false;
+        	//}
 		}
 
 
