@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.30692166, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -264,7 +264,7 @@ Canvas:
   m_GameObject: {fileID: 494450217}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 422435665}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.011764706, g: 0.5568628, b: 0.039215688, a: 1}
+  m_Color: {r: 0.011764706, g: 0.5568628, b: 0.039215688, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -398,6 +398,7 @@ MonoBehaviour:
   sounds: {fileID: 0}
   LobbyManager: {fileID: 0}
   graphicsSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
 --- !u!114 &761477594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +560,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 807612541}
   m_CullTransparentMesh: 0
+--- !u!1001 &1018199158
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 90.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -30.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -14.570003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489995694178300, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42c91118512e03b428df2d0582afab84, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1023224786
 Prefab:
   m_ObjectHideFlags: 0
@@ -1081,6 +1124,7 @@ MonoBehaviour:
   sounds: {fileID: 0}
   LobbyManager: {fileID: 0}
   graphicsSlider: {fileID: 0}
+  soundSlider: {fileID: 0}
 --- !u!114 &1874766813
 MonoBehaviour:
   m_ObjectHideFlags: 0
