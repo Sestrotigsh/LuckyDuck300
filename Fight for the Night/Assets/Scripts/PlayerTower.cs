@@ -191,11 +191,10 @@ public class PlayerTower : NetworkBehaviour {
                     if (isAlien == true)
                     {
                         CmdCreateTower(currentlyTouching.transform.position, alienGhost.transform.rotation, 0, 1, previousTowerId, false);
-                        Debug.Log("AlienBase2");
                     }
                     else
                     {
-                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,2, previousTowerId, false);
+                        CmdCreateTower(currentlyTouching.transform.position, slasherGhost.transform.rotation, 1,1, previousTowerId, false);
                     }
                     currentlyTouching.GetComponent<TowerSpot>().currentType = TowerSpot.type.loading;
                     RecalculateCurrentlyTouching("BaseTower2", baselevel2Cost, 2);
